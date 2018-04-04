@@ -37,7 +37,7 @@ statement   :   blockStatement
 
 blockStatement  :   '{' statement* '}';
 
-expressionStatement :   expression?;
+expressionStatement :   expression? ';';
 
 selectionStatement  :   'if' '(' expression ')' statement ('else' statement)?;
 
