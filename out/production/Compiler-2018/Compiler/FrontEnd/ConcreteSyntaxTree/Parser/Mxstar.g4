@@ -16,7 +16,6 @@ BLOCKCOMMENT    :   '/*' .*? '*/' -> skip;
 
 WHITESPACE  :   [ \t\r\n]+ -> skip;
 
-
 //Parser
 
 program : (variableDeclarationStatement | functionDeclaration | classDeclaration)+;
@@ -85,8 +84,3 @@ expression  :   constant    #constantExpression
             |   expression '||' expression  #logicalOrExpression
             |   <assoc=right> expression '=' expression #assignmentExpression
             ;
-
-
-
-
-
