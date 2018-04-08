@@ -1,6 +1,5 @@
-// Generated from Mxstar.g4 by ANTLR 4.5.1
+// Generated from /Users/resolution/Documents/GitHub/Compiler/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4 by ANTLR 4.7
 package Compiler.FrontEnd.ConcreteSyntaxTree.Parser;
-
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
