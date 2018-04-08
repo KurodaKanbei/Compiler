@@ -41,7 +41,7 @@ expressionStatement :   expression? ';';
 selectionStatement  :   'if' '(' expression ')' statement ('else' statement)?;
 
 iterationStatement  :   'while' '(' expression ')' statement    #whileStatement
-                    |   'for' '(' expression? ';' expression? ';' statement? ')' statement  #forStatement
+                    |   'for' '(' expression? ';' expression? ';' expression? ')' statement  #forStatement
                     ;
 
 jumpStatement   :   'continue' ';'  #continueStatement

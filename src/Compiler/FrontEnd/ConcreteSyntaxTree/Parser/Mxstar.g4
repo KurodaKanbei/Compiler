@@ -10,7 +10,7 @@ STRING  :   '"' (CHAR | .)*? '"';
 
 fragment CHAR : '\\' [btnr"\\] ;
 
-LINECOMMENT :   '//' ~[\r\n] -> skip;
+LINECOMMENT :   '//' .*? ('\n' | '\r') -> skip;
 
 BLOCKCOMMENT    :   '/*' .*? '*/' -> skip;
 
@@ -41,7 +41,7 @@ expressionStatement :   expression? ';';
 selectionStatement  :   'if' '(' expression ')' statement ('else' statement)?;
 
 iterationStatement  :   'while' '(' expression ')' statement    #whileStatement
-                    |   'for' '(' expression? ';' expression? ';' statement? ')' statement  #forStatement
+                    |   'for' '(' expression? ';' expression? ';' expression? ')' statement  #forStatement
                     ;
 
 jumpStatement   :   'continue' ';'  #continueStatement
@@ -71,7 +71,7 @@ expression  :   constant    #constantExpression
             |   expression '(' (expression (',' expression)*)?')'   #functionCallExpression
             |   expression '.' IDENTIFIER   #fieldExpression
             |   operator=('+' | '-' | '!' | '~' | '++' | '--') expression   #unaryExpression
-            |   'new' type ('[' expression ']')* ('['']')*  #newExpression
+            |   'new' type ('[' expression ']')* ('[]')*  #newExpression
             |   expression operator=('*' | '/' | '%') expression    #multiplicativeExpression
             |   expression operator=('+' | '-') expression  #additiveExpression
             |   expression operator=('<<' | '>>') expression    #shiftExpression
