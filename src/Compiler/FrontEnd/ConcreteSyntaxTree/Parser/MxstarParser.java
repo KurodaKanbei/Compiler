@@ -1,4 +1,6 @@
 // Generated from Mxstar.g4 by ANTLR 4.5.1
+package Compiler.FrontEnd.ConcreteSyntaxTree.Parser;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
