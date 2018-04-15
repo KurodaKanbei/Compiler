@@ -1,5 +1,5 @@
-// Generated from /Users/resolution/Documents/GitHub/Compiler/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4 by ANTLR 4.7
-package Compiler.FrontEnd.ConcreteSyntaxTree.Parser;
+// Generated from /Users/resolution/Documents/GitHub/Compiler/src/Compiler/FrontEnd/Parser/Mxstar.g4 by ANTLR 4.7
+package Compiler.FrontEnd.Parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;

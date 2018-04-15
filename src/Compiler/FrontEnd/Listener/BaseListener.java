@@ -6,7 +6,7 @@ import Compiler.FrontEnd.ConcreteSyntaxTree.Parser.MxstarBaseListener;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
-public class BaseListener {
+public class BaseListener extends MxstarBaseListener{
     public static int row, column;
     static ParseTreeProperty<Node> returnNode = new ParseTreeProperty<>();
 
