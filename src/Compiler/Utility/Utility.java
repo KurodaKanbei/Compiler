@@ -1,13 +1,6 @@
 package Compiler.Utility;
 
-//import Compiler.BackEnd.Translator.x86.x86Register;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class Utility {
-
-    public static Set<String> arguments = new HashSet<>();
 
     public static String getIndent(int n) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -28,10 +21,5 @@ public class Utility {
         }
         return length;
     }
-
-    /*public static int getAligned(int size) {
-        int n = x86Register.size();
-        return (size + n - 1) / n * n;
-    }*/
 
 }

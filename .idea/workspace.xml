@@ -2,38 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Constant/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Expression/Expression.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Statement/BlockStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Statement/BreakStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Statement/LoopStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Statement/Statement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Statement/forStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Statement/whileStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Symbol/Scope.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/BoolType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/ClassTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/ClassType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/FunctionTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/FunctionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/IntType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/NullType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/StringType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/VariableTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/VoidType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ClassDeclarationListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/IR/Instruction/Instruction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Compiler/IR/Instruction/LableInstruction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Compiler-2018.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler-2018.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/Mxstar.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler-2018/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Function.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Program.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/BaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/ClassFetcherListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/DeclarationFetcherListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/SyntaxErrorListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/TreeBuildListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/Mxstar.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/Mxstar.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/BaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/BaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ClassFetcherListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/DeclarationFetcherListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/SyntaxErrorListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/TreeBuildListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Utility/Error/InternalError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Utility/Error/InternalError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Utility/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Utility/Utility.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,69 +65,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Mxstar.tokens" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.tokens">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="MxstarBaseListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseListener.java">
+      <file leaf-file-name="Type.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/Type.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MxstarLexer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java">
+      <file leaf-file-name="FunctionType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/FunctionType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="30">
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VariableTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/VariableTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoolType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/BoolType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#463#464#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MxstarLexer.tokens" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.tokens">
+      <file leaf-file-name="IntType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/IntType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1045" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MxstarListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            <state relative-caret-position="105">
+              <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+              <folding>
+                <element signature="e#229#230#0" expanded="true" />
+                <element signature="e#182#183#0" expanded="true" />
+                <element signature="e#215#216#0" expanded="true" />
+                <element signature="e#296#297#0" expanded="true" />
+                <element signature="e#335#336#0" expanded="true" />
+                <element signature="e#307#308#0" expanded="true" />
+                <element signature="e#360#361#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MxstarParser.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java">
+      <file leaf-file-name="IntTypeTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/Compiler/AST/Type/IntTypeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3623">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mxstar.g4" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-769" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MxstarVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="201">
+              <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,6 +139,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="package-info" />
+        <option value="JUnit4 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -134,14 +155,10 @@
         <option value="$PROJECT_DIR$/src/Compiler/Utility/Pair.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Utility/Triple.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/SyntaxErrorListener.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Utility/Utility.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Utility/Error/InternalError.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/DeclarationFetcherListener.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/TreeBuildListener.java" />
         <option value="$PROJECT_DIR$/src/test.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Node.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Program.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/test.txt" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4" />
@@ -154,16 +171,41 @@
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/ClassFetcherListener.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarBaseListener.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseListener.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java" />
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
+        <option value="$PROJECT_DIR$/out/production/Compiler-2018/Compiler/FrontEnd/Parser/Mxstar.g4" />
+        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4" />
+        <option value="$PROJECT_DIR$/src/Compiler/Utility/Utility.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Utility/Error/InternalError.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/BaseListener.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Constant/Constant.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Expression.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ClassDeclarationListener.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Symbol/Scope.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Statement/BlockStatement.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/IR/Instruction/Instructino.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Statement/LoopStatement.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/IR/Operand.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Statement/BreakStatement.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Statement/Statement.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/Type.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/NullType.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/StringType.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/VoidType.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/BoolType.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/IntTypeTest.groovy" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/IntTypeTest.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/AST/Type/IntType.java" />
+        <option value="$PROJECT_DIR$/src/test/Compiler/AST/Type/IntTypeTest.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1280" />
-    <option name="height" value="727" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -173,8 +215,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -208,59 +248,6 @@
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="gen" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -274,7 +261,15 @@
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="AST" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="AST" type="462c0819:PsiDirectoryNode" />
+              <item name="Type" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -282,21 +277,54 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Listener" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Parser" type="462c0819:PsiDirectoryNode" />
+              <item name="IR" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="IR" type="462c0819:PsiDirectoryNode" />
+              <item name="Instruction" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="Utility" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="Utility" type="462c0819:PsiDirectoryNode" />
+              <item name="Error" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Type" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -308,15 +336,30 @@
     <property name="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4::/gen-listener" value="true" />
     <property name="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4::/gen-visitor" value="false" />
     <property name="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4::/output-dir" value="$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser" />
+    <property name="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4::/auto-gen" value="true" />
+    <property name="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4::/gen-listener" value="true" />
+    <property name="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4::/gen-visitor" value="false" />
     <property name="SearchEverywhereHistoryKey" value="Project Settings&#9;ACTION&#9;ProjectViewPopupMenuSettingsGroup" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Groovy JUnit" value="groovy.util.GroovyTestCase" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Compiler.AST.Type" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+      <recent name="groovy.util.GroovyTestCase" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser" />
       <recent name="/Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home!/jdk.localedata" />
     </key>
   </component>
@@ -334,7 +377,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" singleton="true" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Compiler.Main" />
+      <option name="MAIN_CLASS_NAME" value="Compiler.FrontEnd.Parser.MxstarListener" />
       <module name="Compiler-2018" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
@@ -389,468 +432,97 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="23" width="1280" height="727" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
-      <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.4983845" weight="0.32965517" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4927302" visible="true" weight="0.32857144" />
+      <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49757674" weight="0.32857144" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5024233" side_tool="true" weight="0.37931034" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5024233" side_tool="true" weight="0.32827586" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32965517" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32965517" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49757674" weight="0.37931034" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32965517" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49676898" weight="0.37777779" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49253732" visible="true" weight="0.35702747" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49253732" visible="true" weight="0.36833602" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" sideWeight="0.49596122" weight="0.41379312" />
       <window_info id="Structure" order="1" sideWeight="0.5055762" side_tool="true" weight="0.34006462" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info id="Favorites" order="5" sideWeight="0.5006896" side_tool="true" weight="0.47576737" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="5" sideWeight="0.5006896" side_tool="true" weight="0.47576737" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4878837" weight="0.32857144" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4983845" weight="0.32857144" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32965517" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49757674" weight="0.32857144" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49253732" visible="true" weight="0.36268175" />
+      <window_info id="Structure" order="1" sideWeight="0.5055762" side_tool="true" weight="0.34006462" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32965517" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="11" sideWeight="0.49596122" weight="0.41379312" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4983845" weight="0.32857144" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49676898" weight="0.37777779" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5024233" side_tool="true" weight="0.32857144" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4878837" weight="0.32857144" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info id="Favorites" order="5" sideWeight="0.5006896" side_tool="true" weight="0.47576737" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarBaseListener.java">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/NullType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="42" lean-forward="true" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/SyntaxErrorListener.java">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/IntTypeTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding>
-            <element signature="e#198#199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/TreeBuildListener.java" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.interp" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.interp" />
     <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Mxstar.g4" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Mxstar.g4" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarBaseListener.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarLexer.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarParser.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/MxstarListener.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Triple.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
-          <folding>
-            <element signature="e#163#164#0" expanded="true" />
-            <element signature="e#189#190#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#249#250#0" expanded="true" />
-            <element signature="e#283#284#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding>
-            <element signature="e#198#199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Utility.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/lib/src.zip!/java.activation/module-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Error/InternalError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/out/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarBaseListener.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/out/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarLexer.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/out/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarListener.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/test.txt" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/test1.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/test2.java" />
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-322">
-          <caret line="197" column="34" selection-start-line="197" selection-start-column="34" selection-end-line="197" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3567#3568#0" expanded="true" />
-            <element signature="e#3591#3592#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#3665#3666#0" expanded="true" />
-            <element signature="e#4772#4773#0" expanded="true" />
-            <element signature="e#4834#4835#0" expanded="true" />
-            <element signature="e#4893#4894#0" expanded="true" />
-            <element signature="e#4956#4957#0" expanded="true" />
-            <element signature="e#5027#5028#0" expanded="true" />
-            <element signature="e#5064#5065#0" expanded="true" />
-            <element signature="e#6706#6707#0" expanded="true" />
-            <element signature="e#6757#6758#0" expanded="true" />
-            <element signature="e#6883#6884#0" expanded="true" />
-            <element signature="e#6940#6941#0" expanded="true" />
-            <element signature="e#8454#8455#0" expanded="true" />
-            <element signature="e#8504#8505#0" expanded="true" />
-            <element signature="e#8539#8540#0" expanded="true" />
-            <element signature="e#8590#8591#0" expanded="true" />
-            <element signature="e#8640#8641#0" expanded="true" />
-            <element signature="e#8701#8702#0" expanded="true" />
-            <element signature="e#8831#8832#0" expanded="true" />
-            <element signature="e#8883#8884#0" expanded="true" />
-            <element signature="e#8966#8967#0" expanded="true" />
-            <element signature="e#9003#9004#0" expanded="true" />
-            <element signature="e#11639#11640#0" expanded="true" />
-            <element signature="e#11676#11677#0" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13485#13486#0" expanded="true" />
-            <element signature="e#13545#13546#0" expanded="true" />
-            <element signature="e#13611#13612#0" expanded="true" />
-            <element signature="e#13669#13670#0" expanded="true" />
-            <element signature="e#13734#13735#0" expanded="true" />
-            <element signature="e#13792#13793#0" expanded="true" />
-            <element signature="e#13857#13858#0" expanded="true" />
-            <element signature="e#13905#13906#0" expanded="true" />
-            <element signature="e#13965#13966#0" expanded="true" />
-            <element signature="e#14191#14192#0" expanded="true" />
-            <element signature="e#14228#14229#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15971#15972#0" expanded="true" />
-            <element signature="e#16016#16017#0" expanded="true" />
-            <element signature="e#16072#16073#0" expanded="true" />
-            <element signature="e#16150#16151#0" expanded="true" />
-            <element signature="e#16187#16188#0" expanded="true" />
-            <element signature="e#17936#17937#0" expanded="true" />
-            <element signature="e#17993#17994#0" expanded="true" />
-            <element signature="e#18076#18077#0" expanded="true" />
-            <element signature="e#18113#18114#0" expanded="true" />
-            <element signature="e#19597#19598#0" expanded="true" />
-            <element signature="e#19654#19655#0" expanded="true" />
-            <element signature="e#19700#19701#0" expanded="true" />
-            <element signature="e#19755#19756#0" expanded="true" />
-            <element signature="e#19800#19801#0" expanded="true" />
-            <element signature="e#19856#19857#0" expanded="true" />
-            <element signature="e#19938#19939#0" expanded="true" />
-            <element signature="e#19975#19976#0" expanded="true" />
-            <element signature="e#21426#21427#0" expanded="true" />
-            <element signature="e#21463#21464#0" expanded="true" />
-            <element signature="e#21637#21638#0" expanded="true" />
-            <element signature="e#21665#21666#0" expanded="true" />
-            <element signature="e#21789#21790#0" expanded="true" />
-            <element signature="e#21846#21847#0" expanded="true" />
-            <element signature="e#21886#21887#0" expanded="true" />
-            <element signature="e#21942#21943#0" expanded="true" />
-            <element signature="e#22479#22480#0" expanded="true" />
-            <element signature="e#22535#22536#0" expanded="true" />
-            <element signature="e#22583#22584#0" expanded="true" />
-            <element signature="e#22639#22640#0" expanded="true" />
-            <element signature="e#22686#22687#0" expanded="true" />
-            <element signature="e#22743#22744#0" expanded="true" />
-            <element signature="e#25799#25800#0" expanded="true" />
-            <element signature="e#25836#25837#0" expanded="true" />
-            <element signature="e#25995#25996#0" expanded="true" />
-            <element signature="e#26023#26024#0" expanded="true" />
-            <element signature="e#27133#27134#0" expanded="true" />
-            <element signature="e#27190#27191#0" expanded="true" />
-            <element signature="e#29477#29478#0" expanded="true" />
-            <element signature="e#29514#29515#0" expanded="true" />
-            <element signature="e#30825#30826#0" expanded="true" />
-            <element signature="e#30862#30863#0" expanded="true" />
-            <element signature="e#30994#30995#0" expanded="true" />
-            <element signature="e#31022#31023#0" expanded="true" />
-            <element signature="e#31115#31116#0" expanded="true" />
-            <element signature="e#31166#31167#0" expanded="true" />
-            <element signature="e#36478#36479#0" expanded="true" />
-            <element signature="e#36515#36516#0" expanded="true" />
-            <element signature="e#36665#36666#0" expanded="true" />
-            <element signature="e#36693#36694#0" expanded="true" />
-            <element signature="e#36809#36810#0" expanded="true" />
-            <element signature="e#36864#36865#0" expanded="true" />
-            <element signature="e#37433#37434#0" expanded="true" />
-            <element signature="e#37489#37490#0" expanded="true" />
-            <element signature="e#37536#37537#0" expanded="true" />
-            <element signature="e#37593#37594#0" expanded="true" />
-            <element signature="e#38156#38157#0" expanded="true" />
-            <element signature="e#38212#38213#0" expanded="true" />
-            <element signature="e#38259#38260#0" expanded="true" />
-            <element signature="e#38316#38317#0" expanded="true" />
-            <element signature="e#38864#38865#0" expanded="true" />
-            <element signature="e#38920#38921#0" expanded="true" />
-            <element signature="e#38967#38968#0" expanded="true" />
-            <element signature="e#39024#39025#0" expanded="true" />
-            <element signature="e#39601#39602#0" expanded="true" />
-            <element signature="e#39657#39658#0" expanded="true" />
-            <element signature="e#39704#39705#0" expanded="true" />
-            <element signature="e#39761#39762#0" expanded="true" />
-            <element signature="e#40317#40318#0" expanded="true" />
-            <element signature="e#40373#40374#0" expanded="true" />
-            <element signature="e#40420#40421#0" expanded="true" />
-            <element signature="e#40477#40478#0" expanded="true" />
-            <element signature="e#41010#41011#0" expanded="true" />
-            <element signature="e#41061#41062#0" expanded="true" />
-            <element signature="e#41109#41110#0" expanded="true" />
-            <element signature="e#41165#41166#0" expanded="true" />
-            <element signature="e#41212#41213#0" expanded="true" />
-            <element signature="e#41269#41270#0" expanded="true" />
-            <element signature="e#41803#41804#0" expanded="true" />
-            <element signature="e#41859#41860#0" expanded="true" />
-            <element signature="e#41906#41907#0" expanded="true" />
-            <element signature="e#41963#41964#0" expanded="true" />
-            <element signature="e#42547#42548#0" expanded="true" />
-            <element signature="e#42603#42604#0" expanded="true" />
-            <element signature="e#42650#42651#0" expanded="true" />
-            <element signature="e#42707#42708#0" expanded="true" />
-            <element signature="e#43273#43274#0" expanded="true" />
-            <element signature="e#43329#43330#0" expanded="true" />
-            <element signature="e#43376#43377#0" expanded="true" />
-            <element signature="e#43433#43434#0" expanded="true" />
-            <element signature="e#44561#44562#0" expanded="true" />
-            <element signature="e#44617#44618#0" expanded="true" />
-            <element signature="e#44664#44665#0" expanded="true" />
-            <element signature="e#44721#44722#0" expanded="true" />
-            <element signature="e#45256#45257#0" expanded="true" />
-            <element signature="e#45312#45313#0" expanded="true" />
-            <element signature="e#45359#45360#0" expanded="true" />
-            <element signature="e#45416#45417#0" expanded="true" />
-            <element signature="e#45997#45998#0" expanded="true" />
-            <element signature="e#46053#46054#0" expanded="true" />
-            <element signature="e#46100#46101#0" expanded="true" />
-            <element signature="e#46157#46158#0" expanded="true" />
-            <element signature="e#46706#46707#0" expanded="true" />
-            <element signature="e#46762#46763#0" expanded="true" />
-            <element signature="e#46809#46810#0" expanded="true" />
-            <element signature="e#46866#46867#0" expanded="true" />
-            <element signature="e#47410#47411#0" expanded="true" />
-            <element signature="e#47467#47468#0" expanded="true" />
-            <element signature="e#48093#48094#0" expanded="true" />
-            <element signature="e#48149#48150#0" expanded="true" />
-            <element signature="e#48196#48197#0" expanded="true" />
-            <element signature="e#48253#48254#0" expanded="true" />
-            <element signature="e#48828#48829#0" expanded="true" />
-            <element signature="e#48885#48886#0" expanded="true" />
-            <element signature="e#49412#49413#0" expanded="true" />
-            <element signature="e#49469#49470#0" expanded="true" />
-            <element signature="e#50019#50020#0" expanded="true" />
-            <element signature="e#50076#50077#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarLexer.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="77" column="6" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/BaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/Compiler-2018/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarBaseListener.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Function.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/AbstractSyntaxTree/Program.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/ClassFetcherListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/DeclarationFetcherListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/SyntaxErrorListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarBaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="74" selection-start-line="18" selection-start-column="74" selection-end-line="18" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/MxstarLexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Parser/Mxstar.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/ConcreteSyntaxTree/Listener/TreeBuildListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1045" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.tokens">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="183">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -859,34 +531,314 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-769" />
+        <state relative-caret-position="819">
+          <caret line="87" column="49" selection-start-line="87" selection-start-column="49" selection-end-line="87" selection-end-column="49" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarVisitor.java">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="120">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression.java" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Utility.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression/Expression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ClassDeclarationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3623">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/Compiler-2018/Compiler/FrontEnd/Parser/Mxstar.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Constant/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Symbol/Scope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Utility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/function/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Error/InternalError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#122#123#0" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/BaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/IR/Instruction/LableInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/IR/Instruction/Operand.java" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/IR/Instruction/Instructino.java" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/IR/Instruction/Instruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Statement/whileStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Statement/Statement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/FunctionTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Statement/BlockStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Statement/forStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Statement/BreakStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Statement/LoopStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/StringType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#177#178#0" expanded="true" />
+            <element signature="e#208#209#0" expanded="true" />
+            <element signature="e#272#273#0" expanded="true" />
+            <element signature="e#306#307#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#438#439#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/VariableTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/FunctionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/ClassTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/IntTypeTest.groovy" />
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/IntTypeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/IR/Operand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/ClassType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/VoidType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/NullType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/BoolType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding>
+            <element signature="e#463#464#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Type/IntType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+          <folding>
+            <element signature="e#229#230#0" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+            <element signature="e#215#216#0" expanded="true" />
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#335#336#0" expanded="true" />
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#360#361#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/Compiler/AST/Type/IntTypeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -907,7 +859,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited />
           <splitter-proportions>
             <option name="proportions">
               <list>

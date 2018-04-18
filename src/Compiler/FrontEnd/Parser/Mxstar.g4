@@ -29,8 +29,11 @@ classDeclaration :  'class' IDENTIFIER '{' (variableDeclarationStatement | funct
 statement   :   blockStatement
             |   expressionStatement
             |   selectionStatement
-            |   iterationStatement
-            |   jumpStatement
+            |   forStatement
+            |   whileStatement
+            |   continueStatement
+            |   breakStatement
+            |   returnStatement
             |   variableDeclarationStatement
             ;
 
@@ -40,14 +43,15 @@ expressionStatement :   expression? ';';
 
 selectionStatement  :   'if' '(' expression ')' statement ('else' statement)?;
 
-iterationStatement  :   'while' '(' expression ')' statement    #whileStatement
-                    |   'for' '(' expression? ';' expression? ';' expression? ')' statement  #forStatement
-                    ;
+whileStatement  :   'while' '(' expression ')' statement;
 
-jumpStatement   :   'continue' ';'  #continueStatement
-                |   'break' ';' #breakStatement
-                |   'return' expression? ';'    #returnStatement
-                ;
+forStatement    :   'for' '(' expression? ';' expression? ';' expression? ')' statement;
+
+continueStatement   :   'continue' ';';
+
+breakStatement  :   'break' ';';
+
+returnStatement :   'return' expression? ';';
 
 constant    :   'true' | 'false'    #boolConstant
             |   INTEGER #intConstant
@@ -65,13 +69,15 @@ type    :   'void'  #voidType
 
 expression  :   constant    #constantExpression
             |   IDENTIFIER  #variableExpression
+            |   'this'  #thisExpression
             |   '(' expression ')'  #subExpression
             |   expression operator=('++' | '--')   #postfixExpression
             |   expression '[' expression ']'   #subscriptExpression
             |   expression '(' (expression (',' expression)*)?')'   #functionCallExpression
             |   expression '.' IDENTIFIER   #fieldExpression
             |   operator=('+' | '-' | '!' | '~' | '++' | '--') expression   #unaryExpression
-            |   'new' type ('[' expression ']')* ('[]')*  #newExpression
+            |   'new' type ((('[' expression ']')+ ('[]')*) | ('[]')+)  #newArrayExpression
+            |   'new' type '()'? #newClassExpression
             |   expression operator=('*' | '/' | '%') expression    #multiplicativeExpression
             |   expression operator=('+' | '-') expression  #additiveExpression
             |   expression operator=('<<' | '>>') expression    #shiftExpression
