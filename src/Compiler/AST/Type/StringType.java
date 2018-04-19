@@ -8,6 +8,7 @@ public class StringType extends Type {
     public static StringType getInstance() {
         return instance;
     }
+
     @Override
     public boolean compatibleWith(Type rhs) {
         return this == rhs;

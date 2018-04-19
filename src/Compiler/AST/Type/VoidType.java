@@ -3,7 +3,10 @@ package Compiler.AST.Type;
 import Compiler.Utility.Utility;
 
 public class VoidType extends Type {
-    public static final VoidType instance = new VoidType();
+    private static final VoidType instance = new VoidType();
+
+    private VoidType() {
+    }
 
     public static VoidType getInstance() {
         return instance;

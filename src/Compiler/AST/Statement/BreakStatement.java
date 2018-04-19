@@ -7,12 +7,12 @@ import Compiler.Utility.Utility;
 public class BreakStatement extends Statement {
     private LoopStatement loopStatement;
 
-    public BreakStatement() throws Exception {
-        LoopStatement loopStatement = ProgramAST.symbolTable.getCurrentLoop();
+    public BreakStatement() {
+        /*LoopStatement loopStatement = ProgramAST.symbolTable.getCurrentLoop();
         if (null == loopStatement) {
             throw new CompilationError("BreakStatement is expected in a loopStatement");
         }
-        this.loopStatement = loopStatement;
+        this.loopStatement = loopStatement;*/
     }
 
     public LoopStatement getLoopStatement() {
@@ -26,8 +26,6 @@ public class BreakStatement extends Statement {
 
     @Override
     public String toString(int indents) {
-        StringBuilder str = new StringBuilder();
-        str.append(Utility.getIndent(indents)).append(toString()).append("\n");
-        return str.toString();
+        return Utility.getIndent(indents) + toString() + "\n";
     }
 }

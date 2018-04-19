@@ -18,7 +18,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         InputStream cin = new FileInputStream("test0.txt");
-        Utility.arguments = new HashSet<>(Arrays.asList(args));
 
         try {
             new Main().compile(cin, System.out);
@@ -28,30 +27,12 @@ public class Main {
     }
 
     public static void load(InputStream file) throws Exception {
-        Environment.initialize();
 
         ANTLRInputStream cin = new ANTLRInputStream(file);
-        MxstarLexer lexer = new MxstarLexer(cin);
 
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        MxstarParser parser = new MxstarParser(tokens);
-
-        parser.removeErrorListeners();
-        parser.addErrorListener(new SyntaxErrorListener());
-
-        ParseTree tree = parser.program();
-        ParseTreeWalker walker = new ParseTreeWalker();
-
-        walker.walk(new ClassFetcherListener(), tree);
-        walker.walk(new DeclarationFetherListener(), tree);
-
-        Environment.classTable.analysis();
-        walker.walk(new TreeBuilderListener(), tree);
 
     }
 
     public static void compile(InputStream cin, OutputStream cout) throws Exception {
-        Evironment.initialize();
-        load(cin);
     }
 }

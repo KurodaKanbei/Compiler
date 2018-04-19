@@ -1,9 +1,8 @@
-package test.Compiler.AST.Type; 
+package Compiler.AST.Type;
 
-import Compiler.AST.Type.IntType;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.Before; 
-import org.junit.After; 
 
 /** 
 * IntType Tester. 
@@ -16,13 +15,11 @@ public class IntTypeTest {
 
 @Before
 public void before() throws Exception { 
-    System.out.println("Begin Test");
-}
+} 
 
 @After
 public void after() throws Exception { 
-    System.out.println("End Test");
-}
+} 
 
 /** 
 * 
@@ -31,7 +28,7 @@ public void after() throws Exception {
 */ 
 @Test
 public void testGetInstance() throws Exception { 
-//TODO: Test goes here... 
+//TODO: Test goes here...
 } 
 
 /** 
@@ -40,14 +37,13 @@ public void testGetInstance() throws Exception {
 * 
 */ 
 @Test
-public void testCompatibleWith() throws Exception {
+public void testCompatibleWith() throws Exception { 
     IntType A = new IntType();
     IntType B = new IntType();
-    if (A.compatibleWith(B)) {
-        System.out.println("Yes");
-    } else {
-        System.out.println("No");
+    if (IntType.instance() != IntType.instance()) {
+        System.out.println("fuck you!");
     }
+    if (A.compatibleWith(B) == false) System.out.println("it sucks");
 }
 
 /** 

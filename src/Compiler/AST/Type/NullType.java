@@ -11,7 +11,9 @@ public class NullType extends Type {
 
     @Override
     public boolean compatibleWith(Type rhs) {
-        return this == rhs;
+        return  this == rhs
+                || rhs instanceof ArrayType
+                || rhs instanceof ClassType;
     }
 
     @Override

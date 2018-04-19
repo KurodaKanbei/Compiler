@@ -3,9 +3,9 @@ package Compiler.AST.Type;
 import Compiler.Utility.Utility;
 
 public class BoolType extends Type {
-    private static final BoolType instance = new BoolType();
+    private final BoolType instance = new BoolType();
 
-    public static BoolType getInstance() {
+    public BoolType getInstance() {
         return instance;
     }
 

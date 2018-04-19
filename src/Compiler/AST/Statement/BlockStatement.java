@@ -1,13 +1,12 @@
 package Compiler.AST.Statement;
 
-import Compiler.AST.Symbol.Scope;
 //import Compiler.Instruction.Instruction;
 import Compiler.Utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockStatement extends Statement implements Scope {
+public class BlockStatement extends Statement {
     public List<Statement> statementList;
 
     public BlockStatement() {

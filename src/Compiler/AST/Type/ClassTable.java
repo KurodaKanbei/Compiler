@@ -1,4 +1,5 @@
 package Compiler.AST.Type;
 
-public class ClassTable {
+public class ClassTable{
+
 }

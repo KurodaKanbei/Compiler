@@ -1,4 +1,4 @@
 package Compiler.AST.Statement;
 
-public class whileStatement {
+public class WhileStatement {
 }

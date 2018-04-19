@@ -1,4 +1,4 @@
 package Compiler.AST.Statement;
 
-public class forStatement {
+public class ForStatement {
 }
