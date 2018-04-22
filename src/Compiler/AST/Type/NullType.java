@@ -5,6 +5,8 @@ import Compiler.Utility.Utility;
 public class NullType extends Type {
     private static final NullType instance = new NullType();
 
+    private NullType() {}
+
     public static NullType getInstance() {
         return instance;
     }

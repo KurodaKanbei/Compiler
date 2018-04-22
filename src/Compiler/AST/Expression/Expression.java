@@ -5,12 +5,12 @@ import Compiler.IR.Operand;
 
 public abstract class Expression {
     private Type type;
-    private boolean leftValue;
+    private boolean isLeftValue;
     public Operand operand;
 
-    public Expression(Type type, boolean leftValue) {
+    public Expression(Type type, boolean isLeftValue) {
         this.type = type;
-        this.leftValue = leftValue;
+        this.isLeftValue = isLeftValue;
     }
 
     public Type getType() {
@@ -18,7 +18,7 @@ public abstract class Expression {
     }
 
     public boolean isLeftValue() {
-        return leftValue;
+        return isLeftValue;
     }
 
     public abstract String toString(int indents);

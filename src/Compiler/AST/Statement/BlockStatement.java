@@ -1,12 +1,13 @@
 package Compiler.AST.Statement;
 
 //import Compiler.Instruction.Instruction;
+import Compiler.AST.Symbol.Scope;
 import Compiler.Utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockStatement extends Statement {
+public class BlockStatement extends Statement implements Scope {
     public List<Statement> statementList;
 
     public BlockStatement() {
@@ -33,10 +34,5 @@ public class BlockStatement extends Statement {
         statementList.forEach(statement -> str.append(statement.toString(indents + 1)));
         return str.toString();
     }
-
-    /*@Override
-    public void issueInstruction(List<Instruction> instructionList) {
-        instructionList.forEach(statement -> issueInstruction(instructionList));
-    }*/
 
 }

@@ -3,11 +3,13 @@ package Compiler.AST.Type;
 import Compiler.Utility.Utility;
 
 public class BoolType extends Type {
-    private final BoolType instance = new BoolType();
+    private static final BoolType instance = new BoolType();
 
-    public BoolType getInstance() {
+    public static BoolType getInstance() {
         return instance;
     }
+
+    private BoolType() {}
 
     @Override
     public boolean compatibleWith(Type rhs) {
