@@ -24,7 +24,7 @@ public class BlockStatement extends Statement implements Scope {
 
     @Override
     public String toString() {
-        return "BreakStatement";
+        return "BlockStatement";
     }
 
     @Override

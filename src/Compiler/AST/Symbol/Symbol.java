@@ -2,7 +2,6 @@ package Compiler.AST.Symbol;
 
 import Compiler.AST.Type.ClassType;
 import Compiler.AST.Type.Type;
-import Compiler.IR.Operand;
 import Compiler.IR.VirtualRegister;
 import Compiler.Utility.Utility;
 

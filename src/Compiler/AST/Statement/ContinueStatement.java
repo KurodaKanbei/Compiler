@@ -4,13 +4,13 @@ import Compiler.AST.ProgramAST;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
 
-public class BreakStatement extends Statement {
+public class ContinueStatement extends Statement{
     private LoopStatement loopStatement;
 
-    public BreakStatement() {
+    public ContinueStatement() {
         LoopStatement loopStatement = ProgramAST.symbolTable.getCurrentLoopStatement();
         if (null == loopStatement) {
-            throw new CompilationError("break statement is expected in a loopStatement");
+            throw new CompilationError("The continue statement is expected to be in a loop statement");
         }
         this.loopStatement = loopStatement;
     }
@@ -21,7 +21,7 @@ public class BreakStatement extends Statement {
 
     @Override
     public String toString() {
-        return "Break Statement";
+        return "Continue Statement";
     }
 
     @Override
