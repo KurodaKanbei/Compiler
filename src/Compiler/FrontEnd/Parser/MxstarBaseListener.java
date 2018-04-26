@@ -376,6 +376,18 @@ public class MxstarBaseListener implements MxstarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMemberExpression(MxstarParser.MemberExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMemberExpression(MxstarParser.MemberExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVariableExpression(MxstarParser.VariableExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -395,6 +407,18 @@ public class MxstarBaseListener implements MxstarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAndExpression(MxstarParser.AndExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrefixExpression(MxstarParser.PrefixExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrefixExpression(MxstarParser.PrefixExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -424,6 +448,18 @@ public class MxstarBaseListener implements MxstarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSuffixExpression(MxstarParser.SuffixExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSuffixExpression(MxstarParser.SuffixExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterEqualityExpression(MxstarParser.EqualityExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -443,18 +479,6 @@ public class MxstarBaseListener implements MxstarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLogicalAndExpression(MxstarParser.LogicalAndExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFieldExpression(MxstarParser.FieldExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFieldExpression(MxstarParser.FieldExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -503,18 +527,6 @@ public class MxstarBaseListener implements MxstarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSubExpression(MxstarParser.SubExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPostfixExpression(MxstarParser.PostfixExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPostfixExpression(MxstarParser.PostfixExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

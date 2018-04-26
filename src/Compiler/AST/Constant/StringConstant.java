@@ -1,14 +1,13 @@
 package Compiler.AST.Constant;
 
-import Compiler.AST.Type.StringType;
 import Compiler.AST.Type.Type;
 import Compiler.Utility.Utility;
 
-public class StringContant extends Constant {
+public class StringConstant extends Constant {
     private String value;
 
-    public StringContant(String value) {
-        super(StringType.getInstance());
+    public StringConstant(Type type, String value) {
+        super(type);
         this.value = value;
     }
 
@@ -23,6 +22,6 @@ public class StringContant extends Constant {
 
     @Override
     public String toString(int indents) {
-        return Utility.getIndent(indents) + toString() + " = " + getValue() + "\n";
+        return Utility.getIndent(indents) + toString() + "\n";
     }
 }

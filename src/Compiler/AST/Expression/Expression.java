@@ -19,5 +19,7 @@ public abstract class Expression {
         return isLeftValue;
     }
 
+    public abstract String toString();
+
     public abstract String toString(int indents);
 }

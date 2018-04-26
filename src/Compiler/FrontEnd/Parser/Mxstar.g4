@@ -71,11 +71,12 @@ expression  :   constant    #constantExpression
             |   IDENTIFIER  #variableExpression
             |   'this'  #thisExpression
             |   '(' expression ')'  #subExpression
-            |   expression operator=('++' | '--')   #postfixExpression
+            |   expression operator=('++' | '--')   #suffixExpression
             |   expression '[' expression ']'   #subscriptExpression
             |   expression '(' (expression (',' expression)*)?')'   #functionCallExpression
-            |   expression '.' IDENTIFIER   #fieldExpression
-            |   operator=('+' | '-' | '!' | '~' | '++' | '--') expression   #unaryExpression
+            |   expression '.' IDENTIFIER   #memberExpression
+            |   operator=('++' | '--') expression   #prefixExpression
+            |   operator=('+' | '-' | '!' | '~' ) expression    #unaryExpression
             |   'new' type ((('[' expression ']')+ ('[]')*) | ('[]')+)  #newArrayExpression
             |   'new' type '()'? #newClassExpression
             |   expression operator=('*' | '/' | '%') expression    #multiplicativeExpression
