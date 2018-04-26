@@ -1,17 +1,9 @@
 package Compiler;
 
-import Compiler.Utility.Utility;
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
-
 import java.io.FileInputStream;
 import java.io.InputStream;
 
 import java.io.OutputStream;
-import java.util.Arrays;
-import java.util.HashSet;
 
 
 public class Main {
@@ -27,9 +19,6 @@ public class Main {
     }
 
     public static void load(InputStream file) throws Exception {
-
-        ANTLRInputStream cin = new ANTLRInputStream(file);
-
 
     }
 

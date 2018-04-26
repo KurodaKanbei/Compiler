@@ -1,13 +1,14 @@
 package Compiler.AST.Constant;
 
+import Compiler.AST.Type.StringType;
 import Compiler.AST.Type.Type;
 import Compiler.Utility.Utility;
 
 public class StringConstant extends Constant {
     private String value;
 
-    public StringConstant(Type type, String value) {
-        super(type);
+    public StringConstant(String value) {
+        super(StringType.getInstance());
         this.value = value;
     }
 
