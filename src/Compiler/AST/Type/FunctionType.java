@@ -7,7 +7,7 @@ import Compiler.Utility.Utility;
 
 import java.util.List;
 
-public class FunctionType extends Type{
+public class FunctionType extends Type implements Scope {
     private String name;
     private Type returnType;
     private List<Symbol> parameterList;
@@ -53,6 +53,14 @@ public class FunctionType extends Type{
 
     public void setClassScope(Scope classScope) {
         this.classScope = classScope;
+    }
+
+    public void setParameterList(List<Symbol> parameterList) {
+        this.parameterList = parameterList;
+    }
+
+    public void setBlockStatement(BlockStatement blockStatement) {
+        this.blockStatement = blockStatement;
     }
 
     @Override

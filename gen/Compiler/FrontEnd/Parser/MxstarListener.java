@@ -78,15 +78,15 @@ public interface MxstarListener extends ParseTreeListener {
 	 */
 	void exitExpressionStatement(MxstarParser.ExpressionStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MxstarParser#selectionStatement}.
+	 * Enter a parse tree produced by {@link MxstarParser#ifStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterSelectionStatement(MxstarParser.SelectionStatementContext ctx);
+	void enterIfStatement(MxstarParser.IfStatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MxstarParser#selectionStatement}.
+	 * Exit a parse tree produced by {@link MxstarParser#ifStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitSelectionStatement(MxstarParser.SelectionStatementContext ctx);
+	void exitIfStatement(MxstarParser.IfStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MxstarParser#whileStatement}.
 	 * @param ctx the parse tree
@@ -138,15 +138,53 @@ public interface MxstarListener extends ParseTreeListener {
 	 */
 	void exitReturnStatement(MxstarParser.ReturnStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MxstarParser#constant}.
+	 * Enter a parse tree produced by the {@code boolConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
 	 * @param ctx the parse tree
 	 */
-	void enterConstant(MxstarParser.ConstantContext ctx);
+	void enterBoolConstant(MxstarParser.BoolConstantContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MxstarParser#constant}.
+	 * Exit a parse tree produced by the {@code boolConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
 	 * @param ctx the parse tree
 	 */
-	void exitConstant(MxstarParser.ConstantContext ctx);
+	void exitBoolConstant(MxstarParser.BoolConstantContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code intConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntConstant(MxstarParser.IntConstantContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code intConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntConstant(MxstarParser.IntConstantContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code stringConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringConstant(MxstarParser.StringConstantContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code stringConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringConstant(MxstarParser.StringConstantContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code nullConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void enterNullConstant(MxstarParser.NullConstantContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code nullConstant}
+	 * labeled alternative in {@link MxstarParser#constant}.
+	 * @param ctx the parse tree
+	 */
+	void exitNullConstant(MxstarParser.NullConstantContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code arrayType}
 	 * labeled alternative in {@link MxstarParser#type}.
@@ -184,18 +222,6 @@ public interface MxstarListener extends ParseTreeListener {
 	 */
 	void exitStringType(MxstarParser.StringTypeContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code voidType}
-	 * labeled alternative in {@link MxstarParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterVoidType(MxstarParser.VoidTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code voidType}
-	 * labeled alternative in {@link MxstarParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitVoidType(MxstarParser.VoidTypeContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code boolType}
 	 * labeled alternative in {@link MxstarParser#type}.
 	 * @param ctx the parse tree
@@ -220,6 +246,16 @@ public interface MxstarListener extends ParseTreeListener {
 	 */
 	void exitClassType(MxstarParser.ClassTypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MxstarParser#voidType}.
+	 * @param ctx the parse tree
+	 */
+	void enterVoidType(MxstarParser.VoidTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MxstarParser#voidType}.
+	 * @param ctx the parse tree
+	 */
+	void exitVoidType(MxstarParser.VoidTypeContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code constantExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
 	 * @param ctx the parse tree
@@ -243,6 +279,18 @@ public interface MxstarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitShiftExpression(MxstarParser.ShiftExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code bitOrExpression}
+	 * labeled alternative in {@link MxstarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBitOrExpression(MxstarParser.BitOrExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code bitOrExpression}
+	 * labeled alternative in {@link MxstarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBitOrExpression(MxstarParser.BitOrExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code additiveExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
@@ -280,17 +328,17 @@ public interface MxstarListener extends ParseTreeListener {
 	 */
 	void exitRelationalExpression(MxstarParser.RelationalExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code inclusiveOrExpression}
+	 * Enter a parse tree produced by the {@code identifierExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterInclusiveOrExpression(MxstarParser.InclusiveOrExpressionContext ctx);
+	void enterIdentifierExpression(MxstarParser.IdentifierExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code inclusiveOrExpression}
+	 * Exit a parse tree produced by the {@code identifierExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitInclusiveOrExpression(MxstarParser.InclusiveOrExpressionContext ctx);
+	void exitIdentifierExpression(MxstarParser.IdentifierExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code assignmentExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
@@ -340,6 +388,18 @@ public interface MxstarListener extends ParseTreeListener {
 	 */
 	void exitNewClassExpression(MxstarParser.NewClassExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code bitXorExpression}
+	 * labeled alternative in {@link MxstarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBitXorExpression(MxstarParser.BitXorExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code bitXorExpression}
+	 * labeled alternative in {@link MxstarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBitXorExpression(MxstarParser.BitXorExpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code memberExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
 	 * @param ctx the parse tree
@@ -351,30 +411,6 @@ public interface MxstarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMemberExpression(MxstarParser.MemberExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code variableExpression}
-	 * labeled alternative in {@link MxstarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableExpression(MxstarParser.VariableExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code variableExpression}
-	 * labeled alternative in {@link MxstarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableExpression(MxstarParser.VariableExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code andExpression}
-	 * labeled alternative in {@link MxstarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAndExpression(MxstarParser.AndExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code andExpression}
-	 * labeled alternative in {@link MxstarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAndExpression(MxstarParser.AndExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code prefixExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
@@ -388,6 +424,18 @@ public interface MxstarListener extends ParseTreeListener {
 	 */
 	void exitPrefixExpression(MxstarParser.PrefixExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code bitAndExpression}
+	 * labeled alternative in {@link MxstarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBitAndExpression(MxstarParser.BitAndExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code bitAndExpression}
+	 * labeled alternative in {@link MxstarParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBitAndExpression(MxstarParser.BitAndExpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code thisExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.
 	 * @param ctx the parse tree
@@ -399,18 +447,6 @@ public interface MxstarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitThisExpression(MxstarParser.ThisExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code exclusiveOrExpression}
-	 * labeled alternative in {@link MxstarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterExclusiveOrExpression(MxstarParser.ExclusiveOrExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code exclusiveOrExpression}
-	 * labeled alternative in {@link MxstarParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitExclusiveOrExpression(MxstarParser.ExclusiveOrExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code suffixExpression}
 	 * labeled alternative in {@link MxstarParser#expression}.

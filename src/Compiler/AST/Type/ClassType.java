@@ -48,6 +48,10 @@ public class ClassType extends Type implements Scope {
         memberFunctionTable.addFunction(functionType);
     }
 
+    public void addMemberVariable(VariableDeclarationStatement variableDeclarationStatement) {
+        memberVariableTable.addVariable(variableDeclarationStatement);
+    }
+
     public void setConstructFunction(FunctionType constructFunction) {
         if (this.constructFunction != null) {
             throw new CompilationError("The Class " + getName() + "has more than one construction function!");

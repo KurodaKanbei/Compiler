@@ -10,7 +10,7 @@ STRING  :   '"' (CHAR | .)*? '"';
 
 fragment CHAR : '\\' [btnr"\\] ;
 
-LINECOMMENT :   '//' .*? ('\n' | '\r') -> skip;
+LINECOMMENT :   '//' ~[\n\r]* -> skip;
 
 BLOCKCOMMENT    :   '/*' .*? '*/' -> skip;
 
@@ -22,13 +22,13 @@ program : (variableDeclarationStatement | functionDeclaration | classDeclaration
 
 variableDeclarationStatement    :   type IDENTIFIER ('=' expression)?';';
 
-functionDeclaration :   type IDENTIFIER? '(' (type IDENTIFIER (',' type IDENTIFIER)*)? ')' blockStatement;
+functionDeclaration :   (type | voidType) IDENTIFIER? ('(' (type IDENTIFIER (type ',' IDENTIFIER)*)')'| '()') blockStatement;
 
 classDeclaration :  'class' IDENTIFIER '{' (variableDeclarationStatement | functionDeclaration)* '}';
 
 statement   :   blockStatement
             |   expressionStatement
-            |   selectionStatement
+            |   ifStatement
             |   forStatement
             |   whileStatement
             |   continueStatement
@@ -41,7 +41,7 @@ blockStatement  :   '{' statement* '}';
 
 expressionStatement :   expression? ';';
 
-selectionStatement  :   'if' '(' expression ')' statement ('else' statement)?;
+ifStatement  :   'if' '(' expression ')' statement ('else' statement)?;
 
 whileStatement  :   'while' '(' expression ')' statement;
 
@@ -53,22 +53,23 @@ breakStatement  :   'break' ';';
 
 returnStatement :   'return' expression? ';';
 
-constant    :   'true' | 'false'    #boolConstant
+constant    :   ('true' | 'false')    #boolConstant
             |   INTEGER #intConstant
             |   STRING  #stringConstant
             |   'null'  #nullConstant
             ;
 
-type    :   'void'  #voidType
-        |   'int'   #intType
+type    :   'int'   #intType
         |   'bool'  #boolType
         |   'string'    #stringType
         |   IDENTIFIER  #classType
         |   type '[]'   #arrayType
         ;
 
+voidType    :   'void';
+
 expression  :   constant    #constantExpression
-            |   IDENTIFIER  #variableExpression
+            |   IDENTIFIER  #identifierExpression
             |   'this'  #thisExpression
             |   '(' expression ')'  #subExpression
             |   expression operator=('++' | '--')   #suffixExpression
@@ -84,9 +85,9 @@ expression  :   constant    #constantExpression
             |   expression operator=('<<' | '>>') expression    #shiftExpression
             |   expression operator=('<' | '>' | '<=' | '>=') expression    #relationalExpression
             |   expression operator=('==' | '!=') expression    #equalityExpression
-            |   expression '&' expression   #andExpression
-            |   expression '^' expression   #exclusiveOrExpression
-            |   expression '|' expression   #inclusiveOrExpression
+            |   expression '&' expression   #bitAndExpression
+            |   expression '^' expression   #bitOrExpression
+            |   expression '|' expression   #bitXorExpression
             |   expression '&&' expression  #logicalAndExpression
             |   expression '||' expression  #logicalOrExpression
             |   <assoc=right> expression '=' expression #assignmentExpression
