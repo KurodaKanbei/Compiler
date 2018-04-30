@@ -63,7 +63,7 @@ type    :   'int'   #intType
         |   'bool'  #boolType
         |   'string'    #stringType
         |   IDENTIFIER  #classType
-        |   type '[]'   #arrayType
+        |   type '['']'   #arrayType
         ;
 
 voidType    :   'void';
@@ -72,14 +72,14 @@ expression  :   constant    #constantExpression
             |   IDENTIFIER  #identifierExpression
             |   'this'  #thisExpression
             |   '(' expression ')'  #subExpression
+            |   'new' type (('[' expression ']') | '[]')+ #newArrayExpression
+            |   'new' type '()'? #newClassExpression
             |   expression operator=('++' | '--')   #suffixExpression
             |   expression '[' expression ']'   #subscriptExpression
             |   expression ('(' (expression (',' expression)*)?')'| '()')   #functionCallExpression
             |   expression '.' IDENTIFIER   #memberExpression
             |   operator=('++' | '--') expression   #prefixExpression
             |   operator=('+' | '-' | '!' | '~' ) expression    #unaryExpression
-            |   'new' type ((('[' expression ']')+('[]')*) | ('[]')+) #newArrayExpression
-            |   'new' type '()'? #newClassExpression
             |   expression operator=('*' | '/' | '%') expression    #multiplicativeExpression
             |   expression operator=('+' | '-') expression  #additiveExpression
             |   expression operator=('<<' | '>>') expression    #shiftExpression

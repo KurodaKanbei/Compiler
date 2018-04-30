@@ -54,7 +54,10 @@ public class ClassType extends Type implements Scope {
 
     public void setConstructFunction(FunctionType constructFunction) {
         if (this.constructFunction != null) {
-            throw new CompilationError("The Class " + getName() + "has more than one construction function!");
+            throw new CompilationError("The Class " + getName() + " has more than one construction function!");
+        }
+        if (constructFunction.getReturnType() != this) {
+            throw new CompilationError("The Class " + getName() + " has wrong type construction function");
         }
         this.constructFunction = constructFunction;
     }

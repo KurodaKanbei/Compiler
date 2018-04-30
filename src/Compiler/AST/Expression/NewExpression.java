@@ -26,6 +26,16 @@ public class NewExpression extends Expression {
             }
             return new NewExpression(type, expressionsList);
         }
+        boolean valid = true;
+        for (Expression expression : expressionsList) {
+            if (expression == null) {
+                valid = false;
+            } else {
+                if (!valid) {
+                    throw new CompilationError("New wrong type array");
+                }
+            }
+        }
         for (Expression expression : expressionsList) {
             if (expression != null && !(expression.getType() instanceof IntType)) {
                 throw new CompilationError("New array expression expected to be int type");
