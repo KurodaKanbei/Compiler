@@ -1,3 +1,22 @@
-int main(){
-	println(toString("45 best songs in the world".parseInt()));
+
+
+int main() {
+int []a = new int[10];
+int i;
+a[0] = i;
 }
+
+
+
+
+/*!! metadata:
+=== comment ===
+queens-5100379110-daibo.mx
+=== assert ===
+success_compile
+=== phase ===
+semantic pretest
+=== is_public ===
+True
+
+!!*/

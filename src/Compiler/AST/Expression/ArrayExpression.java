@@ -22,7 +22,8 @@ public class ArrayExpression extends Expression{
         if (subscriptExpression.getType() instanceof IntType == false) {
             throw new CompilationError("Subscript expression need int type");
         }
-        return new ArrayExpression(arrayExpression.getType(), arrayExpression, subscriptExpression);
+        ArrayType arrayType = (ArrayType) arrayExpression.getType();
+        return new ArrayExpression(arrayType.reduceDimension(), arrayExpression, subscriptExpression);
     }
 
     @Override
