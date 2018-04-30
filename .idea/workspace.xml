@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
-    </list>
+    <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,10 +15,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
+            <state relative-caret-position="432">
               <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -40,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -226,67 +222,6 @@
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Constant" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler-2018" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Expression" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -480,6 +415,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
@@ -890,16 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression/ArrayExpression.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -918,6 +844,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
