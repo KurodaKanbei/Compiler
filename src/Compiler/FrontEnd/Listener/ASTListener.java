@@ -101,7 +101,7 @@ public class ASTListener extends BaseListener{
     @Override
     public void enterBlockStatement(MxstarParser.BlockStatementContext ctx) {
         BlockStatement blockStatement = new BlockStatement();
-        Scope currentScope = ProgramAST.symbolTable.getCurrnetScope();
+        Scope currentScope = ProgramAST.symbolTable.getCurrentScope();
         ProgramAST.symbolTable.enterScope(blockStatement);
         if (currentScope instanceof FunctionType) {
             FunctionType functionType = (FunctionType) currentScope;

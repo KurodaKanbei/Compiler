@@ -37,6 +37,7 @@ public class SymbolTable {
             currentLoopStatement = (LoopStatement) scope;
         }
         symbolSetStack.push(new HashSet<>());
+
     }
 
     public void exitScope() {
@@ -106,7 +107,7 @@ public class SymbolTable {
         return symbolMap.get(name).peek();
     }
 
-    public Scope getCurrnetScope() {
+    public Scope getCurrentScope() {
         if (scopeStack.empty() == true) {
             return null;
         }

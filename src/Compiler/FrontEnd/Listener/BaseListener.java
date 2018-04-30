@@ -7,7 +7,7 @@ import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 public class BaseListener extends MxstarBaseListener {
     public static int row, column;
-    public ParseTreeProperty<Object> returnNode = new ParseTreeProperty<>();
+    static ParseTreeProperty<Object> returnNode = new ParseTreeProperty<>();
 
     @Override
     public void enterEveryRule(ParserRuleContext ctx) {

@@ -40,14 +40,14 @@ public class MemberExpression extends Expression{
                 VariableDeclarationStatement variableDeclarationStatement = classType.getMemberVariable(identifier);
                 return new MemberExpression(variableDeclarationStatement.getType(), expression, identifier);
             }
-            throw new CompilationError("The class named" + classType.getName() + "can't find a member named" + identifier);
+            throw new CompilationError("The class named " + classType.getName() + "can't find a member named " + identifier);
         }
         if (expression.getType() instanceof StringType) {
             if (stringBuiltinFunctionTable.contains(identifier)) {
                 FunctionType functionType = ProgramAST.globalFunctionTable.getFunctionType("__string_" + identifier);
                 return new MemberExpression(functionType, expression, identifier);
             }
-            throw new CompilationError("String type has no member function named" + identifier);
+            throw new CompilationError("String type has no member function named " + identifier);
         }
         if (expression.getType() instanceof ArrayType) {
             if (arrayBuiltinFunctionTable.contains(identifier)) {

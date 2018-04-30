@@ -18,7 +18,7 @@ public class IdentifierExpression extends Expression {
 
     public static Expression getExpression(String identifier) {
         if (ProgramAST.symbolTable.hasSymbol(identifier) == false) {
-            throw new CompilationError("Can't find the identifier named" + identifier);
+            throw new CompilationError("Can't find the identifier named " + identifier);
         }
         Symbol symbol = ProgramAST.symbolTable.getSymbol(identifier);
         Type type = symbol.getType();

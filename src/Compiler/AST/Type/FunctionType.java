@@ -19,6 +19,7 @@ public class FunctionType extends Type implements Scope {
         this.name = name;
         this.returnType = returnType;
         this.parameterList = parameterList;
+        this.blockStatement = null;
         this.classScope = null;
         this.builtin = false;
     }

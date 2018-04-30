@@ -22,7 +22,7 @@ program : (variableDeclarationStatement | functionDeclaration | classDeclaration
 
 variableDeclarationStatement    :   type IDENTIFIER ('=' expression)?';';
 
-functionDeclaration :   (type | voidType) IDENTIFIER? ('(' (type IDENTIFIER (type ',' IDENTIFIER)*)')'| '()') blockStatement;
+functionDeclaration :   (type | voidType) IDENTIFIER? ('(' (type IDENTIFIER (',' type IDENTIFIER)*)')'| '()') blockStatement;
 
 classDeclaration :  'class' IDENTIFIER '{' (variableDeclarationStatement | functionDeclaration)* '}';
 
@@ -74,7 +74,7 @@ expression  :   constant    #constantExpression
             |   '(' expression ')'  #subExpression
             |   expression operator=('++' | '--')   #suffixExpression
             |   expression '[' expression ']'   #subscriptExpression
-            |   expression '(' (expression (',' expression)*)?')'   #functionCallExpression
+            |   expression ('(' (expression (',' expression)*)?')'| '()')   #functionCallExpression
             |   expression '.' IDENTIFIER   #memberExpression
             |   operator=('++' | '--') expression   #prefixExpression
             |   operator=('+' | '-' | '!' | '~' ) expression    #unaryExpression

@@ -31,7 +31,7 @@ public class FunctionTable {
 
     @Override
     public String toString() {
-        return "FunctionTable";
+        return "Function Table";
     }
 
     public String toString(int indents) {
@@ -40,7 +40,7 @@ public class FunctionTable {
         functionMap.forEach(
                 (name, functionType) -> {
                     if (functionType.getBlockStatement() != null) {
-                        str.append(functionType.toString(indents + 1));
+                        System.out.println(name);
                     }
                 }
         );
