@@ -78,7 +78,7 @@ expression  :   constant    #constantExpression
             |   expression '.' IDENTIFIER   #memberExpression
             |   operator=('++' | '--') expression   #prefixExpression
             |   operator=('+' | '-' | '!' | '~' ) expression    #unaryExpression
-            |   'new' type ((('[' expression ']')+ ('[]')*) | ('[]')+)  #newArrayExpression
+            |   'new' type ((('[' expression ']')+('[]')*) | ('[]')+) #newArrayExpression
             |   'new' type '()'? #newClassExpression
             |   expression operator=('*' | '/' | '%') expression    #multiplicativeExpression
             |   expression operator=('+' | '-') expression  #additiveExpression

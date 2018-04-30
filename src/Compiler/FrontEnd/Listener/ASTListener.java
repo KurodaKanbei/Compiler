@@ -615,12 +615,11 @@ public class ASTListener extends BaseListener{
         List<Expression> expressionList = new ArrayList<>();
         int childrenNum = ctx.children.size();
         for (int i = 0; i < childrenNum; i++) {
+            if (ctx.getChild(i).getText().equals("[]")) {
+                expressionList.add(null);
+            }
             if (ctx.getChild(i).getText().equals("[")) {
-                if (ctx.getChild(i + 1).getText().equals("]")) {
-                    expressionList.add(null);
-                } else {
-                    expressionList.add((Expression) returnNode.get(ctx.getChild(i + 1)));
-                }
+                expressionList.add((Expression) returnNode.get(ctx.getChild(i + 1)));
             }
         }
         Expression expression = NewExpression.getExpression(type, expressionList);

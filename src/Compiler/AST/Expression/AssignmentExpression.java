@@ -17,6 +17,7 @@ public class AssignmentExpression extends Expression {
             throw new CompilationError("The left expression in assignment expression is expected to be left-value");
         }
         if (leftExpression.getType().compatibleWith(rightExpression.getType()) == false) {
+
             throw new CompilationError("Assignment expression is expected to contain two compatible expression");
         }
         return new AssignmentExpression(leftExpression, rightExpression);
