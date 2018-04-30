@@ -1,24 +1,21 @@
-int main() {
-    bool fun = 3 != 2;
+bool pd() {
+    return true;
 }
+
+int main() {
+    if (!pd()) return 0;
+}
+
 
 
 /*!! metadata:
 === comment ===
-Test program structure-language_manual.mx
-=== is_public ===
-True
+bulgarian-5110379024-wuhang.mx
 === assert ===
 success_compile
-=== timeout ===
-0
-=== input ===
-
 === phase ===
 semantic pretest
-=== output ===
-
-=== exitcode ===
-
+=== is_public ===
+True
 
 !!*/
