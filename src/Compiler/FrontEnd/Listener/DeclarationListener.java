@@ -64,12 +64,21 @@ public class DeclarationListener extends BaseListener{
     @Override
     public void exitFunctionDeclaration(MxstarParser.FunctionDeclarationContext ctx) {
         Type returnType = (Type) returnNode.get(ctx.getChild(0));
-        int typeStart = returnType instanceof VoidType ? 0 : 1;
-        String functionName = ctx.IDENTIFIER().size() == ctx.type().size() - typeStart ? null : ctx.IDENTIFIER(0).getText();
+        String functionName = null;
+        int n = ctx.type().size();
+        int m = ctx.IDENTIFIER().size();
+        int typeStart = 1, identifierStart = 0;
+        if (returnType instanceof VoidType) {
+            typeStart = 0;
+        }
+        if (n - typeStart < m) {
+            functionName = ctx.IDENTIFIER(0).getText();
+            identifierStart = 1;
+        }
         List<Symbol> parameterList = new ArrayList<>();
-        for (int i = typeStart; i < ctx.type().size(); i++) {
-            Type parameterType = (Type) returnNode.get(ctx.type(i));
-            String parameterName = ctx.IDENTIFIER().get(i).getText();
+        for (int i = 0; i < n - typeStart; i++) {
+            Type parameterType = (Type) returnNode.get(ctx.type(i + typeStart));
+            String parameterName = ctx.IDENTIFIER(i + identifierStart).getText();
             parameterList.add(new Symbol(parameterName, parameterType));
         }
         FunctionType functionType = new FunctionType(functionName, returnType, parameterList);
