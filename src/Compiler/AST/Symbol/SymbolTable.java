@@ -34,6 +34,7 @@ public class SymbolTable {
             currentClass = (ClassType) scope;
         }
         if (scope instanceof LoopStatement) {
+            loopStatementStack.push((LoopStatement) scope);
             currentLoopStatement = (LoopStatement) scope;
         }
         symbolSetStack.push(new HashSet<>());
@@ -50,7 +51,7 @@ public class SymbolTable {
         }
         if (scope instanceof LoopStatement) {
             loopStatementStack.pop();
-            if (loopStatementStack.empty() == false) {
+            if (!loopStatementStack.empty()) {
                 currentLoopStatement = loopStatementStack.peek();
             } else {
                 currentLoopStatement = null;
@@ -64,7 +65,7 @@ public class SymbolTable {
         if (symbolSetStack.peek().contains(name)) {
             throw new CompilationError("There are more than one symbol naming " + name);
         }
-        if (symbolMap.containsKey(name) == false) {
+        if (!symbolMap.containsKey(name)) {
             symbolMap.put(name, new Stack<>());
         }
         symbolSetStack.peek().add(name);

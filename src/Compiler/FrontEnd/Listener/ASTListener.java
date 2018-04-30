@@ -30,6 +30,9 @@ import java.util.List;
 public class ASTListener extends BaseListener{
     @Override
     public void enterProgram(MxstarParser.ProgramContext ctx) {
+        if (ProgramAST.symbolTable.getCurrentScope() != null) {
+            System.out.println("surprise motherfucker");
+        }
         ProgramAST.symbolTable.enterScope(GlobalScope.getInstance());
         ProgramAST.globalFunctionTable.getFunctionMap().forEach((name, function) -> ProgramAST.symbolTable.addSymbol(new Symbol(name, function)));
     }
@@ -67,6 +70,7 @@ public class ASTListener extends BaseListener{
         FunctionType functionType = (FunctionType) returnNode.get(ctx);
         BlockStatement blockStatement = (BlockStatement) returnNode.get(ctx.blockStatement());
         functionType.setBlockStatement(blockStatement);
+        ProgramAST.symbolTable.exitScope();
     }
 
     @Override
