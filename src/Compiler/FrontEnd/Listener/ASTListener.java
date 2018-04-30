@@ -41,6 +41,11 @@ public class ASTListener extends BaseListener{
 
     @Override
     public void enterVariableDeclarationStatement(MxstarParser.VariableDeclarationStatementContext ctx) {
+        super.exitVariableDeclarationStatement(ctx);
+    }
+
+    @Override
+    public void exitVariableDeclarationStatement(MxstarParser.VariableDeclarationStatementContext ctx) {
         VariableDeclarationStatement variableDeclarationStatement = (VariableDeclarationStatement) returnNode.get(ctx);
         if (ctx.expression() != null) {
             Expression expression = (Expression) returnNode.get(ctx.expression());
@@ -49,11 +54,6 @@ public class ASTListener extends BaseListener{
         if (variableDeclarationStatement.getClassScope() == null) {
             ProgramAST.symbolTable.addSymbol(variableDeclarationStatement.getSymbol());
         }
-    }
-
-    @Override
-    public void exitVariableDeclarationStatement(MxstarParser.VariableDeclarationStatementContext ctx) {
-        super.exitVariableDeclarationStatement(ctx);
     }
 
     @Override

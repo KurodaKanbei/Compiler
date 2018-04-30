@@ -35,6 +35,7 @@ public class Main {
             ParseTreeWalker parseTreeWalker = new ParseTreeWalker();
             parseTreeWalker.walk(new ClassDeclarationListener(), parseTree);
             parseTreeWalker.walk(new DeclarationListener(), parseTree);
+            System.out.println("Complete");
             parseTreeWalker.walk(new ASTListener(), parseTree);
         } catch (CompilationError compilationError) {
             System.out.println(compilationError.getMessage());
