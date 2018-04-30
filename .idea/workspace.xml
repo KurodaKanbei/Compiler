@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Compiler/AST/Symbol/GlobalScope.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ASTListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/DeclarationListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/SyntaxErrorListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/Mxstar.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/Mxstar.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/Compiler/FrontEnd/Parser/MxstarParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/AST/Type/ClassType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/ClassType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/AST/Type/FunctionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/AST/Type/FunctionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ClassDeclarationListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ClassDeclarationListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/Mxstar.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/FrontEnd/Parser/MxstarParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -129,8 +106,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+            <state relative-caret-position="630">
+              <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -561,8 +538,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="839" height="800" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="854" height="800" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
@@ -577,7 +553,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49676898" weight="0.37655172" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4924138" visible="true" weight="0.19196989" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4924138" visible="true" weight="0.18842365" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4983845" weight="0.32827586" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" sideWeight="0.49542218" weight="0.41379312" />
       <window_info id="Structure" order="1" sideWeight="0.5075862" side_tool="true" weight="0.1292407" />
@@ -1062,8 +1038,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+        <state relative-caret-position="630">
+          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
