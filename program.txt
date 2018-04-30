@@ -1,4 +1,3 @@
-int main()
-{
-    int[] a = new int[100];
+int main(){
+	println(toString("45 best songs in the world".parseInt()));
 }

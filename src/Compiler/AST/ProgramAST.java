@@ -177,7 +177,7 @@ public class ProgramAST {
 
     private static FunctionType function_string_parseInt() {
         String functionName = "__string_parseInt";
-        Type returnType = StringType.getInstance();
+        Type returnType = IntType.getInstance();
         List<Symbol> parameterList = new ArrayList<>();
         parameterList.add(new Symbol("this", null));
         FunctionType functionType = new FunctionType(functionName, returnType, parameterList);
