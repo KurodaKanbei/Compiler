@@ -1,6 +1,7 @@
 package Compiler.AST.Expression.UnaryExpression;
 
 import Compiler.AST.Expression.Expression;
+import Compiler.AST.Type.BoolType;
 import Compiler.AST.Type.IntType;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
@@ -9,7 +10,7 @@ public class UnaryMinusExpression extends Expression {
     private Expression expression;
 
     private UnaryMinusExpression(Expression expression) {
-        super(IntType.getInstance(), false);
+        super(BoolType.getInstance(), false);
         this.expression = expression;
     }
 
