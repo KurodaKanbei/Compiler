@@ -93,7 +93,7 @@ public class ProgramAST {
     }
 
     private static FunctionType function_get_String() {
-        String functionName = "get_String";
+        String functionName = "getString";
         Type returnType = StringType.getInstance();
         List<Symbol> parameterList = new ArrayList<>();
         FunctionType functionType = new FunctionType(functionName, returnType, parameterList);
@@ -102,7 +102,7 @@ public class ProgramAST {
     }
 
     private static FunctionType function_get_Int() {
-        String functionName = "get_Int";
+        String functionName = "getInt";
         Type returnType = IntType.getInstance();
         List<Symbol> parameterList = new ArrayList<>();
         FunctionType functionType = new FunctionType(functionName, returnType, parameterList);

@@ -3,6 +3,13 @@ int tak(int x, int y, int z) {
 	else return z;
 }
 
-int main() {
+int main(){
+	int a;
+	int b;
+	int c;
+	a=getInt();
+	b=getInt();
+	c=getInt();
+	println(toString(tak(a,b,c)));
 	return 0;
 }

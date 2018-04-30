@@ -11,8 +11,8 @@ import Compiler.Utility.Utility;
 public class IdentifierExpression extends Expression {
     private Symbol symbol;
 
-    private IdentifierExpression(Symbol symbol, boolean isleftvalue) {
-        super(symbol.getType(), isleftvalue);
+    private IdentifierExpression(Symbol symbol, boolean isLeftValue) {
+        super(symbol.getType(), isLeftValue);
         this.symbol = symbol;
     }
 
