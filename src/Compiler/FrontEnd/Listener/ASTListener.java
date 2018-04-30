@@ -569,7 +569,7 @@ public class ASTListener extends BaseListener{
             expression = BinaryEqualExpression.getExpression(leftExpression, rightExpression);
         }
         if (operator.equals("!=")) {
-            expression = BinaryMinusExpression.getExpression(leftExpression, rightExpression);
+            expression = BinaryNotEqualExpression.getExpression(leftExpression, rightExpression);
         }
         returnNode.put(ctx, expression);
     }

@@ -28,6 +28,8 @@ public class VariableDeclarationStatement extends Statement {
 
     public void setExpression(Expression expression) {
         if (!type.compatibleWith(expression.getType())) {
+            System.out.println(type);
+            System.out.println(expression.getType());
             throw new CompilationError("The types in variable declaration are not compatible");
         }
         this.expression = expression;
