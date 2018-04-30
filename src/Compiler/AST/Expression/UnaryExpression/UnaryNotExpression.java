@@ -10,7 +10,7 @@ public class UnaryNotExpression extends Expression {
      private Expression expression;
 
     private UnaryNotExpression(Expression expression) {
-        super(BoolType.getInstance(), false);
+        super(IntType.getInstance(), false);
         this.expression = expression;
     }
 
