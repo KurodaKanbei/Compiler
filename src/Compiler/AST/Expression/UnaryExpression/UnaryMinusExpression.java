@@ -10,7 +10,7 @@ public class UnaryMinusExpression extends Expression {
     private Expression expression;
 
     private UnaryMinusExpression(Expression expression) {
-        super(BoolType.getInstance(), false);
+        super(IntType.getInstance(), false);
         this.expression = expression;
     }
 
