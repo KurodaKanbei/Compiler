@@ -1,27 +1,27 @@
-int N = 15000;
-bool[] b = new bool[15001];
-int resultCount = 0;
-
-int main()
-{
-  int i;
-
-  for (i = 1; i <= N; i++) b[i] = true;
-
-  println("Total: " + toString(resultCount));
-  return 0;
+int main() {
+    string institute = "zhiyuan";
+    for (; institute; ) {
+    }
 }
 
 
 
 /*!! metadata:
 === comment ===
-twinprime-5090379042-jiaxiao.mx
-=== assert ===
-success_compile
-=== phase ===
-semantic pretest
+Test condition in for loop-ctrflow-5-5120309049-liaochao.mx
 === is_public ===
 True
+=== assert ===
+failure_compile
+=== timeout ===
+0.0
+=== input ===
+
+=== phase ===
+semantic pretest
+=== output ===
+
+=== exitcode ===
+1
 
 !!*/

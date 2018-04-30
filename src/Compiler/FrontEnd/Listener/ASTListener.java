@@ -23,6 +23,7 @@ import Compiler.AST.Type.ClassType;
 import Compiler.AST.Type.FunctionType;
 import Compiler.AST.Type.Type;
 import Compiler.FrontEnd.Parser.MxstarParser;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -181,17 +182,23 @@ public class ASTListener extends BaseListener{
     @Override
     public void exitForStatement(MxstarParser.ForStatementContext ctx) {
         ForStatement forStatement = (ForStatement) returnNode.get(ctx);
-        if (ctx.expression(0) != null) {
-            Expression expression = (Expression) returnNode.get(ctx.expression(0));
-            forStatement.setInit(expression);
-        }
-        if (ctx.expression(1) != null) {
-            Expression expression = (Expression) returnNode.get(ctx.expression(1));
-            forStatement.setCondition(expression);
-        }
-        if (ctx.expression(2) != null) {
-            Expression expression = (Expression) returnNode.get(ctx.expression(2));
-            forStatement.setIncrement(expression);
+        int semicolon = 0;
+        for (ParseTree x : ctx.children) {
+            if (x.getText().equals(";")) {
+                ++semicolon;
+            }
+            if (x instanceof MxstarParser.ExpressionContext) {
+                Expression expression = (Expression) returnNode.get(x);
+                if (semicolon == 0) {
+                    forStatement.setInit(expression);
+                }
+                if (semicolon == 1) {
+                    forStatement.setCondition(expression);
+                }
+                if (semicolon == 2) {
+                    forStatement.setIncrement(expression);
+                }
+            }
         }
         Statement statement = (Statement) returnNode.get(ctx.statement());
         forStatement.setStatement(statement);
