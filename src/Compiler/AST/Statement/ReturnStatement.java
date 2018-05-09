@@ -5,8 +5,12 @@ import Compiler.AST.ProgramAST;
 import Compiler.AST.Type.FunctionType;
 import Compiler.AST.Type.Type;
 import Compiler.AST.Type.VoidType;
+import Compiler.CFG.Instruction.Instruction;
+import Compiler.CFG.Instruction.ReturnInstruction;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
+
+import java.util.List;
 
 public class ReturnStatement extends Statement{
     private FunctionType functionType;
@@ -65,5 +69,14 @@ public class ReturnStatement extends Statement{
             str.append(expression.toString(indents + 1));
         }
         return str.toString();
+    }
+
+    @Override
+    public void generateInstruction(List<Instruction> instructionList) {
+        if (expression != null) {
+            expression.generateInstruction(instructionList);
+            instructionList.add(new ReturnInstruction(expression.getOperand()));
+        }
+        instructionList.add(functionType.getExitLabel());
     }
 }

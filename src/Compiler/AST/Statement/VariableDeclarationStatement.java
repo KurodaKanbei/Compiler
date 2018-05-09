@@ -4,8 +4,11 @@ import Compiler.AST.Expression.Expression;
 import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.ClassType;
 import Compiler.AST.Type.Type;
+import Compiler.CFG.Instruction.Instruction;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
+
+import java.util.List;
 
 public class VariableDeclarationStatement extends Statement {
     private Type type;
@@ -69,4 +72,5 @@ public class VariableDeclarationStatement extends Statement {
         }
         return str.toString();
     }
+
 }

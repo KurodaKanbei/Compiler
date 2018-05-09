@@ -2,6 +2,7 @@ package Compiler.AST.Statement;
 
 //import Compiler.Instruction.Instruction;
 import Compiler.AST.Symbol.Scope;
+import Compiler.CFG.Instruction.Instruction;
 import Compiler.Utility.Utility;
 
 import java.util.ArrayList;
@@ -35,4 +36,10 @@ public class BlockStatement extends Statement implements Scope {
         return str.toString();
     }
 
+    @Override
+    public void generateInstruction(List<Instruction> instructionList) {
+        for (Statement statement : statementList) {
+            statement.generateInstruction(instructionList);
+        }
+    }
 }

@@ -3,8 +3,13 @@ package Compiler.AST.Statement;
 import Compiler.AST.Constant.BoolConstant;
 import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.BoolType;
+import Compiler.CFG.Instruction.*;
+import Compiler.CFG.Operand.ImmediateOperand;
+import Compiler.CFG.ProgramIR;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
+
+import java.util.List;
 
 public class ForStatement extends LoopStatement{
     private Expression init, condition, increment;
@@ -78,5 +83,49 @@ public class ForStatement extends LoopStatement{
         }
         str.append(statement.toString(indents + 1));
         return str.toString();
+    }
+
+    /*
+        loop layout
+            init
+        condition:
+            if false jump exit
+        body:
+            something
+        increment:
+            jump condition
+        exit:
+     */
+    @Override
+    public void generateInstruction(List<Instruction> instructionList) {
+        LabelInstruction conditionLabel, bodyLabel, incrementLabel, exitLabel;
+        conditionLabel = new LabelInstruction("loop_condition");
+        bodyLabel = new LabelInstruction("loop_body");
+        incrementLabel = new LabelInstruction("loop_increment");
+        exitLabel = new LabelInstruction("loop_exit");
+        if (init != null) {
+            init.generateInstruction(instructionList);
+        }
+        instructionList.add(new JumpInstruction(conditionLabel));
+
+        instructionList.add(conditionLabel);
+        condition.generateInstruction(instructionList);
+        instructionList.add(new CompareInstruction(condition.getOperand(), new ImmediateOperand(0)));
+        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, exitLabel));
+        instructionList.add(new JumpInstruction(bodyLabel));
+
+        instructionList.add(bodyLabel);
+        if (statement != null) {
+            statement.generateInstruction(instructionList);
+        }
+        instructionList.add(new JumpInstruction(incrementLabel));
+
+        instructionList.add(incrementLabel);
+        if (increment != null) {
+            increment.generateInstruction(instructionList);
+        }
+        instructionList.add(new JumpInstruction(conditionLabel));
+
+        instructionList.add(exitLabel);
     }
 }

@@ -3,8 +3,10 @@ package Compiler.AST.Type;
 import Compiler.AST.Statement.BlockStatement;
 import Compiler.AST.Symbol.Scope;
 import Compiler.AST.Symbol.Symbol;
+import Compiler.CFG.Instruction.LabelInstruction;
 import Compiler.Utility.Utility;
 
+import java.awt.*;
 import java.util.List;
 
 public class FunctionType extends Type implements Scope {
@@ -14,6 +16,7 @@ public class FunctionType extends Type implements Scope {
     private BlockStatement blockStatement;
     private Scope classScope;
     private boolean builtin;
+    private LabelInstruction enterLabel, exitLabel;
 
     public FunctionType(String name, Type returnType, List<Symbol> parameterList) {
         this.name = name;
@@ -62,6 +65,22 @@ public class FunctionType extends Type implements Scope {
 
     public void setBlockStatement(BlockStatement blockStatement) {
         this.blockStatement = blockStatement;
+    }
+
+    public LabelInstruction getEnterLabel() {
+        return enterLabel;
+    }
+
+    public void setEnterLabel(LabelInstruction enterLabel) {
+        this.enterLabel = enterLabel;
+    }
+
+    public LabelInstruction getExitLabel() {
+        return exitLabel;
+    }
+
+    public void setExitLabel(LabelInstruction exitLabel) {
+        this.exitLabel = exitLabel;
     }
 
     @Override

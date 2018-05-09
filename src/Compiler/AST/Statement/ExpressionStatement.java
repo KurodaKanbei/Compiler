@@ -1,7 +1,10 @@
 package Compiler.AST.Statement;
 
 import Compiler.AST.Expression.Expression;
+import Compiler.CFG.Instruction.Instruction;
 import Compiler.Utility.Utility;
+
+import java.util.List;
 
 public class ExpressionStatement extends Statement{
     private Expression expression;
@@ -27,5 +30,12 @@ public class ExpressionStatement extends Statement{
             str.append(expression.toString(indents + 1) + "\n");
         }
         return str.toString();
+    }
+
+    @Override
+    public void generateInstruction(List<Instruction> instructionList) {
+        if (expression != null) {
+            expression.generateInstruction(instructionList);
+        }
     }
 }
