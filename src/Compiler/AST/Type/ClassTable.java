@@ -21,7 +21,7 @@ public class ClassTable{
     }
 
     public ClassType getClassType(String className) {
-        if (classMap.containsKey(className) == false) {
+        if (!classMap.containsKey(className)) {
             throw new CompilationError("There is no class naming" + className);
         }
         return classMap.get(className);

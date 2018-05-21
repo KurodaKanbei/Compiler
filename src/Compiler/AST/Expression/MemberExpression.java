@@ -3,10 +3,17 @@ package Compiler.AST.Expression;
 import Compiler.AST.ProgramAST;
 import Compiler.AST.Statement.VariableDeclarationStatement;
 import Compiler.AST.Type.*;
+import Compiler.CFG.Instruction.Instruction;
+import Compiler.CFG.Instruction.MoveInstruction;
+import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateOperand;
+import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.CFG.RegisterManager;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
 
 import java.util.HashSet;
+import java.util.List;
 
 public class MemberExpression extends Expression{
     private Expression expression;
@@ -76,5 +83,21 @@ public class MemberExpression extends Expression{
         return Utility.getIndent(indents) + toString() + "\n"
                 + expression.toString(indents + 1)
                 + Utility.getIndent(indents + 1) + identifier + "\n";
+    }
+
+    @Override
+    public void generateInstruction(List<Instruction> instructionList) {
+        if (!(getType() instanceof FunctionType)) {
+            expression.generateInstruction(instructionList);
+            VariableDeclarationStatement variableDeclarationStatement = ((ClassType) expression.getType()).getMemberVariable(identifier);
+            if (expression.getOperand() instanceof AddressOperand) {
+                VirtualRegister base = RegisterManager.getTemporaryRegister();
+                instructionList.add(new MoveInstruction(base, expression.getOperand()));
+                operand = new AddressOperand(base, new ImmediateOperand(variableDeclarationStatement.getOffset()));
+            } else {
+                VirtualRegister base = (VirtualRegister) expression.getOperand();
+                operand = new AddressOperand(base, new ImmediateOperand(variableDeclarationStatement.getOffset()));
+            }
+        }
     }
 }

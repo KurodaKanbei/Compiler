@@ -32,8 +32,6 @@ public class ReturnStatement extends Statement{
                throw new CompilationError("The void function is not expected to contain non-void return expression");
            }
            if (expression != null && !returnType.compatibleWith(expression.getType())) {
-               //System.out.println(expression.getType());
-               //System.out.println(returnType);
                throw new CompilationError("The function type is not compatible with the return expression type");
            }
         }

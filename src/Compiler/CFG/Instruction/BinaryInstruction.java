@@ -8,7 +8,7 @@ import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Utility.Error.InternalError;
 
 public class BinaryInstruction extends Instruction {
-    private enum BinaryOp {
+    public enum BinaryOp {
         ADD, SUB, MUL, DIV, MOD, SHL, SHR, AND, OR, XOR
     }
 

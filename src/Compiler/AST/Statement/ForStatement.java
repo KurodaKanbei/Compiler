@@ -43,7 +43,7 @@ public class ForStatement extends LoopStatement{
     }
 
     public void setCondition(Expression condition) {
-        if (condition.getType() instanceof BoolType == false) {
+        if (!(condition.getType() instanceof BoolType)) {
             throw new CompilationError("The condition in for statement is expected to be bool type");
         }
         this.condition = condition;

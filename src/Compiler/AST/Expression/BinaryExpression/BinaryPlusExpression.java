@@ -8,6 +8,10 @@ import Compiler.AST.Expression.IdentifierExpression;
 import Compiler.AST.Type.IntType;
 import Compiler.AST.Type.StringType;
 import Compiler.AST.Type.Type;
+import Compiler.CFG.Instruction.BinaryInstruction;
+import Compiler.CFG.Instruction.Instruction;
+import Compiler.CFG.Instruction.MoveInstruction;
+import Compiler.CFG.RegisterManager;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
 
@@ -63,5 +67,14 @@ public class BinaryPlusExpression extends Expression {
         return Utility.getIndent(indents) + toString() + "\n"
                 + leftExpression.toString(indents + 1)
                 + rightExpression.toString(indents + 1);
+    }
+
+    @Override
+    public void generateInstruction(List<Instruction> instructionList) {
+        leftExpression.generateInstruction(instructionList);
+        rightExpression.generateInstruction(instructionList);
+        operand = RegisterManager.getTemporaryRegister();
+        instructionList.add(new MoveInstruction(operand, leftExpression.getOperand()));
+        instructionList.add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, operand, rightExpression.getOperand()));
     }
 }

@@ -33,7 +33,7 @@ public class CSetInstruction extends Instruction {
         this.conditionOp = conditionOp;
         this.target = target;
         if (!(target instanceof VirtualRegister)) {
-            throw new InternalError("target of CSet instruction is expected to be virtual register");
+            throw new InternalError("target of compare set instruction is expected to be virtual register");
         }
         killSet.add((VirtualRegister) target);
     }

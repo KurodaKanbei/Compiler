@@ -12,12 +12,14 @@ public class ClassType extends Type implements Scope {
     private VariableTable memberVariableTable;
     private FunctionTable memberFunctionTable;
     private FunctionType constructFunction;
+    private int mallocSize;
 
     public ClassType(String name) {
         this.name = name;
         this.memberVariableTable = new VariableTable();
         this.memberFunctionTable = new FunctionTable();
         this.constructFunction = null;
+        this.mallocSize = 0;
     }
 
     public String getName() {
@@ -60,6 +62,14 @@ public class ClassType extends Type implements Scope {
             throw new CompilationError("The Class " + getName() + " has wrong type construction function");
         }
         this.constructFunction = constructFunction;
+    }
+
+    public int getMallocSize() {
+        return mallocSize;
+    }
+
+    public void setMallocSize(int mallocSize) {
+        this.mallocSize = mallocSize;
     }
 
     @Override

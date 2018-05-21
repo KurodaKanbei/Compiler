@@ -3,8 +3,11 @@ package Compiler.AST.Expression.UnaryExpression;
 import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.IntType;
 import Compiler.AST.Type.Type;
+import Compiler.CFG.Instruction.Instruction;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
+
+import java.util.List;
 
 public class UnaryPlusExpression extends Expression {
     private Expression expression;
@@ -15,7 +18,7 @@ public class UnaryPlusExpression extends Expression {
     }
 
     public static Expression getExpression(Expression expression) {
-        if (expression.getType() instanceof IntType == false) {
+        if (!(expression.getType() instanceof IntType)) {
             throw new CompilationError("Unary plus expression is expected to be int type");
         }
         return new UnaryPlusExpression(expression);
@@ -29,5 +32,11 @@ public class UnaryPlusExpression extends Expression {
     @Override
     public String toString(int indents) {
         return Utility.getIndent(indents) + toString() + "\n" + expression.toString(indents + 1);
+    }
+
+    @Override
+    public void generateInstruction(List<Instruction> instructionList) {
+        expression.generateInstruction(instructionList);
+        operand = expression.getOperand();
     }
 }

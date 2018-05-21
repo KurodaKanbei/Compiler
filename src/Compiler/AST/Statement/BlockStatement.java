@@ -1,6 +1,5 @@
 package Compiler.AST.Statement;
 
-//import Compiler.Instruction.Instruction;
 import Compiler.AST.Symbol.Scope;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.Utility.Utility;
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockStatement extends Statement implements Scope {
-    public List<Statement> statementList;
+    private List<Statement> statementList;
 
     public BlockStatement() {
         this.statementList = new ArrayList<>();

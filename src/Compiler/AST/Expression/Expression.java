@@ -9,8 +9,7 @@ import java.util.List;
 public abstract class Expression {
     private Type type;
     private boolean isLeftValue;
-    private Operand operand;
-
+    protected Operand operand;
 
     public Expression(Type type, boolean isLeftValue) {
         this.type = type;

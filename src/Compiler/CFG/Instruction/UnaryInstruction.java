@@ -6,7 +6,7 @@ import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 
 public class UnaryInstruction extends Instruction {
-    private enum UnaryOp {
+    public enum UnaryOp {
         INC, DEC, REV, NEG
     }
 

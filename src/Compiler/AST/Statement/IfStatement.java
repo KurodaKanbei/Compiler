@@ -17,7 +17,7 @@ public class IfStatement extends Statement{
 
 
     public IfStatement(Expression condition, Statement trueStatement) {
-        if (condition.getType() instanceof BoolType == false) {
+        if (!(condition.getType() instanceof BoolType)) {
             throw new CompilationError("The condition in if statement is expected to be bool type");
         }
         this.condition = condition;
