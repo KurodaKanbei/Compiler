@@ -16,10 +16,13 @@ public abstract class Instruction {
         liveOut = new HashSet<>();
     }
 
+    public abstract void init();
+
     public abstract String toString();
 
     public String toString(int indents) {
         return Utility.getIndent(indents) + this.toString() + "\n";
     }
 
+    public abstract String getAssembly();
 }

@@ -58,6 +58,12 @@ public class BinaryInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+        target.init();
+        source.init();
+    }
+
+    @Override
     public String toString() {
         return String.format("%s = %s %s %s", target, target, binaryOp, source);
     }

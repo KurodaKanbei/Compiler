@@ -20,6 +20,11 @@ public class CJumpInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     public String toString() {
         return String.format("CJump %s %s", conditionOp, target);
     }

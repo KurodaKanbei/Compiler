@@ -39,6 +39,11 @@ public class CSetInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+        target.init();
+    }
+
+    @Override
     public String toString() {
         return String.format("set %s %s", conditionOp, target);
     }

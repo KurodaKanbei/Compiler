@@ -31,6 +31,11 @@ public class LabelInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     public String toString() {
         return String.format("Label %s", name);
     }

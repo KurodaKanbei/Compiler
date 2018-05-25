@@ -1,7 +1,5 @@
 package Compiler.CFG.Instruction;
 
-import java.awt.*;
-
 public class JumpInstruction extends Instruction {
     private LabelInstruction target;
 
@@ -11,6 +9,11 @@ public class JumpInstruction extends Instruction {
 
     public LabelInstruction getTarget() {
         return target;
+    }
+
+    @Override
+    public void init() {
+
     }
 
     @Override

@@ -45,6 +45,10 @@ public class Symbol {
         return operand;
     }
 
+    public void setOperand(Operand operand) {
+        this.operand = operand;
+    }
+
     public String toString(int indents) {
         return Utility.getIndent(indents) + " name = " + name + " type = " + type + "\n";
     }

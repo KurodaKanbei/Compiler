@@ -30,6 +30,11 @@ public class FunctionCallInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+        operandList.forEach(Operand::init);
+    }
+
+    @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append(String.format("call %s", functionType.getName()));

@@ -18,6 +18,11 @@ public class ReturnInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+        returnValue.init();
+    }
+
+    @Override
     public String toString() {
         return String.format("ret %s", returnValue);
     }

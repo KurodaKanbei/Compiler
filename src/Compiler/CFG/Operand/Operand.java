@@ -1,4 +1,8 @@
 package Compiler.CFG.Operand;
 
-public class Operand {
+import Compiler.Trans.PhysicalOperand.PhysicalOperand;
+
+public abstract class Operand {
+    public abstract void init();
+    public abstract PhysicalOperand getPhysicalOperand(StringBuilder str);
 }

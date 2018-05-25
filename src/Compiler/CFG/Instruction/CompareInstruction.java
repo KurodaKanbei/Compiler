@@ -36,6 +36,12 @@ public class CompareInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+        leftOperand.init();
+        rightOperand.init();
+    }
+
+    @Override
     public String toString() {
         return String.format("cmp %s %s", leftOperand, rightOperand);
     }

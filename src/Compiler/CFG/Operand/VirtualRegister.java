@@ -1,5 +1,10 @@
 package Compiler.CFG.Operand;
 
+import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalRegister;
+import Compiler.Trans.Translator;
+
 public class VirtualRegister extends Operand {
     private String name;
     private String systemRegister;
@@ -36,7 +41,39 @@ public class VirtualRegister extends Operand {
     }
 
     @Override
+    public void init() {
+        Translator.getCurrentFunctionIR().initialize(this);
+    }
+
+    @Override
     public String toString() {
-        return super.toString();
+        return name;
+    }
+
+    public String getRegister() {
+        if (systemRegister != null) {
+            return systemRegister;
+        }
+        if (Translator.getCurrentFunctionIR().getRegisterStringMap().containsKey(this)) {
+            return Translator.getCurrentFunctionIR().getRegisterStringMap().get(this);
+        }
+        return null;
+    }
+
+    public int getOffset() {
+        if (Translator.getCurrentFunctionIR().getRegisterIntegerMap().containsKey(this)) {
+            return Translator.getCurrentFunctionIR().getRegisterIntegerMap().get(this);
+        } else {
+            throw new InternalError("can't find register in function IR map!");
+        }
+    }
+
+    @Override
+    public PhysicalOperand getPhysicalOperand(StringBuilder str) {
+        if (getRegister() != null) {
+            return new PhysicalRegister(getRegister());
+        } else {
+            return new PhysicalAddressOperand("rbp", -getOffset() * 8);
+        }
     }
 }

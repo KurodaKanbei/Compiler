@@ -15,10 +15,10 @@ public class MoveInstruction extends Instruction {
         }
         this.target = target;
         this.source = source;
-        init();
+        build();
     }
 
-    private void init() {
+    private void build() {
         killSet = new HashSet<>();
         useSet = new HashSet<>();
         if (target instanceof VirtualRegister) {
@@ -50,6 +50,12 @@ public class MoveInstruction extends Instruction {
 
     public void setSource(Operand source) {
         this.source = source;
+    }
+
+    @Override
+    public void init() {
+        target.init();
+        source.init();
     }
 
     @Override

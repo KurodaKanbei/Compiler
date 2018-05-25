@@ -23,7 +23,7 @@ public class DeclarationListener extends BaseListener{
         for (ParseTree x : ctx.functionDeclaration()) {
             FunctionType functionType = (FunctionType) returnNode.get(x);
             if (functionType.getName().equals("main")) {
-                if (functionType.getReturnType() instanceof IntType == false) {
+                if (!(functionType.getReturnType() instanceof IntType)) {
                     throw new CompilationError("The return type of main function is expected to be int type");
                 }
                 if (functionType.getParameterList().size() > 0) {
@@ -33,7 +33,7 @@ public class DeclarationListener extends BaseListener{
             }
             ProgramAST.globalFunctionTable.addFunction(functionType);
         }
-        if (findEntry == false) {
+        if (!findEntry) {
             throw new CompilationError("Can't find main function");
         }
         for (ParseTree x : ctx.variableDeclarationStatement()) {

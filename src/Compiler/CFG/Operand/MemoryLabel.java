@@ -1,6 +1,8 @@
 package Compiler.CFG.Operand;
 
 import Compiler.CFG.ProgramIR;
+import Compiler.Trans.PhysicalOperand.PhysicalMemoryLabel;
+import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 
 public class MemoryLabel extends Operand {
     private String label;
@@ -15,7 +17,17 @@ public class MemoryLabel extends Operand {
     }
 
     @Override
+    public void init() {
+
+    }
+
+    @Override
     public String toString() {
         return label;
+    }
+
+    @Override
+    public PhysicalOperand getPhysicalOperand(StringBuilder str) {
+        return new PhysicalMemoryLabel(label);
     }
 }

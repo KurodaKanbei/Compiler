@@ -37,6 +37,11 @@ public class UnaryInstruction extends Instruction {
     }
 
     @Override
+    public void init() {
+        target.init();
+    }
+
+    @Override
     public String toString() {
         return String.format("%s %s", unaryOp, target);
     }

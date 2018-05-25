@@ -9,10 +9,10 @@ import java.util.Set;
 
 public class RegisterManager {
     private static int cnt = 0;
-    private static int registerInMemory = 0;
-    private static Set<String> usedRegister;
+    private int registerInMemory;
+    private Set<String> usedRegister;
 
-    public static void init() {
+    public RegisterManager() {
         registerInMemory = 0;
         usedRegister = new HashSet<>();
     }
@@ -30,11 +30,15 @@ public class RegisterManager {
         return new VirtualRegister("t" + String.valueOf(cnt++));
     }
 
-    public static int getRegisterInMemory() {
+    public int getRegisterInMemory() {
         return registerInMemory;
     }
 
-    public static Set<String> getUsedRegister() {
+    public Set<String> getUsedRegister() {
         return usedRegister;
+    }
+
+    public void addRegisterInMemory() {
+        ++registerInMemory;
     }
 }
