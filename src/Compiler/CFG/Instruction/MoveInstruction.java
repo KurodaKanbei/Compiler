@@ -62,4 +62,11 @@ public class MoveInstruction extends Instruction {
     public String toString() {
         return String.format("%s = mov %s", target, source);
     }
+
+    @Override
+    public String getAssembly() {
+        StringBuilder str = new StringBuilder();
+
+        return str.toString();
+    }
 }

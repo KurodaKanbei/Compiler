@@ -97,4 +97,8 @@ public class ProgramIR {
         }
         return str.toString();
     }
+
+    public static void print() {
+        System.out.println(toString(0));
+    }
 }

@@ -1,6 +1,7 @@
 package Compiler.CFG.Instruction;
 
 import Compiler.CFG.ProgramIR;
+import Compiler.Trans.Translator;
 
 public class CJumpInstruction extends Instruction {
     private ProgramIR.ConditionOp conditionOp;
@@ -27,5 +28,10 @@ public class CJumpInstruction extends Instruction {
     @Override
     public String toString() {
         return String.format("CJump %s %s", conditionOp, target);
+    }
+
+    @Override
+    public String getAssembly() {
+        return Translator.getInstruction("j" + Translator.getAssemblyCondition(conditionOp), target.toString());
     }
 }

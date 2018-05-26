@@ -39,4 +39,9 @@ public class LabelInstruction extends Instruction {
     public String toString() {
         return String.format("Label %s", name);
     }
+
+    @Override
+    public String getAssembly() {
+        throw new InternalError("the label instruction can't be convert to assembly");
+    }
 }

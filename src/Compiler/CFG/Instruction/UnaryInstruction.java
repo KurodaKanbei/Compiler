@@ -4,6 +4,7 @@ import Compiler.CFG.Operand.AddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.Trans.Translator;
 
 public class UnaryInstruction extends Instruction {
     public enum UnaryOp {
@@ -44,5 +45,23 @@ public class UnaryInstruction extends Instruction {
     @Override
     public String toString() {
         return String.format("%s %s", unaryOp, target);
+    }
+
+    @Override
+    public String getAssembly() {
+        StringBuilder str = new StringBuilder();
+        String targetName = target.getPhysicalOperand(str).toString();
+        switch (unaryOp) {
+            case INC:
+                str.append(Translator.getInstruction("add", targetName, "1"));
+            case DEC:
+                str.append(Translator.getInstruction("sub", targetName, "1"));
+            case NEG:
+                str.append(Translator.getInstruction("neg", targetName));
+            case REV:
+                str.append(Translator.getInstruction("rev", targetName));
+            return str.toString();
+        }
+        throw new InternalError("the type of unary operator is wrong");
     }
 }

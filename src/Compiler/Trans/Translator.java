@@ -22,6 +22,10 @@ public class Translator {
         Translator.offset += delta;
     }
 
+    public static void subOffset(int delta) {
+        Translator.offset -= delta;
+    }
+
     public static FunctionIR getCurrentFunctionIR() {
         return currentFunctionIR;
     }
@@ -60,6 +64,17 @@ public class Translator {
         return str.toString();
     }
 
+    public static String getAssemblyCondition(ProgramIR.ConditionOp conditionOp) {
+        switch (conditionOp) {
+            case EQ: return "e";
+            case NEQ: return "ne";
+            case GR: return "g";
+            case LE: return "l";
+            case GREQ: return "ge";
+            case LEEQ: return "le";
+            default: throw new InternalError("what kind of conditionOp do you expected?");
+        }
+    }
 
     public static String getCallerSaved(List<String> callerList) {
         StringBuilder str = new StringBuilder();

@@ -20,4 +20,9 @@ public class JumpInstruction extends Instruction {
     public String toString() {
         return String.format("jump %s", target);
     }
+
+    @Override
+    public String getAssembly() {
+        return String.format("jump %s", target.getBlock().toString());
+    }
 }

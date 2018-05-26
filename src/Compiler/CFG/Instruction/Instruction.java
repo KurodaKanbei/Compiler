@@ -16,6 +16,14 @@ public abstract class Instruction {
         liveOut = new HashSet<>();
     }
 
+    public Set<VirtualRegister> getUseSet() {
+        return useSet;
+    }
+
+    public Set<VirtualRegister> getKillSet() {
+        return killSet;
+    }
+
     public abstract void init();
 
     public abstract String toString();

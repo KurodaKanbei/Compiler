@@ -1,6 +1,7 @@
 package Compiler;
 
 import Compiler.AST.ProgramAST;
+import Compiler.CFG.ProgramIR;
 import Compiler.FrontEnd.Listener.ASTListener;
 import Compiler.FrontEnd.Listener.ClassDeclarationListener;
 import Compiler.FrontEnd.Listener.DeclarationListener;
@@ -17,7 +18,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class Main {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         InputStream cin = new FileInputStream("program.txt");
         processAST(cin);
     }
@@ -40,5 +41,18 @@ public class Main {
             System.out.println(compilationError.getMessage());
             System.exit(1);
         }
+    }
+
+    private static void buidIR() {
+        ProgramIR.init();
+        ProgramIR.print();
+    }
+
+    private static void optimize() {
+
+    }
+
+    private static void translate() {
+
     }
 }

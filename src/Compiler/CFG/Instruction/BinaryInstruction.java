@@ -5,6 +5,11 @@ import Compiler.CFG.Operand.AddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalRegister;
+import Compiler.Trans.Translator;
 import Compiler.Utility.Error.InternalError;
 
 public class BinaryInstruction extends Instruction {
@@ -66,5 +71,65 @@ public class BinaryInstruction extends Instruction {
     @Override
     public String toString() {
         return String.format("%s = %s %s %s", target, target, binaryOp, source);
+    }
+
+    @Override
+    public String getAssembly() {
+        StringBuilder str = new StringBuilder();
+        String operator = binaryOp.toString();
+        PhysicalOperand physicalTarget, physicalSource;
+        physicalTarget = target.getPhysicalOperand(str);
+        physicalSource = target.getPhysicalOperand(str);
+        String targetName = physicalTarget.toString();
+        String sourceName = physicalSource.toString();
+        if (operator.equals("SHL")) {
+            if (physicalSource instanceof PhysicalImmediateOperand) {
+                str.append(Translator.getInstruction("sal", targetName, sourceName));
+            } else {
+                str.append(Translator.getInstruction("mov", "rcx", sourceName));
+                str.append(Translator.getInstruction("sal", targetName, "cl"));
+            }
+            return str.toString();
+        }
+        if (operator.equals("SHR")) {
+            if (physicalSource instanceof PhysicalImmediateOperand) {
+                str.append(Translator.getInstruction("sar", targetName, sourceName));
+            } else {
+                str.append(Translator.getInstruction("mov", "rcx", sourceName));
+                str.append(Translator.getInstruction("sar", targetName, "cl"));
+            }
+            return str.toString();
+        }
+        if (operator.equals("MUL")) {
+            if (physicalSource instanceof PhysicalRegister) {
+                str.append(Translator.getInstruction("imul", targetName, sourceName));
+            } else {
+                str.append(Translator.getInstruction("mov", "rax", targetName));
+                str.append(Translator.getInstruction("imul", "rax", sourceName));
+                str.append(Translator.getInstruction("mov", targetName, "rax"));
+            }
+            return str.toString();
+        }
+        if (operator.equals("DIV") || operator.equals("MOD")) {
+            str.append(Translator.getInstruction("mov", "rax", targetName));
+            str.append(Translator.getInstruction("mov", "rcx", sourceName));
+            str.append(Translator.getInstruction("cdq"));
+            str.append(Translator.getInstruction("idiv", "ecx"));
+            if (operator.equals("DIV")) {
+                str.append(Translator.getInstruction("mov", targetName, "rax"));
+            }
+            if (operator.equals("MOD")) {
+                str.append(Translator.getInstruction("mov", targetName, "rdx"));
+            }
+            return str.toString();
+        }
+        if (physicalSource instanceof PhysicalAddressOperand && physicalTarget instanceof PhysicalAddressOperand) {
+            str.append(Translator.getInstruction("mov", "rax", targetName));
+            str.append(Translator.getInstruction(operator, "rax", sourceName));
+            str.append(Translator.getInstruction("mov", targetName, "rax"));
+        } else {
+            str.append(Translator.getInstruction(operator, targetName, sourceName));
+        }
+        return str.toString();
     }
 }

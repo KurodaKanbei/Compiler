@@ -3,14 +3,16 @@ package Compiler.CFG.Instruction;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.ProgramIR;
+import Compiler.Trans.PhysicalOperand.PhysicalOperand;
+import Compiler.Trans.Translator;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CSetInstruction extends Instruction {
     private ProgramIR.ConditionOp conditionOp;
-    private Operand target;
-    static final Map<String, String> lowRegister = new HashMap<String, String>() {{
+    private VirtualRegister target;
+    private static final Map<String, String> lowRegister = new HashMap<>() {{
         put("rax", "al");
         put("rcx", "cl");
         put("rdx", "dl");
@@ -31,11 +33,11 @@ public class CSetInstruction extends Instruction {
 
     public CSetInstruction(ProgramIR.ConditionOp conditionOp, Operand target) {
         this.conditionOp = conditionOp;
-        this.target = target;
         if (!(target instanceof VirtualRegister)) {
             throw new InternalError("target of compare set instruction is expected to be virtual register");
         }
-        killSet.add((VirtualRegister) target);
+        this.target = (VirtualRegister) target;
+        killSet.add(this.target);
     }
 
     @Override
@@ -46,5 +48,22 @@ public class CSetInstruction extends Instruction {
     @Override
     public String toString() {
         return String.format("set %s %s", conditionOp, target);
+    }
+
+    @Override
+    public String getAssembly() {
+        StringBuilder str = new StringBuilder();
+        PhysicalOperand targetOperand = target.getPhysicalOperand(str);
+        String targetName = targetOperand.toString();
+        if (Translator.getCurrentFunctionIR().getRegisterStringMap().containsKey(target)) {
+            str.append(Translator.getInstruction("mov", "rax", targetName));
+            str.append(Translator.getInstruction("mov", "rax", "0"));
+            str.append(Translator.getInstruction("set", Translator.getAssemblyCondition(conditionOp), "al"));
+            str.append(Translator.getInstruction("mov", targetName, "rax"));
+        } else {
+            str.append(Translator.getInstruction("mov", targetName, "0"));
+            str.append(Translator.getInstruction("set", Translator.getAssemblyCondition(conditionOp), lowRegister.get(targetName)));
+        }
+        return str.toString();
     }
 }

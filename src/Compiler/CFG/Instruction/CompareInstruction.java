@@ -45,4 +45,9 @@ public class CompareInstruction extends Instruction {
     public String toString() {
         return String.format("cmp %s %s", leftOperand, rightOperand);
     }
+
+    @Override
+    public String getAssembly() {
+        return String.format("cmp %s %s", leftOperand, rightOperand);
+    }
 }

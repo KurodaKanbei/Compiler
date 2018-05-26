@@ -94,8 +94,16 @@ public class Block {
         instructionList.add(instruction);
     }
 
+    public void addBlockOut(Block block) {
+        blockOutSet.add(block);
+    }
+
+    public void addBlockIn(Block block) {
+        blockInSet.add(block);
+    }
+
     public String toString() {
-        return String.format("%d %s %s", getId(), functionIR.getFunctionType().getName(), getName());
+        return String.format("%d_%s_%s", getId(), functionIR.getFunctionType().getName(), getName());
     }
 
     public String toString(int indents) {
