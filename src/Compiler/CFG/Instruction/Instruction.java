@@ -24,6 +24,31 @@ public abstract class Instruction {
         return killSet;
     }
 
+    public void setLiveIn(Set<VirtualRegister> liveIn) {
+        this.liveIn = liveIn;
+    }
+
+    public void setLiveOut(Set<VirtualRegister> liveOut) {
+        this.liveOut = liveOut;
+    }
+
+    public Set<VirtualRegister> getLiveIn() {
+        return liveIn;
+    }
+
+    public Set<VirtualRegister> getLiveOut() {
+        return liveOut;
+    }
+
+    public void calcLiveIn() {
+        liveIn = new HashSet<>(useSet);
+        for (VirtualRegister virtualRegister : liveOut) {
+            if (!killSet.contains(virtualRegister)) {
+                liveIn.add(virtualRegister);
+            }
+        }
+    }
+
     public abstract void init();
 
     public abstract String toString();

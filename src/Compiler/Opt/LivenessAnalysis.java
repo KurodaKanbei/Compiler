@@ -5,15 +5,33 @@ import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.CJumpInstruction;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.JumpInstruction;
+import Compiler.CFG.Instruction.MoveInstruction;
+import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 
 import java.util.*;
 
 public class LivenessAnalysis {
-    public static Map<VirtualRegister, Set<VirtualRegister>> edge;
-    public static Map<VirtualRegister, Set<VirtualRegister>> flow;
-    public static Map<VirtualRegister, Integer> count;
+    private static Map<VirtualRegister, Set<VirtualRegister>> edge;
+    private static Map<VirtualRegister, Set<VirtualRegister>> flow;
+    private static Map<VirtualRegister, Integer> count;
     private static FunctionIR currentFunctionIR;
+
+    public static Map<VirtualRegister, Set<VirtualRegister>> getEdge() {
+        return edge;
+    }
+
+    public static Map<VirtualRegister, Set<VirtualRegister>> getFlow() {
+        return flow;
+    }
+
+    public static Map<VirtualRegister, Integer> getCount() {
+        return count;
+    }
+
+    public static FunctionIR getCurrentFunctionIR() {
+        return currentFunctionIR;
+    }
 
     public LivenessAnalysis(FunctionIR functionIR) {
         currentFunctionIR = functionIR;
@@ -33,7 +51,7 @@ public class LivenessAnalysis {
                 merge(count, instruction.getKillSet());
                 instruction.getUseSet().forEach(
                         virtualRegister -> {
-                            if (!assigned.contains(virtualRegister) && !block.getUseSet().contains(virtualRegister)) {
+                            if (!assigned.contains(virtualRegister)) {
                                 block.getUseSet().add(virtualRegister);
                             }
                         }
@@ -50,6 +68,7 @@ public class LivenessAnalysis {
                 }
             }
         }
+        currentFunctionIR.getBlockList().forEach(Block::calcLiveIn);
     }
 
     private static void addControlFlow(Block source, Block target) {
@@ -58,18 +77,110 @@ public class LivenessAnalysis {
     }
 
     private static void calcBlock() {
-
+        boolean hasIncrement = true;
+        while (hasIncrement) {
+            hasIncrement = false;
+            for (Block block : currentFunctionIR.getBlockList()) {
+                for (Block nxt : block.getBlockOutSet()) {
+                    hasIncrement |= merge(block.getLiveOut(), nxt.getLiveIn());
+                }
+                block.calcLiveIn();
+            }
+        }
     }
 
     private static void calcInstr() {
+        for (Block block : currentFunctionIR.getBlockList()) {
+            int n = block.getInstructionList().size();
+            for (int i = n - 1; i >= 0; i--) {
+                Instruction instruction = block.getInstructionList().get(i);
+                if (instruction instanceof JumpInstruction) {
+                    if (i != n - 1) {
+                        throw new InternalError("jump instruction must be the last one of the block");
+                    }
+                    instruction.setLiveOut(new HashSet<>(((JumpInstruction) instruction).getTarget().getBlock().getLiveIn()));
+                }
+                if (instruction instanceof CJumpInstruction) {
+                    if (i != n - 2) {
+                        throw new InternalError("compare jump instruction must be the last but one");
+                    }
+                    instruction.setLiveOut(new HashSet<>(((CJumpInstruction) instruction).getTarget().getBlock().getLiveIn()));
+                    merge(instruction.getLiveOut(), block.getInstructionList().get(i + 1).getLiveOut());
+                }
+                if (!(instruction instanceof JumpInstruction) && !(instruction instanceof CJumpInstruction)) {
+                    if (i < n - 1) {
+                        instruction.setLiveOut(new HashSet<>(block.getInstructionList().get(i + 1).getLiveIn()));
+                    }
+                }
+                instruction.calcLiveIn();
 
+                if (instruction instanceof MoveInstruction) {
+                    Operand source = ((MoveInstruction) instruction).getSource();
+                    Operand target = ((MoveInstruction) instruction).getTarget();
+                    for (VirtualRegister killed : instruction.getKillSet()) {
+                        for (VirtualRegister lived : instruction.getLiveOut()) {
+                            if (source instanceof VirtualRegister && lived != source) {
+                                addConflictEdge(killed, lived);
+                            }
+                            if (!(source instanceof VirtualRegister)) {
+                                addConflictEdge(killed, lived);
+                            }
+                        }
+                    }
+                    if (source instanceof VirtualRegister && target instanceof VirtualRegister) {
+                        addMoveEdge((VirtualRegister) target, (VirtualRegister) source);
+                    }
+                }
+                if (!(instruction instanceof  MoveInstruction)) {
+                    for (VirtualRegister killed : instruction.getKillSet()) {
+                        for (VirtualRegister lived : instruction.getLiveOut()) {
+                            addConflictEdge(killed, lived);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static void addConflictEdge(VirtualRegister x, VirtualRegister y) {
+        if (hasCopy(x) || hasCopy(y) || x == y) {
+            return;
+        }
+        edge.get(x).add(y);
+        edge.get(y).add(x);
+    }
+
+    private static void addMoveEdge(VirtualRegister target, VirtualRegister source) {
+        if (hasCopy(target) || hasCopy(source) || target == source) {
+            return;
+        }
+        flow.get(target).add(source);
+    }
+
+    private static boolean hasCopy(VirtualRegister virtualRegister) {
+        return currentFunctionIR.getRegisterIntegerMap().containsKey(virtualRegister) || virtualRegister.isGlobal();
     }
 
     private static void merge(Map<VirtualRegister, Integer> count, Set<VirtualRegister> occur) {
-
+        for (VirtualRegister virtualRegister : occur) {
+            if (!count.containsKey(virtualRegister)) {
+                count.put(virtualRegister, 0);
+                edge.put(virtualRegister, new HashSet<>());
+                flow.put(virtualRegister, new HashSet<>());
+            }
+            int num = count.get(virtualRegister);
+            count.put(virtualRegister, ++num);
+        }
     }
 
-    private static void merge(Set<VirtualRegister> sum, Set<VirtualRegister> delta) {
-
+    private static boolean merge(Set<VirtualRegister> sum, Set<VirtualRegister> delta) {
+        boolean hasIncrement = false;
+        for (VirtualRegister virtualRegister : delta) {
+            if (!sum.contains(virtualRegister)) {
+                sum.add(virtualRegister);
+                hasIncrement = true;
+            }
+        }
+        return hasIncrement;
     }
 }

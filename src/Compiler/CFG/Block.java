@@ -102,6 +102,15 @@ public class Block {
         blockInSet.add(block);
     }
 
+    public void calcLiveIn() {
+        liveIn = new HashSet<>(useSet);
+        for (VirtualRegister virtualRegister : liveOut) {
+            if (!killSet.contains(virtualRegister)) {
+                liveIn.add(virtualRegister);
+            }
+        }
+    }
+
     public String toString() {
         return String.format("%d_%s_%s", getId(), functionIR.getFunctionType().getName(), getName());
     }
