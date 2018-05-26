@@ -100,24 +100,14 @@ public class FunctionIR {
         }
         Translator.addOffset(registerManager.getRegisterInMemory());
 
-        Set<VirtualRegister> liveInRegister = blockList.get(0).getLiveIn();
-        List<String> calleeRegisterList = new ArrayList<>();
-        liveInRegister.forEach(virtualRegister -> {
-            if (registerStringMap.containsKey(virtualRegister)) {
-                String name = registerStringMap.get(virtualRegister);
-                if (FunctionIR.calleeSavedRegisterList.contains(name)) {
-                    calleeRegisterList.add(name);
-                }
-            }
-        });
-        str.append(Translator.getCalleeSaved(calleeRegisterList));
+        str.append(Translator.getCalleeSaved());
 
         blockList.forEach(block -> {
             str.append(block.getName() + ":\n");
             block.getInstructionList().forEach(instruction -> str.append(instruction.getAssembly()));
         });
 
-        str.append(Translator.getCalleeRestored(calleeRegisterList));
+        str.append(Translator.getCalleeRestored());
 
         if (registerManager.getRegisterInMemory() > 0) {
             str.append(Translator.getInstruction("add", "rsp", String.valueOf(registerManager.getRegisterInMemory() << 3)));

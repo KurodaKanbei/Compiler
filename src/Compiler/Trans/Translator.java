@@ -79,7 +79,7 @@ public class Translator {
     public static String getCallerSaved(List<String> callerList) {
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < callerList.size(); i++) {
-            str.append(getInstruction("push", FunctionIR.callerRegisterList.get(i)));
+            str.append(getInstruction("push", callerList.get(i)));
         }
         return str.toString();
     }
@@ -87,23 +87,23 @@ public class Translator {
     public static String getCallerRestored(List<String> callerList) {
         StringBuilder str = new StringBuilder();
         for (int i = callerList.size() - 1; i >= 0; i--) {
-            str.append(getInstruction("pop", FunctionIR.callerRegisterList.get(i)));
+            str.append(getInstruction("pop", callerList.get(i)));
         }
         return str.toString();
     }
 
-    public static String getCalleeSaved(List<String> calleeList) {
+    public static String getCalleeSaved() {
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < calleeList.size(); i++) {
-            str.append(getInstruction("push", FunctionIR.calleeRegisterList.get(i)));
+        for (int i = 0; i < FunctionIR.calleeSavedRegisterList.size(); i++) {
+            str.append(getInstruction("push", FunctionIR.calleeSavedRegisterList.get(i)));
         }
         return str.toString();
     }
 
-    public static String getCalleeRestored(List<String> calleeList) {
+    public static String getCalleeRestored() {
         StringBuilder str = new StringBuilder();
-        for (int i = calleeList.size() - 1; i >= 0; i--) {
-            str.append(getInstruction("pop", FunctionIR.calleeRegisterList.get(i)));
+        for (int i = FunctionIR.calleeSavedRegisterList.size() - 1; i >= 0; i--) {
+            str.append(getInstruction("pop", FunctionIR.calleeSavedRegisterList.get(i)));
         }
         return str.toString();
     }

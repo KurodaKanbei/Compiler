@@ -33,7 +33,7 @@ public class LivenessAnalysis {
         return currentFunctionIR;
     }
 
-    public LivenessAnalysis(FunctionIR functionIR) {
+    public static void analysis(FunctionIR functionIR) {
         currentFunctionIR = functionIR;
         edge = new HashMap<>();
         flow = new HashMap<>();
