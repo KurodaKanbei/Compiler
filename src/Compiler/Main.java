@@ -49,12 +49,12 @@ public class Main {
 
     private static void buildIR() {
         ProgramIR.init();
-        ProgramIR.print();
+        //ProgramIR.print();
     }
 
     private static void optimize() {
         Optimize.optimize();
-        ProgramIR.print();
+        //ProgramIR.print();
     }
 
     private static void translate() throws IOException {

@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/AST/Statement/ReturnStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/AST/Statement/ReturnStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegen.bash" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,16 +17,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FunctionCallInstruction.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FunctionCallInstruction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
+            <state relative-caret-position="261">
               <caret line="74" column="54" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="codegen.bash" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/codegen.bash">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="semantic.bash" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/semantic.bash">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="FunctionIR.java" pinned="false" current-in-tab="false">
@@ -142,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/PrefixExpression/PrefixIncrementExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/SuffixExpression/SuffixDecrementExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/SuffixExpression/SuffixIncrementExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/UnaryExpression/UnaryMinusExpression.java" />
@@ -193,6 +196,7 @@
         <option value="$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
+        <option value="$PROJECT_DIR$/codegen.bash" />
       </list>
     </option>
   </component>
@@ -561,23 +565,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Constant/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression/FunctionCallExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Symbol/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-792">
@@ -1048,11 +1035,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
+        <state relative-caret-position="261">
           <caret line="74" column="54" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic.bash">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codegen.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
         </state>
       </provider>
     </entry>
