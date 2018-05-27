@@ -34,7 +34,6 @@ public class ReturnInstruction extends Instruction {
         StringBuilder str = new StringBuilder();
         PhysicalOperand physicalOperand = returnValue.getPhysicalOperand(str);
         str.append(Translator.getInstruction("mov", "rax", physicalOperand.toString()));
-        str.append(Translator.getInstruction("ret"));
         return str.toString();
     }
 }

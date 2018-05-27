@@ -45,11 +45,11 @@ public class Translator {
         if (instr.equals("pop")) {
             --offset;
         }
-        return String.format("%8s %16s\n", instr, operand);
+        return String.format("%8s %20s\n", instr, operand);
     }
 
     public static String getInstruction(String instr, String operand1, String operand2) {
-        return String.format("%8s %16s %16s\n", instr, operand1, operand2);
+        return String.format("%8s %20s %20s\n", instr, operand1, operand2);
     }
 
     public static String getLibCall(String func) {
@@ -115,6 +115,7 @@ public class Translator {
         str.append(getDefinedDataSection());
         str.append(getReservedDataSection());
         str.append(getTextSection());
+        str.append(BuiltinFunction.getAssembly());
         return str.toString();
     }
 
@@ -128,7 +129,7 @@ public class Translator {
             for (int j = 0; j < n; j++) {
                 str.append(String.format(" %3d,", (int) s.charAt(j)));
             }
-            str.append(String.format(" %3d", 0));
+            str.append(String.format(" %3d\n", 0));
         }
         return str.toString();
     }

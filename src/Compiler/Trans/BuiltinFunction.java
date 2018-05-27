@@ -48,11 +48,11 @@ public class BuiltinFunction {
         if (instr.equals("pop")) {
             --offset;
         }
-        return String.format("%8s %16s\n", instr, operand);
+        return String.format("%8s %20s\n", instr, operand);
     }
 
     private static String getInstruction(String instr, String operand1, String operand2) {
-        return String.format("%8s %16s %16s\n", instr, operand1, operand2);
+        return String.format("%8s %20s %20s\n", instr, operand1, operand2);
     }
 
     private static String getLibCall(String func) {

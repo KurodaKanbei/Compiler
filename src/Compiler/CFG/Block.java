@@ -112,7 +112,7 @@ public class Block {
     }
 
     public String toString() {
-        return String.format("%d_%s_%s", getId(), functionIR.getFunctionType().getName(), getName());
+        return String.format("%s_%d_%s", functionIR.getFunctionType().getName(), getId(), getName());
     }
 
     public String toString(int indents) {

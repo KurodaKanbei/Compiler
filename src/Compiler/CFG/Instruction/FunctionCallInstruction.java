@@ -43,7 +43,7 @@ public class FunctionCallInstruction extends Instruction {
         StringBuilder str = new StringBuilder();
         str.append(String.format("call %s", functionType.getName()));
         operandList.forEach(operand -> str.append(" ").append(operand.toString()));
-        str.append(String.format("return value = %s", returnValue));
+        str.append(String.format(" return value = %s", returnValue));
         return str.toString();
     }
 

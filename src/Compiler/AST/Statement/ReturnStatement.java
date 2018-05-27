@@ -6,6 +6,7 @@ import Compiler.AST.Type.FunctionType;
 import Compiler.AST.Type.Type;
 import Compiler.AST.Type.VoidType;
 import Compiler.CFG.Instruction.Instruction;
+import Compiler.CFG.Instruction.JumpInstruction;
 import Compiler.CFG.Instruction.ReturnInstruction;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
@@ -75,6 +76,6 @@ public class ReturnStatement extends Statement{
             expression.generateInstruction(instructionList);
             instructionList.add(new ReturnInstruction(expression.getOperand()));
         }
-        instructionList.add(functionType.getExitLabel());
+        instructionList.add(new JumpInstruction(functionType.getExitLabel()));
     }
 }

@@ -1,5 +1,7 @@
 package Compiler.CFG.Instruction;
 
+import Compiler.Trans.Translator;
+
 public class JumpInstruction extends Instruction {
     private LabelInstruction target;
 
@@ -18,11 +20,11 @@ public class JumpInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return String.format("jump %s", target);
+        return String.format("jump %s", target.getBlock().toString());
     }
 
     @Override
     public String getAssembly() {
-        return String.format("jump %s", target.getBlock().toString());
+        return Translator.getInstruction("jmp", target.getBlock().getName());
     }
 }

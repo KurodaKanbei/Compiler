@@ -47,12 +47,17 @@ public class FunctionIR {
             }
         }
         functionType.getBlockStatement().generateInstruction(instructionList);
-        instructionList.add(new JumpInstruction(exitBlock));
+        if (instructionList.isEmpty()) {
+            instructionList.add(new JumpInstruction(exitBlock));
+        }
+        if (!(instructionList.get(instructionList.size() - 1) instanceof JumpInstruction)) {
+            instructionList.add(new JumpInstruction(exitBlock));
+        }
         instructionList.add(exitBlock);
 
         for (int i = 0, j; i < instructionList.size(); i = j) {
             LabelInstruction labelInstruction = (LabelInstruction) instructionList.get(i);
-            Block block = new Block(this, labelInstruction, functionType.getName(), blockList.size());
+            Block block = new Block(this, labelInstruction, labelInstruction.getName(), blockList.size());
             for (j = i + 1; j < instructionList.size(); j++) {
                 if (instructionList.get(j) instanceof LabelInstruction) {
                     break;

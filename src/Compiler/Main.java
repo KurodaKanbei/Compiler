@@ -22,7 +22,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         InputStream cin = new FileInputStream("program.txt");
         processAST(cin);
-        buidIR();
+        buildIR();
         optimize();
         translate();
     }
@@ -47,7 +47,7 @@ public class Main {
         }
     }
 
-    private static void buidIR() {
+    private static void buildIR() {
         ProgramIR.init();
         ProgramIR.print();
     }
