@@ -17,7 +17,7 @@ public class RegisterManager {
         usedRegister = new HashSet<>();
     }
 
-    public static final List<String> parameterRegister = new ArrayList<>() {{
+    public static final List<String> parameterRegister = new ArrayList<String>() {{
         add("rdi");
         add("rsi");
         add("rdx");
