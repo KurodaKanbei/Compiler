@@ -13,13 +13,13 @@ public class RegisterAllocator {
     private static Map<VirtualRegister, Set<VirtualRegister>> moveFlowMap;
     private static List<String> allocateOrder;
 
-    private static final List<String> normalOrder = new ArrayList<>() {{
+    private static final List<String> normalOrder = new ArrayList<String>() {{
         add("rsi"); add("rbx"); add("rdi"); add("r12");
         add("r8"); add("r13"); add("r9"); add("r14");
         add("r10"); add("r15"); add("r11");
     }};
 
-    private static final List<String> leafOrder = new ArrayList<>() {{
+    private static final List<String> leafOrder = new ArrayList<String>() {{
         add("rsi"); add("rdi"); add("r8"); add("r9"); add("r10");
         add("r11"); add("rbx"); add("r12"); add("r13");
         add("r14"); add("r15");

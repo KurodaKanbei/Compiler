@@ -32,7 +32,7 @@ public class BuiltinFunction {
 
     private static int offset;
 
-    private static final Set<String> libCallSet = new HashSet<>() {{
+    private static final Set<String> libCallSet = new HashSet<String>() {{
         add("printf"); add("sprintf"); add("malloc"); add("scanf"); add("sscanf");
         add("puts"); add("memcpy"); add("strcmp"); add("strcpy"); add("strlen");
     }};

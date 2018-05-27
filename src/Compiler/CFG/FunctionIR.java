@@ -20,11 +20,11 @@ public class FunctionIR {
     private Map<VirtualRegister, String> registerStringMap;
     private Map<VirtualRegister, Integer> registerIntegerMap;
 
-    public static final List<String> callerSavedRegisterList = new ArrayList<>() {{
+    public static final List<String> callerSavedRegisterList = new ArrayList<String>() {{
         add("rsi"); add("rdi"); add("r8"); add("r9"); add("r10"); add("r11");
     }};
 
-    public static final List<String> calleeSavedRegisterList = new ArrayList<>() {{
+    public static final List<String> calleeSavedRegisterList = new ArrayList<String>() {{
         add("rbx"); add("r12"); add("r13"); add("r14"); add("r15");
     }};
 

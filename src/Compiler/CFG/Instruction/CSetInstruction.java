@@ -12,7 +12,7 @@ import java.util.Map;
 public class CSetInstruction extends Instruction {
     private ProgramIR.ConditionOp conditionOp;
     private VirtualRegister target;
-    private static final Map<String, String> lowRegister = new HashMap<>() {{
+    private static final Map<String, String> lowRegister = new HashMap<String, String>() {{
         put("rax", "al");
         put("rcx", "cl");
         put("rdx", "dl");
