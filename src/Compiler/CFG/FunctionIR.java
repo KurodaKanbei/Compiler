@@ -2,10 +2,7 @@ package Compiler.CFG;
 
 import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.FunctionType;
-import Compiler.CFG.Instruction.Instruction;
-import Compiler.CFG.Instruction.JumpInstruction;
-import Compiler.CFG.Instruction.LabelInstruction;
-import Compiler.CFG.Instruction.MoveInstruction;
+import Compiler.CFG.Instruction.*;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Utility;
@@ -163,6 +160,25 @@ public class FunctionIR {
 
     public Map<VirtualRegister, Integer> getRegisterIntegerMap() {
         return registerIntegerMap;
+    }
+
+    public void setRegisterStringMap(Map<VirtualRegister, String> registerStringMap) {
+        this.registerStringMap = registerStringMap;
+    }
+
+    public void setRegisterIntegerMap(Map<VirtualRegister, Integer> registerIntegerMap) {
+        this.registerIntegerMap = registerIntegerMap;
+    }
+
+    public boolean isLeaf() {
+        for (Block block : blockList) {
+            for (Instruction instruction : block.getInstructionList()) {
+                if (instruction instanceof FunctionCallInstruction) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public String toString(int indents) {

@@ -1,10 +1,12 @@
 package Compiler.Opt;
 
-import Compiler.CFG.FunctionIR;
+import Compiler.CFG.ProgramIR;
 
 public class Optimize {
-    public Optimize(FunctionIR functionIR) {
-        LivenessAnalysis.analysis(functionIR);
-
+    public static void optimize() {
+        ProgramIR.getFunctionMap().values().forEach(functionIR -> {
+            LivenessAnalysis.analysis(functionIR);
+            RegisterAllocator.naiveAllocate(LivenessAnalysis.getEdge(), LivenessAnalysis.getCount(), functionIR);
+        });
     }
 }

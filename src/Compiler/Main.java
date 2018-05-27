@@ -8,19 +8,23 @@ import Compiler.FrontEnd.Listener.DeclarationListener;
 import Compiler.FrontEnd.Listener.SyntaxErrorListener;
 import Compiler.FrontEnd.Parser.MxstarLexer;
 import Compiler.FrontEnd.Parser.MxstarParser;
+import Compiler.Opt.Optimize;
+import Compiler.Trans.Translator;
 import Compiler.Utility.Error.CompilationError;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         InputStream cin = new FileInputStream("program.txt");
         processAST(cin);
+        buidIR();
+        optimize();
+        translate();
     }
 
     private static void processAST(InputStream cin) throws Exception {
@@ -49,10 +53,16 @@ public class Main {
     }
 
     private static void optimize() {
-
+        Optimize.optimize();
+        ProgramIR.print();
     }
 
-    private static void translate() {
-
+    private static void translate() throws IOException {
+        String assembly = Translator.getAssembly();
+        File file = new File("program.asm");
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        byte[] bytes = assembly.getBytes();
+        fileOutputStream.write(bytes);
+        fileOutputStream.close();
     }
 }

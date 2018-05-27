@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/resolution.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/resolution.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RegisterAllocator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="534">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -108,16 +106,16 @@
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/ProgramIR.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/BinaryExpression/BinaryLogicalOrExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Block.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
       </list>
     </option>
   </component>
@@ -859,16 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
@@ -955,16 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="109" column="47" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5">
@@ -993,17 +971,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/Optimize.java">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        <state relative-caret-position="485">
+          <caret line="164" column="85" selection-start-line="164" selection-start-column="85" selection-end-line="164" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="228">
+          <caret line="12" column="62" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/Optimize.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
