@@ -149,6 +149,7 @@ public class Translator {
 
     private static String getTextSection() {
         StringBuilder str = new StringBuilder();
+        str.append("SECTION .text\n");
         ProgramIR.getFunctionMap().values().forEach(
                 functionIR -> {
                     setCurrentFunctionIR(functionIR);

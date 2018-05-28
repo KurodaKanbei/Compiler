@@ -25,6 +25,6 @@ public class JumpInstruction extends Instruction {
 
     @Override
     public String getAssembly() {
-        return Translator.getInstruction("jmp", target.getBlock().getName());
+        return Translator.getInstruction("jmp", target.getBlock().toString());
     }
 }

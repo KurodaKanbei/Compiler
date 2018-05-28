@@ -105,7 +105,7 @@ public class FunctionIR {
         str.append(Translator.getCalleeSaved());
 
         blockList.forEach(block -> {
-            str.append(block.getName() + ":\n");
+            str.append(block.toString() + ":\n");
             block.getInstructionList().forEach(instruction -> str.append(instruction.getAssembly()));
         });
 

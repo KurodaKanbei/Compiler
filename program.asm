@@ -2,6 +2,7 @@ global main
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .data
 SECTION .bss
+SECTION .text
 @global_init:
     push                  rbp
      mov                  rbp                  rsp
@@ -10,9 +11,9 @@ SECTION .bss
     push                  r13
     push                  r14
     push                  r15
-block_enter:
-     jmp           block_exit
-block_exit:
+@global_init_0_block_enter:
+     jmp @global_init_1_block_exit
+@global_init_1_block_exit:
      pop                  r15
      pop                  r14
      pop                  r13
@@ -29,30 +30,27 @@ main:
     push                  r13
     push                  r14
     push                  r15
-block_enter:
-     jmp       loop_condition
-loop_condition:
+main_0_block_enter:
+     jmp main_1_loop_condition
+main_1_loop_condition:
      cmp                  rsi                  rdi
      mov                  rax                   r9
      mov                  rax                    0
      set                   le                   al
      mov                   r9                  rax
      cmp                   r9                    0
-      je            loop_exit
-     jmp            loop_body
-loop_body:
+      je     main_4_loop_exit
+     jmp     main_2_loop_body
+main_2_loop_body:
      ADD                   r8                   r8
-     jmp       loop_increment
-loop_increment:
+     jmp main_3_loop_increment
+main_3_loop_increment:
      add                  rsi                    1
-     sub                  rsi                    1
-     neg                  rsi
-     rev                  rsi
-     jmp       loop_condition
-loop_exit:
+     jmp main_1_loop_condition
+main_4_loop_exit:
      mov                  rax                   r8
-     jmp           block_exit
-block_exit:
+     jmp    main_5_block_exit
+main_5_block_exit:
      pop                  r15
      pop                  r14
      pop                  r13

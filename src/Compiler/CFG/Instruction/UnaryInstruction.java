@@ -51,16 +51,20 @@ public class UnaryInstruction extends Instruction {
     public String getAssembly() {
         StringBuilder str = new StringBuilder();
         String targetName = target.getPhysicalOperand(str).toString();
+        System.out.println(unaryOp);
         switch (unaryOp) {
             case INC:
                 str.append(Translator.getInstruction("add", targetName, "1"));
+                return str.toString();
             case DEC:
                 str.append(Translator.getInstruction("sub", targetName, "1"));
+                return str.toString();
             case NEG:
                 str.append(Translator.getInstruction("neg", targetName));
+                return str.toString();
             case REV:
                 str.append(Translator.getInstruction("rev", targetName));
-            return str.toString();
+                return str.toString();
         }
         throw new InternalError("the type of unary operator is wrong");
     }
