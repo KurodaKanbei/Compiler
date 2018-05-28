@@ -3,6 +3,11 @@ package Compiler.CFG.Instruction;
 import Compiler.CFG.Operand.AddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalRegister;
+import Compiler.Trans.Translator;
 
 public class CompareInstruction extends Instruction {
     private Operand leftOperand, rightOperand;
@@ -48,6 +53,19 @@ public class CompareInstruction extends Instruction {
 
     @Override
     public String getAssembly() {
-        return String.format("cmp %s %s", leftOperand, rightOperand);
+        StringBuilder str = new StringBuilder();
+        PhysicalOperand physicalLeft, physicalRight;
+        physicalLeft = leftOperand.getPhysicalOperand(str);
+        physicalRight = rightOperand.getPhysicalOperand(str);
+        String leftName, rightName;
+        leftName = physicalLeft.toString();
+        rightName = physicalRight.toString();
+        if (physicalLeft instanceof PhysicalAddressOperand && physicalRight instanceof PhysicalAddressOperand || physicalLeft instanceof PhysicalImmediateOperand) {
+            str.append(Translator.getInstruction("mov", "rax", leftName));
+            str.append(Translator.getInstruction("cmp", "rax", rightName));
+        } else {
+            str.append(Translator.getInstruction("cmp", leftName, rightName));
+        }
+        return str.toString();
     }
 }

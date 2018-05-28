@@ -114,7 +114,7 @@ public class RegisterAllocator {
 
     private static boolean tryColor(VirtualRegister virtualRegister, String systemRegister) {
         for (VirtualRegister neighbor : conflictEdgeMap.get(virtualRegister)) {
-            if (neighbor.getSystemRegister().equals(systemRegister)) {
+            if (virtualRegisterStringMap.containsKey(neighbor) && virtualRegisterStringMap.get(neighbor).equals(systemRegister)) {
                 return false;
             }
         }

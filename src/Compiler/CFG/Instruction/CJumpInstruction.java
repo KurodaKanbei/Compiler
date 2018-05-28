@@ -32,6 +32,6 @@ public class CJumpInstruction extends Instruction {
 
     @Override
     public String getAssembly() {
-        return Translator.getInstruction("j" + Translator.getAssemblyCondition(conditionOp), target.toString());
+        return Translator.getInstruction("j" + Translator.getAssemblyCondition(conditionOp), target.getName());
     }
 }

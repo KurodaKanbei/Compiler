@@ -1,8 +1,6 @@
 global main
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .data
-__const_string0:
-	db 116, 101, 115, 116,   0
 SECTION .bss
 @global_init:
     push                  rbp
@@ -32,10 +30,27 @@ main:
     push                  r14
     push                  r15
 block_enter:
-    push      __string_const0
-    call              println
-     add                  rsp                    8
+     jmp       loop_condition
+loop_condition:
+     cmp                  rsi                  rdi
+     mov                  rax                   r9
      mov                  rax                    0
+     set                   le                   al
+     mov                   r9                  rax
+     cmp                   r9                    0
+      je            loop_exit
+     jmp            loop_body
+loop_body:
+     ADD                   r8                   r8
+     jmp       loop_increment
+loop_increment:
+     add                  rsi                    1
+     sub                  rsi                    1
+     neg                  rsi
+     rev                  rsi
+     jmp       loop_condition
+loop_exit:
+     mov                  rax                   r8
      jmp           block_exit
 block_exit:
      pop                  r15

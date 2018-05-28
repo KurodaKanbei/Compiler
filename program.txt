@@ -1,5 +1,7 @@
 int main() {
-    int a = 0;
-    println("test");
-    return 0;
+    int n = 10;
+    int sum = 0;
+    int i;
+    for (i = 1; i <= n; ++i) sum = sum + i;
+    return sum;
 }
