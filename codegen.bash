@@ -7,6 +7,5 @@
 
 set -e
 cd "$(dirname "$0")"
-cat > test.mx
+cat > program.txt
 java -classpath ./lib/antlr-4.7.1-complete.jar:./bin Compiler.Main
-cat test.nasm
