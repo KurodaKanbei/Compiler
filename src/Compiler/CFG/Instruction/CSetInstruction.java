@@ -58,11 +58,11 @@ public class CSetInstruction extends Instruction {
         if (Translator.getCurrentFunctionIR().getRegisterStringMap().containsKey(target)) {
             str.append(Translator.getInstruction("mov", "rax", targetName));
             str.append(Translator.getInstruction("mov", "rax", "0"));
-            str.append(Translator.getInstruction("set", Translator.getAssemblyCondition(conditionOp), "al"));
+            str.append(Translator.getInstruction("set" + Translator.getAssemblyCondition(conditionOp), "al"));
             str.append(Translator.getInstruction("mov", targetName, "rax"));
         } else {
             str.append(Translator.getInstruction("mov", targetName, "0"));
-            str.append(Translator.getInstruction("set", Translator.getAssemblyCondition(conditionOp), lowRegister.get(targetName)));
+            str.append(Translator.getInstruction("set" + Translator.getAssemblyCondition(conditionOp), lowRegister.get(targetName)));
         }
         return str.toString();
     }

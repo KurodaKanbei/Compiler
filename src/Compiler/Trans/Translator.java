@@ -4,11 +4,18 @@ import Compiler.AST.ProgramAST;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.ProgramIR;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Translator {
     private static int offset;
+
     private static FunctionIR currentFunctionIR;
+
+    private static final String[] builtInFunction = {"print_Int", "println_Int", "print", "println", "getInt", "getString", "toString", "__array_size",
+            "__string_length", "__string_parseInt", "__string_ord", "__string_connection", "__string_LE", "__string_LEEQ", "__string_GR", "__string_GREQ", "__string_EQ", "__string_NEQ"};
+
+    private static final List<String> builtInFunctionName = Arrays.asList(builtInFunction);
 
     public static int getOffset() {
         return offset;
@@ -124,6 +131,7 @@ public class Translator {
         ProgramIR.getFunctionMap().values().forEach(
                 functionIR -> str.append("global " + functionIR.getFunctionType().getName() + "\n")
         );
+        builtInFunctionName.forEach(name -> str.append("global " + name + "\n"));
         return str.toString();
     }
 

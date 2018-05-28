@@ -57,13 +57,8 @@ public class Main {
         //ProgramIR.print();
     }
 
-    private static void translate() throws IOException {
+    private static void translate() {
         String assembly = Translator.getAssembly();
         System.out.println(assembly);
-        /*File file = new File("program.asm");
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        byte[] bytes = assembly.getBytes();
-        fileOutputStream.write(bytes);
-        fileOutputStream.close();*/
     }
 }
