@@ -20,8 +20,6 @@ global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .data
-__const_string_0:
-	db 115, 104, 105, 116,   0
 SECTION .bss
 SECTION .text
 main:
@@ -33,13 +31,51 @@ main:
     push                  r13
     push                  r14
     push                  r15
+    push                  rbx
 main_0_block_enter:
-     mov                  rdi,     __const_string_0
-    push     __const_string_0
+     mov                  rdi,                    5
+     mov                  rsi,                    0
+     cmp                  rsi,                    0
+     mov                  rbx,                    0
+   setne                   bl
+     cmp                  rbx,                    1
+     jne main_2_logical_false
+     jmp  main_1_logical_true
+main_1_logical_true:
+     mov                  rbx,                  rdi
+     sub                  rbx,                  rsi
+     cmp                  rbx,                    1
+     mov                  rsi,                    0
+   setne                  sil
+     jmp  main_3_logical_exit
+main_2_logical_false:
+     mov                  rsi,                    0
+     jmp  main_3_logical_exit
+main_3_logical_exit:
+     cmp                  rsi,                    1
+      je       main_4_if_true
+     jmp      main_5_if_false
+main_4_if_true:
+     mov                  rsi,                   10
+     jmp       main_6_if_exit
+main_5_if_false:
+     mov                  rsi,                   20
+     jmp       main_6_if_exit
+main_6_if_exit:
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    push                  rsi
+    call             toString
+     add                  rsp,                   16
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    push                  rsi
     call              println
-     add                  rsp,                    8
-     jmp    main_1_block_exit
-main_1_block_exit:
+     add                  rsp,                   16
+     jmp    main_7_block_exit
+main_7_block_exit:
+     pop                  rbx
      pop                  r15
      pop                  r14
      pop                  r13
@@ -55,9 +91,11 @@ global_init:
     push                  r13
     push                  r14
     push                  r15
+    push                  rbx
 global_init_0_block_enter:
      jmp global_init_1_block_exit
 global_init_1_block_exit:
+     pop                  rbx
      pop                  r15
      pop                  r14
      pop                  r13

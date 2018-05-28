@@ -64,7 +64,7 @@ public class BinaryLogicalAndExpression extends Expression {
         instructionList.add(new JumpInstruction(exitLabel));
 
         instructionList.add(falseLabel);
-        instructionList.add(new MoveInstruction(operand, new ImmediateOperand(1)));
+        instructionList.add(new MoveInstruction(operand, new ImmediateOperand(0)));
         instructionList.add(new JumpInstruction(exitLabel));
 
         instructionList.add(exitLabel);
