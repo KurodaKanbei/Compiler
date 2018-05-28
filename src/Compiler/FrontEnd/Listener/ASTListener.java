@@ -458,7 +458,7 @@ public class ASTListener extends BaseListener{
             expression = BinaryMultiplyExpression.getExpression(leftExpression, rightExpression);
         }
         if (operator.equals("/")) {
-            expression = BinaryMinusExpression.getExpression(leftExpression, rightExpression);
+            expression = BinaryDivisionExpression.getExpression(leftExpression, rightExpression);
         }
         if (operator.equals("%")) {
             expression = BinaryModuloExpression.getExpression(leftExpression, rightExpression);
