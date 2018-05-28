@@ -94,7 +94,7 @@ public class FunctionIR {
         str.append(Translator.getInstruction("mov", "rbp", "rsp"));
 
         if (functionType.getName().equals("main")) {
-            str.append(Translator.getInstruction("call", "@global_init"));
+            str.append(Translator.getInstruction("call", "global_init"));
         }
 
         if (registerManager.getRegisterInMemory() > 0) {

@@ -110,12 +110,20 @@ public class Translator {
 
     public static String getAssembly() {
         StringBuilder str = new StringBuilder();
-        str.append("global main\n");
+        str.append(getGlobalFunction());
         str.append("extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts\n");
         str.append(getDefinedDataSection());
         str.append(getReservedDataSection());
         str.append(getTextSection());
         str.append(BuiltinFunction.getAssembly());
+        return str.toString();
+    }
+
+    private static String getGlobalFunction() {
+        StringBuilder str = new StringBuilder();
+        ProgramIR.getFunctionMap().values().forEach(
+                functionIR -> str.append("global " + functionIR.getFunctionType().getName() + "\n")
+        );
         return str.toString();
     }
 

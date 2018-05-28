@@ -1,30 +1,13 @@
 global main
+global global_init
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .data
 SECTION .bss
 SECTION .text
-@global_init:
-    push                  rbp
-     mov                  rbp,                  rsp
-    push                  rbx
-    push                  r12
-    push                  r13
-    push                  r14
-    push                  r15
-@global_init_0_block_enter:
-     jmp @global_init_1_block_exit
-@global_init_1_block_exit:
-     pop                  r15
-     pop                  r14
-     pop                  r13
-     pop                  r12
-     pop                  rbx
-     pop                  rbp
-     ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
-    call         @global_init
+    call          global_init
     push                  rbx
     push                  r12
     push                  r13
@@ -59,6 +42,24 @@ main_0_block_enter:
      mov                  rax,                  rsi
      jmp    main_1_block_exit
 main_1_block_exit:
+     pop                  r15
+     pop                  r14
+     pop                  r13
+     pop                  r12
+     pop                  rbx
+     pop                  rbp
+     ret
+global_init:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  rbx
+    push                  r12
+    push                  r13
+    push                  r14
+    push                  r15
+global_init_0_block_enter:
+     jmp global_init_1_block_exit
+global_init_1_block_exit:
      pop                  r15
      pop                  r14
      pop                  r13
