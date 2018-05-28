@@ -115,7 +115,7 @@ public class Translator {
         str.append(getDefinedDataSection());
         str.append(getReservedDataSection());
         str.append(getTextSection());
-        str.append(BuiltinFunction.getAssembly());
+        //str.append(BuiltinFunction.getAssembly());
         return str.toString();
     }
 
