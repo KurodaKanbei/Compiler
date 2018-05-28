@@ -52,6 +52,7 @@ public class ClassType extends Type implements Scope {
 
     public void addMemberVariable(VariableDeclarationStatement variableDeclarationStatement) {
         memberVariableTable.addVariable(variableDeclarationStatement);
+        mallocSize += 8;
     }
 
     public void setConstructFunction(FunctionType constructFunction) {

@@ -1,4 +1,3 @@
-global gcd
 global main
 global global_init
 global print_Int
@@ -23,52 +22,6 @@ extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, p
 SECTION .data
 SECTION .bss
 SECTION .text
-gcd:
-    push                  rbp
-     mov                  rbp,                  rsp
-    push                  rbx
-    push                  r12
-    push                  r13
-    push                  r14
-    push                  r15
-    push                  rbx
-gcd_0_block_enter:
-     mov                  rbx,                  rsi
-     cmp                  rbx,                    0
-     mov                  rsi,                    0
-    sete                  sil
-     cmp                  rsi,                    1
-      je        gcd_1_if_true
-     jmp       gcd_2_if_false
-gcd_1_if_true:
-     mov                  rax,                  rdi
-     jmp     gcd_4_block_exit
-gcd_2_if_false:
-     mov                  rsi,                  rdi
-     mov                  rax,                  rsi
-     mov                  rcx,                  rbx
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                  rbx
-    push                  rsi
-    push                  rbx
-    call                  gcd
-     add                  rsp,                   16
-     mov                  rsi,                  rax
-     mov                  rax,                  rsi
-     jmp     gcd_4_block_exit
-gcd_3_if_exit:
-     jmp     gcd_4_block_exit
-gcd_4_block_exit:
-     pop                  rbx
-     pop                  r15
-     pop                  r14
-     pop                  r13
-     pop                  r12
-     pop                  rbx
-     pop                  rbp
-     ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
@@ -78,29 +31,18 @@ main:
     push                  r13
     push                  r14
     push                  r15
-    push                  rbx
 main_0_block_enter:
-     mov                  rdi,                   12
-     mov                  rsi,                    5
-    push                    5
-    push                   12
-    call                  gcd
-     add                  rsp,                   16
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-     sub                  rsp,                    8
     push                  rsi
-    call             toString
-     add                  rsp,                   16
+     mov                  rdi,                    8
+    call               malloc
+     pop                  rsi
      mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-     sub                  rsp,                    8
-    push                  rsi
-    call              println
-     add                  rsp,                   16
+     mov      qword [rsi + 0],                  100
+     mov                  rsi,      qword [rsi + 0]
+     sal                  rsi,                    1
+     mov                  rax,                  rsi
      jmp    main_1_block_exit
 main_1_block_exit:
-     pop                  rbx
      pop                  r15
      pop                  r14
      pop                  r13
@@ -116,11 +58,9 @@ global_init:
     push                  r13
     push                  r14
     push                  r15
-    push                  rbx
 global_init_0_block_enter:
      jmp global_init_1_block_exit
 global_init_1_block_exit:
-     pop                  rbx
      pop                  r15
      pop                  r14
      pop                  r13

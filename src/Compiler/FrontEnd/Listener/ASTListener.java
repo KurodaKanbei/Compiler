@@ -455,7 +455,7 @@ public class ASTListener extends BaseListener{
         String operator = ctx.operator.getText();
         Expression expression = null;
         if (operator.equals("*")) {
-            expression = BinaryPlusExpression.getExpression(leftExpression, rightExpression);
+            expression = BinaryMultiplyExpression.getExpression(leftExpression, rightExpression);
         }
         if (operator.equals("/")) {
             expression = BinaryMinusExpression.getExpression(leftExpression, rightExpression);
