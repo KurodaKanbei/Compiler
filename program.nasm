@@ -1,3 +1,4 @@
+global a
 global main
 global global_init
 global print_Int
@@ -22,6 +23,278 @@ extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, p
 SECTION .data
 SECTION .bss
 SECTION .text
+a:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  rbx
+    push                  r12
+    push                  r13
+    push                  r14
+    push                  r15
+    push                  r12
+    push                  r14
+    push                  r13
+    push                  rbx
+a_0_block_enter:
+     mov                  r13,                  rdi
+     mov                  r10,                  rdx
+     mov                  r14,                  rcx
+     mov                  r12,                   r8
+     mov                  rbx,                   r9
+     mov                  rdi,                  r13
+    push                  rsi
+    push                  r10
+    push                  r13
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rsi
+    push                  rsi
+    push                  r10
+    push                  rsi
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  r10
+    push                  rsi
+    push                  r10
+    push                  r10
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  r14
+    push                  rsi
+    push                  r10
+    push                  r14
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  r12
+    push                  rsi
+    push                  r10
+    push                  r12
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rbx
+    push                  rsi
+    push                  r10
+    push                  rbx
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,     qword [rbp + 64]
+    push                  rsi
+    push                  r10
+    push     qword [rbp + 64]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,     qword [rbp + 72]
+    push                  rsi
+    push                  r10
+    push     qword [rbp + 72]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,     qword [rbp + 80]
+    push                  rsi
+    push                  r10
+    push     qword [rbp + 80]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,     qword [rbp + 88]
+    push                  rsi
+    push                  r10
+    push     qword [rbp + 88]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,     qword [rbp + 96]
+    push                  rsi
+    push                  r10
+    push     qword [rbp + 96]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,    qword [rbp + 104]
+    push                  rsi
+    push                  r10
+    push    qword [rbp + 104]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,    qword [rbp + 112]
+    push                  rsi
+    push                  r10
+    push    qword [rbp + 112]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,    qword [rbp + 120]
+    push                  rsi
+    push                  r10
+    push    qword [rbp + 120]
+    call             toString
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    push                  r10
+    push                  rdi
+    call              println
+     add                  rsp,                    8
+     pop                  r10
+     pop                  rsi
+     mov                  rdi,                  r13
+     add                  rdi,                  rsi
+     mov                  rsi,                  rdi
+     add                  rsi,                  r10
+     add                  rsi,                  r14
+     add                  rsi,                  r12
+     add                  rsi,                  rbx
+     add                  rsi,     qword [rbp + 64]
+     add                  rsi,     qword [rbp + 72]
+     add                  rsi,     qword [rbp + 80]
+     add                  rsi,     qword [rbp + 88]
+     add                  rsi,     qword [rbp + 96]
+     add                  rsi,    qword [rbp + 104]
+     add                  rsi,    qword [rbp + 112]
+     add                  rsi,    qword [rbp + 120]
+     add                  rsi,    qword [rbp + 128]
+     mov                  rax,                  rsi
+     jmp       a_1_block_exit
+a_1_block_exit:
+     pop                  rbx
+     pop                  r13
+     pop                  r14
+     pop                  r12
+     pop                  r15
+     pop                  r14
+     pop                  r13
+     pop                  r12
+     pop                  rbx
+     pop                  rbp
+     ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
@@ -31,44 +304,50 @@ main:
     push                  r13
     push                  r14
     push                  r15
+    push                  r12
+    push                  r14
+    push                  r13
     push                  rbx
 main_0_block_enter:
-    push                  rsi
-     mov                  rdi,                   16
-     sub                  rsp,                    8
-    call               malloc
-     add                  rsp,                    8
-     pop                  rsi
-     mov                  rsi,                  rax
-     mov      qword [rsi + 0],                   10
-     mov      qword [rsi + 8],                   20
-     mov                  rdi,      qword [rsi + 0]
-    push                  rsi
-    push      qword [rsi + 0]
-    call             toString
-     add                  rsp,                    8
-     pop                  rsi
-     mov                  rbx,                  rax
-     mov                  rdi,                  rbx
-    push                  rsi
-    push                  rbx
-    call              println
-     add                  rsp,                    8
-     pop                  rsi
-     mov                  rdi,      qword [rsi + 8]
-     sub                  rsp,                    8
-    push      qword [rsi + 8]
-    call             toString
-     add                  rsp,                   16
+     mov                  rdi,                    1
+     mov                  rsi,                    2
+     mov                  rdx,                    3
+     mov                  rcx,                    4
+     mov                   r8,                    5
+     mov                   r9,                    6
+    push                   15
+    push                   14
+    push                   13
+    push                   12
+    push                   11
+    push                   10
+    push                    9
+    push                    8
+    push                    7
+    push                    6
+    push                    5
+    push                    4
+    push                    3
+    push                    2
+    push                    1
+    call                    a
+     add                  rsp,                  120
      mov                  rsi,                  rax
      mov                  rdi,                  rsi
-     sub                  rsp,                    8
+    push                  rsi
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
     push                  rsi
     call              println
-     add                  rsp,                   16
+     add                  rsp,                    8
      jmp    main_1_block_exit
 main_1_block_exit:
      pop                  rbx
+     pop                  r13
+     pop                  r14
+     pop                  r12
      pop                  r15
      pop                  r14
      pop                  r13
@@ -84,11 +363,17 @@ global_init:
     push                  r13
     push                  r14
     push                  r15
+    push                  r12
+    push                  r14
+    push                  r13
     push                  rbx
 global_init_0_block_enter:
      jmp global_init_1_block_exit
 global_init_1_block_exit:
      pop                  rbx
+     pop                  r13
+     pop                  r14
+     pop                  r12
      pop                  r15
      pop                  r14
      pop                  r13

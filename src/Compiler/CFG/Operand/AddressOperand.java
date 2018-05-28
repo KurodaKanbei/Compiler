@@ -44,7 +44,7 @@ public class AddressOperand extends Operand {
         if (base.getRegister() != null) {
             return new PhysicalAddressOperand(base.getRegister(), offset.getValue());
         } else {
-            PhysicalAddressOperand newBase = new PhysicalAddressOperand("rbo", -base.getOffset() * 8);
+            PhysicalAddressOperand newBase = new PhysicalAddressOperand("rbp", -base.getOffset() * 8);
             str.append(Translator.getInstruction("mov", "rcx", newBase.toString()));
             return new PhysicalAddressOperand("rcx", offset.getValue());
         }

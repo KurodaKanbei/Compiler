@@ -1,6 +1,5 @@
 package Compiler.CFG;
 
-import Compiler.AST.ProgramAST;
 import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.FunctionType;
 import Compiler.CFG.Instruction.*;
@@ -44,7 +43,7 @@ public class FunctionIR {
                 t.setSystemRegister(RegisterManager.parameterRegister.get(i));
                 instructionList.add(new MoveInstruction(parameterList.get(i), t));
             } else {
-                registerIntegerMap.put(parameterList.get(i), 4 - i);
+                registerIntegerMap.put(parameterList.get(i), -2 - i);
             }
         }
         functionType.getBlockStatement().generateInstruction(instructionList);
@@ -68,19 +67,9 @@ public class FunctionIR {
             labelInstruction.setBlock(block);
             blockList.add(block);
         }
-        //System.out.println("--------------------");
-        /*for (Instruction instruction : instructionList) {
-            if (instruction instanceof JumpInstruction) {
-                System.out.println(((JumpInstruction) instruction).getTarget());
-            }
-        }*/
-        //System.out.println(instructionList.size());
     }
 
     public FunctionIR(FunctionType functionType) {
-        /*if (functionType == ProgramAST.globalFunctionTable.getFunctionMap().get("main")) {
-            System.err.println("yes!");
-        }*/
         this.functionType = functionType;
         this.parameterList = new ArrayList<>();
         this.blockList = new ArrayList<>();
@@ -96,7 +85,10 @@ public class FunctionIR {
     public String getAssembly() {
         StringBuilder str = new StringBuilder();
         str.append(functionType.getName() + ":\n");
+        //System.out.println(registerIntegerMap.size());
+        //System.out.println(registerStringMap.size());
         blockList.forEach(block -> block.getInstructionList().forEach(Instruction::init));
+        //System.out.println("init instr complete");
         init();
 
         Translator.setOffset(1);
@@ -107,7 +99,6 @@ public class FunctionIR {
         if (functionType.getName().equals("main")) {
             str.append(Translator.getInstruction("call", "global_init"));
         }
-
         if (registerManager.getRegisterInMemory() > 0) {
             str.append(Translator.getInstruction("sub", "rsp", String.valueOf(registerManager.getRegisterInMemory() << 3)));
         }

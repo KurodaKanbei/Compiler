@@ -5,8 +5,6 @@ import Compiler.AST.Symbol.Scope;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
 
-import java.util.Map;
-
 public class ClassType extends Type implements Scope {
     private String name;
     private VariableTable memberVariableTable;
