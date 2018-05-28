@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.nasm" beforeDir="false" afterPath="$PROJECT_DIR$/program.nasm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
-    </list>
+    <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +18,7 @@
       <file leaf-file-name="BinaryInstruction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-316">
+            <state relative-caret-position="-277">
               <caret line="86" selection-start-line="86" selection-end-line="86" />
             </state>
           </provider>
@@ -44,8 +39,8 @@
       <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/program.nasm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
+            <state relative-caret-position="205">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -53,8 +48,17 @@
       <file leaf-file-name="program.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/program.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            <state>
+              <caret column="30" selection-start-column="30" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ASTListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ASTListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2284">
+              <caret line="460" column="48" selection-start-line="460" selection-start-column="48" selection-end-line="460" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -137,14 +141,14 @@
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/NewExpression.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ASTListener.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/BinaryExpression/BinaryMultiplyExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Type/ClassType.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/AddressOperand.java" />
-        <option value="$PROJECT_DIR$/program.nasm" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/RegisterManager.java" />
+        <option value="$PROJECT_DIR$/program.nasm" />
         <option value="$PROJECT_DIR$/program.txt" />
+        <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ASTListener.java" />
       </list>
     </option>
   </component>
@@ -493,12 +497,12 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50403875" side_tool="true" weight="0.38896552" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.32917705" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49596122" visible="true" weight="0.43034482" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49596122" visible="true" weight="0.43034482" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49676898" weight="0.37655172" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4924138" visible="true" weight="0.20678514" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4924138" visible="true" weight="0.20678514" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4983845" weight="0.32827586" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" sideWeight="0.49542218" weight="0.49931034" />
       <window_info id="Structure" order="1" sideWeight="0.5075862" side_tool="true" weight="0.1292407" />
@@ -702,13 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ASTListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="457" column="37" lean-forward="true" selection-start-line="457" selection-start-column="37" selection-end-line="457" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -992,22 +989,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-316">
+        <state relative-caret-position="-277">
           <caret line="86" selection-start-line="86" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ASTListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2284">
+          <caret line="460" column="48" selection-start-line="460" selection-start-column="48" selection-end-line="460" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/program.nasm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
+        <state relative-caret-position="205">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/program.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
         </state>
       </provider>
     </entry>

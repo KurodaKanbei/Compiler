@@ -9,6 +9,7 @@ global getInt
 global getString
 global toString
 global __array_size
+global __string_substring
 global __string_length
 global __string_parseInt
 global __string_ord
