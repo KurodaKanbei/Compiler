@@ -64,7 +64,6 @@ public class Translator {
 
     public static String getLibCall(String func) {
         StringBuilder str = new StringBuilder();
-        System.out.println(offset);
         if (offset % 2 == 1) {
             str.append(Translator.getInstruction("sub", "rsp", "8"));
             str.append(Translator.getInstruction("call", func));

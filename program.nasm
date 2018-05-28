@@ -1,4 +1,5 @@
 global __global_init
+global work
 global main
 global print_Int
 global println_Int
@@ -25,8 +26,77 @@ __global_init:
     push                  rbp
      mov                  rbp,                  rsp
 __global_init_0_block_enter:
+     mov qword [@init_anger + 0],                  100
+     mov qword [@work_anger + 0],                   10
      jmp __global_init_1_block_exit
 __global_init_1_block_exit:
+     pop                  rbp
+     ret
+work:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  rbx
+work_0_block_enter:
+     mov                  rbx,                  rsi
+     cmp      qword [rbx + 8],                  100
+     mov                  rsi,                    0
+   setle                  sil
+     cmp                  rsi,                    1
+      je       work_1_if_true
+     jmp      work_2_if_false
+work_1_if_true:
+     mov                  rsi,     __const_string_0
+    push                  rbx
+    call  __string_connection
+     pop                  rbx
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+    push                  rbx
+    call  __string_connection
+     pop                  rbx
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+     mov                  rsi,     __const_string_1
+    push                  rbx
+    call  __string_connection
+     pop                  rbx
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+    push                  rbx
+    call              println
+     pop                  rbx
+     jmp       work_3_if_exit
+work_2_if_false:
+     mov                  rsi,     __const_string_2
+    push                  rbx
+    call  __string_connection
+     pop                  rbx
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+    push                  rbx
+    call  __string_connection
+     pop                  rbx
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+     mov                  rsi,     __const_string_3
+    push                  rbx
+    call  __string_connection
+     pop                  rbx
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+    push                  rbx
+    call              println
+     pop                  rbx
+     jmp       work_3_if_exit
+work_3_if_exit:
+     mov                  rsi,      qword [rbx + 8]
+     add                  rsi, qword [@work_anger + 0]
+     mov      qword [rbx + 8],                  rsi
+     jmp    work_4_block_exit
+work_4_block_exit:
+     pop                  rbx
      pop                  rbp
      ret
 main:
@@ -35,17 +105,36 @@ main:
     call        __global_init
     push                  rbx
 main_0_block_enter:
-     mov                  rsi,     __const_string_0
-     mov                  rbx,     __const_string_1
-     mov                  rdi,                  rbx
-     sub                  rsp,                    8
-    call  __string_connection
-     add                  rsp,                    8
+    push                  rsi
+     mov                  rdi,                   16
+    call               malloc
+     pop                  rsi
      mov                  rsi,                  rax
-     mov                  rdi,                  rsi
+     mov      qword [rsi + 0],     __const_string_4
+     mov      qword [rsi + 8],                    0
+    push                  rsi
+     mov                  rdi,                   16
+    call               malloc
+     pop                  rsi
+     mov                  rbx,                  rax
+     mov      qword [rbx + 0],     __const_string_5
+     mov                  rdi, qword [@init_anger + 0]
+     mov      qword [rbx + 8],                  rdi
+     mov                  rdi,     __const_string_6
+    push                  rbx
+    call                 work
+     pop                  rbx
+     mov                  rdi,     __const_string_7
+     mov                  rsi,                  rbx
+    push                  rbx
+    call                 work
+     pop                  rbx
+     mov                  rdi,     __const_string_8
+     mov                  rsi,                  rbx
      sub                  rsp,                    8
-    call              println
+    call                 work
      add                  rsp,                    8
+     mov                  rax,                    0
      jmp    main_1_block_exit
 main_1_block_exit:
      pop                  rbx
@@ -54,11 +143,36 @@ main_1_block_exit:
 SECTION .data
       dq                    1
 __const_string_0:
-	db  48,   0
+	db  44,  32,   0
       dq                    1
 __const_string_1:
-	db  49,   0
+	db  32, 101, 110, 106, 111, 121, 115,  32, 116, 104, 105, 115,  32, 119, 111, 114, 107,  46,  32,  88,  68,   0
+      dq                    1
+__const_string_2:
+	db  44,  32,   0
+      dq                    1
+__const_string_3:
+	db  32, 119,  97, 110, 116, 115,  32, 116, 111,  32, 103, 105, 118, 101,  32, 117, 112,  33,  33,  33,  33,  33,   0
+      dq                    1
+__const_string_4:
+	db 116, 104, 101,  32, 108, 101,  97, 100, 105, 110, 103,  32,  84,  65,   0
+      dq                    1
+__const_string_5:
+	db 116, 104, 101,  32, 115, 116, 114, 105, 107, 105, 110, 103,  32,  84,  65,   0
+      dq                    1
+__const_string_6:
+	db  77,  82,   0
+      dq                    1
+__const_string_7:
+	db  77,  97, 114, 115,   0
+      dq                    1
+__const_string_8:
+	db  77,  97, 114, 115,   0
 SECTION .bss
+@init_anger:
+    resq                    1
+@work_anger:
+    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0
