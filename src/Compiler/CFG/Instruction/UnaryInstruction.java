@@ -51,7 +51,6 @@ public class UnaryInstruction extends Instruction {
     public String getAssembly() {
         StringBuilder str = new StringBuilder();
         String targetName = target.getPhysicalOperand(str).toString();
-        System.out.println(unaryOp);
         switch (unaryOp) {
             case INC:
                 str.append(Translator.getInstruction("add", targetName, "1"));

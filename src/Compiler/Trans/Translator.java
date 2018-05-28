@@ -49,7 +49,7 @@ public class Translator {
     }
 
     public static String getInstruction(String instr, String operand1, String operand2) {
-        return String.format("%8s %20s %20s\n", instr, operand1, operand2);
+        return String.format("%8s %20s, %20s\n", instr, operand1, operand2);
     }
 
     public static String getLibCall(String func) {
