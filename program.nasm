@@ -1,3 +1,4 @@
+global gcd
 global main
 global global_init
 global print_Int
@@ -22,6 +23,52 @@ extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, p
 SECTION .data
 SECTION .bss
 SECTION .text
+gcd:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  rbx
+    push                  r12
+    push                  r13
+    push                  r14
+    push                  r15
+    push                  rbx
+gcd_0_block_enter:
+     mov                  rbx,                  rsi
+     cmp                  rbx,                    0
+     mov                  rsi,                    0
+    sete                  sil
+     cmp                  rsi,                    1
+      je        gcd_1_if_true
+     jmp       gcd_2_if_false
+gcd_1_if_true:
+     mov                  rax,                  rdi
+     jmp     gcd_4_block_exit
+gcd_2_if_false:
+     mov                  rsi,                  rdi
+     mov                  rax,                  rsi
+     mov                  rcx,                  rbx
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                  rbx
+    push                  rsi
+    push                  rbx
+    call                  gcd
+     add                  rsp,                   16
+     mov                  rsi,                  rax
+     mov                  rax,                  rsi
+     jmp     gcd_4_block_exit
+gcd_3_if_exit:
+     jmp     gcd_4_block_exit
+gcd_4_block_exit:
+     pop                  rbx
+     pop                  r15
+     pop                  r14
+     pop                  r13
+     pop                  r12
+     pop                  rbx
+     pop                  rbp
+     ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
@@ -33,35 +80,13 @@ main:
     push                  r15
     push                  rbx
 main_0_block_enter:
-     mov                  rdi,                    5
-     mov                  rsi,                    0
-     cmp                  rsi,                    0
-     mov                  rbx,                    0
-   setne                   bl
-     cmp                  rbx,                    1
-     jne main_2_logical_false
-     jmp  main_1_logical_true
-main_1_logical_true:
-     mov                  rbx,                  rdi
-     sub                  rbx,                  rsi
-     cmp                  rbx,                    1
-     mov                  rsi,                    0
-   setne                  sil
-     jmp  main_3_logical_exit
-main_2_logical_false:
-     mov                  rsi,                    0
-     jmp  main_3_logical_exit
-main_3_logical_exit:
-     cmp                  rsi,                    1
-      je       main_4_if_true
-     jmp      main_5_if_false
-main_4_if_true:
-     mov                  rsi,                   10
-     jmp       main_6_if_exit
-main_5_if_false:
-     mov                  rsi,                   20
-     jmp       main_6_if_exit
-main_6_if_exit:
+     mov                  rdi,                   12
+     mov                  rsi,                    5
+    push                    5
+    push                   12
+    call                  gcd
+     add                  rsp,                   16
+     mov                  rsi,                  rax
      mov                  rdi,                  rsi
      sub                  rsp,                    8
     push                  rsi
@@ -73,8 +98,8 @@ main_6_if_exit:
     push                  rsi
     call              println
      add                  rsp,                   16
-     jmp    main_7_block_exit
-main_7_block_exit:
+     jmp    main_1_block_exit
+main_1_block_exit:
      pop                  rbx
      pop                  r15
      pop                  r14

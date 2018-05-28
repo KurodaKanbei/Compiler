@@ -42,7 +42,7 @@ public class FunctionIR {
             if (i < 6) {
                 VirtualRegister t = RegisterManager.getTemporaryRegister();
                 t.setSystemRegister(RegisterManager.parameterRegister.get(i));
-                instructionList.add(new MoveInstruction(t, parameterList.get(i)));
+                instructionList.add(new MoveInstruction(parameterList.get(i), t));
             } else {
                 registerIntegerMap.put(parameterList.get(i), 4 - i);
             }

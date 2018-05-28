@@ -20,7 +20,7 @@ public class JumpInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return String.format("jump %s", target.getBlock().getName());
+        return String.format("jump %s", target.getBlock().toString());
     }
 
     @Override
