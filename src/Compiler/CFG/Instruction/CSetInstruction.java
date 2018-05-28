@@ -55,7 +55,7 @@ public class CSetInstruction extends Instruction {
         StringBuilder str = new StringBuilder();
         PhysicalOperand targetOperand = target.getPhysicalOperand(str);
         String targetName = targetOperand.toString();
-        if (Translator.getCurrentFunctionIR().getRegisterStringMap().containsKey(target)) {
+        if (Translator.getCurrentFunctionIR().getRegisterIntegerMap().containsKey(target)) {
             str.append(Translator.getInstruction("mov", "rax", targetName));
             str.append(Translator.getInstruction("mov", "rax", "0"));
             str.append(Translator.getInstruction("set" + Translator.getAssemblyCondition(conditionOp), "al"));

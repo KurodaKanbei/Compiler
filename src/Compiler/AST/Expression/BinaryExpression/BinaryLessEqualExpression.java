@@ -26,10 +26,10 @@ import Compiler.Utility.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BInaryLessEqualExpression extends Expression {
+public class BinaryLessEqualExpression extends Expression {
     private Expression leftExpression, rightExpression;
 
-    private BInaryLessEqualExpression(Expression leftExpression, Expression rightExpression) {
+    private BinaryLessEqualExpression(Expression leftExpression, Expression rightExpression) {
         super(BoolType.getInstance(), false);
         this.leftExpression = leftExpression;
         this.rightExpression = rightExpression;
@@ -44,7 +44,7 @@ public class BInaryLessEqualExpression extends Expression {
                 int rightValue = ((IntConstant) rightExpression).getValue();
                 return new BoolConstant(leftValue <= rightValue);
             } else {
-                return new BInaryLessEqualExpression(leftExpression, rightExpression);
+                return new BinaryLessEqualExpression(leftExpression, rightExpression);
             }
         }
         if (leftType instanceof StringType && rightType instanceof StringType) {

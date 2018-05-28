@@ -56,6 +56,9 @@ public class Translator {
     }
 
     public static String getInstruction(String instr, String operand1, String operand2) {
+        if (instr.equals("mov") && operand1.equals(operand2)) {
+            return "";
+        }
         return String.format("%8s %20s, %20s\n", instr, operand1, operand2);
     }
 

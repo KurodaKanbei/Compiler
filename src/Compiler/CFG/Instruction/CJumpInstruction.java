@@ -27,7 +27,7 @@ public class CJumpInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return String.format("CJump %s %s", conditionOp, target);
+        return String.format("CJump %s %s", conditionOp, target.getBlock().toString());
     }
 
     @Override

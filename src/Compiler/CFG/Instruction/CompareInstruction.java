@@ -6,7 +6,6 @@ import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
-import Compiler.Trans.PhysicalOperand.PhysicalRegister;
 import Compiler.Trans.Translator;
 
 public class CompareInstruction extends Instruction {

@@ -12,6 +12,8 @@ import Compiler.Trans.PhysicalOperand.PhysicalRegister;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Error.InternalError;
 
+import javax.xml.transform.Source;
+
 public class BinaryInstruction extends Instruction {
     public enum BinaryOp {
         ADD, SUB, MUL, DIV, MOD, SHL, SHR, AND, OR, XOR
@@ -79,7 +81,7 @@ public class BinaryInstruction extends Instruction {
         String operator = binaryOp.toString();
         PhysicalOperand physicalTarget, physicalSource;
         physicalTarget = target.getPhysicalOperand(str);
-        physicalSource = target.getPhysicalOperand(str);
+        physicalSource = source.getPhysicalOperand(str);
         String targetName = physicalTarget.toString();
         String sourceName = physicalSource.toString();
         if (operator.equals("SHL")) {

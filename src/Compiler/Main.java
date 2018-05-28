@@ -57,8 +57,13 @@ public class Main {
         //ProgramIR.print();
     }
 
-    private static void translate() {
+    private static void translate() throws IOException {
         String assembly = Translator.getAssembly();
         System.out.println(assembly);
+        File file = new File("program.nasm");
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        byte[] bytes = assembly.getBytes();
+        fileOutputStream.write(bytes);
+        fileOutputStream.close();
     }
 }

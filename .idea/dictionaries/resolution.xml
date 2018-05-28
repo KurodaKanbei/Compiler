@@ -7,6 +7,7 @@
       <w>liveness</w>
       <w>memcpy</w>
       <w>movsx</w>
+      <w>nasm</w>
       <w>qword</w>
       <w>resq</w>
       <w>scanf</w>
