@@ -26,12 +26,12 @@ main_0_block_enter:
      mov      qword [rsi + 0],                    1
      add                  rsi,                  rsi
      mov                  rsi,                  rsi
-     mov                  rdi,                    0
-     mov                  rcx,                  rdi
-     sal                  rdi,                   cl
-     mov                   r8,                  rsi
-     add                   r8,                   r8
-     mov       qword [r8 + 0],                   10
+     mov                   r8,                    0
+     mov                  rcx,                   r8
+     sal                   r8,                   cl
+     mov                  rdi,                  rsi
+     add                  rdi,                  rdi
+     mov      qword [rdi + 0],                   10
      mov                  rdi,                    0
      mov                  rcx,                  rdi
      sal                  rdi,                   cl
