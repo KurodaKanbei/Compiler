@@ -84,9 +84,9 @@ public class ProgramIR {
         for (VariableDeclarationStatement variableDeclarationStatement : ProgramAST.globalVariableDeclarationStatementList) {
             blockStatement.addStatement(variableDeclarationStatement);
         }
-        FunctionType functionType = new FunctionType("global_init", VoidType.getInstance(), new ArrayList<>());
+        FunctionType functionType = new FunctionType("__global_init", VoidType.getInstance(), new ArrayList<>());
         functionType.setBlockStatement(blockStatement);
-        functionMap.put("global_init", new FunctionIR(functionType));
+        functionMap.put("__global_init", new FunctionIR(functionType));
     }
 
     public static String toString(int indents) {

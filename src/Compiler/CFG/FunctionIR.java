@@ -16,7 +16,7 @@ public class FunctionIR {
     private LabelInstruction enterBlock, exitBlock;
     private RegisterManager registerManager;
 
-    public static List<String> callerRegisterList, calleeRegisterList;
+    public static List<String> calleeRegisterList;
     private Map<VirtualRegister, String> registerStringMap;
     private Map<VirtualRegister, Integer> registerIntegerMap;
 
@@ -43,7 +43,7 @@ public class FunctionIR {
                 t.setSystemRegister(RegisterManager.parameterRegister.get(i));
                 instructionList.add(new MoveInstruction(parameterList.get(i), t));
             } else {
-                registerIntegerMap.put(parameterList.get(i), -2 - i);
+                registerIntegerMap.put(parameterList.get(i), 4 - i);
             }
         }
         functionType.getBlockStatement().generateInstruction(instructionList);
@@ -97,7 +97,7 @@ public class FunctionIR {
         str.append(Translator.getInstruction("mov", "rbp", "rsp"));
 
         if (functionType.getName().equals("main")) {
-            str.append(Translator.getInstruction("call", "global_init"));
+            str.append(Translator.getInstruction("call", "__global_init"));
         }
         if (registerManager.getRegisterInMemory() > 0) {
             str.append(Translator.getInstruction("sub", "rsp", String.valueOf(registerManager.getRegisterInMemory() << 3)));
@@ -123,15 +123,11 @@ public class FunctionIR {
     }
 
     private void init() {
-        callerRegisterList = new ArrayList<>();
         calleeRegisterList = new ArrayList<>();
         registerManager.getUsedRegister().forEach(
                 s -> {
-                    if (callerSavedRegisterList.contains(s)) {
-                        callerRegisterList.add(s);
-                    }
                     if (calleeSavedRegisterList.contains(s)) {
-                        calleeSavedRegisterList.add(s);
+                        calleeRegisterList.add(s);
                     }
                 }
         );

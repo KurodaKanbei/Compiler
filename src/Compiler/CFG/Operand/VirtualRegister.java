@@ -1,5 +1,6 @@
 package Compiler.CFG.Operand;
 
+import Compiler.CFG.ProgramIR;
 import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalRegister;
@@ -47,14 +48,21 @@ public class VirtualRegister extends Operand {
 
     @Override
     public String toString() {
-        return name;
+        return String.format("%s(%s)", name, getAllocated());
+    }
+
+    private String getAllocated() {
+        if (ProgramIR.getCurrentFunction() != null && ProgramIR.getCurrentFunction().getRegisterStringMap().containsKey(this)) {
+            return ProgramIR.getCurrentFunction().getRegisterStringMap().get(this);
+        }
+        return null;
     }
 
     public String getRegister() {
         if (systemRegister != null) {
             return systemRegister;
         }
-        if (Translator.getCurrentFunctionIR().getRegisterStringMap().containsKey(this)) {
+        if (Translator.getCurrentFunctionIR() != null && Translator.getCurrentFunctionIR().getRegisterStringMap().containsKey(this)) {
             return Translator.getCurrentFunctionIR().getRegisterStringMap().get(this);
         }
         return null;

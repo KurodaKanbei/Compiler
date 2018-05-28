@@ -15,14 +15,14 @@ public class ClassTable{
 
     public void addClass(String className, ClassType classType) {
         if (classMap.containsKey(className)) {
-            throw new CompilationError("There are more than one class naming" + className);
+            throw new CompilationError("There are more than one class naming " + className);
         }
         classMap.put(className, classType);
     }
 
     public ClassType getClassType(String className) {
         if (!classMap.containsKey(className)) {
-            throw new CompilationError("There is no class naming" + className);
+            throw new CompilationError("There is no class naming " + className);
         }
         return classMap.get(className);
     }

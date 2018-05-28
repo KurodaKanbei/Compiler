@@ -64,6 +64,7 @@ public class Translator {
 
     public static String getLibCall(String func) {
         StringBuilder str = new StringBuilder();
+        System.out.println(offset);
         if (offset % 2 == 1) {
             str.append(Translator.getInstruction("sub", "rsp", "8"));
             str.append(Translator.getInstruction("call", func));
@@ -104,7 +105,7 @@ public class Translator {
 
     public static String getCalleeSaved() {
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < FunctionIR.calleeSavedRegisterList.size(); i++) {
+        for (int i = 0; i < FunctionIR.calleeRegisterList.size(); i++) {
             str.append(getInstruction("push", FunctionIR.calleeSavedRegisterList.get(i)));
         }
         return str.toString();
@@ -112,7 +113,7 @@ public class Translator {
 
     public static String getCalleeRestored() {
         StringBuilder str = new StringBuilder();
-        for (int i = FunctionIR.calleeSavedRegisterList.size() - 1; i >= 0; i--) {
+        for (int i = FunctionIR.calleeRegisterList.size() - 1; i >= 0; i--) {
             str.append(getInstruction("pop", FunctionIR.calleeSavedRegisterList.get(i)));
         }
         return str.toString();
@@ -122,9 +123,9 @@ public class Translator {
         StringBuilder str = new StringBuilder();
         str.append(getGlobalFunction());
         str.append("extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts\n");
+        str.append(getTextSection());
         str.append(getDefinedDataSection());
         str.append(getReservedDataSection());
-        str.append(getTextSection());
         str.append(BuiltinFunction.getAssembly());
         return str.toString();
     }
@@ -143,6 +144,7 @@ public class Translator {
         str.append("SECTION .data\n");
         for (int i = 0; i < ProgramIR.getConstStringList().size(); i++) {
             String s = ProgramIR.getConstStringList().get(i);
+            str.append(getInstruction("dq", "1"));
             str.append("__const_string_").append(String.valueOf(i)).append(":\n").append("\tdb");
             int n = s.length();
             for (int j = 0; j < n; j++) {

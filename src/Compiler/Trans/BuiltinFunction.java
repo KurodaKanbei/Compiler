@@ -278,37 +278,37 @@ public class BuiltinFunction {
     }
 
     private static String __string_connection() {
-        StringBuilder str = new StringBuilder();
-        str.append("__string_connection:\n");
-        offset = 1;
-        str.append(getInstruction("push", "r15"));
-        str.append(getInstruction("push", "r14"));
-        str.append(getInstruction("push", "r13"));
-        str.append(getInstruction("mov", "r15", "qword [rdi - 8]"));
-        str.append(getInstruction("add", "r15", "qword [rsi - 8]"));
-        str.append(getInstruction("add", "r15", "9"));
-        str.append(getInstruction("mov", "r14", "rdi"));
-        str.append(getInstruction("mov", "r13", "rsi"));
-        str.append(getInstruction("mov", "rdi", "r15"));
-        str.append(getLibCall("malloc"));
-        str.append(getInstruction("sub", "r15", "9"));
-        str.append(getInstruction("mov", "qword [rax]", "r15"));
-        str.append(getInstruction("mov", "r15", "rax"));
-        str.append(getInstruction("add", "r15", "8"));
-        str.append(getInstruction("mov", "rdi", "r15"));
-        str.append(getInstruction("mov", "rsi", "r14"));
-        str.append(getLibCall("strcpy"));
-        str.append(getInstruction("add", "r15", "qword [r14 - 8]"));
-        str.append(getInstruction("mov", "r14", "rax"));
-        str.append(getInstruction("mov", "rdi", "r15"));
-        str.append(getInstruction("mov", "rsi", "r13"));
-        str.append(getLibCall("strcpy"));
-        str.append(getInstruction("mov", "rax", "r14"));
-        str.append(getInstruction("pop", "r13"));
-        str.append(getInstruction("pop", "r14"));
-        str.append(getInstruction("pop", "r15"));
-        str.append(getInstruction("ret"));
-        return str.toString();
+		StringBuilder str = new StringBuilder();
+		str.append("__string_connection:\n");
+		offset = 1;
+		str.append(getInstruction("push", "r15"));//length -> result
+		str.append(getInstruction("push", "r14"));//left
+		str.append(getInstruction("push", "r13"));//right
+		str.append(getInstruction("mov", "r15", "qword [rdi - 8]"));
+		str.append(getInstruction("add", "r15", "qword [rsi - 8]"));
+		str.append(getInstruction("add", "r15", "9"));
+		str.append(getInstruction("mov", "r14", "rdi"));
+		str.append(getInstruction("mov", "r13", "rsi"));
+		str.append(getInstruction("mov", "rdi", "r15"));
+		str.append(getLibCall("malloc"));
+		str.append(getInstruction("sub", "r15", "9"));
+		str.append(getInstruction("mov", "qword [rax]", "r15"));
+		str.append(getInstruction("mov", "r15", "rax"));
+		str.append(getInstruction("add", "r15", "8"));
+		str.append(getInstruction("mov", "rdi", "r15"));
+		str.append(getInstruction("mov", "rsi", "r14"));
+		str.append(getLibCall("strcpy"));
+		str.append(getInstruction("add", "r15", "qword [r14 - 8]"));
+		str.append(getInstruction("mov", "r14", "rax"));
+		str.append(getInstruction("mov", "rdi", "r15"));
+		str.append(getInstruction("mov", "rsi", "r13"));
+		str.append(getLibCall("strcpy"));
+		str.append(getInstruction("mov", "rax", "r14"));
+		str.append(getInstruction("pop", "r13"));
+		str.append(getInstruction("pop", "r14"));
+		str.append(getInstruction("pop", "r15"));
+		str.append(getInstruction("ret"));
+		return str.toString();
     }
 
     private static String __string_compare(ProgramIR.ConditionOp conditionOp) {

@@ -1,6 +1,5 @@
-global qpow
+global __global_init
 global main
-global global_init
 global print_Int
 global println_Int
 global print
@@ -21,161 +20,45 @@ global __string_GREQ
 global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
-SECTION .data
-SECTION .bss
 SECTION .text
-qpow:
+__global_init:
     push                  rbp
      mov                  rbp,                  rsp
-    push                  rbx
-    push                  r12
-    push                  r13
-    push                  r14
-    push                  r15
-    push                  r12
-    push                  rbx
-qpow_0_block_enter:
-     mov                  rbx,                  rsi
-     mov                  rsi,                  rdx
-     mov                  r12,                    1
-     mov                   r8,                  rdi
-     jmp qpow_1_loop_condition
-qpow_1_loop_condition:
-     cmp                  rbx,                    0
-     mov                  rdi,                    0
-    setg                  dil
-     cmp                  rdi,                    1
-      je     qpow_2_loop_body
-     jmp     qpow_6_loop_exit
-qpow_2_loop_body:
-     mov                  rdi,                  rbx
-     and                  rdi,                    1
-     cmp                  rdi,                    1
-     mov                  rdi,                    0
-    sete                  dil
-     cmp                  rdi,                    1
-      je       qpow_3_if_true
-     jmp      qpow_4_if_false
-qpow_3_if_true:
-     mov                  rdi,                  r12
-    imul                  rdi,                   r8
-     mov                  rax,                  rdi
-     mov                  rcx,                  rsi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  r12,                  rdi
-     jmp       qpow_5_if_exit
-qpow_4_if_false:
-     jmp       qpow_5_if_exit
-qpow_5_if_exit:
-     mov                  rdi,                   r8
-    imul                  rdi,                   r8
-     mov                  rax,                  rdi
-     mov                  rcx,                  rsi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                   r8,                  rdi
-     mov                  rax,                  rbx
-     mov                  rcx,                    2
-     cdq
-    idiv                  ecx
-     mov                  rbx,                  rax
-     mov                  rdi,                  rbx
-    push                  rsi
-    push                   r8
-    push                  rbx
-    call             toString
-     add                  rsp,                    8
-     pop                   r8
-     pop                  rsi
-     mov                  rdi,                  rax
-    push                  rsi
-    push                   r8
-    push                  rdi
-    call              println
-     add                  rsp,                    8
-     pop                   r8
-     pop                  rsi
-     jmp qpow_1_loop_condition
-qpow_6_loop_exit:
-     mov                  rax,                  r12
-     jmp    qpow_7_block_exit
-qpow_7_block_exit:
-     pop                  rbx
-     pop                  r12
-     pop                  r15
-     pop                  r14
-     pop                  r13
-     pop                  r12
-     pop                  rbx
+__global_init_0_block_enter:
+     jmp __global_init_1_block_exit
+__global_init_1_block_exit:
      pop                  rbp
      ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
-    call          global_init
-    push                  rbx
-    push                  r12
-    push                  r13
-    push                  r14
-    push                  r15
-    push                  r12
+    call        __global_init
     push                  rbx
 main_0_block_enter:
-     mov                  rdi,                    2
-     mov                  rsi,                   10
-     mov                  rdx,                10000
-    push                10000
-    push                   10
-    push                    2
-    call                 qpow
-     add                  rsp,                   24
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-    push                  rsi
-    call             toString
+     mov                  rsi,     __const_string_0
+     mov                  rbx,     __const_string_1
+     mov                  rdi,                  rbx
+     sub                  rsp,                    8
+    call  __string_connection
      add                  rsp,                    8
      mov                  rsi,                  rax
      mov                  rdi,                  rsi
-    push                  rsi
+     sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     mov                  rax,                    0
      jmp    main_1_block_exit
 main_1_block_exit:
      pop                  rbx
-     pop                  r12
-     pop                  r15
-     pop                  r14
-     pop                  r13
-     pop                  r12
-     pop                  rbx
      pop                  rbp
      ret
-global_init:
-    push                  rbp
-     mov                  rbp,                  rsp
-    push                  rbx
-    push                  r12
-    push                  r13
-    push                  r14
-    push                  r15
-    push                  r12
-    push                  rbx
-global_init_0_block_enter:
-     jmp global_init_1_block_exit
-global_init_1_block_exit:
-     pop                  rbx
-     pop                  r12
-     pop                  r15
-     pop                  r14
-     pop                  r13
-     pop                  r12
-     pop                  rbx
-     pop                  rbp
-     ret
+SECTION .data
+      dq                    1
+__const_string_0:
+	db  48,   0
+      dq                    1
+__const_string_1:
+	db  49,   0
+SECTION .bss
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0

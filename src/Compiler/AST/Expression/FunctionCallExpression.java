@@ -95,6 +95,9 @@ public class FunctionCallExpression extends Expression {
             t.setSystemRegister(RegisterManager.parameterRegister.get(i));
             instructionList.add(new MoveInstruction(t, parameterList.get(i)));
         }
+        for (int i = 0; i < 6 && !parameterList.isEmpty(); i++) {
+            parameterList.remove(0);
+        }
         instructionList.add(new FunctionCallInstruction(functionType, ret, parameterList));
         if (!(functionType.getReturnType() instanceof VoidType)) {
             operand = RegisterManager.getTemporaryRegister();

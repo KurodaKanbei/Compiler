@@ -59,11 +59,8 @@ public class LivenessAnalysis {
                 merge(assigned, instruction.getKillSet());
                 merge(block.getKillSet(), instruction.getKillSet());
                 if (instruction instanceof JumpInstruction) {
-                    //if (((JumpInstruction) instruction).getTarget() == null) System.err.println("fuck you");
-                    //System.err.println(((JumpInstruction) instruction).getTarget().getBlock().getName() + "start");
                     Block target = ((JumpInstruction) instruction).getTarget().getBlock();
                     addControlFlow(block, target);
-                    //System.err.println(((JumpInstruction) instruction).getTarget().getBlock().getName() + "end");
                 }
                 if (instruction instanceof CJumpInstruction) {
                     Block target = ((CJumpInstruction) instruction).getTarget().getBlock();
@@ -116,13 +113,12 @@ public class LivenessAnalysis {
                     }
                 }
                 instruction.calcLiveIn();
-
                 if (instruction instanceof MoveInstruction) {
                     Operand source = ((MoveInstruction) instruction).getSource();
                     Operand target = ((MoveInstruction) instruction).getTarget();
                     for (VirtualRegister killed : instruction.getKillSet()) {
                         for (VirtualRegister lived : instruction.getLiveOut()) {
-                            if (source instanceof VirtualRegister && lived != source) {
+                            if (source instanceof VirtualRegister && !instruction.getUseSet().contains(lived)) {
                                 addConflictEdge(killed, lived);
                             }
                             if (!(source instanceof VirtualRegister)) {

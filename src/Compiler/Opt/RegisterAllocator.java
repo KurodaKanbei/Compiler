@@ -82,7 +82,9 @@ public class RegisterAllocator {
                 }
             }
         }
+        //System.out.println(functionIR.getFunctionType().getName());
         functionIR.setRegisterStringMap(virtualRegisterStringMap);
+        //System.out.println(functionIR.getRegisterStringMap().size());
     }
 
     private static boolean color(List<VirtualRegister> virtualRegisterList) {

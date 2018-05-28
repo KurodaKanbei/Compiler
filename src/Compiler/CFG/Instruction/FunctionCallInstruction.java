@@ -55,7 +55,7 @@ public class FunctionCallInstruction extends Instruction {
         for(VirtualRegister virtualRegister: liveOut) {
             if (Translator.getCurrentFunctionIR().getRegisterStringMap().containsKey(virtualRegister)) {
                 String name = Translator.getCurrentFunctionIR().getRegisterStringMap().get(virtualRegister);
-                if (FunctionIR.callerRegisterList.contains(name)) {
+                if (FunctionIR.calleeRegisterList.contains(name)) {
                     callerList.add(name);
                 }
             }
