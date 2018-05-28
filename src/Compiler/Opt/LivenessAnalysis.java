@@ -59,8 +59,11 @@ public class LivenessAnalysis {
                 merge(assigned, instruction.getKillSet());
                 merge(block.getKillSet(), instruction.getKillSet());
                 if (instruction instanceof JumpInstruction) {
+                    //if (((JumpInstruction) instruction).getTarget() == null) System.err.println("fuck you");
+                    //System.err.println(((JumpInstruction) instruction).getTarget().getBlock().getName() + "start");
                     Block target = ((JumpInstruction) instruction).getTarget().getBlock();
                     addControlFlow(block, target);
+                    //System.err.println(((JumpInstruction) instruction).getTarget().getBlock().getName() + "end");
                 }
                 if (instruction instanceof CJumpInstruction) {
                     Block target = ((CJumpInstruction) instruction).getTarget().getBlock();

@@ -3,6 +3,7 @@ package Compiler.AST.Statement;
 import Compiler.AST.Constant.BoolConstant;
 import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.BoolType;
+import Compiler.CFG.Block;
 import Compiler.CFG.Instruction.*;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.ProgramIR;
@@ -98,7 +99,6 @@ public class ForStatement extends LoopStatement{
      */
     @Override
     public void generateInstruction(List<Instruction> instructionList) {
-        LabelInstruction conditionLabel, bodyLabel, incrementLabel, exitLabel;
         conditionLabel = new LabelInstruction("loop_condition");
         bodyLabel = new LabelInstruction("loop_body");
         incrementLabel = new LabelInstruction("loop_increment");

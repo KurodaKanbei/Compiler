@@ -1,5 +1,6 @@
 package Compiler.CFG;
 
+import Compiler.AST.ProgramAST;
 import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.FunctionType;
 import Compiler.CFG.Instruction.*;
@@ -67,9 +68,19 @@ public class FunctionIR {
             labelInstruction.setBlock(block);
             blockList.add(block);
         }
+        //System.out.println("--------------------");
+        /*for (Instruction instruction : instructionList) {
+            if (instruction instanceof JumpInstruction) {
+                System.out.println(((JumpInstruction) instruction).getTarget());
+            }
+        }*/
+        //System.out.println(instructionList.size());
     }
 
     public FunctionIR(FunctionType functionType) {
+        /*if (functionType == ProgramAST.globalFunctionTable.getFunctionMap().get("main")) {
+            System.err.println("yes!");
+        }*/
         this.functionType = functionType;
         this.parameterList = new ArrayList<>();
         this.blockList = new ArrayList<>();

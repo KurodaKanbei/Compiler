@@ -35,6 +35,7 @@ public class BreakStatement extends Statement {
 
     @Override
     public void generateInstruction(List<Instruction> instructionList) {
+        if (loopStatement.exitLabel == null) System.out.println("fuck you");
         instructionList.add(new JumpInstruction(loopStatement.exitLabel));
     }
 }
