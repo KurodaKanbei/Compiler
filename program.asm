@@ -1,4 +1,4 @@
-global main
+global _start
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .data
 SECTION .bss
@@ -21,7 +21,7 @@ SECTION .text
      pop                  rbx
      pop                  rbp
      ret
-main:
+_start:
     push                  rbp
      mov                  rbp,                  rsp
     call         @global_init

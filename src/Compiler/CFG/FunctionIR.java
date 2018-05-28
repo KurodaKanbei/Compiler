@@ -84,7 +84,11 @@ public class FunctionIR {
 
     public String getAssembly() {
         StringBuilder str = new StringBuilder();
-        str.append(functionType.getName() + ":\n");
+        if (functionType.getName().equals("main")) {
+            str.append("_start:\n");
+        } else {
+            str.append(functionType.getName() + ":\n");
+        }
         blockList.forEach(block -> block.getInstructionList().forEach(Instruction::init));
         init();
 
