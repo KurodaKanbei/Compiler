@@ -31,26 +31,10 @@ main:
     push                  r14
     push                  r15
 main_0_block_enter:
-     jmp main_1_loop_condition
-main_1_loop_condition:
-     cmp                  rsi                  rdi
-     mov                  rax                   r9
-     mov                  rax                    0
-     set                   le                   al
-     mov                   r9                  rax
-     cmp                   r9                    0
-      je     main_4_loop_exit
-     jmp     main_2_loop_body
-main_2_loop_body:
-     ADD                   r8                   r8
-     jmp main_3_loop_increment
-main_3_loop_increment:
-     add                  rsi                    1
-     jmp main_1_loop_condition
-main_4_loop_exit:
-     mov                  rax                   r8
-     jmp    main_5_block_exit
-main_5_block_exit:
+     mov                  rsi                   10
+     mov                  rax                  rsi
+     jmp    main_1_block_exit
+main_1_block_exit:
      pop                  r15
      pop                  r14
      pop                  r13

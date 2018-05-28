@@ -3,6 +3,9 @@ package Compiler.CFG.Instruction;
 import Compiler.CFG.Operand.AddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalOperand;
+import Compiler.Trans.Translator;
 
 import java.util.HashSet;
 
@@ -66,7 +69,18 @@ public class MoveInstruction extends Instruction {
     @Override
     public String getAssembly() {
         StringBuilder str = new StringBuilder();
-
+        PhysicalOperand physicalTarget, physicalSource;
+        physicalTarget = target.getPhysicalOperand(str);
+        physicalSource = source.getPhysicalOperand(str);
+        String targetName, sourceName;
+        targetName = physicalTarget.toString();
+        sourceName = physicalSource.toString();
+        if (physicalTarget instanceof PhysicalAddressOperand && physicalSource instanceof PhysicalAddressOperand) {
+            str.append(Translator.getInstruction("mov", "rax", sourceName));
+            str.append(Translator.getInstruction("mov", targetName, "rax"));
+        } else {
+            str.append(Translator.getInstruction("mov", targetName, sourceName));
+        }
         return str.toString();
     }
 }
