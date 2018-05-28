@@ -59,11 +59,11 @@ public class Main {
 
     private static void translate() throws IOException {
         String assembly = Translator.getAssembly();
-        System.err.println(assembly);
-        File file = new File("program.asm");
+        System.out.println(assembly);
+        /*File file = new File("program.asm");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         byte[] bytes = assembly.getBytes();
         fileOutputStream.write(bytes);
-        fileOutputStream.close();
+        fileOutputStream.close();*/
     }
 }
