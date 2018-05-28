@@ -13,7 +13,7 @@ public class MemoryLabel extends Operand {
 
     public static MemoryLabel getMemoryLabel(String str) {
         ProgramIR.addConstString(str);
-        return new MemoryLabel("__string_const" + String.valueOf(ProgramIR.getConstStringList().size() - 1));
+        return new MemoryLabel("__const_string_" + String.valueOf(ProgramIR.getConstStringList().size() - 1));
     }
 
     @Override

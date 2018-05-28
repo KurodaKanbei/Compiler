@@ -143,12 +143,25 @@ public class Translator {
         str.append("SECTION .data\n");
         for (int i = 0; i < ProgramIR.getConstStringList().size(); i++) {
             String s = ProgramIR.getConstStringList().get(i);
-            str.append("__const_string").append(String.valueOf(i)).append(":\n").append("\tdb");
+            str.append("__const_string_").append(String.valueOf(i)).append(":\n").append("\tdb");
             int n = s.length();
             for (int j = 0; j < n; j++) {
-                str.append(String.format(" %3d,", (int) s.charAt(j)));
+                if (s.charAt(j) == '\\') {
+                    ++j;
+                    if (s.charAt(j) == 'n') {
+                        str.append("  10,");
+                    }
+                    if (s.charAt(j) == '\"') {
+                        str.append("  34,");
+                    }
+                    if (s.charAt(j) == '\\') {
+                        str.append("  92,");
+                    }
+                } else {
+                    str.append(String.format(" %3s,", (int) s.charAt(j)));
+                }
             }
-            str.append(String.format(" %3d\n", 0));
+            str.append("   0\n");
         }
         return str.toString();
     }

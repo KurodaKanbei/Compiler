@@ -20,6 +20,8 @@ global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .data
+__const_string_0:
+	db 115, 104, 105, 116,   0
 SECTION .bss
 SECTION .text
 main:
@@ -32,8 +34,10 @@ main:
     push                  r14
     push                  r15
 main_0_block_enter:
-     mov                  rsi,                    5
-     add                  rsi,                    1
+     mov                  rdi,     __const_string_0
+    push     __const_string_0
+    call              println
+     add                  rsp,                    8
      jmp    main_1_block_exit
 main_1_block_exit:
      pop                  r15
