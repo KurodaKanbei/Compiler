@@ -52,6 +52,8 @@ public class ClassType extends Type implements Scope {
 
     public void addMemberVariable(VariableDeclarationStatement variableDeclarationStatement) {
         memberVariableTable.addVariable(variableDeclarationStatement);
+        variableDeclarationStatement.setOffset(mallocSize);
+        variableDeclarationStatement.setClassScope(this);
         mallocSize += 8;
     }
 

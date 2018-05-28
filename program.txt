@@ -1,9 +1,12 @@
-class C {
+class C2 {
     int x;
+    int y;
 }
 
 int main() {
-    C a = new C;
-    a.x = 100;
-    return 2 * a.x;
+    C2 obj = new C2;
+    obj.x = 10;
+    obj.y = 20;
+    println(toString(obj.x));
+    println(toString(obj.y));
 }

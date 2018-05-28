@@ -31,18 +31,44 @@ main:
     push                  r13
     push                  r14
     push                  r15
+    push                  rbx
 main_0_block_enter:
     push                  rsi
-     mov                  rdi,                    8
+     mov                  rdi,                   16
+     sub                  rsp,                    8
     call               malloc
+     add                  rsp,                    8
      pop                  rsi
      mov                  rsi,                  rax
-     mov      qword [rsi + 0],                  100
-     mov                  rsi,      qword [rsi + 0]
-     sal                  rsi,                    1
-     mov                  rax,                  rsi
+     mov      qword [rsi + 0],                   10
+     mov      qword [rsi + 8],                   20
+     mov                  rdi,      qword [rsi + 0]
+    push                  rsi
+    push      qword [rsi + 0]
+    call             toString
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rbx,                  rax
+     mov                  rdi,                  rbx
+    push                  rsi
+    push                  rbx
+    call              println
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,      qword [rsi + 8]
+     sub                  rsp,                    8
+    push      qword [rsi + 8]
+    call             toString
+     add                  rsp,                   16
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    push                  rsi
+    call              println
+     add                  rsp,                   16
      jmp    main_1_block_exit
 main_1_block_exit:
+     pop                  rbx
      pop                  r15
      pop                  r14
      pop                  r13
@@ -58,9 +84,11 @@ global_init:
     push                  r13
     push                  r14
     push                  r15
+    push                  rbx
 global_init_0_block_enter:
      jmp global_init_1_block_exit
 global_init_1_block_exit:
+     pop                  rbx
      pop                  r15
      pop                  r14
      pop                  r13
