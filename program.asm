@@ -31,11 +31,31 @@ main:
     push                  r14
     push                  r15
 main_0_block_enter:
-     mov                  rsi,                    5
-     mov                  rdi,                  rsi
+     mov                  rsi,                    1
      add                  rsi,                    1
-     mov                  rdi,                  rdi
-     mov                  rdi,                  rdi
+     mov                  rcx,                  rsi
+     sal                  rsi,                   cl
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                    1
+     add                  rsi,                  rsi
+     mov                  rsi,                  rsi
+     mov                  rdi,                    0
+     mov                  rcx,                  rdi
+     sal                  rdi,                   cl
+     mov                   r8,                  rsi
+     add                   r8,                   r8
+     mov       qword [r8 + 0],                   10
+     mov                  rdi,                    0
+     mov                  rcx,                  rdi
+     sal                  rdi,                   cl
+     mov                  rsi,                  rsi
+     add                  rsi,                  rsi
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rsi
      mov                  rax,                  rsi
      jmp    main_1_block_exit
 main_1_block_exit:

@@ -100,7 +100,7 @@ public class NewExpression extends Expression {
             return;
         }
         VirtualRegister mallocSize = RegisterManager.getTemporaryRegister();
-        Operand operand = operandList.get(cur);
+        Operand operand = operandList.get(cur++);
         instructionList.add(new MoveInstruction(mallocSize, operand));
         instructionList.add(new UnaryInstruction(UnaryInstruction.UnaryOp.INC, mallocSize));
         instructionList.add(new BinaryInstruction(BinaryInstruction.BinaryOp.SHL, mallocSize, new ImmediateOperand(3)));
@@ -134,7 +134,7 @@ public class NewExpression extends Expression {
             instructionList.add(bodyLabel);
             VirtualRegister t = RegisterManager.getTemporaryRegister();
             instructionList.add(new MoveInstruction(t, new AddressOperand(pos, new ImmediateOperand(0))));
-            malloc(t, newType, operandList, instructionList, cur + 1);
+            malloc(t, newType, operandList, instructionList, cur);
             instructionList.add(new MoveInstruction(new AddressOperand(pos, new ImmediateOperand(0)), t));
             instructionList.add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, pos, new ImmediateOperand(8)));
             instructionList.add(new JumpInstruction(conditionLabel));

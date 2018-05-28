@@ -125,10 +125,10 @@ public class BinaryInstruction extends Instruction {
         }
         if (physicalSource instanceof PhysicalAddressOperand && physicalTarget instanceof PhysicalAddressOperand) {
             str.append(Translator.getInstruction("mov", "rax", targetName));
-            str.append(Translator.getInstruction(operator, "rax", sourceName));
+            str.append(Translator.getInstruction(operator.toLowerCase(), "rax", sourceName));
             str.append(Translator.getInstruction("mov", targetName, "rax"));
         } else {
-            str.append(Translator.getInstruction(operator, targetName, sourceName));
+            str.append(Translator.getInstruction(operator.toLowerCase(), targetName, sourceName));
         }
         return str.toString();
     }
