@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/codegen.bash" beforeDir="false" afterPath="$PROJECT_DIR$/codegen.bash" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program.asm" beforeDir="false" afterPath="$PROJECT_DIR$/program.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" afterDir="false" />
@@ -19,11 +20,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FunctionIR.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BuiltinFunction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FunctionIR.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+            <state relative-caret-position="109">
+              <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5441#5442#0" expanded="true" />
@@ -50,8 +63,8 @@
       <file leaf-file-name="Translator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="112" column="33" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
+            <state relative-caret-position="167">
+              <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,19 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BinaryInstruction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="130" column="70" selection-start-line="130" selection-start-column="70" selection-end-line="130" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CJumpInstruction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
+            <state relative-caret-position="286">
               <caret line="34" column="120" selection-start-line="34" selection-start-column="120" selection-end-line="34" selection-end-column="120" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -89,11 +93,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewExpression.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression/NewExpression.java">
+      <file leaf-file-name="codegen.bash" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/codegen.bash">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="136" column="63" selection-start-line="136" selection-start-column="63" selection-end-line="136" selection-end-column="63" />
+            <state relative-caret-position="135">
+              <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="semantic.bash" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/semantic.bash">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -107,10 +120,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="568">
               <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -125,13 +138,6 @@
             <state relative-caret-position="345">
               <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Compiler-2018.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Compiler-2018.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3" />
           </provider>
         </entry>
       </file>
@@ -200,7 +206,6 @@
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Block.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Statement/ReturnStatement.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" />
-        <option value="$PROJECT_DIR$/codegen.bash" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Statement/VariableDeclarationStatement.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/RegisterManager.java" />
@@ -219,6 +224,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
+        <option value="$PROJECT_DIR$/codegen.bash" />
       </list>
     </option>
   </component>
@@ -960,16 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -987,27 +983,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="34" column="120" selection-start-line="34" selection-start-column="120" selection-end-line="34" selection-end-column="120" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/codegen.bash">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/semantic.bash">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/build.bash">
@@ -1016,13 +992,6 @@
     <entry file="file://$PROJECT_DIR$/Compiler-2018.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/program.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression/NewExpression.java">
@@ -1039,10 +1008,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+        <state relative-caret-position="254">
+          <caret line="54" column="38" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1056,20 +1025,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="112" column="33" selection-start-line="112" selection-start-column="33" selection-end-line="112" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="89" column="54" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+        <state relative-caret-position="109">
+          <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5441#5442#0" expanded="true" />
@@ -1088,6 +1047,57 @@
             <element signature="e#5993#5994#0" expanded="true" />
             <element signature="e#6061#6062#0" expanded="true" />
             <element signature="e#6102#6103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="112" column="30" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="34" column="120" selection-start-line="34" selection-start-column="120" selection-end-line="34" selection-end-column="120" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codegen.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic.bash">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
