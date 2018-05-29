@@ -29,10 +29,6 @@ public class LivenessAnalysis {
         return count;
     }
 
-    public static FunctionIR getCurrentFunctionIR() {
-        return currentFunctionIR;
-    }
-
     public static void analysis(FunctionIR functionIR) {
         currentFunctionIR = functionIR;
         edge = new HashMap<>();
@@ -106,7 +102,7 @@ public class LivenessAnalysis {
                         throw new InternalError("compare jump instruction must be the last but one");
                     }
                     instruction.setLiveOut(new HashSet<>(((CJumpInstruction) instruction).getTarget().getBlock().getLiveIn()));
-                    merge(instruction.getLiveOut(), block.getInstructionList().get(i + 1).getLiveOut());
+                    merge(instruction.getLiveOut(), block.getInstructionList().get(i + 1).getLiveIn());
                 }
                 if (!(instruction instanceof JumpInstruction) && !(instruction instanceof CJumpInstruction)) {
                     if (i < n - 1) {
@@ -143,7 +139,7 @@ public class LivenessAnalysis {
     }
 
     private static void addConflictEdge(VirtualRegister x, VirtualRegister y) {
-        if (hasCopy(x) || hasCopy(y) || x == y) {
+        if (inMemory(x) || inMemory(y) || x == y) {
             return;
         }
         edge.get(x).add(y);
@@ -151,25 +147,27 @@ public class LivenessAnalysis {
     }
 
     private static void addMoveEdge(VirtualRegister target, VirtualRegister source) {
-        if (hasCopy(target) || hasCopy(source) || target == source) {
+        if (inMemory(target) || inMemory(source) || target == source) {
             return;
         }
         flow.get(target).add(source);
     }
 
-    private static boolean hasCopy(VirtualRegister virtualRegister) {
+    private static boolean inMemory(VirtualRegister virtualRegister) {
         return currentFunctionIR.getRegisterIntegerMap().containsKey(virtualRegister) || virtualRegister.isGlobal();
     }
 
     private static void merge(Map<VirtualRegister, Integer> count, Set<VirtualRegister> occur) {
         for (VirtualRegister virtualRegister : occur) {
-            if (!count.containsKey(virtualRegister)) {
-                count.put(virtualRegister, 0);
-                edge.put(virtualRegister, new HashSet<>());
-                flow.put(virtualRegister, new HashSet<>());
+            if (!inMemory(virtualRegister)) {
+                if (!count.containsKey(virtualRegister)) {
+                    count.put(virtualRegister, 0);
+                    edge.put(virtualRegister, new HashSet<>());
+                    flow.put(virtualRegister, new HashSet<>());
+                }
+                int num = count.get(virtualRegister);
+                count.put(virtualRegister, ++num);
             }
-            int num = count.get(virtualRegister);
-            count.put(virtualRegister, ++num);
         }
     }
 

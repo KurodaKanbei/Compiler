@@ -1,227 +1,33 @@
 __global_init {
 	__global_init_0_block_enter
+		t10(rsi) = mov 8
+		INC t10(rsi)
+		t10(rsi) = t10(rsi) SHL 3
+		malloc t9(rsi) t10(rsi)
+		Address (t9(rsi) + 0) = mov 8
+		t9(rsi) = t9(rsi) ADD 8
+		Address (dx(@dx) + 0) = mov t9(rsi)
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
 main {
 	main_0_block_enter
-		t1(rsi) = mov 100
-		INC t1(rsi)
-		t1(rsi) = t1(rsi) SHL 3
-		malloc t0(rsi) t1(rsi)
-		Address (t0(rsi) + 0) = mov 100
-		t0(rsi) = t0(rsi) ADD 8
-		a(rsi) = mov t0(rsi)
-		i(rbx) = mov 0
-		jump main_1_loop_condition
-	main_1_loop_condition
-		cmp i(rbx) 100
-		set LE t2(rdi)
-		cmp t2(rdi) 1
-		CJump EQ main_2_loop_body
-		jump main_4_loop_exit
-	main_2_loop_body
-		t3(r12) = mov i(rbx)
-		t3(r12) = t3(r12) SHL 3
-		t4(rdi) = mov a(rsi)
-		t4(rdi) = t4(rdi) ADD t3(r12)
-		t6(r12) = mov 100
-		INC t6(r12)
-		t6(r12) = t6(r12) SHL 3
-		malloc t5(r12) t6(r12)
-		Address (t5(r12) + 0) = mov 100
-		t5(r12) = t5(r12) ADD 8
-		Address (t4(rdi) + 0) = mov t5(r12)
-		jump main_3_loop_increment
-	main_3_loop_increment
-		t7(rbx) = mov i(rbx)
-		INC i(rbx)
-		jump main_1_loop_condition
-	main_4_loop_exit
-		sum(rdi) = mov 0
-		i(rbx) = mov 0
-		jump main_5_loop_condition
-	main_5_loop_condition
-		cmp i(rbx) 100
-		set LE t8(r12)
-		cmp t8(r12) 1
-		CJump EQ main_6_loop_body
-		jump main_12_loop_exit
-	main_6_loop_body
-		j(r12) = mov 0
-		jump main_7_loop_condition
-	main_7_loop_condition
-		cmp j(r12) 100
-		set LE t9(r8)
-		cmp t9(r8) 1
-		CJump EQ main_8_loop_body
-		jump main_10_loop_exit
-	main_8_loop_body
-		t10(r13) = mov i(rbx)
-		t10(r13) = t10(r13) SHL 3
-		t11(r8) = mov a(rsi)
-		t11(r8) = t11(r8) ADD t10(r13)
-		t12(r13) = mov j(r12)
-		t12(r13) = t12(r13) SHL 3
-		t13(r8) = mov Address (t11(r8) + 0)
-		t13(r8) = t13(r8) ADD t12(r13)
-		Address (t13(r8) + 0) = mov 0
-		jump main_9_loop_increment
-	main_9_loop_increment
-		t14(r12) = mov j(r12)
-		INC j(r12)
-		jump main_7_loop_condition
-	main_10_loop_exit
-		jump main_11_loop_increment
-	main_11_loop_increment
-		t15(rbx) = mov i(rbx)
-		INC i(rbx)
-		jump main_5_loop_condition
-	main_12_loop_exit
-		i(rbx) = mov 0
-		jump main_13_loop_condition
-	main_13_loop_condition
-		cmp i(rbx) 100
-		set LE t16(r12)
-		cmp t16(r12) 1
-		CJump EQ main_14_loop_body
-		jump main_32_loop_exit
-	main_14_loop_body
-		cmp i(rbx) 20
-		set GR t18(r12)
-		cmp t18(r12) 1
-		CJump NEQ main_16_logical_false
-		jump main_15_logical_true
-	main_15_logical_true
-		cmp i(rbx) 80
-		set LE t19(r12)
-		t17(r12) = mov t19(r12)
-		jump main_17_logical_exit
-	main_16_logical_false
-		t17(r12) = mov 0
-		jump main_17_logical_exit
-	main_17_logical_exit
-		cmp t17(r12) 1
-		CJump EQ main_18_if_true
-		jump main_29_if_false
-	main_18_if_true
-		j(r12) = mov 0
-		jump main_19_loop_condition
-	main_19_loop_condition
-		cmp j(r12) 100
-		set LE t20(r8)
-		cmp t20(r8) 1
-		CJump EQ main_20_loop_body
-		jump main_28_loop_exit
-	main_20_loop_body
-		cmp j(r12) 5
-		set GR t22(r8)
-		cmp t22(r8) 1
-		CJump EQ main_21_logical_true
-		jump main_22_logical_false
-	main_21_logical_true
-		t21(r8) = mov 1
-		jump main_23_logical_exit
-	main_22_logical_false
-		cmp i(rbx) 90
-		set LE t23(r8)
-		t21(r8) = mov t23(r8)
-		jump main_23_logical_exit
-	main_23_logical_exit
-		cmp t21(r8) 1
-		CJump EQ main_24_if_true
-		jump main_25_if_false
-	main_24_if_true
-		t24(r8) = mov j(r12)
-		t24(r8) = t24(r8) SHL 2
-		t25(r8) = mov t24(r8)
-		t25(r8) = t25(r8) DIV 100
-		quotient(r13) = mov t25(r8)
-		t26(r8) = mov j(r12)
-		t26(r8) = t26(r8) SHL 2
-		t27(r8) = mov t26(r8)
-		t27(r8) = t27(r8) MOD 100
-		remainder(r8) = mov t27(r8)
-		t28(r9) = mov i(rbx)
-		t28(r9) = t28(r9) ADD quotient(r13)
-		t29(r9) = mov t28(r9)
-		t29(r9) = t29(r9) SHL 3
-		t30(r13) = mov a(rsi)
-		t30(r13) = t30(r13) ADD t29(r9)
-		t31(r8) = mov remainder(r8)
-		t31(r8) = t31(r8) SHL 3
-		t32(r13) = mov Address (t30(r13) + 0)
-		t32(r13) = t32(r13) ADD t31(r8)
-		t33(r8) = mov j(r12)
-		t33(r8) = t33(r8) ADD 50
-		Address (t32(r13) + 0) = mov t33(r8)
-		jump main_26_if_exit
-	main_25_if_false
-		jump main_26_if_exit
-	main_26_if_exit
-		jump main_27_loop_increment
-	main_27_loop_increment
-		t34(r12) = mov j(r12)
-		INC j(r12)
-		jump main_19_loop_condition
-	main_28_loop_exit
-		jump main_30_if_exit
-	main_29_if_false
-		jump main_30_if_exit
-	main_30_if_exit
-		jump main_31_loop_increment
-	main_31_loop_increment
-		t35(rbx) = mov i(rbx)
-		INC i(rbx)
-		jump main_13_loop_condition
-	main_32_loop_exit
-		i(rbx) = mov 0
-		jump main_33_loop_condition
-	main_33_loop_condition
-		cmp i(rbx) 100
-		set LE t36(r12)
-		cmp t36(r12) 1
-		CJump EQ main_34_loop_body
-		jump main_40_loop_exit
-	main_34_loop_body
-		j(r12) = mov 0
-		jump main_35_loop_condition
-	main_35_loop_condition
-		cmp j(r12) 100
-		set LE t37(r8)
-		cmp t37(r8) 1
-		CJump EQ main_36_loop_body
-		jump main_38_loop_exit
-	main_36_loop_body
-		t38(r13) = mov i(rbx)
-		t38(r13) = t38(r13) SHL 3
-		t39(r8) = mov a(rsi)
-		t39(r8) = t39(r8) ADD t38(r13)
-		t40(r13) = mov j(r12)
-		t40(r13) = t40(r13) SHL 3
-		t41(r8) = mov Address (t39(r8) + 0)
-		t41(r8) = t41(r8) ADD t40(r13)
-		t42(rdi) = mov sum(rdi)
-		t42(rdi) = t42(rdi) ADD Address (t41(r8) + 0)
-		sum(rdi) = mov t42(rdi)
-		jump main_37_loop_increment
-	main_37_loop_increment
-		t43(r12) = mov j(r12)
-		INC j(r12)
-		jump main_35_loop_condition
-	main_38_loop_exit
-		jump main_39_loop_increment
-	main_39_loop_increment
-		t44(rbx) = mov i(rbx)
-		INC i(rbx)
-		jump main_33_loop_condition
-	main_40_loop_exit
-		t46(rdi) = mov sum(rdi)
-		call toString return value = t45(rax)
-		t47(rsi) = mov t45(rax)
-		t48(rdi) = mov t47(rsi)
+		t0(rbx) = mov 0
+		t0(rbx) = t0(rbx) SHL 3
+		t1(rsi) = mov Address (dx(@dx) + 0)
+		t1(rsi) = t1(rsi) ADD t0(rbx)
+		t2(rbx) = mov 2
+		NEG t2(rbx)
+		Address (t1(rsi) + 0) = mov t2(rbx)
+		t3(rsi) = mov 0
+		t3(rsi) = t3(rsi) SHL 3
+		t4(rbx) = mov Address (dx(@dx) + 0)
+		t4(rbx) = t4(rbx) ADD t3(rsi)
+		t6(rdi) = mov Address (t4(rbx) + 0)
+		call toString return value = t5(rax)
+		t7(rsi) = mov t5(rax)
+		t8(rdi) = mov t7(rsi)
 		call println return value = null
-		ret 0
-		jump main_41_block_exit
-	main_41_block_exit
+		jump main_1_block_exit
+	main_1_block_exit
 }

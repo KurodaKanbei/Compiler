@@ -96,6 +96,7 @@ public class FunctionIR {
         if (functionType.getName().equals("main")) {
             str.append(Translator.getInstruction("call", "__global_init"));
         }
+        //System.out.println(registerManager.getRegisterInMemory());
         if (registerManager.getRegisterInMemory() > 0) {
             str.append(Translator.getInstruction("sub", "rsp", String.valueOf(registerManager.getRegisterInMemory() << 3)));
         }
@@ -192,6 +193,7 @@ public class FunctionIR {
     }
 
     public void initialize(VirtualRegister virtualRegister) {
+        //System.out.println(virtualRegister.toString());
         if (!registerIntegerMap.containsKey(virtualRegister) && !registerStringMap.containsKey(virtualRegister)) {
             registerManager.addRegisterInMemory();
             registerIntegerMap.put(virtualRegister, registerManager.getRegisterInMemory());

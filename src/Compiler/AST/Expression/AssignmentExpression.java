@@ -47,6 +47,7 @@ public class AssignmentExpression extends Expression {
     public void generateInstruction(List<Instruction> instructionList) {
         leftExpression.generateInstruction(instructionList);
         rightExpression.generateInstruction(instructionList);
+        operand = leftExpression.getOperand();
         if (leftExpression.getOperand() instanceof AddressOperand && rightExpression.getOperand() instanceof AddressOperand) {
             VirtualRegister t = RegisterManager.getTemporaryRegister();
             instructionList.add(new MoveInstruction(t, rightExpression.getOperand()));

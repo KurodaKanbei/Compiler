@@ -24,20 +24,9 @@ SECTION .text
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
+     sub                  rsp,                    8
 __global_init_0_block_enter:
-     jmp __global_init_1_block_exit
-__global_init_1_block_exit:
-     pop                  rbp
-     ret
-main:
-    push                  rbp
-     mov                  rbp,                  rsp
-    call        __global_init
-    push                  r12
-    push                  r13
-    push                  rbx
-main_0_block_enter:
-     mov                  rsi,                  100
+     mov                  rsi,                    8
      add                  rsi,                    1
      sal                  rsi,                    3
     push                  rsi
@@ -45,241 +34,47 @@ main_0_block_enter:
     call               malloc
      pop                  rsi
      mov                  rsi,                  rax
-     mov      qword [rsi + 0],                  100
+     mov      qword [rsi + 0],                    8
      add                  rsi,                    8
-     mov                  rbx,                    0
-     jmp main_1_loop_condition
-main_1_loop_condition:
-     cmp                  rbx,                  100
-     mov                  rdi,                    0
-    setl                  dil
-     cmp                  rdi,                    1
-      je     main_2_loop_body
-     jmp     main_4_loop_exit
-main_2_loop_body:
-     mov                  r12,                  rbx
-     sal                  r12,                    3
-     mov                  rdi,                  rsi
-     add                  rdi,                  r12
-     mov                  r12,                  100
-     add                  r12,                    1
-     sal                  r12,                    3
-    push                  rsi
-    push                  rdi
-     mov                  rdi,                  r12
-     sub                  rsp,                    8
-    call               malloc
+     mov      qword [@dx + 0],                  rsi
+     jmp __global_init_1_block_exit
+__global_init_1_block_exit:
      add                  rsp,                    8
-     pop                  rdi
-     pop                  rsi
-     mov                  r12,                  rax
-     mov      qword [r12 + 0],                  100
-     add                  r12,                    8
-     mov      qword [rdi + 0],                  r12
-     jmp main_3_loop_increment
-main_3_loop_increment:
-     add                  rbx,                    1
-     jmp main_1_loop_condition
-main_4_loop_exit:
-     mov                  rdi,                    0
-     mov                  rbx,                    0
-     jmp main_5_loop_condition
-main_5_loop_condition:
-     cmp                  rbx,                  100
-     mov                  r12,                    0
-    setl                 r12b
-     cmp                  r12,                    1
-      je     main_6_loop_body
-     jmp    main_12_loop_exit
-main_6_loop_body:
-     mov                  r12,                    0
-     jmp main_7_loop_condition
-main_7_loop_condition:
-     cmp                  r12,                  100
-     mov                   r8,                    0
-    setl                  r8b
-     cmp                   r8,                    1
-      je     main_8_loop_body
-     jmp    main_10_loop_exit
-main_8_loop_body:
-     mov                  r13,                  rbx
-     sal                  r13,                    3
-     mov                   r8,                  rsi
-     add                   r8,                  r13
-     mov                  r13,                  r12
-     sal                  r13,                    3
-     mov                   r8,       qword [r8 + 0]
-     add                   r8,                  r13
-     mov       qword [r8 + 0],                    0
-     jmp main_9_loop_increment
-main_9_loop_increment:
-     add                  r12,                    1
-     jmp main_7_loop_condition
-main_10_loop_exit:
-     jmp main_11_loop_increment
-main_11_loop_increment:
-     add                  rbx,                    1
-     jmp main_5_loop_condition
-main_12_loop_exit:
-     mov                  rbx,                    0
-     jmp main_13_loop_condition
-main_13_loop_condition:
-     cmp                  rbx,                  100
-     mov                  r12,                    0
-    setl                 r12b
-     cmp                  r12,                    1
-      je    main_14_loop_body
-     jmp    main_32_loop_exit
-main_14_loop_body:
-     cmp                  rbx,                   20
-     mov                  r12,                    0
-    setg                 r12b
-     cmp                  r12,                    1
-     jne main_16_logical_false
-     jmp main_15_logical_true
-main_15_logical_true:
-     cmp                  rbx,                   80
-     mov                  r12,                    0
-    setl                 r12b
-     jmp main_17_logical_exit
-main_16_logical_false:
-     mov                  r12,                    0
-     jmp main_17_logical_exit
-main_17_logical_exit:
-     cmp                  r12,                    1
-      je      main_18_if_true
-     jmp     main_29_if_false
-main_18_if_true:
-     mov                  r12,                    0
-     jmp main_19_loop_condition
-main_19_loop_condition:
-     cmp                  r12,                  100
-     mov                   r8,                    0
-    setl                  r8b
-     cmp                   r8,                    1
-      je    main_20_loop_body
-     jmp    main_28_loop_exit
-main_20_loop_body:
-     cmp                  r12,                    5
-     mov                   r8,                    0
-    setg                  r8b
-     cmp                   r8,                    1
-      je main_21_logical_true
-     jmp main_22_logical_false
-main_21_logical_true:
-     mov                   r8,                    1
-     jmp main_23_logical_exit
-main_22_logical_false:
-     cmp                  rbx,                   90
-     mov                   r8,                    0
-    setl                  r8b
-     jmp main_23_logical_exit
-main_23_logical_exit:
-     cmp                   r8,                    1
-      je      main_24_if_true
-     jmp     main_25_if_false
-main_24_if_true:
-     mov                   r8,                  r12
-     sal                   r8,                    2
-     mov                  rax,                   r8
-     mov                  rcx,                  100
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rax
-     mov                  r13,                   r8
-     mov                   r8,                  r12
-     sal                   r8,                    2
-     mov                  rax,                   r8
-     mov                  rcx,                  100
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                   r9,                  rbx
-     add                   r9,                  r13
-     sal                   r9,                    3
-     mov                  r13,                  rsi
-     add                  r13,                   r9
-     sal                   r8,                    3
-     mov                  r13,      qword [r13 + 0]
-     add                  r13,                   r8
-     mov                   r8,                  r12
-     add                   r8,                   50
-     mov      qword [r13 + 0],                   r8
-     jmp      main_26_if_exit
-main_25_if_false:
-     jmp      main_26_if_exit
-main_26_if_exit:
-     jmp main_27_loop_increment
-main_27_loop_increment:
-     add                  r12,                    1
-     jmp main_19_loop_condition
-main_28_loop_exit:
-     jmp      main_30_if_exit
-main_29_if_false:
-     jmp      main_30_if_exit
-main_30_if_exit:
-     jmp main_31_loop_increment
-main_31_loop_increment:
-     add                  rbx,                    1
-     jmp main_13_loop_condition
-main_32_loop_exit:
-     mov                  rbx,                    0
-     jmp main_33_loop_condition
-main_33_loop_condition:
-     cmp                  rbx,                  100
-     mov                  r12,                    0
-    setl                 r12b
-     cmp                  r12,                    1
-      je    main_34_loop_body
-     jmp    main_40_loop_exit
-main_34_loop_body:
-     mov                  r12,                    0
-     jmp main_35_loop_condition
-main_35_loop_condition:
-     cmp                  r12,                  100
-     mov                   r8,                    0
-    setl                  r8b
-     cmp                   r8,                    1
-      je    main_36_loop_body
-     jmp    main_38_loop_exit
-main_36_loop_body:
-     mov                  r13,                  rbx
-     sal                  r13,                    3
-     mov                   r8,                  rsi
-     add                   r8,                  r13
-     mov                  r13,                  r12
-     sal                  r13,                    3
-     mov                   r8,       qword [r8 + 0]
-     add                   r8,                  r13
-     add                  rdi,       qword [r8 + 0]
-     jmp main_37_loop_increment
-main_37_loop_increment:
-     add                  r12,                    1
-     jmp main_35_loop_condition
-main_38_loop_exit:
-     jmp main_39_loop_increment
-main_39_loop_increment:
-     add                  rbx,                    1
-     jmp main_33_loop_condition
-main_40_loop_exit:
+     pop                  rbp
+     ret
+main:
+    push                  rbp
+     mov                  rbp,                  rsp
+    call        __global_init
      sub                  rsp,                    8
+    push                  rbx
+main_0_block_enter:
+     mov                  rbx,                    0
+     sal                  rbx,                    3
+     mov                  rsi,      qword [@dx + 0]
+     add                  rsi,                  rbx
+     mov                  rbx,                    2
+     neg                  rbx
+     mov      qword [rsi + 0],                  rbx
+     mov                  rsi,                    0
+     sal                  rsi,                    3
+     mov                  rbx,      qword [@dx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
     call             toString
-     add                  rsp,                    8
      mov                  rsi,                  rax
      mov                  rdi,                  rsi
-     sub                  rsp,                    8
     call              println
-     add                  rsp,                    8
-     mov                  rax,                    0
-     jmp   main_41_block_exit
-main_41_block_exit:
+     jmp    main_1_block_exit
+main_1_block_exit:
      pop                  rbx
-     pop                  r13
-     pop                  r12
+     add                  rsp,                    8
      pop                  rbp
      ret
 SECTION .data
 SECTION .bss
+@dx:
+    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0

@@ -21,4 +21,4 @@
 hs_err_pid*
 
 # Manual Addition
-.idea/
+.idea/*

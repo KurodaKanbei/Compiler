@@ -4,6 +4,7 @@ import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.BoolType;
 import Compiler.AST.Type.IntType;
 import Compiler.CFG.Instruction.Instruction;
+import Compiler.CFG.Instruction.MoveInstruction;
 import Compiler.CFG.Instruction.UnaryInstruction;
 import Compiler.CFG.RegisterManager;
 import Compiler.Utility.Error.CompilationError;
@@ -40,6 +41,7 @@ public class UnaryMinusExpression extends Expression {
     public void generateInstruction(List<Instruction> instructionList) {
         expression.generateInstruction(instructionList);
         operand = RegisterManager.getTemporaryRegister();
+        instructionList.add(new MoveInstruction(operand, expression.getOperand()));
         instructionList.add(new UnaryInstruction(UnaryInstruction.UnaryOp.NEG, operand));
     }
 }

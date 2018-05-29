@@ -58,9 +58,11 @@ public class RegisterAllocator {
         virtualRegisterList.sort((lhs, rhs) -> {
             int leftValue = countMap.get(lhs);
             int rightValue = countMap.get(rhs);
-            if (leftValue == rightValue) return 0;
-            return leftValue > rightValue ? -1 : 1;
+            return Integer.compare(leftValue, rightValue);
         });
+        /*for (VirtualRegister virtualRegister : virtualRegisterList) {
+            System.out.println(virtualRegister.toString() + " " + countMap.get(virtualRegister));
+        }*/
         if (virtualRegisterList.size() < 500) {
             for (VirtualRegister virtualRegister : virtualRegisterList) {
                 allocateRegisterList.add(virtualRegister);
