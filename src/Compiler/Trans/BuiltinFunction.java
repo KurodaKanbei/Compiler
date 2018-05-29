@@ -24,6 +24,7 @@ public class BuiltinFunction {
         str.append(__string_parseInt());
         str.append(__string_ord());
         str.append(__string_connection());
+        str.append(__string_substring());
         for (ProgramIR.ConditionOp conditionOp : ProgramIR.ConditionOp.values()) {
             str.append(__string_compare(conditionOp));
         }

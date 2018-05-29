@@ -210,6 +210,33 @@ __string_connection:
      pop                  r14
      pop                  r15
      ret
+__string_substring:
+    push                  r15
+    push                  r14
+     mov                  r15,                  rdi
+     add                  r15,                  rsi
+     mov                  r14,                  rdx
+     sub                  r14,                  rsi
+     add                  r14,                    1
+     mov                  rdi,                  r14
+     add                  rdi,                    9
+     sub                  rsp,                    8
+    call               malloc
+     add                  rsp,                    8
+     add                  rax,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,                  r15
+     mov                  rdx,                  r14
+     sub                  rsp,                    8
+    call               memcpy
+     add                  rsp,                    8
+     mov      qword [rax - 8],                  r14
+     mov                  r15,                  rax
+     add                  r15,                  r14
+     mov                  r15,                    0
+     pop                  r14
+     pop                  r15
+     ret
 __string_LE:
      cmp                  eax,                    0
      mov                  rax,                    0

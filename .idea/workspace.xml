@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/program_backup.nasm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/allocated.ir" beforeDir="false" afterPath="$PROJECT_DIR$/allocated.ir" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.nasm" beforeDir="false" afterPath="$PROJECT_DIR$/program.nasm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw.ir" beforeDir="false" afterPath="$PROJECT_DIR$/raw.ir" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/row.ir" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/AST/Expression/AssignmentExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/AST/Expression/AssignmentExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/AST/Expression/UnaryExpression/UnaryMinusExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/AST/Expression/UnaryExpression/UnaryMinusExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,23 +26,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
+            <state relative-caret-position="1050">
               <caret line="70" column="7" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BoolConstant.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Constant/BoolConstant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -72,8 +50,20 @@
       <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/program.nasm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="55" column="15" lean-forward="true" selection-start-line="55" selection-start-column="15" selection-end-line="55" selection-end-column="15" />
+            <state relative-caret-position="-3098">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuiltinFunction.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-902">
+              <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,6 +147,7 @@
       <find>count</find>
       <find>System</find>
       <find>merge</find>
+      <find>__string_substring</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -197,7 +188,6 @@
         <option value="$PROJECT_DIR$/src/Compiler/FrontEnd/Listener/ASTListener.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Type/ClassTable.java" />
         <option value="$PROJECT_DIR$/program2.nasm" />
-        <option value="$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/FunctionCallExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/ProgramIR.java" />
@@ -223,6 +213,7 @@
         <option value="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/UnaryExpression/UnaryMinusExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java" />
       </list>
     </option>
   </component>
@@ -658,16 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4590">
-          <caret line="311" selection-start-line="311" selection-end-line="311" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/AST/ProgramAST.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1002,17 +983,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/program.nasm">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="55" column="15" lean-forward="true" selection-start-line="55" selection-start-column="15" selection-end-line="55" selection-end-column="15" />
+        <state relative-caret-position="1050">
+          <caret line="70" column="7" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Main.java">
+    <entry file="file://$PROJECT_DIR$/program.nasm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="70" column="7" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
+        <state relative-caret-position="-3098">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-902">
+          <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
