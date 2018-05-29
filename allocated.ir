@@ -4,134 +4,139 @@ search x(r12) y(rbx) z(r8) {
 		y(rbx) = mov t28(rsi)
 		z(r8) = mov t29(rdx)
 		cmp y(rbx) 0
-		set GR t33(r14)
-		cmp t33(r14) 1
+		set GR t33(rsi)
+		cmp t33(rsi) 1
 		CJump EQ search_1_logical_true
 		jump search_2_logical_false
 	search_1_logical_true
-		t32(r14) = mov 1
+		t32(rsi) = mov 1
 		jump search_3_logical_exit
 	search_2_logical_false
 		cmp y(rbx) 0
-		set LE t34(r14)
-		t32(r14) = mov t34(r14)
+		set LE t34(rsi)
+		t32(rsi) = mov t34(rsi)
 		jump search_3_logical_exit
 	search_3_logical_exit
-		cmp t32(r14) 1
+		cmp t32(rsi) 1
 		CJump EQ search_4_logical_true
 		jump search_5_logical_false
 	search_4_logical_true
-		t31(r14) = mov 1
+		t31(rsi) = mov 1
 		jump search_6_logical_exit
 	search_5_logical_false
 		cmp x(r12) 0
-		set EQ t35(r14)
-		t31(r14) = mov t35(r14)
+		set EQ t35(rsi)
+		t31(rsi) = mov t35(rsi)
 		jump search_6_logical_exit
 	search_6_logical_exit
-		cmp t31(r14) 1
+		cmp t31(rsi) 1
 		CJump EQ search_7_logical_true
 		jump search_8_logical_false
 	search_7_logical_true
-		t30(rdi) = mov 1
+		t30(rsi) = mov 1
 		jump search_9_logical_exit
 	search_8_logical_false
-		t36(r14) = mov x(r12)
-		t37(r9) = t37(r9) SUB 1
-		t37(r9) = t37(r9) SHL 3
-		t38(r14) = mov Address (make(@make) + 0)
-		t38(r14) = t38(r14) ADD t37(r9)
-		t39(r10) = mov 0
-		t39(r10) = t39(r10) SHL 3
-		t40(r9) = mov Address (t38(r14) + 0)
-		t40(r9) = t40(r9) ADD t39(r10)
-		t41(r14) = mov x(r12)
-		t42(r13) = t42(r13) SUB 1
+		t36(rsi) = mov x(r12)
+		t36(rsi) = t36(rsi) SUB 1
+		t37(rdi) = mov t36(rsi)
+		t37(rdi) = t37(rdi) SHL 3
+		t38(rsi) = mov Address (make(@make) + 0)
+		t38(rsi) = t38(rsi) ADD t37(rdi)
+		t39(rdi) = mov 0
+		t39(rdi) = t39(rdi) SHL 3
+		t40(rsi) = mov Address (t38(rsi) + 0)
+		t40(rsi) = t40(rsi) ADD t39(rdi)
+		t41(rdi) = mov x(r12)
+		t41(rdi) = t41(rdi) SUB 1
+		t42(r13) = mov t41(rdi)
 		t42(r13) = t42(r13) SHL 3
-		t43(r14) = mov Address (make(@make) + 0)
-		t43(r14) = t43(r14) ADD t42(r13)
+		t43(rdi) = mov Address (make(@make) + 0)
+		t43(rdi) = t43(rdi) ADD t42(r13)
 		t44(r13) = mov 1
 		t44(r13) = t44(r13) SHL 3
-		t45(r14) = mov Address (t43(r14) + 0)
-		t45(r14) = t45(r14) ADD t44(r13)
-		t46(r13) = mov Address (t40(r9) + 0)
-		t46(r13) = t46(r13) ADD Address (t45(r14) + 0)
-		t47(r9) = mov x(r12)
-		t48(rdi) = t48(rdi) SUB 1
-		t48(rdi) = t48(rdi) SHL 3
-		t49(r9) = mov Address (make(@make) + 0)
-		t49(r9) = t49(r9) ADD t48(rdi)
-		t50(r14) = mov 2
-		t50(r14) = t50(r14) SHL 3
-		t51(rdi) = mov Address (t49(r9) + 0)
-		t51(rdi) = t51(rdi) ADD t50(r14)
-		t52(r13) = mov t46(r13)
-		t52(r13) = t52(r13) ADD Address (t51(rdi) + 0)
-		cmp t52(r13) 15
-		set EQ t53(rdi)
-		t30(rdi) = mov t53(rdi)
+		t45(rdi) = mov Address (t43(rdi) + 0)
+		t45(rdi) = t45(rdi) ADD t44(r13)
+		t46(rsi) = mov Address (t40(rsi) + 0)
+		t46(rsi) = t46(rsi) ADD Address (t45(rdi) + 0)
+		t47(rdi) = mov x(r12)
+		t47(rdi) = t47(rdi) SUB 1
+		t48(r13) = mov t47(rdi)
+		t48(r13) = t48(r13) SHL 3
+		t49(rdi) = mov Address (make(@make) + 0)
+		t49(rdi) = t49(rdi) ADD t48(r13)
+		t50(r13) = mov 2
+		t50(r13) = t50(r13) SHL 3
+		t51(rdi) = mov Address (t49(rdi) + 0)
+		t51(rdi) = t51(rdi) ADD t50(r13)
+		t52(rsi) = mov t46(rsi)
+		t52(rsi) = t52(rsi) ADD Address (t51(rdi) + 0)
+		cmp t52(rsi) 15
+		set EQ t53(rsi)
+		t30(rsi) = mov t53(rsi)
 		jump search_9_logical_exit
 	search_9_logical_exit
-		cmp t30(rdi) 1
+		cmp t30(rsi) 1
 		CJump EQ search_10_if_true
 		jump search_71_if_false
 	search_10_if_true
 		cmp x(r12) 2
-		set EQ t55(rdi)
-		cmp t55(rdi) 1
+		set EQ t55(rsi)
+		cmp t55(rsi) 1
 		CJump NEQ search_12_logical_false
 		jump search_11_logical_true
 	search_11_logical_true
 		cmp y(rbx) 2
-		set EQ t56(rdi)
-		t54(rdi) = mov t56(rdi)
+		set EQ t56(rsi)
+		t54(rsi) = mov t56(rsi)
 		jump search_13_logical_exit
 	search_12_logical_false
-		t54(rdi) = mov 0
+		t54(rsi) = mov 0
 		jump search_13_logical_exit
 	search_13_logical_exit
-		cmp t54(rdi) 1
+		cmp t54(rsi) 1
 		CJump EQ search_14_if_true
 		jump search_44_if_false
 	search_14_if_true
 		t57(rbx) = mov 2
 		t57(rbx) = t57(rbx) SHL 3
-		t58(rdi) = mov Address (make(@make) + 0)
-		t58(rdi) = t58(rdi) ADD t57(rbx)
+		t58(rsi) = mov Address (make(@make) + 0)
+		t58(rsi) = t58(rsi) ADD t57(rbx)
 		t59(rbx) = mov 2
 		t59(rbx) = t59(rbx) SHL 3
-		t60(rdi) = mov Address (t58(rdi) + 0)
-		t60(rdi) = t60(rdi) ADD t59(rbx)
+		t60(rsi) = mov Address (t58(rsi) + 0)
+		t60(rsi) = t60(rsi) ADD t59(rbx)
 		t61(rbx) = mov 45
-		Address (t60(rdi) + 0) = Address (t60(rdi) + 0) SUB z(r8)
-		t62(rdi) = mov 0
-		t62(rdi) = t62(rdi) SHL 3
-		t63(rbx) = mov Address (make(@make) + 0)
-		t63(rbx) = t63(rbx) ADD t62(rdi)
-		t64(rdi) = mov 0
-		t64(rdi) = t64(rdi) SHL 3
-		t65(rbx) = mov Address (t63(rbx) + 0)
-		t65(rbx) = t65(rbx) ADD t64(rdi)
-		t66(r12) = mov 0
-		t66(r12) = t66(r12) SHL 3
+		t61(rbx) = t61(rbx) SUB z(r8)
+		Address (t60(rsi) + 0) = mov t61(rbx)
+		t62(rbx) = mov 0
+		t62(rbx) = t62(rbx) SHL 3
+		t63(rsi) = mov Address (make(@make) + 0)
+		t63(rsi) = t63(rsi) ADD t62(rbx)
+		t64(rbx) = mov 0
+		t64(rbx) = t64(rbx) SHL 3
+		t65(rsi) = mov Address (t63(rsi) + 0)
+		t65(rsi) = t65(rsi) ADD t64(rbx)
+		t66(rbx) = mov 0
+		t66(rbx) = t66(rbx) SHL 3
 		t67(rdi) = mov Address (make(@make) + 0)
-		t67(rdi) = t67(rdi) ADD t66(r12)
-		t68(r12) = mov 1
-		t68(r12) = t68(r12) SHL 3
+		t67(rdi) = t67(rdi) ADD t66(rbx)
+		t68(rbx) = mov 1
+		t68(rbx) = t68(rbx) SHL 3
 		t69(rdi) = mov Address (t67(rdi) + 0)
-		t69(rdi) = t69(rdi) ADD t68(r12)
-		t70(rbx) = mov Address (t65(rbx) + 0)
-		t70(rbx) = t70(rbx) ADD Address (t69(rdi) + 0)
-		t71(r12) = mov 0
-		t71(r12) = t71(r12) SHL 3
+		t69(rdi) = t69(rdi) ADD t68(rbx)
+		t70(rsi) = mov Address (t65(rsi) + 0)
+		t70(rsi) = t70(rsi) ADD Address (t69(rdi) + 0)
+		t71(rbx) = mov 0
+		t71(rbx) = t71(rbx) SHL 3
 		t72(rdi) = mov Address (make(@make) + 0)
-		t72(rdi) = t72(rdi) ADD t71(r12)
-		t73(r12) = mov 2
-		t73(r12) = t73(r12) SHL 3
+		t72(rdi) = t72(rdi) ADD t71(rbx)
+		t73(rbx) = mov 2
+		t73(rbx) = t73(rbx) SHL 3
 		t74(rdi) = mov Address (t72(rdi) + 0)
-		t74(rdi) = t74(rdi) ADD t73(r12)
-		t75(rbx) = mov t70(rbx)
-		s(rsi) = s(rsi) ADD Address (t74(rdi) + 0)
+		t74(rdi) = t74(rdi) ADD t73(rbx)
+		t75(rsi) = mov t70(rsi)
+		t75(rsi) = t75(rsi) ADD Address (t74(rdi) + 0)
+		s(rsi) = mov t75(rsi)
 		t82(rdi) = mov 1
 		t82(rdi) = t82(rdi) SHL 3
 		t83(rbx) = mov Address (make(@make) + 0)
@@ -150,16 +155,16 @@ search x(r12) y(rbx) z(r8) {
 		t89(rdi) = t89(rdi) ADD t88(r12)
 		t90(rbx) = mov Address (t85(rbx) + 0)
 		t90(rbx) = t90(rbx) ADD Address (t89(rdi) + 0)
-		t91(r12) = mov 1
-		t91(r12) = t91(r12) SHL 3
-		t92(rdi) = mov Address (make(@make) + 0)
-		t92(rdi) = t92(rdi) ADD t91(r12)
-		t93(r12) = mov 2
-		t93(r12) = t93(r12) SHL 3
-		t94(rdi) = mov Address (t92(rdi) + 0)
-		t94(rdi) = t94(rdi) ADD t93(r12)
+		t91(rdi) = mov 1
+		t91(rdi) = t91(rdi) SHL 3
+		t92(r12) = mov Address (make(@make) + 0)
+		t92(r12) = t92(r12) ADD t91(rdi)
+		t93(rdi) = mov 2
+		t93(rdi) = t93(rdi) SHL 3
+		t94(r12) = mov Address (t92(r12) + 0)
+		t94(r12) = t94(r12) ADD t93(rdi)
 		t95(rbx) = mov t90(rbx)
-		t95(rbx) = t95(rbx) ADD Address (t94(rdi) + 0)
+		t95(rbx) = t95(rbx) ADD Address (t94(r12) + 0)
 		cmp t95(rbx) s(rsi)
 		set EQ t96(rbx)
 		cmp t96(rbx) 1
@@ -294,26 +299,26 @@ search x(r12) y(rbx) z(r8) {
 		t144(rdi) = t144(rdi) SHL 3
 		t145(rbx) = mov Address (t143(rbx) + 0)
 		t145(rbx) = t145(rbx) ADD t144(rdi)
-		t146(r12) = mov 1
-		t146(r12) = t146(r12) SHL 3
-		t147(rdi) = mov Address (make(@make) + 0)
-		t147(rdi) = t147(rdi) ADD t146(r12)
-		t148(r12) = mov 2
-		t148(r12) = t148(r12) SHL 3
-		t149(rdi) = mov Address (t147(rdi) + 0)
-		t149(rdi) = t149(rdi) ADD t148(r12)
+		t146(rdi) = mov 1
+		t146(rdi) = t146(rdi) SHL 3
+		t147(r12) = mov Address (make(@make) + 0)
+		t147(r12) = t147(r12) ADD t146(rdi)
+		t148(rdi) = mov 2
+		t148(rdi) = t148(rdi) SHL 3
+		t149(r12) = mov Address (t147(r12) + 0)
+		t149(r12) = t149(r12) ADD t148(rdi)
 		t150(rbx) = mov Address (t145(rbx) + 0)
-		t150(rbx) = t150(rbx) ADD Address (t149(rdi) + 0)
-		t151(r12) = mov 2
-		t151(r12) = t151(r12) SHL 3
-		t152(rdi) = mov Address (make(@make) + 0)
-		t152(rdi) = t152(rdi) ADD t151(r12)
-		t153(r12) = mov 2
-		t153(r12) = t153(r12) SHL 3
-		t154(rdi) = mov Address (t152(rdi) + 0)
-		t154(rdi) = t154(rdi) ADD t153(r12)
+		t150(rbx) = t150(rbx) ADD Address (t149(r12) + 0)
+		t151(rdi) = mov 2
+		t151(rdi) = t151(rdi) SHL 3
+		t152(r12) = mov Address (make(@make) + 0)
+		t152(r12) = t152(r12) ADD t151(rdi)
+		t153(rdi) = mov 2
+		t153(rdi) = t153(rdi) SHL 3
+		t154(r12) = mov Address (t152(r12) + 0)
+		t154(r12) = t154(r12) ADD t153(rdi)
 		t155(rbx) = mov t150(rbx)
-		t155(rbx) = t155(rbx) ADD Address (t154(rdi) + 0)
+		t155(rbx) = t155(rbx) ADD Address (t154(r12) + 0)
 		cmp t155(rbx) s(rsi)
 		set EQ t156(rbx)
 		t78(rbx) = mov t156(rbx)
@@ -344,16 +349,16 @@ search x(r12) y(rbx) z(r8) {
 		t164(rdi) = t164(rdi) ADD t163(r12)
 		t165(rbx) = mov Address (t160(rbx) + 0)
 		t165(rbx) = t165(rbx) ADD Address (t164(rdi) + 0)
-		t166(r12) = mov 2
-		t166(r12) = t166(r12) SHL 3
-		t167(rdi) = mov Address (make(@make) + 0)
-		t167(rdi) = t167(rdi) ADD t166(r12)
-		t168(r12) = mov 2
-		t168(r12) = t168(r12) SHL 3
-		t169(rdi) = mov Address (t167(rdi) + 0)
-		t169(rdi) = t169(rdi) ADD t168(r12)
+		t166(rdi) = mov 2
+		t166(rdi) = t166(rdi) SHL 3
+		t167(r12) = mov Address (make(@make) + 0)
+		t167(r12) = t167(r12) ADD t166(rdi)
+		t168(rdi) = mov 2
+		t168(rdi) = t168(rdi) SHL 3
+		t169(r12) = mov Address (t167(r12) + 0)
+		t169(r12) = t169(r12) ADD t168(rdi)
 		t170(rbx) = mov t165(rbx)
-		t170(rbx) = t170(rbx) ADD Address (t169(rdi) + 0)
+		t170(rbx) = t170(rbx) ADD Address (t169(r12) + 0)
 		cmp t170(rbx) s(rsi)
 		set EQ t171(rbx)
 		t77(rbx) = mov t171(rbx)
@@ -412,10 +417,11 @@ search x(r12) y(rbx) z(r8) {
 		t188(rsi) = t188(rsi) ADD t187(rbx)
 		t189(rbx) = mov 0
 		t189(rbx) = t189(rbx) SHL 3
-		t190(rsi) = mov Address (count(@count) + 0)
-		t190(rsi) = t190(rsi) ADD t189(rbx)
-		t191(rsi) = mov Address (t190(rsi) + 0)
-		Address (t188(rsi) + 0) = Address (t188(rsi) + 0) ADD 1
+		t190(rdi) = mov Address (count(@count) + 0)
+		t190(rdi) = t190(rdi) ADD t189(rbx)
+		t191(rbx) = mov Address (t190(rdi) + 0)
+		t191(rbx) = t191(rbx) ADD 1
+		Address (t188(rsi) + 0) = mov t191(rbx)
 		i(r13) = mov 0
 		jump search_34_loop_condition
 	search_34_loop_condition
@@ -434,15 +440,15 @@ search x(r12) y(rbx) z(r8) {
 		CJump EQ search_37_loop_body
 		jump search_39_loop_exit
 	search_37_loop_body
-		t194(rbx) = mov i(r13)
-		t194(rbx) = t194(rbx) SHL 3
-		t195(rdi) = mov Address (make(@make) + 0)
-		t195(rdi) = t195(rdi) ADD t194(rbx)
-		t196(rbx) = mov j(rsi)
-		t196(rbx) = t196(rbx) SHL 3
-		t197(rdi) = mov Address (t195(rdi) + 0)
-		t197(rdi) = t197(rdi) ADD t196(rbx)
-		t199(rdi) = mov Address (t197(rdi) + 0)
+		t194(rdi) = mov i(r13)
+		t194(rdi) = t194(rdi) SHL 3
+		t195(rbx) = mov Address (make(@make) + 0)
+		t195(rbx) = t195(rbx) ADD t194(rdi)
+		t196(rdi) = mov j(rsi)
+		t196(rdi) = t196(rdi) SHL 3
+		t197(rbx) = mov Address (t195(rbx) + 0)
+		t197(rbx) = t197(rbx) ADD t196(rdi)
+		t199(rdi) = mov Address (t197(rbx) + 0)
 		call toString return value = t198(rax)
 		t201(rdi) = mov t198(rax)
 		call print return value = null
@@ -476,57 +482,58 @@ search x(r12) y(rbx) z(r8) {
 		CJump EQ search_45_if_true
 		jump search_58_if_false
 	search_45_if_true
-		t208(rsi) = mov x(r12)
-		t208(rsi) = t208(rsi) SHL 3
-		t209(rdi) = mov Address (make(@make) + 0)
-		t209(rdi) = t209(rdi) ADD t208(rsi)
-		t210(rsi) = mov y(rbx)
-		t210(rsi) = t210(rsi) SHL 3
-		t211(rdi) = mov Address (t209(rdi) + 0)
-		t211(rdi) = t211(rdi) ADD t210(rsi)
-		t212(rsi) = mov x(r12)
-		t212(rsi) = t212(rsi) SHL 3
+		t208(rdi) = mov x(r12)
+		t208(rdi) = t208(rdi) SHL 3
+		t209(rsi) = mov Address (make(@make) + 0)
+		t209(rsi) = t209(rsi) ADD t208(rdi)
+		t210(rdi) = mov y(rbx)
+		t210(rdi) = t210(rdi) SHL 3
+		t211(rsi) = mov Address (t209(rsi) + 0)
+		t211(rsi) = t211(rsi) ADD t210(rdi)
+		t212(r13) = mov x(r12)
+		t212(r13) = t212(r13) SHL 3
 		t213(rdi) = mov Address (make(@make) + 0)
-		t213(rdi) = t213(rdi) ADD t212(rsi)
-		t214(rsi) = mov 0
-		t214(rsi) = t214(rsi) SHL 3
-		t215(rdi) = mov Address (t213(rdi) + 0)
-		t215(rdi) = t215(rdi) ADD t214(rsi)
-		t216(rsi) = mov 15
-		t216(rsi) = t216(rsi) SUB Address (t215(rdi) + 0)
-		t217(r13) = mov x(r12)
-		t217(r13) = t217(r13) SHL 3
-		t218(rdi) = mov Address (make(@make) + 0)
-		t218(rdi) = t218(rdi) ADD t217(r13)
-		t219(r13) = mov 1
-		t219(r13) = t219(r13) SHL 3
-		t220(rdi) = mov Address (t218(rdi) + 0)
-		t220(rdi) = t220(rdi) ADD t219(r13)
-		t221(rsi) = mov t216(rsi)
-		Address (t211(rdi) + 0) = Address (t211(rdi) + 0) SUB Address (t220(rdi) + 0)
-		t224(rsi) = mov x(r12)
-		t224(rsi) = t224(rsi) SHL 3
-		t225(rdi) = mov Address (make(@make) + 0)
-		t225(rdi) = t225(rdi) ADD t224(rsi)
-		t226(rsi) = mov y(rbx)
-		t226(rsi) = t226(rsi) SHL 3
-		t227(rdi) = mov Address (t225(rdi) + 0)
-		t227(rdi) = t227(rdi) ADD t226(rsi)
-		cmp Address (t227(rdi) + 0) 0
+		t213(rdi) = t213(rdi) ADD t212(r13)
+		t214(r13) = mov 0
+		t214(r13) = t214(r13) SHL 3
+		t215(r9) = mov Address (t213(rdi) + 0)
+		t215(r9) = t215(r9) ADD t214(r13)
+		t216(rdi) = mov 15
+		t216(rdi) = t216(rdi) SUB Address (t215(r9) + 0)
+		t217(r9) = mov x(r12)
+		t217(r9) = t217(r9) SHL 3
+		t218(r13) = mov Address (make(@make) + 0)
+		t218(r13) = t218(r13) ADD t217(r9)
+		t219(r9) = mov 1
+		t219(r9) = t219(r9) SHL 3
+		t220(r13) = mov Address (t218(r13) + 0)
+		t220(r13) = t220(r13) ADD t219(r9)
+		t221(rdi) = mov t216(rdi)
+		t221(rdi) = t221(rdi) SUB Address (t220(r13) + 0)
+		Address (t211(rsi) + 0) = mov t221(rdi)
+		t224(rdi) = mov x(r12)
+		t224(rdi) = t224(rdi) SHL 3
+		t225(rsi) = mov Address (make(@make) + 0)
+		t225(rsi) = t225(rsi) ADD t224(rdi)
+		t226(rdi) = mov y(rbx)
+		t226(rdi) = t226(rdi) SHL 3
+		t227(rsi) = mov Address (t225(rsi) + 0)
+		t227(rsi) = t227(rsi) ADD t226(rdi)
+		cmp Address (t227(rsi) + 0) 0
 		set GR t228(rsi)
 		cmp t228(rsi) 1
 		CJump NEQ search_47_logical_false
 		jump search_46_logical_true
 	search_46_logical_true
-		t229(rsi) = mov x(r12)
-		t229(rsi) = t229(rsi) SHL 3
-		t230(rdi) = mov Address (make(@make) + 0)
-		t230(rdi) = t230(rdi) ADD t229(rsi)
-		t231(rsi) = mov y(rbx)
-		t231(rsi) = t231(rsi) SHL 3
-		t232(rdi) = mov Address (t230(rdi) + 0)
-		t232(rdi) = t232(rdi) ADD t231(rsi)
-		cmp Address (t232(rdi) + 0) 10
+		t229(rdi) = mov x(r12)
+		t229(rdi) = t229(rdi) SHL 3
+		t230(rsi) = mov Address (make(@make) + 0)
+		t230(rsi) = t230(rsi) ADD t229(rdi)
+		t231(rdi) = mov y(rbx)
+		t231(rdi) = t231(rdi) SHL 3
+		t232(rsi) = mov Address (t230(rsi) + 0)
+		t232(rsi) = t232(rsi) ADD t231(rdi)
+		cmp Address (t232(rsi) + 0) 10
 		set LE t233(rsi)
 		t223(rsi) = mov t233(rsi)
 		jump search_48_logical_exit
@@ -546,11 +553,11 @@ search x(r12) y(rbx) z(r8) {
 		t236(rsi) = t236(rsi) SHL 3
 		t237(rdi) = mov Address (t235(rdi) + 0)
 		t237(rdi) = t237(rdi) ADD t236(rsi)
-		t238(rsi) = mov Address (t237(rdi) + 0)
-		t238(rsi) = t238(rsi) SHL 3
-		t239(rdi) = mov Address (color(@color) + 0)
-		t239(rdi) = t239(rdi) ADD t238(rsi)
-		cmp Address (t239(rdi) + 0) 0
+		t238(rdi) = mov Address (t237(rdi) + 0)
+		t238(rdi) = t238(rdi) SHL 3
+		t239(rsi) = mov Address (color(@color) + 0)
+		t239(rsi) = t239(rsi) ADD t238(rdi)
+		cmp Address (t239(rsi) + 0) 0
 		set EQ t240(rsi)
 		t222(rsi) = mov t240(rsi)
 		jump search_51_logical_exit
@@ -562,19 +569,19 @@ search x(r12) y(rbx) z(r8) {
 		CJump EQ search_52_if_true
 		jump search_56_if_false
 	search_52_if_true
-		t241(rsi) = mov x(r12)
-		t241(rsi) = t241(rsi) SHL 3
-		t242(rdi) = mov Address (make(@make) + 0)
-		t242(rdi) = t242(rdi) ADD t241(rsi)
-		t243(rsi) = mov y(rbx)
-		t243(rsi) = t243(rsi) SHL 3
-		t244(rdi) = mov Address (t242(rdi) + 0)
-		t244(rdi) = t244(rdi) ADD t243(rsi)
-		t245(rdi) = mov Address (t244(rdi) + 0)
-		t245(rdi) = t245(rdi) SHL 3
-		t246(rsi) = mov Address (color(@color) + 0)
-		t246(rsi) = t246(rsi) ADD t245(rdi)
-		Address (t246(rsi) + 0) = mov 1
+		t241(rdi) = mov x(r12)
+		t241(rdi) = t241(rdi) SHL 3
+		t242(rsi) = mov Address (make(@make) + 0)
+		t242(rsi) = t242(rsi) ADD t241(rdi)
+		t243(rdi) = mov y(rbx)
+		t243(rdi) = t243(rdi) SHL 3
+		t244(rsi) = mov Address (t242(rsi) + 0)
+		t244(rsi) = t244(rsi) ADD t243(rdi)
+		t245(rsi) = mov Address (t244(rsi) + 0)
+		t245(rsi) = t245(rsi) SHL 3
+		t246(rdi) = mov Address (color(@color) + 0)
+		t246(rdi) = t246(rdi) ADD t245(rsi)
+		Address (t246(rdi) + 0) = mov 1
 		cmp y(rbx) 2
 		set EQ t247(rsi)
 		cmp t247(rsi) 1
@@ -627,11 +634,11 @@ search x(r12) y(rbx) z(r8) {
 		t272(rbx) = t272(rbx) SHL 3
 		t273(rsi) = mov Address (t271(rsi) + 0)
 		t273(rsi) = t273(rsi) ADD t272(rbx)
-		t274(rsi) = mov Address (t273(rsi) + 0)
-		t274(rsi) = t274(rsi) SHL 3
-		t275(rbx) = mov Address (color(@color) + 0)
-		t275(rbx) = t275(rbx) ADD t274(rsi)
-		Address (t275(rbx) + 0) = mov 0
+		t274(rbx) = mov Address (t273(rsi) + 0)
+		t274(rbx) = t274(rbx) SHL 3
+		t275(rsi) = mov Address (color(@color) + 0)
+		t275(rsi) = t275(rsi) ADD t274(rbx)
+		Address (t275(rsi) + 0) = mov 0
 		jump search_57_if_exit
 	search_56_if_false
 		jump search_57_if_exit
@@ -647,11 +654,11 @@ search x(r12) y(rbx) z(r8) {
 		CJump EQ search_60_loop_body
 		jump search_68_loop_exit
 	search_60_loop_body
-		t277(rsi) = mov i(r13)
-		t277(rsi) = t277(rsi) SHL 3
-		t278(rdi) = mov Address (color(@color) + 0)
-		t278(rdi) = t278(rdi) ADD t277(rsi)
-		cmp Address (t278(rdi) + 0) 0
+		t277(rdi) = mov i(r13)
+		t277(rdi) = t277(rdi) SHL 3
+		t278(rsi) = mov Address (color(@color) + 0)
+		t278(rsi) = t278(rsi) ADD t277(rdi)
+		cmp Address (t278(rsi) + 0) 0
 		set EQ t279(rsi)
 		cmp t279(rsi) 1
 		CJump EQ search_61_if_true
@@ -699,15 +706,15 @@ search x(r12) y(rbx) z(r8) {
 		t300(rsi) = mov t296(rax)
 		jump search_64_if_exit
 	search_64_if_exit
-		t301(rsi) = mov x(r12)
-		t301(rsi) = t301(rsi) SHL 3
-		t302(rdi) = mov Address (make(@make) + 0)
-		t302(rdi) = t302(rdi) ADD t301(rsi)
-		t303(rsi) = mov y(rbx)
-		t303(rsi) = t303(rsi) SHL 3
-		t304(rdi) = mov Address (t302(rdi) + 0)
-		t304(rdi) = t304(rdi) ADD t303(rsi)
-		Address (t304(rdi) + 0) = mov 0
+		t301(rdi) = mov x(r12)
+		t301(rdi) = t301(rdi) SHL 3
+		t302(rsi) = mov Address (make(@make) + 0)
+		t302(rsi) = t302(rsi) ADD t301(rdi)
+		t303(rdi) = mov y(rbx)
+		t303(rdi) = t303(rdi) SHL 3
+		t304(rsi) = mov Address (t302(rsi) + 0)
+		t304(rsi) = t304(rsi) ADD t303(rdi)
+		Address (t304(rsi) + 0) = mov 0
 		t305(rdi) = mov i(r13)
 		t305(rdi) = t305(rdi) SHL 3
 		t306(rsi) = mov Address (color(@color) + 0)
@@ -741,13 +748,15 @@ __global_init {
 		t309(rsi) = t309(rsi) SHL 3
 		malloc t308(rsi) t309(rsi)
 		Address (t308(rsi) + 0) = mov 10
-		Address (color(@color) + 0) = Address (color(@color) + 0) ADD 8
+		t308(rsi) = t308(rsi) ADD 8
+		Address (color(@color) + 0) = mov t308(rsi)
 		t311(rsi) = mov 1
 		INC t311(rsi)
 		t311(rsi) = t311(rsi) SHL 3
 		malloc t310(rsi) t311(rsi)
 		Address (t310(rsi) + 0) = mov 1
-		Address (count(@count) + 0) = Address (count(@count) + 0) ADD 8
+		t310(rsi) = t310(rsi) ADD 8
+		Address (count(@count) + 0) = mov t310(rsi)
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
@@ -759,7 +768,8 @@ origin N(rsi) {
 		t2(rdi) = t2(rdi) SHL 3
 		malloc t1(rdi) t2(rdi)
 		Address (t1(rdi) + 0) = mov N(rsi)
-		Address (make(@make) + 0) = Address (make(@make) + 0) ADD 8
+		t1(rdi) = t1(rdi) ADD 8
+		Address (make(@make) + 0) = mov t1(rdi)
 		Address (i(@i) + 0) = mov 0
 		jump origin_1_loop_condition
 	origin_1_loop_condition
@@ -773,12 +783,13 @@ origin N(rsi) {
 		t4(r8) = t4(r8) SHL 3
 		t5(rdi) = mov Address (make(@make) + 0)
 		t5(rdi) = t5(rdi) ADD t4(r8)
-		t7(rdi) = mov N(rsi)
-		INC t7(rdi)
-		t7(rdi) = t7(rdi) SHL 3
-		malloc t6(rdi) t7(rdi)
-		Address (t6(rdi) + 0) = mov N(rsi)
-		Address (t5(rdi) + 0) = Address (t5(rdi) + 0) ADD 8
+		t7(r8) = mov N(rsi)
+		INC t7(r8)
+		t7(r8) = t7(r8) SHL 3
+		malloc t6(r8) t7(r8)
+		Address (t6(r8) + 0) = mov N(rsi)
+		t6(r8) = t6(r8) ADD 8
+		Address (t5(rdi) + 0) = mov t6(r8)
 		Address (j(@j) + 0) = mov 0
 		jump origin_3_loop_condition
 	origin_3_loop_condition
@@ -821,11 +832,11 @@ main {
 		t19(rdx) = mov 0
 		call search return value = t16(rax)
 		t20(rsi) = mov t16(rax)
-		t21(rbx) = mov 0
-		t21(rbx) = t21(rbx) SHL 3
-		t22(rsi) = mov Address (count(@count) + 0)
-		t22(rsi) = t22(rsi) ADD t21(rbx)
-		t24(rdi) = mov Address (t22(rsi) + 0)
+		t21(rsi) = mov 0
+		t21(rsi) = t21(rsi) SHL 3
+		t22(rbx) = mov Address (count(@count) + 0)
+		t22(rbx) = t22(rbx) ADD t21(rsi)
+		t24(rdi) = mov Address (t22(rbx) + 0)
 		call toString return value = t23(rax)
 		t26(rdi) = mov t23(rax)
 		call println return value = null

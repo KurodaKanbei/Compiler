@@ -28,7 +28,6 @@ search:
      mov                  rbp,                  rsp
      sub                  rsp,                   24
     push                  r12
-    push                  r14
     push                  r13
     push                  rbx
 search_0_block_enter:
@@ -36,128 +35,132 @@ search_0_block_enter:
      mov                  rbx,                  rsi
      mov                   r8,                  rdx
      cmp                  rbx,                    0
-     mov                  r14,                    0
-    setg                 r14b
-     cmp                  r14,                    1
+     mov                  rsi,                    0
+    setg                  sil
+     cmp                  rsi,                    1
       je search_1_logical_true
      jmp search_2_logical_false
 search_1_logical_true:
-     mov                  r14,                    1
+     mov                  rsi,                    1
      jmp search_3_logical_exit
 search_2_logical_false:
      cmp                  rbx,                    0
-     mov                  r14,                    0
-    setl                 r14b
+     mov                  rsi,                    0
+    setl                  sil
 search_3_logical_exit:
-     cmp                  r14,                    1
+     cmp                  rsi,                    1
       je search_4_logical_true
      jmp search_5_logical_false
 search_4_logical_true:
-     mov                  r14,                    1
+     mov                  rsi,                    1
      jmp search_6_logical_exit
 search_5_logical_false:
      cmp                  r12,                    0
-     mov                  r14,                    0
-    sete                 r14b
+     mov                  rsi,                    0
+    sete                  sil
 search_6_logical_exit:
-     cmp                  r14,                    1
+     cmp                  rsi,                    1
       je search_7_logical_true
      jmp search_8_logical_false
 search_7_logical_true:
-     mov                  rdi,                    1
+     mov                  rsi,                    1
      jmp search_9_logical_exit
 search_8_logical_false:
-     mov                  r14,                  r12
-     sub                   r9,                    1
-     sal                   r9,                    3
-     mov                  r14,    qword [@make + 0]
-     add                  r14,                   r9
-     mov                  r10,                    0
-     sal                  r10,                    3
-     mov                   r9,      qword [r14 + 0]
-     add                   r9,                  r10
-     mov                  r14,                  r12
-     sub                  r13,                    1
+     mov                  rsi,                  r12
+     sub                  rsi,                    1
+     mov                  rdi,                  rsi
+     sal                  rdi,                    3
+     mov                  rsi,    qword [@make + 0]
+     add                  rsi,                  rdi
+     mov                  rdi,                    0
+     sal                  rdi,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rdi
+     mov                  rdi,                  r12
+     sub                  rdi,                    1
+     mov                  r13,                  rdi
      sal                  r13,                    3
-     mov                  r14,    qword [@make + 0]
-     add                  r14,                  r13
+     mov                  rdi,    qword [@make + 0]
+     add                  rdi,                  r13
      mov                  r13,                    1
      sal                  r13,                    3
-     mov                  r14,      qword [r14 + 0]
-     add                  r14,                  r13
-     mov                  r13,       qword [r9 + 0]
-     add                  r13,      qword [r14 + 0]
-     mov                   r9,                  r12
+     mov                  rdi,      qword [rdi + 0]
+     add                  rdi,                  r13
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,      qword [rdi + 0]
+     mov                  rdi,                  r12
      sub                  rdi,                    1
-     sal                  rdi,                    3
-     mov                   r9,    qword [@make + 0]
-     add                   r9,                  rdi
-     mov                  r14,                    2
-     sal                  r14,                    3
-     mov                  rdi,       qword [r9 + 0]
-     add                  rdi,                  r14
-     add                  r13,      qword [rdi + 0]
-     cmp                  r13,                   15
-     mov                  rdi,                    0
-    sete                  dil
+     mov                  r13,                  rdi
+     sal                  r13,                    3
+     mov                  rdi,    qword [@make + 0]
+     add                  rdi,                  r13
+     mov                  r13,                    2
+     sal                  r13,                    3
+     mov                  rdi,      qword [rdi + 0]
+     add                  rdi,                  r13
+     add                  rsi,      qword [rdi + 0]
+     cmp                  rsi,                   15
+     mov                  rsi,                    0
+    sete                  sil
 search_9_logical_exit:
-     cmp                  rdi,                    1
+     cmp                  rsi,                    1
       je    search_10_if_true
      jmp   search_71_if_false
 search_10_if_true:
      cmp                  r12,                    2
-     mov                  rdi,                    0
-    sete                  dil
-     cmp                  rdi,                    1
+     mov                  rsi,                    0
+    sete                  sil
+     cmp                  rsi,                    1
      jne search_12_logical_false
 search_11_logical_true:
      cmp                  rbx,                    2
-     mov                  rdi,                    0
-    sete                  dil
+     mov                  rsi,                    0
+    sete                  sil
      jmp search_13_logical_exit
 search_12_logical_false:
-     mov                  rdi,                    0
+     mov                  rsi,                    0
 search_13_logical_exit:
-     cmp                  rdi,                    1
+     cmp                  rsi,                    1
       je    search_14_if_true
      jmp   search_44_if_false
 search_14_if_true:
      mov                  rbx,                    2
      sal                  rbx,                    3
+     mov                  rsi,    qword [@make + 0]
+     add                  rsi,                  rbx
+     mov                  rbx,                    2
+     sal                  rbx,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rbx
+     mov                  rbx,                   45
+     sub                  rbx,                   r8
+     mov      qword [rsi + 0],                  rbx
+     mov                  rbx,                    0
+     sal                  rbx,                    3
+     mov                  rsi,    qword [@make + 0]
+     add                  rsi,                  rbx
+     mov                  rbx,                    0
+     sal                  rbx,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rbx
+     mov                  rbx,                    0
+     sal                  rbx,                    3
+     mov                  rdi,    qword [@make + 0]
+     add                  rdi,                  rbx
+     mov                  rbx,                    1
+     sal                  rbx,                    3
+     mov                  rdi,      qword [rdi + 0]
+     add                  rdi,                  rbx
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,      qword [rdi + 0]
+     mov                  rbx,                    0
+     sal                  rbx,                    3
      mov                  rdi,    qword [@make + 0]
      add                  rdi,                  rbx
      mov                  rbx,                    2
      sal                  rbx,                    3
      mov                  rdi,      qword [rdi + 0]
      add                  rdi,                  rbx
-     mov                  rbx,                   45
-     sub      qword [rdi + 0],                   r8
-     mov                  rdi,                    0
-     sal                  rdi,                    3
-     mov                  rbx,    qword [@make + 0]
-     add                  rbx,                  rdi
-     mov                  rdi,                    0
-     sal                  rdi,                    3
-     mov                  rbx,      qword [rbx + 0]
-     add                  rbx,                  rdi
-     mov                  r12,                    0
-     sal                  r12,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  r12
-     mov                  r12,                    1
-     sal                  r12,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  r12
-     mov                  rbx,      qword [rbx + 0]
-     add                  rbx,      qword [rdi + 0]
-     mov                  r12,                    0
-     sal                  r12,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  r12
-     mov                  r12,                    2
-     sal                  r12,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  r12
      add                  rsi,      qword [rdi + 0]
      mov                  rdi,                    1
      sal                  rdi,                    3
@@ -177,15 +180,15 @@ search_14_if_true:
      add                  rdi,                  r12
      mov                  rbx,      qword [rbx + 0]
      add                  rbx,      qword [rdi + 0]
-     mov                  r12,                    1
-     sal                  r12,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  r12
-     mov                  r12,                    2
-     sal                  r12,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  r12
-     add                  rbx,      qword [rdi + 0]
+     mov                  rdi,                    1
+     sal                  rdi,                    3
+     mov                  r12,    qword [@make + 0]
+     add                  r12,                  rdi
+     mov                  rdi,                    2
+     sal                  rdi,                    3
+     mov                  r12,      qword [r12 + 0]
+     add                  r12,                  rdi
+     add                  rbx,      qword [r12 + 0]
      cmp                  rbx,                  rsi
      mov                  rbx,                    0
     sete                   bl
@@ -311,25 +314,25 @@ search_24_logical_true:
      sal                  rdi,                    3
      mov                  rbx,      qword [rbx + 0]
      add                  rbx,                  rdi
-     mov                  r12,                    1
-     sal                  r12,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  r12
-     mov                  r12,                    2
-     sal                  r12,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  r12
+     mov                  rdi,                    1
+     sal                  rdi,                    3
+     mov                  r12,    qword [@make + 0]
+     add                  r12,                  rdi
+     mov                  rdi,                    2
+     sal                  rdi,                    3
+     mov                  r12,      qword [r12 + 0]
+     add                  r12,                  rdi
      mov                  rbx,      qword [rbx + 0]
-     add                  rbx,      qword [rdi + 0]
-     mov                  r12,                    2
-     sal                  r12,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  r12
-     mov                  r12,                    2
-     sal                  r12,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  r12
-     add                  rbx,      qword [rdi + 0]
+     add                  rbx,      qword [r12 + 0]
+     mov                  rdi,                    2
+     sal                  rdi,                    3
+     mov                  r12,    qword [@make + 0]
+     add                  r12,                  rdi
+     mov                  rdi,                    2
+     sal                  rdi,                    3
+     mov                  r12,      qword [r12 + 0]
+     add                  r12,                  rdi
+     add                  rbx,      qword [r12 + 0]
      cmp                  rbx,                  rsi
      mov                  rbx,                    0
     sete                   bl
@@ -358,15 +361,15 @@ search_27_logical_true:
      add                  rdi,                  r12
      mov                  rbx,      qword [rbx + 0]
      add                  rbx,      qword [rdi + 0]
-     mov                  r12,                    2
-     sal                  r12,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  r12
-     mov                  r12,                    2
-     sal                  r12,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  r12
-     add                  rbx,      qword [rdi + 0]
+     mov                  rdi,                    2
+     sal                  rdi,                    3
+     mov                  r12,    qword [@make + 0]
+     add                  r12,                  rdi
+     mov                  rdi,                    2
+     sal                  rdi,                    3
+     mov                  r12,      qword [r12 + 0]
+     add                  r12,                  rdi
+     add                  rbx,      qword [r12 + 0]
      cmp                  rbx,                  rsi
      mov                  rbx,                    0
     sete                   bl
@@ -421,10 +424,11 @@ search_33_if_true:
      add                  rsi,                  rbx
      mov                  rbx,                    0
      sal                  rbx,                    3
-     mov                  rsi,   qword [@count + 0]
-     add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add      qword [rsi + 0],                    1
+     mov                  rdi,   qword [@count + 0]
+     add                  rdi,                  rbx
+     mov                  rbx,      qword [rdi + 0]
+     add                  rbx,                    1
+     mov      qword [rsi + 0],                  rbx
      mov                  r13,                    0
 search_34_loop_condition:
      cmp                  r13,                    2
@@ -443,43 +447,45 @@ search_36_loop_condition:
       je  search_37_loop_body
      jmp  search_39_loop_exit
 search_37_loop_body:
-     mov                  rbx,                  r13
-     sal                  rbx,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  rbx
-     mov                  rbx,                  rsi
-     sal                  rbx,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  rbx
-     mov                  rdi,      qword [rdi + 0]
+     mov                  rdi,                  r13
+     sal                  rdi,                    3
+     mov                  rbx,    qword [@make + 0]
+     add                  rbx,                  rdi
+     mov                  rdi,                  rsi
+     sal                  rdi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rdi
+     mov                  rdi,      qword [rbx + 0]
     push                  rsi
+     sub                  rsp,                    8
     call             toString
+     add                  rsp,                    8
      pop                  rsi
      mov                  rdi,                  rax
     push                  rsi
+     sub                  rsp,                    8
     call                print
+     add                  rsp,                    8
      pop                  rsi
      mov                  rdi,     __const_string_0
     push                  rsi
+     sub                  rsp,                    8
     call                print
+     add                  rsp,                    8
      pop                  rsi
 search_38_loop_increment:
      add                  rsi,                    1
      jmp search_36_loop_condition
 search_39_loop_exit:
      mov                  rdi,     __const_string_1
-     sub                  rsp,                    8
     call                print
-     add                  rsp,                    8
 search_40_loop_increment:
      mov                  rsi,                  r13
      add                  r13,                    1
      jmp search_34_loop_condition
 search_41_loop_exit:
      mov                  rdi,     __const_string_2
-     sub                  rsp,                    8
     call                print
-     add                  rsp,                    8
      jmp    search_43_if_exit
 search_42_if_false:
 search_43_if_exit:
@@ -492,58 +498,57 @@ search_44_if_false:
       je    search_45_if_true
      jmp   search_58_if_false
 search_45_if_true:
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                  rbx
-     sal                  rsi,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                    0
-     sal                  rsi,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                   15
-     sub                  rsi,      qword [rdi + 0]
+     mov                  rdi,                  r12
+     sal                  rdi,                    3
+     mov                  rsi,    qword [@make + 0]
+     add                  rsi,                  rdi
+     mov                  rdi,                  rbx
+     sal                  rdi,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rdi
      mov                  r13,                  r12
      sal                  r13,                    3
      mov                  rdi,    qword [@make + 0]
      add                  rdi,                  r13
-     mov                  r13,                    1
+     mov                  r13,                    0
      sal                  r13,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  r13
-     mov                  rax,      qword [rdi + 0]
-     sub                  rax,      qword [rdi + 0]
-     mov      qword [rdi + 0],                  rax
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                  rbx
-     sal                  rsi,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  rsi
-     cmp      qword [rdi + 0],                    0
+     mov                   r9,      qword [rdi + 0]
+     add                   r9,                  r13
+     mov                  rdi,                   15
+     sub                  rdi,       qword [r9 + 0]
+     mov                   r9,                  r12
+     sal                   r9,                    3
+     mov                  r13,    qword [@make + 0]
+     add                  r13,                   r9
+     mov                   r9,                    1
+     sal                   r9,                    3
+     mov                  r13,      qword [r13 + 0]
+     add                  r13,                   r9
+     sub                  rdi,      qword [r13 + 0]
+     mov      qword [rsi + 0],                  rdi
+     mov                  rdi,                  r12
+     sal                  rdi,                    3
+     mov                  rsi,    qword [@make + 0]
+     add                  rsi,                  rdi
+     mov                  rdi,                  rbx
+     sal                  rdi,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rdi
+     cmp      qword [rsi + 0],                    0
      mov                  rsi,                    0
     setg                  sil
      cmp                  rsi,                    1
      jne search_47_logical_false
 search_46_logical_true:
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                  rbx
-     sal                  rsi,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  rsi
-     cmp      qword [rdi + 0],                   10
+     mov                  rdi,                  r12
+     sal                  rdi,                    3
+     mov                  rsi,    qword [@make + 0]
+     add                  rsi,                  rdi
+     mov                  rdi,                  rbx
+     sal                  rdi,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rdi
+     cmp      qword [rsi + 0],                   10
      mov                  rsi,                    0
     setl                  sil
      jmp search_48_logical_exit
@@ -561,11 +566,11 @@ search_49_logical_true:
      sal                  rsi,                    3
      mov                  rdi,      qword [rdi + 0]
      add                  rdi,                  rsi
-     mov                  rsi,      qword [rdi + 0]
-     sal                  rsi,                    3
-     mov                  rdi,   qword [@color + 0]
-     add                  rdi,                  rsi
-     cmp      qword [rdi + 0],                    0
+     mov                  rdi,      qword [rdi + 0]
+     sal                  rdi,                    3
+     mov                  rsi,   qword [@color + 0]
+     add                  rsi,                  rdi
+     cmp      qword [rsi + 0],                    0
      mov                  rsi,                    0
     sete                  sil
      jmp search_51_logical_exit
@@ -576,19 +581,19 @@ search_51_logical_exit:
       je    search_52_if_true
      jmp   search_56_if_false
 search_52_if_true:
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                  rbx
-     sal                  rsi,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  rsi
-     mov                  rdi,      qword [rdi + 0]
+     mov                  rdi,                  r12
      sal                  rdi,                    3
-     mov                  rsi,   qword [@color + 0]
+     mov                  rsi,    qword [@make + 0]
      add                  rsi,                  rdi
-     mov      qword [rsi + 0],                    1
+     mov                  rdi,                  rbx
+     sal                  rdi,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rdi
+     mov                  rsi,      qword [rsi + 0]
+     sal                  rsi,                    3
+     mov                  rdi,   qword [@color + 0]
+     add                  rdi,                  rsi
+     mov      qword [rdi + 0],                    1
      cmp                  rbx,                    2
      mov                  rsi,                    0
     sete                  sil
@@ -610,9 +615,7 @@ search_53_if_true:
      mov                  rdi,                  rsi
      mov                  rsi,                    0
      mov                  rdx,                   r8
-     sub                  rsp,                    8
     call               search
-     add                  rsp,                    8
      mov                  rsi,                  rax
      jmp    search_55_if_exit
 search_54_if_false:
@@ -629,9 +632,7 @@ search_54_if_false:
      add                   r8,      qword [rdi + 0]
      mov                  rdi,                  r12
      mov                  rdx,                   r8
-     sub                  rsp,                    8
     call               search
-     add                  rsp,                    8
      mov                  rsi,                  rax
 search_55_if_exit:
      mov                  rdi,                  r12
@@ -641,11 +642,11 @@ search_55_if_exit:
      sal                  rbx,                    3
      mov                  rsi,      qword [rsi + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     sal                  rsi,                    3
-     mov                  rbx,   qword [@color + 0]
-     add                  rbx,                  rsi
-     mov      qword [rbx + 0],                    0
+     mov                  rbx,      qword [rsi + 0]
+     sal                  rbx,                    3
+     mov                  rsi,   qword [@color + 0]
+     add                  rsi,                  rbx
+     mov      qword [rsi + 0],                    0
      jmp    search_57_if_exit
 search_56_if_false:
 search_57_if_exit:
@@ -660,11 +661,11 @@ search_59_loop_condition:
       je  search_60_loop_body
      jmp  search_68_loop_exit
 search_60_loop_body:
-     mov                  rsi,                  r13
-     sal                  rsi,                    3
-     mov                  rdi,   qword [@color + 0]
-     add                  rdi,                  rsi
-     cmp      qword [rdi + 0],                    0
+     mov                  rdi,                  r13
+     sal                  rdi,                    3
+     mov                  rsi,   qword [@color + 0]
+     add                  rsi,                  rdi
+     cmp      qword [rsi + 0],                    0
      mov                  rsi,                    0
     sete                  sil
      cmp                  rsi,                    1
@@ -700,7 +701,9 @@ search_62_if_true:
      mov                  rsi,                    0
      mov                  rdx,                   r9
     push                   r8
+     sub                  rsp,                    8
     call               search
+     add                  rsp,                    8
      pop                   r8
      mov                  rsi,                  rax
      jmp    search_64_if_exit
@@ -712,19 +715,21 @@ search_63_if_false:
      mov                  rdi,                  r12
      mov                  rdx,                   r9
     push                   r8
+     sub                  rsp,                    8
     call               search
+     add                  rsp,                    8
      pop                   r8
      mov                  rsi,                  rax
 search_64_if_exit:
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rdi,    qword [@make + 0]
-     add                  rdi,                  rsi
-     mov                  rsi,                  rbx
-     sal                  rsi,                    3
-     mov                  rdi,      qword [rdi + 0]
-     add                  rdi,                  rsi
-     mov      qword [rdi + 0],                    0
+     mov                  rdi,                  r12
+     sal                  rdi,                    3
+     mov                  rsi,    qword [@make + 0]
+     add                  rsi,                  rdi
+     mov                  rdi,                  rbx
+     sal                  rdi,                    3
+     mov                  rsi,      qword [rsi + 0]
+     add                  rsi,                  rdi
+     mov      qword [rsi + 0],                    0
      mov                  rdi,                  r13
      sal                  rdi,                    3
      mov                  rsi,   qword [@color + 0]
@@ -746,7 +751,6 @@ search_72_if_exit:
 search_73_block_exit:
      pop                  rbx
      pop                  r13
-     pop                  r14
      pop                  r12
      add                  rsp,                   24
      pop                  rbp
@@ -767,7 +771,8 @@ __global_init_0_block_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                   10
-     add   qword [@color + 0],                    8
+     add                  rsi,                    8
+     mov   qword [@color + 0],                  rsi
      mov                  rsi,                    1
      add                  rsi,                    1
      sal                  rsi,                    3
@@ -779,7 +784,8 @@ __global_init_0_block_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                    1
-     add   qword [@count + 0],                    8
+     add                  rsi,                    8
+     mov   qword [@count + 0],                  rsi
 __global_init_1_block_exit:
      add                  rsp,                   16
      pop                  rbp
@@ -802,7 +808,8 @@ origin_0_block_enter:
      pop                  rsi
      mov                  rdi,                  rax
      mov      qword [rdi + 0],                  rsi
-     add    qword [@make + 0],                    8
+     add                  rdi,                    8
+     mov    qword [@make + 0],                  rdi
      mov       qword [@i + 0],                    0
 origin_1_loop_condition:
      cmp       qword [@i + 0],                  rsi
@@ -816,19 +823,21 @@ origin_2_loop_body:
      sal                   r8,                    3
      mov                  rdi,    qword [@make + 0]
      add                  rdi,                   r8
-     mov                  rdi,                  rsi
-     add                  rdi,                    1
-     sal                  rdi,                    3
+     mov                   r8,                  rsi
+     add                   r8,                    1
+     sal                   r8,                    3
     push                  rsi
     push                  rdi
-     sub                  rsp,                    8
+    push                   r8
+     mov                  rdi,                   r8
     call               malloc
-     add                  rsp,                    8
+     pop                   r8
      pop                  rdi
      pop                  rsi
-     mov                  rdi,                  rax
-     mov      qword [rdi + 0],                  rsi
-     add      qword [rdi + 0],                    8
+     mov                   r8,                  rax
+     mov       qword [r8 + 0],                  rsi
+     add                   r8,                    8
+     mov      qword [rdi + 0],                   r8
      mov       qword [@j + 0],                    0
 origin_3_loop_condition:
      cmp       qword [@j + 0],                  rsi
@@ -875,11 +884,11 @@ main_0_block_enter:
      mov                  rdx,                    0
     call               search
      mov                  rsi,                  rax
-     mov                  rbx,                    0
-     sal                  rbx,                    3
-     mov                  rsi,   qword [@count + 0]
-     add                  rsi,                  rbx
-     mov                  rdi,      qword [rsi + 0]
+     mov                  rsi,                    0
+     sal                  rsi,                    3
+     mov                  rbx,   qword [@count + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
     call             toString
      mov                  rdi,                  rax
     call              println

@@ -11,6 +11,8 @@ import Compiler.Trans.PhysicalOperand.PhysicalRegister;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Error.InternalError;
 
+import java.util.HashSet;
+
 
 public class BinaryInstruction extends Instruction {
     public enum BinaryOp {
@@ -34,6 +36,7 @@ public class BinaryInstruction extends Instruction {
 
     public void setTarget(Operand target) {
         this.target = target;
+        build();
     }
 
     public void setSource(Operand source) {
@@ -55,6 +58,12 @@ public class BinaryInstruction extends Instruction {
                 throw new InternalError("Target of div, mod, shl, shr can't be memory address");
             }
         }
+        build();
+    }
+
+    private void build() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
         if (target instanceof VirtualRegister) {
             killSet.add((VirtualRegister) target);
             useSet.add((VirtualRegister) target);
