@@ -132,7 +132,7 @@ public class Translator {
     private static String getGlobalFunction() {
         StringBuilder str = new StringBuilder();
         ProgramIR.getFunctionMap().values().forEach(
-                functionIR -> str.append("global " + functionIR.getFunctionType().getName() + "\n")
+                functionIR -> str.append("global " + functionIR.getFunctionType().getIRName() + "\n")
         );
         builtInFunctionName.forEach(name -> str.append("global " + name + "\n"));
         return str.toString();

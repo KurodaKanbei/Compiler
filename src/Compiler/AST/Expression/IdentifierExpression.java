@@ -1,6 +1,5 @@
 package Compiler.AST.Expression;
 
-import Compiler.AST.Constant.IntConstant;
 import Compiler.AST.ProgramAST;
 import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.FunctionType;
@@ -41,7 +40,7 @@ public class IdentifierExpression extends Expression {
 
     @Override
     public String toString() {
-        return "Identifier";
+        return "Identifier " + symbol.getName();
     }
 
     @Override

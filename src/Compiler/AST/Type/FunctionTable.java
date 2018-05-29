@@ -18,7 +18,7 @@ public class FunctionTable {
     }
 
     public void addFunction(FunctionType functionType) {
-        String functionName = functionType.getName();
+        String functionName = functionType.getOriginName();
         if (functionMap.containsKey(functionName)) {
             throw new CompilationError("There are more than one functions naming" + functionName);
         }

@@ -41,7 +41,7 @@ public class FunctionCallInstruction extends Instruction {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append(String.format("call %s", functionType.getName()));
+        str.append(String.format("call %s", functionType.getIRName()));
         operandList.forEach(operand -> str.append(" ").append(operand.toString()));
         str.append(String.format(" return value = %s", returnValue));
         return str.toString();
@@ -74,7 +74,7 @@ public class FunctionCallInstruction extends Instruction {
             PhysicalOperand physicalOperand = operandList.get(i).getPhysicalOperand(str);
             str.append(Translator.getInstruction("push", physicalOperand.toString()));
         }
-        str.append(Translator.getInstruction("call", functionType.getName()));
+        str.append(Translator.getInstruction("call", functionType.getIRName()));
 
         Translator.subOffset(frameSize);
 

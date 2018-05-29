@@ -1,33 +1,27 @@
 __global_init {
 	__global_init_0_block_enter
-		t10(null) = mov 8
-		INC t10(null)
-		t10(null) = t10(null) SHL 3
-		malloc t9(null) t10(null)
-		Address (t9(null) + 0) = mov 8
-		t9(null) = t9(null) ADD 8
-		Address (dx(@dx) + 0) = mov t9(null)
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
+older_solveAge this(null) {
+	older_solveAge_0_block_enter
+		this(null) = mov t6(rdi)
+		Address (this(null) + 0) = mov 100000
+		jump older_solveAge_1_block_exit
+	older_solveAge_1_block_exit
+}
 main {
 	main_0_block_enter
-		t0(null) = mov 0
-		t0(null) = t0(null) SHL 3
-		t1(null) = mov Address (dx(@dx) + 0)
-		t1(null) = t1(null) ADD t0(null)
-		t2(null) = mov 2
-		NEG t2(null)
-		Address (t1(null) + 0) = mov t2(null)
-		t3(null) = mov 0
-		t3(null) = t3(null) SHL 3
-		t4(null) = mov Address (dx(@dx) + 0)
-		t4(null) = t4(null) ADD t3(null)
-		t6(rdi) = mov Address (t4(null) + 0)
-		call toString return value = t5(rax)
-		t7(null) = mov t5(rax)
-		t8(rdi) = mov t7(null)
+		malloc t0(null) 8
+		mrJiang(null) = mov t0(null)
+		t1(rdi) = mov mrJiang(null)
+		call older_solveAge return value = null
+		t3(rdi) = mov Address (mrJiang(null) + 0)
+		call toString return value = t2(rax)
+		t4(null) = mov t2(rax)
+		t5(rdi) = mov t4(null)
 		call println return value = null
+		ret 0
 		jump main_1_block_exit
 	main_1_block_exit
 }

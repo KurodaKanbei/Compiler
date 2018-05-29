@@ -67,13 +67,13 @@ public class ProgramIR {
         }
         for (FunctionType functionType : ProgramAST.globalFunctionTable.getFunctionMap().values()) {
             if (!functionType.isBuiltin()) {
-                addFunction(functionType.getName(), new FunctionIR(functionType));
+                addFunction(functionType.getIRName(), new FunctionIR(functionType));
             }
         }
         for (ClassType classType : ProgramAST.classTable.getClassMap().values()) {
             for (FunctionType functionType : classType.getMemberFunctionTable().getFunctionMap().values()) {
                 if (!functionType.isBuiltin()) {
-                    addFunction(functionType.getName(), new FunctionIR(functionType));
+                    addFunction(functionType.getIRName(), new FunctionIR(functionType));
                 }
             }
             if (classType.getConstructFunction() != null) {

@@ -22,7 +22,7 @@ public class DeclarationListener extends BaseListener{
         boolean findEntry = false;
         for (ParseTree x : ctx.functionDeclaration()) {
             FunctionType functionType = (FunctionType) returnNode.get(x);
-            if (functionType.getName().equals("main")) {
+            if (functionType.getOriginName().equals("main")) {
                 if (!(functionType.getReturnType() instanceof IntType)) {
                     throw new CompilationError("The return type of main function is expected to be int type");
                 }
@@ -98,7 +98,7 @@ public class DeclarationListener extends BaseListener{
             FunctionType functionType = (FunctionType) returnNode.get(x);
             functionType.setClassScope(classType);
             functionType.getParameterList().add(0, new Symbol("this", classType));
-            if (functionType.getName() == null) {
+            if (functionType.getOriginName() == null) {
                 classType.setConstructFunction(functionType);
             } else {
                 classType.addMemberFunction(functionType);

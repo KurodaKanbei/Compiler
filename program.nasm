@@ -1,4 +1,5 @@
 global __global_init
+global older_solveAge
 global main
 global print_Int
 global println_Int
@@ -24,57 +25,51 @@ SECTION .text
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
-     sub                  rsp,                    8
 __global_init_0_block_enter:
-     mov                  rsi,                    8
-     add                  rsi,                    1
-     sal                  rsi,                    3
-    push                  rsi
-     mov                  rdi,                  rsi
-    call               malloc
-     pop                  rsi
-     mov                  rsi,                  rax
-     mov      qword [rsi + 0],                    8
-     add                  rsi,                    8
-     mov      qword [@dx + 0],                  rsi
      jmp __global_init_1_block_exit
 __global_init_1_block_exit:
-     add                  rsp,                    8
+     pop                  rbp
+     ret
+older_solveAge:
+    push                  rbp
+     mov                  rbp,                  rsp
+older_solveAge_0_block_enter:
+     mov                  rsi,                  rdi
+     mov      qword [rsi + 0],               100000
+     jmp older_solveAge_1_block_exit
+older_solveAge_1_block_exit:
      pop                  rbp
      ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
-     sub                  rsp,                    8
-    push                  rbx
 main_0_block_enter:
-     mov                  rbx,                    0
-     sal                  rbx,                    3
-     mov                  rsi,      qword [@dx + 0]
-     add                  rsi,                  rbx
-     mov                  rbx,                    2
-     neg                  rbx
-     mov      qword [rsi + 0],                  rbx
-     mov                  rsi,                    0
-     sal                  rsi,                    3
-     mov                  rbx,      qword [@dx + 0]
-     add                  rbx,                  rsi
-     mov                  rdi,      qword [rbx + 0]
+    push                  rsi
+     mov                  rdi,                    8
+     sub                  rsp,                    8
+    call               malloc
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+    push                  rsi
+     sub                  rsp,                    8
+    call       older_solveAge
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,      qword [rsi + 0]
     call             toString
      mov                  rsi,                  rax
      mov                  rdi,                  rsi
     call              println
+     mov                  rax,                    0
      jmp    main_1_block_exit
 main_1_block_exit:
-     pop                  rbx
-     add                  rsp,                    8
      pop                  rbp
      ret
 SECTION .data
 SECTION .bss
-@dx:
-    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0

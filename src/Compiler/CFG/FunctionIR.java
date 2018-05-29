@@ -84,7 +84,7 @@ public class FunctionIR {
 
     public String getAssembly() {
         StringBuilder str = new StringBuilder();
-        str.append(functionType.getName() + ":\n");
+        str.append(functionType.getIRName() + ":\n");
         blockList.forEach(block -> block.getInstructionList().forEach(Instruction::init));
         init();
 
@@ -93,7 +93,7 @@ public class FunctionIR {
         str.append(Translator.getInstruction("push", "rbp"));
         str.append(Translator.getInstruction("mov", "rbp", "rsp"));
 
-        if (functionType.getName().equals("main")) {
+        if (functionType.getIRName().equals("main")) {
             str.append(Translator.getInstruction("call", "__global_init"));
         }
         //System.out.println(registerManager.getRegisterInMemory());
@@ -184,7 +184,7 @@ public class FunctionIR {
 
     public String toString(int indents) {
         StringBuilder str = new StringBuilder();
-        str.append(Utility.getIndent(indents) + functionType.getName() + " ");
+        str.append(Utility.getIndent(indents) + functionType.getIRName() + " ");
         parameterList.forEach(virtualRegister -> str.append(virtualRegister.toString() + " "));
         str.append("{\n");
         blockList.forEach(block -> str.append(block.toString(indents + 1)));

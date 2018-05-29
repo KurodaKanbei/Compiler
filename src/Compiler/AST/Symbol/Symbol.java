@@ -49,6 +49,10 @@ public class Symbol {
         this.operand = operand;
     }
 
+    public void setClassScope(ClassType classScope) {
+        this.classScope = classScope;
+    }
+
     public String toString(int indents) {
         return Utility.getIndent(indents) + " name = " + name + " type = " + type + "\n";
     }

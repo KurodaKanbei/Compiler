@@ -27,8 +27,16 @@ public class FunctionType extends Type implements Scope {
         this.builtin = false;
     }
 
-    public String getName() {
+    public String getOriginName() {
         return name;
+    }
+
+    public String getIRName() {
+        if (classScope == null) {
+            return name;
+        } else {
+            return ((ClassType) classScope).getName() + "_" + name;
+        }
     }
 
     public Type getReturnType() {
@@ -90,7 +98,7 @@ public class FunctionType extends Type implements Scope {
 
     @Override
     public String toString() {
-        return "Function :" + getName() + "ReturnType :" + getReturnType();
+        return "Function :" + name + "ReturnType :" + getReturnType();
     }
 
     @Override

@@ -1,6 +1,12 @@
-int[] dx = new int[8];
-
-int main() {
-    dx[0] = -2;
-    println(toString(dx[0]));
+class older{
+	int age;
+	void solveAge(){
+	    age = 100000;
+	}
+}
+int main(){
+	older mrJiang = new older;
+	mrJiang.solveAge();
+    println(toString(mrJiang.age));
+    return 0;
 }

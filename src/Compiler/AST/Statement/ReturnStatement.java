@@ -23,7 +23,7 @@ public class ReturnStatement extends Statement{
             throw new CompilationError("The return statement is expected to be in a function scope");
         }
         this.functionType = functionType;
-        String name = functionType.getName();
+        String name = functionType.getOriginName();
         if (name == null && expression != null) {
             throw new CompilationError("The construct function is not expected to contain a return expression");
         }
