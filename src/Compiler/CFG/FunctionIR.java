@@ -103,12 +103,15 @@ public class FunctionIR {
         Translator.addOffset(registerManager.getRegisterInMemory());
 
         str.append(Translator.getCalleeSaved(calleeRegisterList));
-
-        blockList.forEach(block -> {
+        for (int i = 0; i < blockList.size(); i++) {
+            Block block = blockList.get(i);
             str.append(block.toString() + ":\n");
+            int n = block.getInstructionList().size();
+            if (i + 1 < blockList.size() && ((JumpInstruction) block.getInstructionList().get(n - 1)).getTarget().getBlock() == blockList.get(i + 1)) {
+                block.getInstructionList().remove(n - 1);
+            }
             block.getInstructionList().forEach(instruction -> str.append(instruction.getAssembly()));
-        });
-
+        }
         str.append(Translator.getCalleeRestored(calleeRegisterList));
 
         if (registerManager.getRegisterInMemory() > 0) {
