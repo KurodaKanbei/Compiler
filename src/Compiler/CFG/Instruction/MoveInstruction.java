@@ -44,7 +44,7 @@ public class MoveInstruction extends Instruction {
 
     public void setTarget(Operand target) {
         this.target = target;
-        init();
+        build();
     }
 
     public Operand getSource() {
