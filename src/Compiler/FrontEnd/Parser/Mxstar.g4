@@ -22,7 +22,7 @@ program : (variableDeclarationStatement | functionDeclaration | classDeclaration
 
 variableDeclarationStatement    :   type IDENTIFIER ('=' expression)?';';
 
-functionDeclaration :   (type | voidType) IDENTIFIER? ('(' (type IDENTIFIER (',' type IDENTIFIER)*)')'| '()') blockStatement;
+functionDeclaration :   (type | voidType) IDENTIFIER? ('(' (type IDENTIFIER (',' type IDENTIFIER)*)')'| ('(' ')') | '()') blockStatement;
 
 classDeclaration :  'class' IDENTIFIER '{' (variableDeclarationStatement | functionDeclaration)* '}';
 
