@@ -4,14 +4,13 @@ import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.BinaryInstruction;
 import Compiler.CFG.Instruction.MoveInstruction;
 import Compiler.CFG.Operand.VirtualRegister;
-import Compiler.CFG.ProgramIR;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class BinaryInstructionRazor {
-    private static final List<BinaryInstruction.BinaryOp> operatorList = new ArrayList<>(){{
+    private static final List<BinaryInstruction.BinaryOp> operatorList = new ArrayList<BinaryInstruction.BinaryOp>(){{
         add(BinaryInstruction.BinaryOp.ADD); add(BinaryInstruction.BinaryOp.SUB); add(BinaryInstruction.BinaryOp.AND);
         add(BinaryInstruction.BinaryOp.OR); add(BinaryInstruction.BinaryOp.XOR);
     }};
