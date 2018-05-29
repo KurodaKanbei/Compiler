@@ -52,6 +52,9 @@ public class VirtualRegister extends Operand {
     }
 
     private String getAllocated() {
+        if (systemRegister != null) {
+            return systemRegister;
+        }
         if (ProgramIR.getCurrentFunction() != null && ProgramIR.getCurrentFunction().getRegisterStringMap().containsKey(this)) {
             return ProgramIR.getCurrentFunction().getRegisterStringMap().get(this);
         }

@@ -102,18 +102,18 @@ public class Translator {
         return str.toString();
     }
 
-    public static String getCalleeSaved() {
+    public static String getCalleeSaved(List<String> calleeList) {
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < FunctionIR.calleeRegisterList.size(); i++) {
-            str.append(getInstruction("push", FunctionIR.calleeSavedRegisterList.get(i)));
+        for (int i = 0; i < calleeList.size(); i++) {
+            str.append(getInstruction("push", calleeList.get(i)));
         }
         return str.toString();
     }
 
-    public static String getCalleeRestored() {
+    public static String getCalleeRestored(List<String> calleeList) {
         StringBuilder str = new StringBuilder();
-        for (int i = FunctionIR.calleeRegisterList.size() - 1; i >= 0; i--) {
-            str.append(getInstruction("pop", FunctionIR.calleeSavedRegisterList.get(i)));
+        for (int i = calleeList.size() - 1; i >= 0; i--) {
+            str.append(getInstruction("pop", calleeList.get(i)));
         }
         return str.toString();
     }

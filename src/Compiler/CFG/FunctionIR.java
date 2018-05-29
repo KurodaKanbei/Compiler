@@ -16,7 +16,7 @@ public class FunctionIR {
     private LabelInstruction enterBlock, exitBlock;
     private RegisterManager registerManager;
 
-    public static List<String> calleeRegisterList;
+    private List<String> calleeRegisterList;
     private Map<VirtualRegister, String> registerStringMap;
     private Map<VirtualRegister, Integer> registerIntegerMap;
 
@@ -85,10 +85,7 @@ public class FunctionIR {
     public String getAssembly() {
         StringBuilder str = new StringBuilder();
         str.append(functionType.getName() + ":\n");
-        //System.out.println(registerIntegerMap.size());
-        //System.out.println(registerStringMap.size());
         blockList.forEach(block -> block.getInstructionList().forEach(Instruction::init));
-        //System.out.println("init instr complete");
         init();
 
         Translator.setOffset(1);
@@ -104,14 +101,14 @@ public class FunctionIR {
         }
         Translator.addOffset(registerManager.getRegisterInMemory());
 
-        str.append(Translator.getCalleeSaved());
+        str.append(Translator.getCalleeSaved(calleeRegisterList));
 
         blockList.forEach(block -> {
             str.append(block.toString() + ":\n");
             block.getInstructionList().forEach(instruction -> str.append(instruction.getAssembly()));
         });
 
-        str.append(Translator.getCalleeRestored());
+        str.append(Translator.getCalleeRestored(calleeRegisterList));
 
         if (registerManager.getRegisterInMemory() > 0) {
             str.append(Translator.getInstruction("add", "rsp", String.valueOf(registerManager.getRegisterInMemory() << 3)));
