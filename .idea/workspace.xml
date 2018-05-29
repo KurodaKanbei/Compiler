@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program.nasm" beforeDir="false" afterPath="$PROJECT_DIR$/program.nasm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +21,8 @@
       <file leaf-file-name="FunctionIR.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="103" column="63" selection-start-line="103" selection-start-column="63" selection-end-line="103" selection-end-column="63" />
+            <state relative-caret-position="146">
+              <caret line="110" column="65" selection-start-line="110" selection-start-column="65" selection-end-line="110" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,20 +42,8 @@
       <file leaf-file-name="program.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/program.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Translator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="115" column="54" selection-start-line="115" selection-start-column="54" selection-end-line="115" selection-end-column="54" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -68,7 +51,7 @@
       <file leaf-file-name="LivenessAnalysis.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-286">
+            <state relative-caret-position="30">
               <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -89,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
+      <file leaf-file-name="program.nasm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/program.nasm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+            <state relative-caret-position="407">
+              <caret line="50" column="28" selection-end-line="219" />
             </state>
           </provider>
         </entry>
@@ -205,14 +188,14 @@
         <option value="$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/RegisterAllocator.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/ProgramIR.java" />
-        <option value="$PROJECT_DIR$/program.nasm" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" />
-        <option value="$PROJECT_DIR$/program.txt" />
         <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
+        <option value="$PROJECT_DIR$/program.txt" />
+        <option value="$PROJECT_DIR$/program.nasm" />
       </list>
     </option>
   </component>
@@ -930,16 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-286">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -961,17 +934,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/program.txt">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        <state relative-caret-position="146">
+          <caret line="110" column="65" selection-start-line="110" selection-start-column="65" selection-end-line="110" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/program.nasm">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/LivenessAnalysis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+        <state relative-caret-position="30">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -985,16 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="103" column="63" selection-start-line="103" selection-start-column="63" selection-end-line="103" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -1002,6 +971,20 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program.nasm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="50" column="28" selection-end-line="219" />
         </state>
       </provider>
     </entry>

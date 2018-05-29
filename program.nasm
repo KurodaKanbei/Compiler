@@ -33,178 +33,24 @@ main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
-    push                  r12
-    push                  r14
-    push                  r13
-    push                  rbx
 main_0_block_enter:
-     mov                  rsi,                10000
-     mov                   r8,                    0
-     mov                  rbx,                 2800
-     mov                  r13,                    0
-     mov                  rdi,                    0
-     mov                  r12,                 2801
-     add                  r12,                    1
-     sal                  r12,                    3
-    push                  rdi
-    push                  rsi
-    push                   r8
-     mov                  rdi,                  r12
-     sub                  rsp,                    8
-    call               malloc
-     add                  rsp,                    8
-     pop                   r8
-     pop                  rsi
-     pop                  rdi
-     mov                  r12,                  rax
-     mov      qword [r12 + 0],                 2801
-     add                  r12,                    8
-     mov                   r9,                    0
-     jmp main_1_loop_condition
-main_1_loop_condition:
-     mov                  r13,                   r8
-     sub                  r13,                  rbx
-     cmp                  r13,                    0
-     mov                  r13,                    0
-   setne                 r13b
-     cmp                  r13,                    0
-      je     main_4_loop_exit
-     jmp     main_2_loop_body
-main_2_loop_body:
-     mov                  r13,                   r8
-     add                   r8,                    1
-     mov                   r9,                  r13
-     sal                   r9,                    3
-     mov                  r13,                  r12
-     add                  r13,                   r9
-     mov                   r9,                  rsi
-     mov                  rax,                   r9
-     mov                  rcx,                    5
-     cdq
-    idiv                  ecx
-     mov                   r9,                  rax
-     mov      qword [r13 + 0],                   r9
-     jmp main_3_loop_increment
-main_3_loop_increment:
-     jmp main_1_loop_condition
-main_4_loop_exit:
-     jmp main_5_loop_condition
-main_5_loop_condition:
-     mov                  rax,                    1
-     cmp                  rax,                    0
-      je    main_18_loop_exit
-     jmp     main_6_loop_body
-main_6_loop_body:
-     mov                  r13,                    0
-     mov                   r8,                  rbx
-     sal                   r8,                    1
-     mov                   r9,                   r8
-     cmp                   r9,                    0
-     mov                   r8,                    0
-    sete                  r8b
-     cmp                   r8,                    1
-      je       main_7_if_true
-     jmp      main_8_if_false
-main_7_if_true:
-     jmp    main_18_loop_exit
-main_8_if_false:
-     jmp       main_9_if_exit
-main_9_if_exit:
-     mov                   r8,                  rbx
-     jmp main_10_loop_condition
-main_10_loop_condition:
-     mov                  rax,                    1
-     cmp                  rax,                    0
-      je    main_16_loop_exit
-     jmp    main_11_loop_body
-main_11_loop_body:
-     mov                  r14,                   r8
-     sal                  r14,                    3
-     mov                  r10,                  r12
-     add                  r10,                  r14
-     mov                  r14,      qword [r10 + 0]
-    imul                  r14,                  rsi
-     add                  r13,                  r14
-     mov                  r10,                   r8
-     sal                  r10,                    3
-     mov                  r14,                  r12
-     add                  r14,                  r10
-     sub                   r9,                    1
-     mov                  r10,                  r13
-     mov                  rax,                  r10
-     mov                  rcx,                   r9
-     cdq
-    idiv                  ecx
-     mov                  r10,                  rdx
-     mov      qword [r14 + 0],                  r10
-     mov                  r14,                   r9
-     sub                   r9,                    1
-     mov                  rax,                  r13
-     mov                  rcx,                  r14
-     cdq
-    idiv                  ecx
-     mov                  r13,                  rax
-     sub                   r8,                    1
-     cmp                   r8,                    0
-     mov                  r14,                    0
-    sete                 r14b
-     cmp                  r14,                    1
-      je      main_12_if_true
-     jmp     main_13_if_false
-main_12_if_true:
-     jmp    main_16_loop_exit
-main_13_if_false:
-     jmp      main_14_if_exit
-main_14_if_exit:
-     jmp main_15_loop_increment
-main_15_loop_increment:
-    imul                  r13,                   r8
-     jmp main_10_loop_condition
-main_16_loop_exit:
-     sub                  rbx,                   14
-     mov                   r8,                  r13
-     mov                  rax,                   r8
-     mov                  rcx,                  rsi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rax
-     add                  rdi,                   r8
-    push                  rsi
-     sub                  rsp,                    8
+     mov                  rdi,                  272
     call             toString
-     add                  rsp,                    8
-     pop                  rsi
-     mov                  rdi,                  rax
-    push                  rsi
-     sub                  rsp,                    8
-    call                print
-     add                  rsp,                    8
-     pop                  rsi
-     jmp main_17_loop_increment
-main_17_loop_increment:
-     mov                  rdi,                  r13
-     mov                  rax,                  rdi
-     mov                  rcx,                  rsi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     jmp main_5_loop_condition
-main_18_loop_exit:
+     mov                  rsi,                  rax
      mov                  rdi,     __const_string_0
-    call                print
+    call  __string_connection
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+    call              println
      mov                  rax,                    0
-     jmp   main_19_block_exit
-main_19_block_exit:
-     pop                  rbx
-     pop                  r13
-     pop                  r14
-     pop                  r12
+     jmp    main_1_block_exit
+main_1_block_exit:
      pop                  rbp
      ret
 SECTION .data
-      dq                    1
+      dq                    7
 __const_string_0:
-	db  10,   0
+	db  84, 111, 116,  97, 108,  58,  32,   0
 SECTION .bss
 SECTION .data
 __println_int_format:

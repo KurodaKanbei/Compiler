@@ -143,7 +143,7 @@ public class Translator {
         str.append("SECTION .data\n");
         for (int i = 0; i < ProgramIR.getConstStringList().size(); i++) {
             String s = ProgramIR.getConstStringList().get(i);
-            str.append(getInstruction("dq", "1"));
+            str.append(getInstruction("dq", String.valueOf(s.length())));
             str.append("__const_string_").append(String.valueOf(i)).append(":\n").append("\tdb");
             int n = s.length();
             for (int j = 0; j < n; j++) {
