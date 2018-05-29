@@ -47,19 +47,27 @@ public class Main {
         }
     }
 
-    private static void buildIR() {
+    private static void buildIR() throws IOException {
         ProgramIR.init();
-        //ProgramIR.print();
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("raw.ir"));
+        String code = ProgramIR.toString(0);
+        byte[] bytes = code.getBytes();
+        fileOutputStream.write(bytes);
+        fileOutputStream.close();
     }
 
-    private static void optimize() {
+    private static void optimize() throws IOException {
         Optimize.optimize();
-        //ProgramIR.print();
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("allocated.ir"));
+        String code = ProgramIR.toString(0);
+        byte[] bytes = code.getBytes();
+        fileOutputStream.write(bytes);
+        fileOutputStream.close();
     }
 
     private static void translate() throws IOException {
         String assembly = Translator.getAssembly();
-        System.out.println(assembly);
+        //System.out.println(assembly);
         File file = new File("program.nasm");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         byte[] bytes = assembly.getBytes();

@@ -62,7 +62,7 @@ public class UnaryInstruction extends Instruction {
                 str.append(Translator.getInstruction("neg", targetName));
                 return str.toString();
             case REV:
-                str.append(Translator.getInstruction("rev", targetName));
+                str.append(Translator.getInstruction("not", targetName));
                 return str.toString();
         }
         throw new InternalError("the type of unary operator is wrong");

@@ -110,9 +110,9 @@ public class ForStatement extends LoopStatement{
 
         instructionList.add(conditionLabel);
         condition.generateInstruction(instructionList);
-        instructionList.add(new CompareInstruction(condition.getOperand(), new ImmediateOperand(0)));
-        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, exitLabel));
-        instructionList.add(new JumpInstruction(bodyLabel));
+        instructionList.add(new CompareInstruction(condition.getOperand(), new ImmediateOperand(1)));
+        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, bodyLabel));
+        instructionList.add(new JumpInstruction(exitLabel));
 
         instructionList.add(bodyLabel);
         if (statement != null) {

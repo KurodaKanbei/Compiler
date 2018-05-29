@@ -55,15 +55,15 @@ public class BinaryLogicalOrExpression extends Expression {
         operand = RegisterManager.getTemporaryRegister();
         leftExpression.generateInstruction(instructionList);
         instructionList.add(new CompareInstruction(leftExpression.getOperand(), new ImmediateOperand(1)));
-        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.NEQ, falseLabel));
-        instructionList.add(new JumpInstruction(trueLabel));
+        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, trueLabel));
+        instructionList.add(new JumpInstruction(falseLabel));
 
         instructionList.add(trueLabel);
-        rightExpression.generateInstruction(instructionList);
         instructionList.add(new MoveInstruction(operand, new ImmediateOperand(1)));
         instructionList.add(new JumpInstruction(exitLabel));
 
         instructionList.add(falseLabel);
+        rightExpression.generateInstruction(instructionList);
         instructionList.add(new MoveInstruction(operand, rightExpression.getOperand()));
         instructionList.add(new JumpInstruction(exitLabel));
 
