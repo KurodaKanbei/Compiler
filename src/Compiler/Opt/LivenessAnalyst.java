@@ -11,7 +11,7 @@ import Compiler.CFG.Operand.VirtualRegister;
 
 import java.util.*;
 
-public class LivenessAnalysis {
+public class LivenessAnalyst {
     private static Map<VirtualRegister, Set<VirtualRegister>> edge;
     private static Map<VirtualRegister, Set<VirtualRegister>> flow;
     private static Map<VirtualRegister, Integer> count;

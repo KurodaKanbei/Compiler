@@ -1,6 +1,5 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.AST.Expression.BinaryExpression.BinaryNotEqualExpression;
 import Compiler.CFG.Operand.AddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.Operand;
@@ -12,7 +11,6 @@ import Compiler.Trans.PhysicalOperand.PhysicalRegister;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Error.InternalError;
 
-import javax.xml.transform.Source;
 
 public class BinaryInstruction extends Instruction {
     public enum BinaryOp {
@@ -32,6 +30,14 @@ public class BinaryInstruction extends Instruction {
 
     public Operand getSource() {
         return source;
+    }
+
+    public void setTarget(Operand target) {
+        this.target = target;
+    }
+
+    public void setSource(Operand source) {
+        this.source = source;
     }
 
     public BinaryInstruction(BinaryOp binaryOp, Operand target, Operand source) {
