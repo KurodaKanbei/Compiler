@@ -6,6 +6,7 @@ public class Optimize {
     public static void optimize() {
         ProgramIR.getFunctionMap().values().forEach(functionIR -> {
             NaiveInliner.inline(functionIR);
+            NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             int round = 0;
             while (NaiveDeadCodeRazor.deadCodeEliminate(functionIR)) {

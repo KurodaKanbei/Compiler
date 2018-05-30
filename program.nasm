@@ -144,6 +144,43 @@ main_5_if_exit:
      mov                  rdi,                  rsi
      mov                  rsi,                  rbx
      mov                  rbx,                  rdi
+     mov                  r12,                    1
+main_7_inline_enter:
+     mov                   r8,                  r12
+     mov                  rax,                   r8
+    imul                  rax,                 1000
+     mov                   r8,                  rax
+     mov                  rdi,                  rsi
+     mov                  rax,                  rdi
+    imul                  rax,                   10
+     mov                  rdi,                  rax
+     add                   r8,                  rdi
+     mov                  rdi,                   r8
+     add                  rdi,                  rbx
+    push                  rsi
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     pop                  rsi
+     cmp                  r12,                    1
+     mov                  rdi,                    0
+    sete                  dil
+     cmp                  rdi,                    1
+      je       main_8_if_true
+     jmp      main_9_if_false
+main_8_if_true:
+     jmp  main_11_inline_exit
+main_9_if_false:
+main_10_if_exit:
+     mov                  rdi,                  rsi
+     mov                  rsi,                  rbx
+     mov                  rbx,                  rdi
      mov                  rdi,                    1
      mov                  rdx,                  rbx
     push                  rsi
@@ -151,6 +188,29 @@ main_5_if_exit:
     call                  foo
      add                  rsp,                    8
      pop                  rsi
+     mov                   r8,                  r12
+     mov                  rax,                   r8
+    imul                  rax,                 1000
+     mov                   r8,                  rax
+     mov                  rdi,                  rsi
+     mov                  rax,                  rdi
+    imul                  rax,                   10
+     mov                  rdi,                  rax
+     add                   r8,                  rdi
+     mov                  rdi,                   r8
+     add                  rdi,                  rbx
+    push                  rsi
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     pop                  rsi
+main_11_inline_exit:
      mov                  rdi,                  r12
      mov                  rax,                  rdi
     imul                  rax,                 1000

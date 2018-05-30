@@ -84,10 +84,54 @@ main {
 		t(rdi) = mov x(rsi)
 		x(rsi) = mov y(rbx)
 		y(rbx) = mov t(rdi)
-		t35(rdi) = mov 1
-		t36(rsi) = mov x(rsi)
-		t37(rdx) = mov y(rbx)
+		d(r12) = mov 1
+		x(rsi) = mov x(rsi)
+		y(rbx) = mov y(rbx)
+		jump main_7_inline_enter
+	main_7_inline_enter
+		t46(r8) = mov d(r12)
+		t46(r8) = t46(r8) MUL 1000
+		t47(rdi) = mov x(rsi)
+		t47(rdi) = t47(rdi) MUL 10
+		t48(r8) = mov t46(r8)
+		t48(r8) = t48(r8) ADD t47(rdi)
+		t49(rdi) = mov t48(r8)
+		t49(rdi) = t49(rdi) ADD y(rbx)
+		t51(rdi) = mov t49(rdi)
+		call toString return value = t50(rax)
+		t53(rdi) = mov t50(rax)
+		call println return value = null
+		cmp d(r12) 1
+		set EQ t54(rdi)
+		cmp t54(rdi) 1
+		CJump EQ main_8_if_true
+		jump main_9_if_false
+	main_8_if_true
+		jump main_11_inline_exit
+	main_9_if_false
+		jump main_10_if_exit
+	main_10_if_exit
+		t(rdi) = mov x(rsi)
+		x(rsi) = mov y(rbx)
+		y(rbx) = mov t(rdi)
+		t55(rdi) = mov 1
+		t56(rsi) = mov x(rsi)
+		t57(rdx) = mov y(rbx)
 		call foo return value = null
+		t58(r8) = mov d(r12)
+		t58(r8) = t58(r8) MUL 1000
+		t59(rdi) = mov x(rsi)
+		t59(rdi) = t59(rdi) MUL 10
+		t60(r8) = mov t58(r8)
+		t60(r8) = t60(r8) ADD t59(rdi)
+		t61(rdi) = mov t60(r8)
+		t61(rdi) = t61(rdi) ADD y(rbx)
+		t63(rdi) = mov t61(rdi)
+		call toString return value = t62(rax)
+		t65(rdi) = mov t62(rax)
+		call println return value = null
+		jump main_11_inline_exit
+	main_11_inline_exit
 		t38(rdi) = mov d(r12)
 		t38(rdi) = t38(rdi) MUL 1000
 		t39(rsi) = mov x(rsi)
