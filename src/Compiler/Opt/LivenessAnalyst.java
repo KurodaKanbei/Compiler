@@ -90,7 +90,6 @@ public class LivenessAnalyst {
             int n = block.getInstructionList().size();
             for (int i = n - 1; i >= 0; i--) {
                 Instruction instruction = block.getInstructionList().get(i);
-                //System.out.println(instruction.toString());
                 if (instruction instanceof JumpInstruction) {
                     if (i != n - 1) {
                         throw new InternalError("jump instruction must be the last one of the block");

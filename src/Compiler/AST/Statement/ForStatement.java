@@ -99,10 +99,11 @@ public class ForStatement extends LoopStatement{
      */
     @Override
     public void generateInstruction(List<Instruction> instructionList) {
-        conditionLabel = new LabelInstruction("loop_condition");
-        bodyLabel = new LabelInstruction("loop_body");
-        incrementLabel = new LabelInstruction("loop_increment");
-        exitLabel = new LabelInstruction("loop_exit");
+        conditionLabel = new LabelInstruction("loop_condition", this);
+        bodyLabel = new LabelInstruction("loop_body", this);
+        incrementLabel = new LabelInstruction("loop_increment", this);
+        exitLabel = new LabelInstruction("loop_exit", this);
+
         if (init != null) {
             init.generateInstruction(instructionList);
         }

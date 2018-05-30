@@ -101,7 +101,7 @@ public class SymbolTable {
     }
 
     public boolean hasSymbol(String name) {
-        return symbolMap.containsKey(name) && symbolMap.get(name).empty() == false;
+        return symbolMap.containsKey(name) && !symbolMap.get(name).empty();
     }
 
     public Symbol getSymbol(String name) {

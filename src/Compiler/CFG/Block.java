@@ -1,8 +1,6 @@
 package Compiler.CFG;
 
-import Compiler.CFG.Instruction.Instruction;
-import Compiler.CFG.Instruction.JumpInstruction;
-import Compiler.CFG.Instruction.LabelInstruction;
+import Compiler.CFG.Instruction.*;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Utility.Utility;
 
@@ -84,6 +82,13 @@ public class Block {
         return hasJump;
     }
 
+    public void clear() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
+        instructionList = new ArrayList<>();
+        hasJump = false;
+    }
+
     public void addInstruction(Instruction instruction) {
         if (hasJump) {
             return;
@@ -109,6 +114,27 @@ public class Block {
                 liveIn.add(virtualRegister);
             }
         }
+    }
+
+    public boolean onlyContainsNaiveAssign() {
+        for (Instruction instruction : instructionList) {
+            if (!(instruction instanceof BinaryInstruction || instruction instanceof MoveInstruction
+                    || instruction instanceof JumpInstruction || instruction instanceof CJumpInstruction
+                    || instruction instanceof CompareInstruction || instruction instanceof UnaryInstruction
+                    || instruction instanceof CSetInstruction)) {
+                return false;
+            }
+            if (instruction instanceof BinaryInstruction && !(((BinaryInstruction) instruction).getTarget() instanceof VirtualRegister)) {
+                return false;
+            }
+            if (instruction instanceof MoveInstruction && !(((MoveInstruction) instruction).getTarget() instanceof  VirtualRegister)) {
+                return false;
+            }
+            if (instruction instanceof UnaryInstruction && !(((UnaryInstruction) instruction).getTarget() instanceof VirtualRegister)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String toString() {
