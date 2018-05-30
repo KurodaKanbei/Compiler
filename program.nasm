@@ -91,8 +91,7 @@ foo_3_if_exit:
      add                  rsi,                  rbx
      mov                  rdi,                  rsi
     call             toString
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
+     mov                  rdi,                  rax
     call              println
 foo_4_block_exit:
      pop                  rbx
@@ -164,8 +163,7 @@ main_5_if_exit:
      add                  rsi,                  rbx
      mov                  rdi,                  rsi
     call             toString
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
+     mov                  rdi,                  rax
     call              println
 main_6_inline_exit:
      mov                  rax,                    0

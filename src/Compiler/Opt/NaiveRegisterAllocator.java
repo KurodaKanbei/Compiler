@@ -5,7 +5,7 @@ import Compiler.CFG.Operand.VirtualRegister;
 
 import java.util.*;
 
-public class RegisterAllocator {
+public class NaiveRegisterAllocator {
     private static Map<VirtualRegister, String> virtualRegisterStringMap;
     private static Map<VirtualRegister, Integer> countMap;
     private static List<VirtualRegister> criticalRegisterList;

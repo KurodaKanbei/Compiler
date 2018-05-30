@@ -18,8 +18,7 @@ foo d(r12) x(rsi) y(rbx) {
 		t6(rdi) = t6(rdi) ADD y(rbx)
 		t8(rdi) = mov t6(rdi)
 		call toString return value = t7(rax)
-		t9(rdi) = mov t7(rax)
-		t10(rdi) = mov t9(rdi)
+		t10(rdi) = mov t7(rax)
 		call println return value = null
 		cmp d(r12) 1
 		set EQ t11(rdi)
@@ -48,8 +47,7 @@ foo d(r12) x(rsi) y(rbx) {
 		t18(rsi) = t18(rsi) ADD y(rbx)
 		t20(rdi) = mov t18(rsi)
 		call toString return value = t19(rax)
-		t21(rsi) = mov t19(rax)
-		t22(rdi) = mov t21(rsi)
+		t22(rdi) = mov t19(rax)
 		call println return value = null
 		jump foo_4_block_exit
 	foo_4_block_exit
@@ -71,8 +69,7 @@ main {
 		t29(rdi) = t29(rdi) ADD y(rbx)
 		t31(rdi) = mov t29(rdi)
 		call toString return value = t30(rax)
-		t32(rdi) = mov t30(rax)
-		t33(rdi) = mov t32(rdi)
+		t33(rdi) = mov t30(rax)
 		call println return value = null
 		cmp d(r12) 1
 		set EQ t34(rdi)
@@ -101,8 +98,7 @@ main {
 		t41(rsi) = t41(rsi) ADD y(rbx)
 		t43(rdi) = mov t41(rsi)
 		call toString return value = t42(rax)
-		t44(rsi) = mov t42(rax)
-		t45(rdi) = mov t44(rsi)
+		t45(rdi) = mov t42(rax)
 		call println return value = null
 		jump main_6_inline_exit
 	main_6_inline_exit
