@@ -32,29 +32,181 @@ main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
+    push                  r12
+    push                  r14
+    push                  r13
     push                  rbx
 main_0_block_enter:
-     mov                  rbx,     __const_string_0
-     mov                  rsi,     __const_string_1
-     mov                  rdi,                  rbx
+     mov                   r8,                    5
+     mov                  rsi,                   10
+     mov                  rdi,                  rsi
+     add                  rdi,                    1
+     sal                  rdi,                    3
+    push                  rdi
+    push                   r8
+    push                  rsi
      sub                  rsp,                    8
-    call  __string_connection
+    call               malloc
      add                  rsp,                    8
+     pop                  rsi
+     pop                   r8
+     pop                  rdi
      mov                  rdi,                  rax
+     mov      qword [rdi + 0],                  rsi
+     add                  rdi,                    8
+     mov                   r9,                    2
+     add                   r9,                    1
+     sal                   r9,                    3
+    push                   r8
+    push                  rdi
+    push                  rsi
+    push                   r9
+     mov                  rdi,                   r9
+    call               malloc
+     pop                   r9
+     pop                  rsi
+     pop                  rdi
+     pop                   r8
+     mov                   r9,                  rax
+     mov       qword [r9 + 0],                    2
+     add                   r9,                    8
+     mov                  r10,                   r9
+     mov                   r9,                   r8
+     add                   r9,                    1
+     sal                   r9,                    3
+    push                  r10
+    push                   r8
+    push                  rdi
+    push                  rsi
+    push                   r9
+     mov                  rdi,                   r9
      sub                  rsp,                    8
-    call              println
+    call               malloc
      add                  rsp,                    8
-main_1_block_exit:
+     pop                   r9
+     pop                  rsi
+     pop                  rdi
+     pop                   r8
+     pop                  r10
+     mov                   r9,                  rax
+     mov       qword [r9 + 0],                   r8
+     add                   r9,                    8
+     mov                  rbx,                    0
+     sal                  rbx,                    3
+     mov                  r11,                  r10
+     add                  r11,                  rbx
+     mov      qword [r11 + 0],                   r9
+     mov                  r11,                    1
+     sal                  r11,                    3
+     mov                  rbx,                  r10
+     add                  rbx,                  r11
+     mov      qword [rbx + 0],                  rdi
+     mov                  rbx,                    0
+     mov                  r11,                    0
+main_1_loop_condition:
+     cmp                  r11,                    2
+     mov                  r12,                    0
+    setl                 r12b
+     cmp                  r12,                    1
+      je     main_2_loop_body
+     jmp     main_8_loop_exit
+main_2_loop_body:
+     mov                  r12,                    0
+main_3_loop_condition:
+     cmp                  r12,                   r8
+     mov                  r13,                    0
+    setl                 r13b
+     cmp                  r13,                    1
+      je     main_4_loop_body
+     jmp     main_6_loop_exit
+main_4_loop_body:
+     mov                  r13,                  r11
+     sal                  r13,                    3
+     mov                  r14,                  r10
+     add                  r14,                  r13
+     mov                  r13,                  r12
+     sal                  r13,                    3
+     mov                  r14,      qword [r14 + 0]
+     add                  r14,                  r13
+     add                  rbx,                    1
+     mov      qword [r14 + 0],                  rbx
+main_5_loop_increment:
+     add                  r12,                    1
+     jmp main_3_loop_condition
+main_6_loop_exit:
+main_7_loop_increment:
+     add                  r11,                    1
+     jmp main_1_loop_condition
+main_8_loop_exit:
+     mov                  r12,                   r8
+main_9_loop_condition:
+     cmp                  r12,                  rsi
+     mov                  r11,                    0
+    setl                 r11b
+     cmp                  r11,                    1
+      je    main_10_loop_body
+     jmp    main_12_loop_exit
+main_10_loop_body:
+     mov                  r11,                    1
+     sal                  r11,                    3
+     mov                  r13,                  r10
+     add                  r13,                  r11
+     mov                  r11,                  r12
+     sal                  r11,                    3
+     mov                  r13,      qword [r13 + 0]
+     add                  r13,                  r11
+     add                  rbx,                    1
+     mov      qword [r13 + 0],                  rbx
+main_11_loop_increment:
+     add                  r12,                    1
+     jmp main_9_loop_condition
+main_12_loop_exit:
+     mov                  r10,                    0
+     mov                  r11,                    0
+main_13_loop_condition:
+     cmp                  r11,                   r8
+     mov                  rbx,                    0
+    setl                   bl
+     cmp                  rbx,                    1
+      je    main_14_loop_body
+     jmp    main_16_loop_exit
+main_14_loop_body:
+     mov                  rbx,                  r11
+     sal                  rbx,                    3
+     mov                  r12,                   r9
+     add                  r12,                  rbx
+     add                  r10,      qword [r12 + 0]
+main_15_loop_increment:
+     add                  r11,                    1
+     jmp main_13_loop_condition
+main_16_loop_exit:
+     mov                  r11,                    0
+main_17_loop_condition:
+     cmp                  r11,                  rsi
+     mov                   r8,                    0
+    setl                  r8b
+     cmp                   r8,                    1
+      je    main_18_loop_body
+     jmp    main_20_loop_exit
+main_18_loop_body:
+     mov                   r9,                  r11
+     sal                   r9,                    3
+     mov                   r8,                  rdi
+     add                   r8,                   r9
+     add                  r10,       qword [r8 + 0]
+main_19_loop_increment:
+     add                  r11,                    1
+     jmp main_17_loop_condition
+main_20_loop_exit:
+     mov                  rax,                  r10
+main_21_block_exit:
      pop                  rbx
+     pop                  r13
+     pop                  r14
+     pop                  r12
      pop                  rbp
      ret
 SECTION .data
-      dq                    1
-__const_string_0:
-	db  34,   0
-      dq                    1
-__const_string_1:
-	db  48,   0
 SECTION .bss
 SECTION .data
 __println_int_format:

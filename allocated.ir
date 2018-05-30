@@ -5,13 +5,142 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		s(rbx) = mov __const_string_0
-		t(rsi) = mov __const_string_1
-		t1(rdi) = mov s(rbx)
-		t2(rsi) = mov t(rsi)
-		call __string_connection return value = t0(rax)
-		t4(rdi) = mov t0(rax)
-		call println return value = null
-		jump main_1_block_exit
-	main_1_block_exit
+		la(r8) = mov 5
+		lb(rsi) = mov 10
+		t1(rdi) = mov lb(rsi)
+		INC t1(rdi)
+		t1(rdi) = t1(rdi) SHL 3
+		malloc t0(rdi) t1(rdi)
+		Address (t0(rdi) + 0) = mov lb(rsi)
+		t0(rdi) = t0(rdi) ADD 8
+		b(rdi) = mov t0(rdi)
+		t3(r9) = mov 2
+		INC t3(r9)
+		t3(r9) = t3(r9) SHL 3
+		malloc t2(r9) t3(r9)
+		Address (t2(r9) + 0) = mov 2
+		t2(r9) = t2(r9) ADD 8
+		c(r10) = mov t2(r9)
+		t5(r9) = mov la(r8)
+		INC t5(r9)
+		t5(r9) = t5(r9) SHL 3
+		malloc t4(r9) t5(r9)
+		Address (t4(r9) + 0) = mov la(r8)
+		t4(r9) = t4(r9) ADD 8
+		a(r9) = mov t4(r9)
+		t6(rbx) = mov 0
+		t6(rbx) = t6(rbx) SHL 3
+		t7(r11) = mov c(r10)
+		t7(r11) = t7(r11) ADD t6(rbx)
+		Address (t7(r11) + 0) = mov a(r9)
+		t8(r11) = mov 1
+		t8(r11) = t8(r11) SHL 3
+		t9(rbx) = mov c(r10)
+		t9(rbx) = t9(rbx) ADD t8(r11)
+		Address (t9(rbx) + 0) = mov b(rdi)
+		cnt(rbx) = mov 0
+		i(r11) = mov 0
+		jump main_1_loop_condition
+	main_1_loop_condition
+		cmp i(r11) 2
+		set LE t10(r12)
+		cmp t10(r12) 1
+		CJump EQ main_2_loop_body
+		jump main_8_loop_exit
+	main_2_loop_body
+		j(r12) = mov 0
+		jump main_3_loop_condition
+	main_3_loop_condition
+		cmp j(r12) la(r8)
+		set LE t11(r13)
+		cmp t11(r13) 1
+		CJump EQ main_4_loop_body
+		jump main_6_loop_exit
+	main_4_loop_body
+		t12(r13) = mov i(r11)
+		t12(r13) = t12(r13) SHL 3
+		t13(r14) = mov c(r10)
+		t13(r14) = t13(r14) ADD t12(r13)
+		t14(r13) = mov j(r12)
+		t14(r13) = t14(r13) SHL 3
+		t15(r14) = mov Address (t13(r14) + 0)
+		t15(r14) = t15(r14) ADD t14(r13)
+		INC cnt(rbx)
+		Address (t15(r14) + 0) = mov cnt(rbx)
+		jump main_5_loop_increment
+	main_5_loop_increment
+		INC j(r12)
+		jump main_3_loop_condition
+	main_6_loop_exit
+		jump main_7_loop_increment
+	main_7_loop_increment
+		INC i(r11)
+		jump main_1_loop_condition
+	main_8_loop_exit
+		j(r12) = mov la(r8)
+		jump main_9_loop_condition
+	main_9_loop_condition
+		cmp j(r12) lb(rsi)
+		set LE t16(r11)
+		cmp t16(r11) 1
+		CJump EQ main_10_loop_body
+		jump main_12_loop_exit
+	main_10_loop_body
+		t17(r11) = mov 1
+		t17(r11) = t17(r11) SHL 3
+		t18(r13) = mov c(r10)
+		t18(r13) = t18(r13) ADD t17(r11)
+		t19(r11) = mov j(r12)
+		t19(r11) = t19(r11) SHL 3
+		t20(r13) = mov Address (t18(r13) + 0)
+		t20(r13) = t20(r13) ADD t19(r11)
+		INC cnt(rbx)
+		Address (t20(r13) + 0) = mov cnt(rbx)
+		jump main_11_loop_increment
+	main_11_loop_increment
+		INC j(r12)
+		jump main_9_loop_condition
+	main_12_loop_exit
+		sum(r10) = mov 0
+		i(r11) = mov 0
+		jump main_13_loop_condition
+	main_13_loop_condition
+		cmp i(r11) la(r8)
+		set LE t21(rbx)
+		cmp t21(rbx) 1
+		CJump EQ main_14_loop_body
+		jump main_16_loop_exit
+	main_14_loop_body
+		t22(rbx) = mov i(r11)
+		t22(rbx) = t22(rbx) SHL 3
+		t23(r12) = mov a(r9)
+		t23(r12) = t23(r12) ADD t22(rbx)
+		sum(r10) = sum(r10) ADD Address (t23(r12) + 0)
+		jump main_15_loop_increment
+	main_15_loop_increment
+		INC i(r11)
+		jump main_13_loop_condition
+	main_16_loop_exit
+		i(r11) = mov 0
+		jump main_17_loop_condition
+	main_17_loop_condition
+		cmp i(r11) lb(rsi)
+		set LE t25(r8)
+		cmp t25(r8) 1
+		CJump EQ main_18_loop_body
+		jump main_20_loop_exit
+	main_18_loop_body
+		t26(r9) = mov i(r11)
+		t26(r9) = t26(r9) SHL 3
+		t27(r8) = mov b(rdi)
+		t27(r8) = t27(r8) ADD t26(r9)
+		sum(r10) = sum(r10) ADD Address (t27(r8) + 0)
+		jump main_19_loop_increment
+	main_19_loop_increment
+		INC i(r11)
+		jump main_17_loop_condition
+	main_20_loop_exit
+		ret sum(r10)
+		jump main_21_block_exit
+	main_21_block_exit
 }

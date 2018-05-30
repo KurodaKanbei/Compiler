@@ -5,14 +5,146 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		s(null) = mov __const_string_0
-		t(null) = mov __const_string_1
-		t1(rdi) = mov s(null)
-		t2(rsi) = mov t(null)
-		call __string_connection return value = t0(rax)
-		t3(null) = mov t0(rax)
-		t4(rdi) = mov t3(null)
-		call println return value = null
-		jump main_1_block_exit
-	main_1_block_exit
+		la(null) = mov 5
+		lb(null) = mov 10
+		t1(null) = mov lb(null)
+		INC t1(null)
+		t1(null) = t1(null) SHL 3
+		malloc t0(null) t1(null)
+		Address (t0(null) + 0) = mov lb(null)
+		t0(null) = t0(null) ADD 8
+		b(null) = mov t0(null)
+		t3(null) = mov 2
+		INC t3(null)
+		t3(null) = t3(null) SHL 3
+		malloc t2(null) t3(null)
+		Address (t2(null) + 0) = mov 2
+		t2(null) = t2(null) ADD 8
+		c(null) = mov t2(null)
+		t5(null) = mov la(null)
+		INC t5(null)
+		t5(null) = t5(null) SHL 3
+		malloc t4(null) t5(null)
+		Address (t4(null) + 0) = mov la(null)
+		t4(null) = t4(null) ADD 8
+		a(null) = mov t4(null)
+		t6(null) = mov 0
+		t6(null) = t6(null) SHL 3
+		t7(null) = mov c(null)
+		t7(null) = t7(null) ADD t6(null)
+		Address (t7(null) + 0) = mov a(null)
+		t8(null) = mov 1
+		t8(null) = t8(null) SHL 3
+		t9(null) = mov c(null)
+		t9(null) = t9(null) ADD t8(null)
+		Address (t9(null) + 0) = mov b(null)
+		cnt(null) = mov 0
+		i(null) = mov 0
+		jump main_1_loop_condition
+	main_1_loop_condition
+		cmp i(null) 2
+		set LE t10(null)
+		cmp t10(null) 1
+		CJump EQ main_2_loop_body
+		jump main_8_loop_exit
+	main_2_loop_body
+		j(null) = mov 0
+		jump main_3_loop_condition
+	main_3_loop_condition
+		cmp j(null) la(null)
+		set LE t11(null)
+		cmp t11(null) 1
+		CJump EQ main_4_loop_body
+		jump main_6_loop_exit
+	main_4_loop_body
+		t12(null) = mov i(null)
+		t12(null) = t12(null) SHL 3
+		t13(null) = mov c(null)
+		t13(null) = t13(null) ADD t12(null)
+		t14(null) = mov j(null)
+		t14(null) = t14(null) SHL 3
+		t15(null) = mov Address (t13(null) + 0)
+		t15(null) = t15(null) ADD t14(null)
+		INC cnt(null)
+		Address (t15(null) + 0) = mov cnt(null)
+		jump main_5_loop_increment
+	main_5_loop_increment
+		INC j(null)
+		jump main_3_loop_condition
+	main_6_loop_exit
+		jump main_7_loop_increment
+	main_7_loop_increment
+		INC i(null)
+		jump main_1_loop_condition
+	main_8_loop_exit
+		j(null) = mov la(null)
+		jump main_9_loop_condition
+	main_9_loop_condition
+		cmp j(null) lb(null)
+		set LE t16(null)
+		cmp t16(null) 1
+		CJump EQ main_10_loop_body
+		jump main_12_loop_exit
+	main_10_loop_body
+		t17(null) = mov 1
+		t17(null) = t17(null) SHL 3
+		t18(null) = mov c(null)
+		t18(null) = t18(null) ADD t17(null)
+		t19(null) = mov j(null)
+		t19(null) = t19(null) SHL 3
+		t20(null) = mov Address (t18(null) + 0)
+		t20(null) = t20(null) ADD t19(null)
+		INC cnt(null)
+		Address (t20(null) + 0) = mov cnt(null)
+		jump main_11_loop_increment
+	main_11_loop_increment
+		INC j(null)
+		jump main_9_loop_condition
+	main_12_loop_exit
+		sum(null) = mov 0
+		i(null) = mov 0
+		jump main_13_loop_condition
+	main_13_loop_condition
+		cmp i(null) la(null)
+		set LE t21(null)
+		cmp t21(null) 1
+		CJump EQ main_14_loop_body
+		jump main_16_loop_exit
+	main_14_loop_body
+		t22(null) = mov i(null)
+		t22(null) = t22(null) SHL 3
+		t23(null) = mov a(null)
+		t23(null) = t23(null) ADD t22(null)
+		t24(null) = mov sum(null)
+		t24(null) = t24(null) ADD Address (t23(null) + 0)
+		sum(null) = mov t24(null)
+		jump main_15_loop_increment
+	main_15_loop_increment
+		INC i(null)
+		jump main_13_loop_condition
+	main_16_loop_exit
+		i(null) = mov 0
+		jump main_17_loop_condition
+	main_17_loop_condition
+		cmp i(null) lb(null)
+		set LE t25(null)
+		cmp t25(null) 1
+		CJump EQ main_18_loop_body
+		jump main_20_loop_exit
+	main_18_loop_body
+		t26(null) = mov i(null)
+		t26(null) = t26(null) SHL 3
+		t27(null) = mov b(null)
+		t27(null) = t27(null) ADD t26(null)
+		t28(null) = mov sum(null)
+		t28(null) = t28(null) ADD Address (t27(null) + 0)
+		sum(null) = mov t28(null)
+		jump main_19_loop_increment
+	main_19_loop_increment
+		INC i(null)
+		jump main_17_loop_condition
+	main_20_loop_exit
+		ret sum(null)
+		jump main_21_block_exit
+	main_21_block_exit
 }
