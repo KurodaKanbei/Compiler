@@ -4,10 +4,8 @@ import Compiler.CFG.ProgramIR;
 
 public class Optimize {
     public static void optimize() {
-        ProgramIR.getFunctionMap().values().forEach(
-                NaiveInliner::inline
-        );
         ProgramIR.getFunctionMap().values().forEach(functionIR -> {
+            NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             BlocksRazor.deadForStatementBlocksRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
