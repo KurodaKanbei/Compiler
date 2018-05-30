@@ -147,7 +147,7 @@ public class BinaryInstruction extends Instruction {
             return str.toString();
         }
         if (operator.equals("DIV") || operator.equals("MOD")) {
-            if (target instanceof VirtualRegister && source instanceof VirtualRegister) {
+            if (lowRegister.get(sourceName) != null && lowRegister.get(targetName) != null) {
                 str.append(Translator.getInstruction("mov", "eax", lowRegister.get(targetName)));
                 str.append(Translator.getInstruction("mov", "ecx", lowRegister.get(sourceName)));
                 str.append(Translator.getInstruction("cdq"));
