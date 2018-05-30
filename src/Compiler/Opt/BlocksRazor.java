@@ -6,9 +6,7 @@ import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.JumpInstruction;
 import Compiler.CFG.Operand.VirtualRegister;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class BlocksRazor {

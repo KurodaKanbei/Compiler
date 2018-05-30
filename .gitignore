@@ -3,6 +3,9 @@
 
 # Log file
 *.log
+*.ir
+program.txt
+program.nasm
 
 # BlueJ files
 *.ctxt

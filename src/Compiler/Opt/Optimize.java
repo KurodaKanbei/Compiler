@@ -4,10 +4,13 @@ import Compiler.CFG.ProgramIR;
 
 public class Optimize {
     public static void optimize() {
+        ProgramIR.getFunctionMap().values().forEach(
+                NaiveInliner::inline
+        );
         ProgramIR.getFunctionMap().values().forEach(functionIR -> {
             LivenessAnalyst.analysis(functionIR);
             BlocksRazor.deadForStatementBlocksRemove(functionIR);
-            NaiveInliner.inline(functionIR);
+            LivenessAnalyst.analysis(functionIR);
             OutputConverter.convertOutput(functionIR);
             LivenessAnalyst.analysis(functionIR);
             int round = 0;
