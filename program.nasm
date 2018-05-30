@@ -24,62 +24,89 @@ SECTION .text
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
-     sub                  rsp,                   24
 __global_init_0_block_enter:
-     mov       qword [@b + 0],                99483
-     mov       qword [@c + 0],               382375
-     mov       qword [@d + 0],               316961
 __global_init_1_block_exit:
-     add                  rsp,                   24
      pop                  rbp
      ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
-     sub                  rsp,                   24
 main_0_block_enter:
-     mov                  rsi,       qword [@b + 0]
-     mov                  rax,                  rsi
-    imul                  rax,                10000
-     mov                  rsi,                  rax
-     add                  rsi,                 9122
-     mov       qword [@b + 0],                  rsi
-     mov                  rsi,       qword [@c + 0]
-     mov                  rax,                  rsi
-    imul                  rax,                10000
-     mov                  rsi,                  rax
-     add                  rsi,                 7464
-     mov       qword [@c + 0],                  rsi
-     mov                  rsi,       qword [@d + 0]
-     mov                  rax,                  rsi
-    imul                  rax,                10000
-     mov                  rsi,                  rax
-     add                  rsi,                 7113
-     mov       qword [@d + 0],                  rsi
-     mov                  rsi,       qword [@b + 0]
-     xor                  rsi,       qword [@c + 0]
-     xor                  rsi,       qword [@d + 0]
+     mov                  rsi,                    5
+     mov                   r8,                    0
+     cmp                   r8,                    0
+     mov                  rdi,                    0
+   setne                  dil
+     cmp                  rdi,                    1
+     jne main_2_logical_false
+main_1_logical_true:
      mov                  rdi,                  rsi
-     sub                  rsp,                    8
-    call             toString
-     add                  rsp,                    8
+     mov                  eax,                  edi
+     mov                  ecx,                  r8d
+     cdq
+    idiv                  ecx
      mov                  rdi,                  rax
-     sub                  rsp,                    8
-    call              println
-     add                  rsp,                    8
-main_1_block_exit:
-     add                  rsp,                   24
+     cmp                  rdi,                    1
+     mov                  rdi,                    0
+   setne                  dil
+     jmp  main_3_logical_exit
+main_2_logical_false:
+     mov                  rdi,                    0
+main_3_logical_exit:
+     cmp                  rdi,                    1
+      je       main_4_if_true
+     jmp      main_5_if_false
+main_4_if_true:
+     mov                  rdi,                   10
+     jmp       main_6_if_exit
+main_5_if_false:
+     mov                  rdi,                   20
+main_6_if_exit:
+     cmp                  rdi,                   10
+     mov                   r9,                    0
+    sete                  r9b
+     cmp                   r9,                    1
+     jne main_8_logical_false
+main_7_logical_true:
+     mov                   r9,                  rsi
+     mov                  eax,                  r9d
+     mov                  ecx,                  r8d
+     cdq
+    idiv                  ecx
+     mov                   r9,                  rax
+     cmp                   r9,                    0
+     mov                   r8,                    0
+    sete                  r8b
+     jmp  main_9_logical_exit
+main_8_logical_false:
+     mov                   r8,                    0
+main_9_logical_exit:
+     cmp                   r8,                    1
+     jne main_11_logical_false
+main_10_logical_true:
+     cmp                  rsi,                    5
+     mov                  rsi,                    0
+    sete                  sil
+     jmp main_12_logical_exit
+main_11_logical_false:
+     mov                  rsi,                    0
+main_12_logical_exit:
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je      main_13_if_true
+     jmp     main_14_if_false
+main_13_if_true:
+     mov                  rdi,                   30
+     jmp      main_15_if_exit
+main_14_if_false:
+main_15_if_exit:
+     mov                  rax,                  rdi
+main_16_block_exit:
      pop                  rbp
      ret
 SECTION .data
 SECTION .bss
-@b:
-    resq                    1
-@c:
-    resq                    1
-@d:
-    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0

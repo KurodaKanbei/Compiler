@@ -11,14 +11,33 @@ import Compiler.Trans.PhysicalOperand.PhysicalRegister;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Error.InternalError;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 
 public class BinaryInstruction extends Instruction {
     public enum BinaryOp {
         ADD, SUB, MUL, DIV, MOD, SHL, SHR, AND, OR, XOR
     }
-
+    private static final Map<String, String> lowRegister = new HashMap<String, String>() {{
+        put("rax", "eax");
+        put("rcx", "ecx");
+        put("rdx", "edx");
+        put("rbx", "ebx");
+        put("rsp", "esp");
+        put("rbp", "ebp");
+        put("rsi", "esi");
+        put("rdi", "edi");
+        put("r8", "r8d");
+        put("r9", "r9d");
+        put("r10", "r10d");
+        put("r11", "r11d");
+        put("r12", "r12d");
+        put("r13", "r13d");
+        put("r14", "r14d");
+        put("r15", "r15d");
+    }};
     private BinaryOp binaryOp;
     private Operand target, source;
 
@@ -128,15 +147,15 @@ public class BinaryInstruction extends Instruction {
             return str.toString();
         }
         if (operator.equals("DIV") || operator.equals("MOD")) {
-            str.append(Translator.getInstruction("mov", "rax", targetName));
-            str.append(Translator.getInstruction("mov", "rcx", sourceName));
+            str.append(Translator.getInstruction("mov", "eax", lowRegister.get(targetName)));
+            str.append(Translator.getInstruction("mov", "ecx", lowRegister.get(sourceName)));
             str.append(Translator.getInstruction("cdq"));
             str.append(Translator.getInstruction("idiv", "ecx"));
             if (operator.equals("DIV")) {
-                str.append(Translator.getInstruction("mov", targetName, "eax"));
+                str.append(Translator.getInstruction("mov", targetName, "rax"));
             }
             if (operator.equals("MOD")) {
-                str.append(Translator.getInstruction("mov", targetName, "edx"));
+                str.append(Translator.getInstruction("mov", targetName, "rdx"));
             }
             return str.toString();
         }

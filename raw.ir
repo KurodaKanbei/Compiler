@@ -1,37 +1,78 @@
 __global_init {
 	__global_init_0_block_enter
-		Address (b(@b) + 0) = mov 99483
-		Address (c(@c) + 0) = mov 382375
-		Address (d(@d) + 0) = mov 316961
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
 main {
 	main_0_block_enter
-		t0(null) = mov Address (b(@b) + 0)
-		t0(null) = t0(null) MUL 10000
-		t1(null) = mov t0(null)
-		t1(null) = t1(null) ADD 9122
-		Address (b(@b) + 0) = mov t1(null)
-		t2(null) = mov Address (c(@c) + 0)
-		t2(null) = t2(null) MUL 10000
-		t3(null) = mov t2(null)
-		t3(null) = t3(null) ADD 7464
-		Address (c(@c) + 0) = mov t3(null)
-		t4(null) = mov Address (d(@d) + 0)
-		t4(null) = t4(null) MUL 10000
-		t5(null) = mov t4(null)
-		t5(null) = t5(null) ADD 7113
-		Address (d(@d) + 0) = mov t5(null)
-		t6(null) = mov Address (b(@b) + 0)
-		t6(null) = t6(null) XOR Address (c(@c) + 0)
-		t7(null) = mov t6(null)
-		t7(null) = t7(null) XOR Address (d(@d) + 0)
-		t9(rdi) = mov t7(null)
-		call toString return value = t8(rax)
-		t10(null) = mov t8(rax)
-		t11(rdi) = mov t10(null)
-		call println return value = null
-		jump main_1_block_exit
-	main_1_block_exit
+		a(null) = mov 5
+		b(null) = mov 0
+		cmp b(null) 0
+		set NEQ t1(null)
+		cmp t1(null) 1
+		CJump NEQ main_2_logical_false
+		jump main_1_logical_true
+	main_1_logical_true
+		t2(null) = mov a(null)
+		t2(null) = t2(null) DIV b(null)
+		cmp t2(null) 1
+		set NEQ t3(null)
+		t0(null) = mov t3(null)
+		jump main_3_logical_exit
+	main_2_logical_false
+		t0(null) = mov 0
+		jump main_3_logical_exit
+	main_3_logical_exit
+		cmp t0(null) 1
+		CJump EQ main_4_if_true
+		jump main_5_if_false
+	main_4_if_true
+		c(null) = mov 10
+		jump main_6_if_exit
+	main_5_if_false
+		c(null) = mov 20
+		jump main_6_if_exit
+	main_6_if_exit
+		cmp c(null) 10
+		set EQ t6(null)
+		cmp t6(null) 1
+		CJump NEQ main_8_logical_false
+		jump main_7_logical_true
+	main_7_logical_true
+		t7(null) = mov a(null)
+		t7(null) = t7(null) DIV b(null)
+		cmp t7(null) 0
+		set EQ t8(null)
+		t5(null) = mov t8(null)
+		jump main_9_logical_exit
+	main_8_logical_false
+		t5(null) = mov 0
+		jump main_9_logical_exit
+	main_9_logical_exit
+		cmp t5(null) 1
+		CJump NEQ main_11_logical_false
+		jump main_10_logical_true
+	main_10_logical_true
+		cmp a(null) 5
+		set EQ t9(null)
+		t4(null) = mov t9(null)
+		jump main_12_logical_exit
+	main_11_logical_false
+		t4(null) = mov 0
+		jump main_12_logical_exit
+	main_12_logical_exit
+		t10(null) = mov t4(null)
+		t10(null) = t10(null) XOR 1
+		cmp t10(null) 1
+		CJump EQ main_13_if_true
+		jump main_14_if_false
+	main_13_if_true
+		c(null) = mov 30
+		jump main_15_if_exit
+	main_14_if_false
+		jump main_15_if_exit
+	main_15_if_exit
+		ret c(null)
+		jump main_16_block_exit
+	main_16_block_exit
 }
