@@ -28,11 +28,11 @@ main {
 		Address (t4(r9) + 0) = mov la(r8)
 		t4(r9) = t4(r9) ADD 8
 		a(r9) = mov t4(r9)
-		t6(rbx) = mov 0
-		t6(rbx) = t6(rbx) SHL 3
-		t7(r11) = mov c(r10)
-		t7(r11) = t7(r11) ADD t6(rbx)
-		Address (t7(r11) + 0) = mov a(r9)
+		t6(r11) = mov 0
+		t6(r11) = t6(r11) SHL 3
+		t7(rbx) = mov c(r10)
+		t7(rbx) = t7(rbx) ADD t6(r11)
+		Address (t7(rbx) + 0) = mov a(r9)
 		t8(r11) = mov 1
 		t8(r11) = t8(r11) SHL 3
 		t9(rbx) = mov c(r10)
@@ -57,16 +57,16 @@ main {
 		CJump EQ main_4_loop_body
 		jump main_6_loop_exit
 	main_4_loop_body
-		t12(r13) = mov i(r11)
-		t12(r13) = t12(r13) SHL 3
-		t13(r14) = mov c(r10)
-		t13(r14) = t13(r14) ADD t12(r13)
-		t14(r13) = mov j(r12)
-		t14(r13) = t14(r13) SHL 3
-		t15(r14) = mov Address (t13(r14) + 0)
-		t15(r14) = t15(r14) ADD t14(r13)
+		t12(r14) = mov i(r11)
+		t12(r14) = t12(r14) SHL 3
+		t13(r13) = mov c(r10)
+		t13(r13) = t13(r13) ADD t12(r14)
+		t14(r14) = mov j(r12)
+		t14(r14) = t14(r14) SHL 3
+		t15(r13) = mov Address (t13(r13) + 0)
+		t15(r13) = t15(r13) ADD t14(r14)
 		INC cnt(rbx)
-		Address (t15(r14) + 0) = mov cnt(rbx)
+		Address (t15(r13) + 0) = mov cnt(rbx)
 		jump main_5_loop_increment
 	main_5_loop_increment
 		INC j(r12)
@@ -86,16 +86,16 @@ main {
 		CJump EQ main_10_loop_body
 		jump main_12_loop_exit
 	main_10_loop_body
-		t17(r11) = mov 1
-		t17(r11) = t17(r11) SHL 3
-		t18(r13) = mov c(r10)
-		t18(r13) = t18(r13) ADD t17(r11)
-		t19(r11) = mov j(r12)
-		t19(r11) = t19(r11) SHL 3
-		t20(r13) = mov Address (t18(r13) + 0)
-		t20(r13) = t20(r13) ADD t19(r11)
+		t17(r13) = mov 1
+		t17(r13) = t17(r13) SHL 3
+		t18(r11) = mov c(r10)
+		t18(r11) = t18(r11) ADD t17(r13)
+		t19(r13) = mov j(r12)
+		t19(r13) = t19(r13) SHL 3
+		t20(r11) = mov Address (t18(r11) + 0)
+		t20(r11) = t20(r11) ADD t19(r13)
 		INC cnt(rbx)
-		Address (t20(r13) + 0) = mov cnt(rbx)
+		Address (t20(r11) + 0) = mov cnt(rbx)
 		jump main_11_loop_increment
 	main_11_loop_increment
 		INC j(r12)
@@ -130,11 +130,11 @@ main {
 		CJump EQ main_18_loop_body
 		jump main_20_loop_exit
 	main_18_loop_body
-		t26(r9) = mov i(r11)
-		t26(r9) = t26(r9) SHL 3
-		t27(r8) = mov b(rdi)
-		t27(r8) = t27(r8) ADD t26(r9)
-		sum(r10) = sum(r10) ADD Address (t27(r8) + 0)
+		t26(r8) = mov i(r11)
+		t26(r8) = t26(r8) SHL 3
+		t27(r9) = mov b(rdi)
+		t27(r9) = t27(r9) ADD t26(r8)
+		sum(r10) = sum(r10) ADD Address (t27(r9) + 0)
 		jump main_19_loop_increment
 	main_19_loop_increment
 		INC i(r11)

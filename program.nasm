@@ -42,31 +42,31 @@ main_0_block_enter:
      mov                  rdi,                  rsi
      add                  rdi,                    1
      sal                  rdi,                    3
+    push                  rsi
     push                  rdi
     push                   r8
-    push                  rsi
      sub                  rsp,                    8
     call               malloc
      add                  rsp,                    8
-     pop                  rsi
      pop                   r8
      pop                  rdi
+     pop                  rsi
      mov                  rdi,                  rax
      mov      qword [rdi + 0],                  rsi
      add                  rdi,                    8
      mov                   r9,                    2
      add                   r9,                    1
      sal                   r9,                    3
+    push                   r9
+    push                  rsi
     push                   r8
     push                  rdi
-    push                  rsi
-    push                   r9
      mov                  rdi,                   r9
     call               malloc
-     pop                   r9
-     pop                  rsi
      pop                  rdi
      pop                   r8
+     pop                  rsi
+     pop                   r9
      mov                   r9,                  rax
      mov       qword [r9 + 0],                    2
      add                   r9,                    8
@@ -74,28 +74,28 @@ main_0_block_enter:
      mov                   r9,                   r8
      add                   r9,                    1
      sal                   r9,                    3
+    push                   r9
+    push                  rsi
     push                  r10
     push                   r8
     push                  rdi
-    push                  rsi
-    push                   r9
      mov                  rdi,                   r9
      sub                  rsp,                    8
     call               malloc
      add                  rsp,                    8
-     pop                   r9
-     pop                  rsi
      pop                  rdi
      pop                   r8
      pop                  r10
+     pop                  rsi
+     pop                   r9
      mov                   r9,                  rax
      mov       qword [r9 + 0],                   r8
      add                   r9,                    8
-     mov                  rbx,                    0
-     sal                  rbx,                    3
-     mov                  r11,                  r10
-     add                  r11,                  rbx
-     mov      qword [r11 + 0],                   r9
+     mov                  r11,                    0
+     sal                  r11,                    3
+     mov                  rbx,                  r10
+     add                  rbx,                  r11
+     mov      qword [rbx + 0],                   r9
      mov                  r11,                    1
      sal                  r11,                    3
      mov                  rbx,                  r10
@@ -120,16 +120,16 @@ main_3_loop_condition:
       je     main_4_loop_body
      jmp     main_6_loop_exit
 main_4_loop_body:
-     mov                  r13,                  r11
-     sal                  r13,                    3
-     mov                  r14,                  r10
-     add                  r14,                  r13
-     mov                  r13,                  r12
-     sal                  r13,                    3
-     mov                  r14,      qword [r14 + 0]
-     add                  r14,                  r13
+     mov                  r14,                  r11
+     sal                  r14,                    3
+     mov                  r13,                  r10
+     add                  r13,                  r14
+     mov                  r14,                  r12
+     sal                  r14,                    3
+     mov                  r13,      qword [r13 + 0]
+     add                  r13,                  r14
      add                  rbx,                    1
-     mov      qword [r14 + 0],                  rbx
+     mov      qword [r13 + 0],                  rbx
 main_5_loop_increment:
      add                  r12,                    1
      jmp main_3_loop_condition
@@ -147,16 +147,16 @@ main_9_loop_condition:
       je    main_10_loop_body
      jmp    main_12_loop_exit
 main_10_loop_body:
-     mov                  r11,                    1
-     sal                  r11,                    3
-     mov                  r13,                  r10
-     add                  r13,                  r11
-     mov                  r11,                  r12
-     sal                  r11,                    3
-     mov                  r13,      qword [r13 + 0]
-     add                  r13,                  r11
+     mov                  r13,                    1
+     sal                  r13,                    3
+     mov                  r11,                  r10
+     add                  r11,                  r13
+     mov                  r13,                  r12
+     sal                  r13,                    3
+     mov                  r11,      qword [r11 + 0]
+     add                  r11,                  r13
      add                  rbx,                    1
-     mov      qword [r13 + 0],                  rbx
+     mov      qword [r11 + 0],                  rbx
 main_11_loop_increment:
      add                  r12,                    1
      jmp main_9_loop_condition
@@ -189,11 +189,11 @@ main_17_loop_condition:
       je    main_18_loop_body
      jmp    main_20_loop_exit
 main_18_loop_body:
-     mov                   r9,                  r11
-     sal                   r9,                    3
-     mov                   r8,                  rdi
-     add                   r8,                   r9
-     add                  r10,       qword [r8 + 0]
+     mov                   r8,                  r11
+     sal                   r8,                    3
+     mov                   r9,                  rdi
+     add                   r9,                   r8
+     add                  r10,       qword [r9 + 0]
 main_19_loop_increment:
      add                  r11,                    1
      jmp main_17_loop_condition
