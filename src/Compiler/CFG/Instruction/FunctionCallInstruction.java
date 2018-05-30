@@ -41,6 +41,10 @@ public class FunctionCallInstruction extends Instruction {
         return operandList;
     }
 
+    public void convertFunctionType(FunctionType functionType) {
+        this.functionType = functionType;
+    }
+
     @Override
     public void init() {
         operandList.forEach(Operand::init);

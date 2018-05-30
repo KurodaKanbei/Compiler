@@ -3,65 +3,14 @@ __global_init {
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
-foo d(null) x(null) y(null) {
-	foo_0_block_enter
-		d(null) = mov t0(rdi)
-		x(null) = mov t1(rsi)
-		y(null) = mov t2(rdx)
-		t3(null) = mov d(null)
-		t3(null) = t3(null) MUL 1000
-		t4(null) = mov x(null)
-		t4(null) = t4(null) MUL 10
-		t5(null) = mov t3(null)
-		t5(null) = t5(null) ADD t4(null)
-		t6(null) = mov t5(null)
-		t6(null) = t6(null) ADD y(null)
-		t8(rdi) = mov t6(null)
-		call toString return value = t7(rax)
-		t9(null) = mov t7(rax)
-		t10(rdi) = mov t9(null)
-		call println return value = null
-		cmp d(null) 1
-		set EQ t11(null)
-		cmp t11(null) 1
-		CJump EQ foo_1_if_true
-		jump foo_2_if_false
-	foo_1_if_true
-		jump foo_4_block_exit
-	foo_2_if_false
-		jump foo_3_if_exit
-	foo_3_if_exit
-		t(null) = mov x(null)
-		x(null) = mov y(null)
-		y(null) = mov t(null)
-		t12(rdi) = mov 1
-		t13(rsi) = mov x(null)
-		t14(rdx) = mov y(null)
-		call foo return value = null
-		t15(null) = mov d(null)
-		t15(null) = t15(null) MUL 1000
-		t16(null) = mov x(null)
-		t16(null) = t16(null) MUL 10
-		t17(null) = mov t15(null)
-		t17(null) = t17(null) ADD t16(null)
-		t18(null) = mov t17(null)
-		t18(null) = t18(null) ADD y(null)
-		t20(rdi) = mov t18(null)
-		call toString return value = t19(rax)
-		t21(null) = mov t19(rax)
-		t22(rdi) = mov t21(null)
-		call println return value = null
-		jump foo_4_block_exit
-	foo_4_block_exit
-}
 main {
 	main_0_block_enter
-		k(null) = mov 12341
-		t23(rdi) = mov 7
-		t24(rsi) = mov 5
-		t25(rdx) = mov 3
-		call foo return value = null
-		ret 0
+		x(null) = mov 24323454
+		t1(rdi) = mov x(null)
+		call toString return value = t0(rax)
+		t2(null) = mov t0(rax)
+		t3(rdi) = mov t2(null)
+		call println return value = null
 		jump main_1_block_exit
 	main_1_block_exit
 }
