@@ -1,63 +1,65 @@
-a a1(null) a2(null) a3(null) a4(null) a5(null) a6(null) a7(null) a8(null) a9(null) a10(null) a11(null) a12(null) a13(null) a14(null) a15(null) {
-	a_0_block_enter
-		a1(null) = mov t0(rdi)
-		a2(null) = mov t1(rsi)
-		a3(null) = mov t2(rdx)
-		a4(null) = mov t3(rcx)
-		a5(null) = mov t4(r8)
-		a6(null) = mov t5(r9)
-		t6(null) = mov a1(null)
-		t6(null) = t6(null) ADD a2(null)
-		t7(null) = mov t6(null)
-		t7(null) = t7(null) ADD a3(null)
-		t8(null) = mov t7(null)
-		t8(null) = t8(null) ADD a4(null)
-		t9(null) = mov t8(null)
-		t9(null) = t9(null) ADD a5(null)
-		t10(null) = mov t9(null)
-		t10(null) = t10(null) ADD a6(null)
-		t11(null) = mov t10(null)
-		t11(null) = t11(null) ADD a7(null)
-		t12(null) = mov t11(null)
-		t12(null) = t12(null) ADD a8(null)
-		t13(null) = mov t12(null)
-		t13(null) = t13(null) ADD a9(null)
-		t14(null) = mov t13(null)
-		t14(null) = t14(null) ADD a10(null)
-		t15(null) = mov t14(null)
-		t15(null) = t15(null) ADD a11(null)
-		t16(null) = mov t15(null)
-		t16(null) = t16(null) ADD a12(null)
-		t17(null) = mov t16(null)
-		t17(null) = t17(null) ADD a13(null)
-		t18(null) = mov t17(null)
-		t18(null) = t18(null) ADD a14(null)
-		t19(null) = mov t18(null)
-		t19(null) = t19(null) ADD a15(null)
-		ret t19(null)
-		jump a_1_block_exit
-	a_1_block_exit
-}
 __global_init {
 	__global_init_0_block_enter
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
+foo d(null) x(null) y(null) {
+	foo_0_block_enter
+		d(null) = mov t0(rdi)
+		x(null) = mov t1(rsi)
+		y(null) = mov t2(rdx)
+		t3(null) = mov d(null)
+		t3(null) = t3(null) MUL 1000
+		t4(null) = mov x(null)
+		t4(null) = t4(null) MUL 10
+		t5(null) = mov t3(null)
+		t5(null) = t5(null) ADD t4(null)
+		t6(null) = mov t5(null)
+		t6(null) = t6(null) ADD y(null)
+		t8(rdi) = mov t6(null)
+		call toString return value = t7(rax)
+		t9(null) = mov t7(rax)
+		t10(rdi) = mov t9(null)
+		call println return value = null
+		cmp d(null) 1
+		set EQ t11(null)
+		cmp t11(null) 1
+		CJump EQ foo_1_if_true
+		jump foo_2_if_false
+	foo_1_if_true
+		jump foo_4_block_exit
+	foo_2_if_false
+		jump foo_3_if_exit
+	foo_3_if_exit
+		t(null) = mov x(null)
+		x(null) = mov y(null)
+		y(null) = mov t(null)
+		t12(rdi) = mov 1
+		t13(rsi) = mov x(null)
+		t14(rdx) = mov y(null)
+		call foo return value = null
+		t15(null) = mov d(null)
+		t15(null) = t15(null) MUL 1000
+		t16(null) = mov x(null)
+		t16(null) = t16(null) MUL 10
+		t17(null) = mov t15(null)
+		t17(null) = t17(null) ADD t16(null)
+		t18(null) = mov t17(null)
+		t18(null) = t18(null) ADD y(null)
+		t20(rdi) = mov t18(null)
+		call toString return value = t19(rax)
+		t21(null) = mov t19(rax)
+		t22(rdi) = mov t21(null)
+		call println return value = null
+		jump foo_4_block_exit
+	foo_4_block_exit
+}
 main {
 	main_0_block_enter
-		t21(rdi) = mov 1
-		t22(rsi) = mov 2
-		t23(rdx) = mov 3
-		t24(rcx) = mov 4
-		t25(r8) = mov 5
-		t26(r9) = mov 6
-		call a 7 8 9 10 11 12 13 14 15 return value = t20(rax)
-		t27(null) = mov t20(rax)
-		t29(rdi) = mov t27(null)
-		call toString return value = t28(rax)
-		t30(null) = mov t28(rax)
-		t31(rdi) = mov t30(null)
-		call println return value = null
+		t23(rdi) = mov 7
+		t24(rsi) = mov 5
+		t25(rdx) = mov 3
+		call foo return value = null
 		ret 0
 		jump main_1_block_exit
 	main_1_block_exit

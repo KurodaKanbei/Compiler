@@ -1,5 +1,5 @@
-global a
 global __global_init
+global foo
 global main
 global print_Int
 global println_Int
@@ -22,32 +22,6 @@ global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .text
-a:
-    push                  rbp
-     mov                  rbp,                  rsp
-a_0_block_enter:
-     mov                  r10,                  rdi
-     mov                  rdi,                  rdx
-     mov                  r11,                  rcx
-     add                  r10,                  rsi
-     mov                  rsi,                  r10
-     add                  rsi,                  rdi
-     add                  rsi,                  r11
-     add                  rsi,                   r8
-     add                  rsi,                   r9
-     add                  rsi,     qword [rbp + 16]
-     add                  rsi,     qword [rbp + 24]
-     add                  rsi,     qword [rbp + 32]
-     add                  rsi,     qword [rbp + 40]
-     add                  rsi,     qword [rbp + 48]
-     add                  rsi,     qword [rbp + 56]
-     add                  rsi,     qword [rbp + 64]
-     add                  rsi,     qword [rbp + 72]
-     add                  rsi,     qword [rbp + 80]
-     mov                  rax,                  rsi
-a_1_block_exit:
-     pop                  rbp
-     ret
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
@@ -55,74 +29,149 @@ __global_init_0_block_enter:
 __global_init_1_block_exit:
      pop                  rbp
      ret
+foo:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  r12
+    push                  rbx
+foo_0_block_enter:
+     mov                  r12,                  rdi
+     mov                  rbx,                  rdx
+     mov                   r8,                  r12
+     mov                  rax,                   r8
+    imul                  rax,                 1000
+     mov                   r8,                  rax
+     mov                  rdi,                  rsi
+     mov                  rax,                  rdi
+    imul                  rax,                   10
+     mov                  rdi,                  rax
+     add                   r8,                  rdi
+     mov                  rdi,                   r8
+     add                  rdi,                  rbx
+    push                  rsi
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     pop                  rsi
+     cmp                  r12,                    1
+     mov                  rdi,                    0
+    sete                  dil
+     cmp                  rdi,                    1
+      je        foo_1_if_true
+     jmp       foo_2_if_false
+foo_1_if_true:
+     jmp     foo_4_block_exit
+foo_2_if_false:
+foo_3_if_exit:
+     mov                  rdi,                  rsi
+     mov                  rsi,                  rbx
+     mov                  rbx,                  rdi
+     mov                  rdi,                    1
+     mov                  rdx,                  rbx
+    push                  rsi
+     sub                  rsp,                    8
+    call                  foo
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,                  r12
+     mov                  rax,                  rdi
+    imul                  rax,                 1000
+     mov                  rdi,                  rax
+     mov                  rax,                  rsi
+    imul                  rax,                   10
+     mov                  rsi,                  rax
+     add                  rdi,                  rsi
+     mov                  rsi,                  rdi
+     add                  rsi,                  rbx
+     mov                  rdi,                  rsi
+    call             toString
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+    call              println
+foo_4_block_exit:
+     pop                  rbx
+     pop                  r12
+     pop                  rbp
+     ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
-     sub                  rsp,                   32
     push                  r12
-    push                  r14
-    push                  r13
-    push                  r15
     push                  rbx
 main_0_block_enter:
-     mov                  r11,                    1
-     mov                  r15,                    2
-     mov                  r10,                    3
-     mov      qword [rbp - 8],                    4
-     mov                  r14,                    5
-     mov     qword [rbp - 16],                    6
-     mov     qword [rbp - 24],                    7
-     mov                   r9,                    8
-     mov                  r13,                    9
-     mov                   r8,                   10
-     mov     qword [rbp - 32],                   11
-     mov                  r12,                   12
-     mov                  rdi,                   13
-     mov                  rbx,                   14
-     mov                  rsi,                   15
+     mov                  r12,                    7
+     mov                  rsi,                    5
+     mov                  rbx,                    3
 main_2_inline_enter:
-     add                  r11,                  r15
-     mov                  r15,                  r11
-     add                  r15,                  r10
-     mov                  r10,                  r15
-     add                  r10,      qword [rbp - 8]
-     add                  r10,                  r14
-     mov                  r14,                  r10
-     add                  r14,     qword [rbp - 16]
-     add                  r14,     qword [rbp - 24]
-     add                  r14,                   r9
-     mov                   r9,                  r14
-     add                   r9,                  r13
-     mov                  r13,                   r9
-     add                  r13,                   r8
-     mov                   r8,                  r13
-     add                   r8,     qword [rbp - 32]
-     add                   r8,                  r12
-     mov                  r12,                   r8
-     add                  r12,                  rdi
-     mov                  rdi,                  r12
-     add                  rdi,                  rbx
-     mov                  rbx,                  rdi
-     add                  rbx,                  rsi
-     mov                  rsi,                  rbx
-main_3_inline_exit:
+     mov                   r8,                  r12
+     mov                  rax,                   r8
+    imul                  rax,                 1000
+     mov                   r8,                  rax
      mov                  rdi,                  rsi
+     mov                  rax,                  rdi
+    imul                  rax,                   10
+     mov                  rdi,                  rax
+     add                   r8,                  rdi
+     mov                  rdi,                   r8
+     add                  rdi,                  rbx
+    push                  rsi
      sub                  rsp,                    8
     call             toString
      add                  rsp,                    8
+     pop                  rsi
      mov                  rdi,                  rax
+    push                  rsi
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
+     pop                  rsi
+     cmp                  r12,                    1
+     mov                  rdi,                    0
+    sete                  dil
+     cmp                  rdi,                    1
+      je       main_3_if_true
+     jmp      main_4_if_false
+main_3_if_true:
+     jmp   main_6_inline_exit
+main_4_if_false:
+main_5_if_exit:
+     mov                  rdi,                  rsi
+     mov                  rsi,                  rbx
+     mov                  rbx,                  rdi
+     mov                  rdi,                    1
+     mov                  rdx,                  rbx
+    push                  rsi
+     sub                  rsp,                    8
+    call                  foo
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,                  r12
+     mov                  rax,                  rdi
+    imul                  rax,                 1000
+     mov                  rdi,                  rax
+     mov                  rax,                  rsi
+    imul                  rax,                   10
+     mov                  rsi,                  rax
+     add                  rdi,                  rsi
+     mov                  rsi,                  rdi
+     add                  rsi,                  rbx
+     mov                  rdi,                  rsi
+    call             toString
+     mov                  rsi,                  rax
+     mov                  rdi,                  rsi
+    call              println
+main_6_inline_exit:
      mov                  rax,                    0
 main_1_block_exit:
      pop                  rbx
-     pop                  r15
-     pop                  r13
-     pop                  r14
      pop                  r12
-     add                  rsp,                   32
      pop                  rbp
      ret
 SECTION .data

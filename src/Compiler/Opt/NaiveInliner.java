@@ -45,11 +45,9 @@ public class NaiveInliner {
                     List<Instruction> instructionList = new ArrayList<>();
                     instructionList.add(enterLabel);
                     functionType.getBlockStatement().generateInstruction(instructionList);
-
-                    Operand target = ((MoveInstruction) block.getInstructionList().get(j)).getTarget();
-
                     for (int k = 1; k < instructionList.size(); k++) {
                         if (instructionList.get(k) instanceof ReturnInstruction) {
+                            Operand target = ((MoveInstruction) block.getInstructionList().get(j)).getTarget();
                             Operand source = ((ReturnInstruction)instructionList.get(k)).getReturnValue();
                             instructionList.remove(k);
                             instructionList.add(k, new MoveInstruction(target, source));
