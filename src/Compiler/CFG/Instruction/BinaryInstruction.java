@@ -147,15 +147,28 @@ public class BinaryInstruction extends Instruction {
             return str.toString();
         }
         if (operator.equals("DIV") || operator.equals("MOD")) {
-            str.append(Translator.getInstruction("mov", "eax", lowRegister.get(targetName)));
-            str.append(Translator.getInstruction("mov", "ecx", lowRegister.get(sourceName)));
-            str.append(Translator.getInstruction("cdq"));
-            str.append(Translator.getInstruction("idiv", "ecx"));
-            if (operator.equals("DIV")) {
-                str.append(Translator.getInstruction("mov", targetName, "rax"));
-            }
-            if (operator.equals("MOD")) {
-                str.append(Translator.getInstruction("mov", targetName, "rdx"));
+            if (target instanceof VirtualRegister && source instanceof VirtualRegister) {
+                str.append(Translator.getInstruction("mov", "eax", lowRegister.get(targetName)));
+                str.append(Translator.getInstruction("mov", "ecx", lowRegister.get(sourceName)));
+                str.append(Translator.getInstruction("cdq"));
+                str.append(Translator.getInstruction("idiv", "ecx"));
+                if (operator.equals("DIV")) {
+                    str.append(Translator.getInstruction("mov", targetName, "rax"));
+                }
+                if (operator.equals("MOD")) {
+                    str.append(Translator.getInstruction("mov", targetName, "rdx"));
+                }
+            } else {
+                str.append(Translator.getInstruction("mov", "rax", targetName));
+                str.append(Translator.getInstruction("mov", "rcx", sourceName));
+                str.append(Translator.getInstruction("cdq"));
+                str.append(Translator.getInstruction("idiv", "ecx"));
+                if (operator.equals("DIV")) {
+                    str.append(Translator.getInstruction("mov", targetName, "rax"));
+                }
+                if (operator.equals("MOD")) {
+                    str.append(Translator.getInstruction("mov", targetName, "rdx"));
+                }
             }
             return str.toString();
         }
