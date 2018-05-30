@@ -5,15 +5,13 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		jump main_1_loop_condition
-	main_1_loop_condition
-		jump main_2_loop_body
-	main_2_loop_body
-		jump main_3_loop_increment
-	main_3_loop_increment
-		jump main_4_loop_exit
-	main_4_loop_exit
-		ret 0
-		jump main_5_block_exit
-	main_5_block_exit
+		s(rbx) = mov __const_string_0
+		t(rsi) = mov __const_string_1
+		t1(rdi) = mov s(rbx)
+		t2(rsi) = mov t(rsi)
+		call __string_connection return value = t0(rax)
+		t4(rdi) = mov t0(rax)
+		call println return value = null
+		jump main_1_block_exit
+	main_1_block_exit
 }

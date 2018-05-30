@@ -5,26 +5,14 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		c(null) = mov 0
-		i(null) = mov 1
-		jump main_1_loop_condition
-	main_1_loop_condition
-		cmp i(null) 100
-		set LEEQ t0(null)
-		cmp t0(null) 1
-		CJump EQ main_2_loop_body
-		jump main_4_loop_exit
-	main_2_loop_body
-		t1(null) = mov c(null)
-		t1(null) = t1(null) SHL 1
-		c(null) = mov t1(null)
-		jump main_3_loop_increment
-	main_3_loop_increment
-		t2(null) = mov i(null)
-		INC i(null)
-		jump main_1_loop_condition
-	main_4_loop_exit
-		ret 0
-		jump main_5_block_exit
-	main_5_block_exit
+		s(null) = mov __const_string_0
+		t(null) = mov __const_string_1
+		t1(rdi) = mov s(null)
+		t2(rsi) = mov t(null)
+		call __string_connection return value = t0(rax)
+		t3(null) = mov t0(rax)
+		t4(rdi) = mov t3(null)
+		call println return value = null
+		jump main_1_block_exit
+	main_1_block_exit
 }

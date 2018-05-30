@@ -32,16 +32,29 @@ main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
+    push                  rbx
 main_0_block_enter:
-main_1_loop_condition:
-main_2_loop_body:
-main_3_loop_increment:
-main_4_loop_exit:
-     mov                  rax,                    0
-main_5_block_exit:
+     mov                  rbx,     __const_string_0
+     mov                  rsi,     __const_string_1
+     mov                  rdi,                  rbx
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+main_1_block_exit:
+     pop                  rbx
      pop                  rbp
      ret
 SECTION .data
+      dq                    1
+__const_string_0:
+	db  34,   0
+      dq                    1
+__const_string_1:
+	db  48,   0
 SECTION .bss
 SECTION .data
 __println_int_format:
