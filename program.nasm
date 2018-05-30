@@ -34,24 +34,23 @@ random:
      mov                  rbp,                  rsp
      sub                  rsp,                   40
 random_0_block_enter:
-     mov                  rdi,    qword [@seed + 0]
-     mov                  rax,                  rdi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rdi
+     mov                  rsi,                  rdx
+     mov                  rdi,       qword [@A + 0]
+    imul                  rdi,                  rsi
      mov                   r8,    qword [@seed + 0]
      mov                  rax,                   r8
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
      mov                   r8,                  rax
-     mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                   r8
-     sub                  rsi,                  rdi
-     mov                  rdi,                  rsi
+     mov                  rsi,       qword [@R + 0]
+    imul                  rsi,                   r8
+     sub                  rdi,                  rsi
      cmp                  rdi,                    0
      mov                  rsi,                    0
    setge                  sil
@@ -85,11 +84,11 @@ move_1_loop_condition:
       je     move_2_loop_body
      jmp     move_4_loop_exit
 move_2_loop_body:
-     mov                   r8,                  rsi
-     sal                   r8,                    3
-     mov                  rdi,       qword [@a + 0]
-     add                  rdi,                   r8
-     sub      qword [rdi + 0],                    1
+     mov                  rdi,                  rsi
+     sal                  rdi,                    3
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  rdi
+     sub       qword [r8 + 0],                    1
      add                  rsi,                    1
 move_3_loop_increment:
      jmp move_1_loop_condition
@@ -131,11 +130,10 @@ pd_1_loop_condition:
       je       pd_2_loop_body
      jmp       pd_7_loop_exit
 pd_2_loop_body:
-     mov                  rdi,       qword [@h + 0]
-     add                  rdi,                    1
      mov                   r8,       qword [@h + 0]
-    imul                   r8,                  rdi
-     mov                  rdi,                   r8
+     add                   r8,                    1
+     mov                  rdi,       qword [@h + 0]
+    imul                  rdi,                   r8
      mov                  rax,                  rdi
      mov                  rcx,                    2
      cdq
@@ -168,11 +166,11 @@ swap:
 swap_0_block_enter:
      mov                   r8,                  rdi
      mov                  rdi,                  rsi
-     mov                   r9,                   r8
-     sal                   r9,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                   r9
-     mov                  rsi,      qword [rsi + 0]
+     mov                  rsi,                   r8
+     sal                  rsi,                    3
+     mov                   r9,       qword [@a + 0]
+     add                   r9,                  rsi
+     mov                  rsi,       qword [r9 + 0]
      mov                   r9,                   r8
      sal                   r9,                    3
      mov                   r8,       qword [@a + 0]
@@ -183,10 +181,11 @@ swap_0_block_enter:
      add                   r9,                  r10
      mov                  rax,       qword [r9 + 0]
      mov       qword [r8 + 0],                  rax
-     sal                  rdi,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  rdi
-     mov       qword [r8 + 0],                  rsi
+     mov                   r8,                  rdi
+     sal                   r8,                    3
+     mov                  rdi,       qword [@a + 0]
+     add                  rdi,                   r8
+     mov      qword [rdi + 0],                  rsi
 swap_1_block_exit:
      add                  rsp,                    8
      pop                  rbp
@@ -205,11 +204,11 @@ merge_1_loop_condition:
       je    merge_2_loop_body
      jmp   merge_14_loop_exit
 merge_2_loop_body:
-     mov                   r8,                  rsi
-     sal                   r8,                    3
-     mov                  rdi,       qword [@a + 0]
-     add                  rdi,                   r8
-     cmp      qword [rdi + 0],                    0
+     mov                  rdi,                  rsi
+     sal                  rdi,                    3
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  rdi
+     cmp       qword [r8 + 0],                    0
      mov                  rdi,                    0
     sete                  dil
      cmp                  rdi,                    1
@@ -248,11 +247,11 @@ merge_23_inline_enter:
      sal                  r10,                    3
      mov                   r9,       qword [@a + 0]
      add                   r9,                  r10
-     mov                  r10,                   r8
-     sal                  r10,                    3
-     mov                  r11,       qword [@a + 0]
-     add                  r11,                  r10
-     mov                  rax,      qword [r11 + 0]
+     mov                  r11,                   r8
+     sal                  r11,                    3
+     mov                  r10,       qword [@a + 0]
+     add                  r10,                  r11
+     mov                  rax,      qword [r10 + 0]
      mov       qword [r9 + 0],                  rax
      mov                   r9,                   r8
      sal                   r9,                    3
@@ -361,21 +360,21 @@ main:
     push                  r13
     push                  rbx
 main_0_block_enter:
-     mov                   r8,                    0
-     mov                  rsi,                    0
      mov                  r12,                    0
+     mov                  rsi,                    0
+     mov                  rbx,                    0
      mov       qword [@n + 0],                  210
      mov       qword [@h + 0],                    0
      mov                  rdi,                  100
      add                  rdi,                    1
      sal                  rdi,                    3
-    push                  rsi
     push                  rdi
-    push                   r8
+    push                  rsi
+     sub                  rsp,                    8
     call               malloc
-     pop                   r8
-     pop                  rdi
+     add                  rsp,                    8
      pop                  rsi
+     pop                  rdi
      mov                  rdi,                  rax
      mov      qword [rdi + 0],                  100
      add                  rdi,                    8
@@ -398,26 +397,26 @@ main_0_block_enter:
 main_15_inline_enter:
 main_16_loop_condition:
      cmp       qword [@h + 0],                  rdi
-     mov                  r13,                    0
-   setle                 r13b
-     cmp                  r13,                    1
+     mov                   r8,                    0
+   setle                  r8b
+     cmp                   r8,                    1
       je    main_17_loop_body
      jmp    main_22_loop_exit
 main_17_loop_body:
+     mov                   r8,       qword [@h + 0]
+     add                   r8,                    1
      mov                  r13,       qword [@h + 0]
-     add                  r13,                    1
-     mov                   r9,       qword [@h + 0]
-    imul                   r9,                  r13
-     mov                  r13,                   r9
-     mov                  rax,                  r13
+    imul                  r13,                   r8
+     mov                   r8,                  r13
+     mov                  rax,                   r8
      mov                  rcx,                    2
      cdq
     idiv                  ecx
-     mov                  r13,                  rax
-     cmp                  rdi,                  r13
-     mov                  r13,                    0
-    sete                 r13b
-     cmp                  r13,                    1
+     mov                   r8,                  rax
+     cmp                  rdi,                   r8
+     mov                   r8,                    0
+    sete                  r8b
+     cmp                   r8,                    1
       je      main_18_if_true
      jmp     main_19_if_false
 main_18_if_true:
@@ -446,11 +445,7 @@ main_2_if_false:
 main_3_if_exit:
      mov                  rdi,     __const_string_3
     push                  rsi
-    push                   r8
-     sub                  rsp,                    8
     call              println
-     add                  rsp,                    8
-     pop                   r8
      pop                  rsi
      mov                  rdi,              3654898
 main_24_inline_enter:
@@ -463,28 +458,28 @@ main_26_inline_enter:
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
-     mov                  r13,       qword [@A + 0]
-    imul                  r13,                  rdi
-     mov                   r9,    qword [@seed + 0]
-     mov                  rax,                   r9
+     mov                   r8,       qword [@A + 0]
+    imul                   r8,                  rdi
+     mov                  r13,    qword [@seed + 0]
+     mov                  rax,                  r13
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                   r9,                  rax
+     mov                  r13,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                   r9
-     sub                  r13,                  rdi
-     cmp                  r13,                    0
+    imul                  rdi,                  r13
+     sub                   r8,                  rdi
+     cmp                   r8,                    0
      mov                  rdi,                    0
    setge                  dil
      cmp                  rdi,                    1
       je      main_27_if_true
      jmp     main_28_if_false
 main_27_if_true:
-     mov    qword [@seed + 0],                  r13
+     mov    qword [@seed + 0],                   r8
      jmp      main_29_if_exit
 main_28_if_false:
-     mov                  rdi,                  r13
+     mov                  rdi,                   r8
      add                  rdi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rdi
 main_29_if_exit:
@@ -499,72 +494,68 @@ main_30_inline_exit:
      mov     qword [@now + 0],                  rdi
      mov                  rdi,     qword [@now + 0]
     push                  rsi
-    push                   r8
-     sub                  rsp,                    8
     call          println_Int
-     add                  rsp,                    8
-     pop                   r8
      pop                  rsi
 main_4_loop_condition:
      mov                  rdi,     qword [@now + 0]
      sub                  rdi,                    1
-     cmp                   r8,                  rdi
+     cmp                  r12,                  rdi
      mov                  rdi,                    0
     setl                  dil
      cmp                  rdi,                    1
       je     main_5_loop_body
      jmp    main_10_loop_exit
 main_5_loop_body:
-     mov                  r13,                   r8
-     sal                  r13,                    3
+     mov                   r8,                  r12
+     sal                   r8,                    3
      mov                  rdi,       qword [@a + 0]
-     add                  rdi,                  r13
+     add                  rdi,                   r8
 main_31_inline_enter:
+     mov                  r13,    qword [@seed + 0]
+     mov                  rax,                  r13
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+     mov                   r8,       qword [@A + 0]
+    imul                   r8,                  r13
      mov                   r9,    qword [@seed + 0]
      mov                  rax,                   r9
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                   r9,                  rdx
-     mov                  r13,       qword [@A + 0]
+     mov                   r9,                  rax
+     mov                  r13,       qword [@R + 0]
     imul                  r13,                   r9
-     mov                  r14,    qword [@seed + 0]
-     mov                  rax,                  r14
-     mov                  rcx,       qword [@Q + 0]
-     cdq
-    idiv                  ecx
-     mov                  r14,                  rax
-     mov                   r9,       qword [@R + 0]
-    imul                   r9,                  r14
-     sub                  r13,                   r9
-     cmp                  r13,                    0
-     mov                   r9,                    0
-   setge                  r9b
-     cmp                   r9,                    1
+     sub                   r8,                  r13
+     cmp                   r8,                    0
+     mov                  r13,                    0
+   setge                 r13b
+     cmp                  r13,                    1
       je      main_32_if_true
      jmp     main_33_if_false
 main_32_if_true:
-     mov    qword [@seed + 0],                  r13
+     mov    qword [@seed + 0],                   r8
      jmp      main_34_if_exit
 main_33_if_false:
-     add                  r13,       qword [@M + 0]
-     mov    qword [@seed + 0],                  r13
+     add                   r8,       qword [@M + 0]
+     mov    qword [@seed + 0],                   r8
 main_34_if_exit:
-     mov                  r13,    qword [@seed + 0]
+     mov                   r8,    qword [@seed + 0]
 main_35_inline_exit:
-     mov                  rax,                  r13
+     mov                  rax,                   r8
      mov                  rcx,                   10
      cdq
     idiv                  ecx
-     mov                  r13,                  rdx
-     add                  r13,                    1
-     mov      qword [rdi + 0],                  r13
+     mov                   r8,                  rdx
+     add                   r8,                    1
+     mov      qword [rdi + 0],                   r8
 main_6_loop_condition:
-     mov                  rdi,                   r8
-     sal                  rdi,                    3
-     mov                  r13,       qword [@a + 0]
-     add                  r13,                  rdi
-     mov                  rdi,      qword [r13 + 0]
+     mov                   r8,                  r12
+     sal                   r8,                    3
+     mov                  rdi,       qword [@a + 0]
+     add                  rdi,                   r8
+     mov                  rdi,      qword [rdi + 0]
      add                  rdi,                  rsi
      cmp                  rdi,       qword [@n + 0]
      mov                  rdi,                    0
@@ -573,99 +564,100 @@ main_6_loop_condition:
       je     main_7_loop_body
      jmp     main_8_loop_exit
 main_7_loop_body:
-     mov                  r13,                   r8
-     sal                  r13,                    3
+     mov                   r8,                  r12
+     sal                   r8,                    3
      mov                  rdi,       qword [@a + 0]
-     add                  rdi,                  r13
+     add                  rdi,                   r8
 main_36_inline_enter:
+     mov                   r8,    qword [@seed + 0]
+     mov                  rax,                   r8
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                   r8,                  rdx
+     mov                  r13,       qword [@A + 0]
+    imul                  r13,                   r8
      mov                   r9,    qword [@seed + 0]
      mov                  rax,                   r9
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                   r9,                  rdx
-     mov                  r13,       qword [@A + 0]
-    imul                  r13,                   r9
-     mov                  r14,    qword [@seed + 0]
-     mov                  rax,                  r14
-     mov                  rcx,       qword [@Q + 0]
-     cdq
-    idiv                  ecx
-     mov                  r14,                  rax
-     mov                   r9,       qword [@R + 0]
-    imul                   r9,                  r14
-     sub                  r13,                   r9
-     cmp                  r13,                    0
-     mov                   r9,                    0
-   setge                  r9b
-     cmp                   r9,                    1
+     mov                   r9,                  rax
+     mov                   r8,       qword [@R + 0]
+    imul                   r8,                   r9
+     sub                  r13,                   r8
+     mov                   r8,                  r13
+     cmp                   r8,                    0
+     mov                  r13,                    0
+   setge                 r13b
+     cmp                  r13,                    1
       je      main_37_if_true
      jmp     main_38_if_false
 main_37_if_true:
-     mov    qword [@seed + 0],                  r13
+     mov    qword [@seed + 0],                   r8
      jmp      main_39_if_exit
 main_38_if_false:
-     add                  r13,       qword [@M + 0]
-     mov    qword [@seed + 0],                  r13
+     add                   r8,       qword [@M + 0]
+     mov    qword [@seed + 0],                   r8
 main_39_if_exit:
-     mov                  r13,    qword [@seed + 0]
+     mov                   r8,    qword [@seed + 0]
 main_40_inline_exit:
-     mov                  rax,                  r13
+     mov                  rax,                   r8
      mov                  rcx,                   10
      cdq
     idiv                  ecx
-     mov                  r13,                  rdx
-     add                  r13,                    1
-     mov      qword [rdi + 0],                  r13
+     mov                   r8,                  rdx
+     add                   r8,                    1
+     mov      qword [rdi + 0],                   r8
      jmp main_6_loop_condition
 main_8_loop_exit:
-     mov                  rdi,                   r8
+     mov                  rdi,                  r12
      sal                  rdi,                    3
-     mov                  r13,       qword [@a + 0]
-     add                  r13,                  rdi
-     add                  rsi,      qword [r13 + 0]
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  rdi
+     add                  rsi,       qword [r8 + 0]
 main_9_loop_increment:
-     add                   r8,                    1
+     add                  r12,                    1
      jmp main_4_loop_condition
 main_10_loop_exit:
      mov                  rdi,     qword [@now + 0]
      sub                  rdi,                    1
-     mov                   r8,                  rdi
-     sal                   r8,                    3
+     mov                  r12,                  rdi
+     sal                  r12,                    3
      mov                  rdi,       qword [@a + 0]
-     add                  rdi,                   r8
-     mov                   r8,       qword [@n + 0]
-     sub                   r8,                  rsi
-     mov      qword [rdi + 0],                   r8
+     add                  rdi,                  r12
+     mov                  r12,       qword [@n + 0]
+     sub                  r12,                  rsi
+     mov      qword [rdi + 0],                  r12
 main_41_inline_enter:
-     mov                   r8,                    0
+     mov                  r12,                    0
 main_42_loop_condition:
-     cmp                   r8,     qword [@now + 0]
+     cmp                  r12,     qword [@now + 0]
      mov                  rsi,                    0
     setl                  sil
      cmp                  rsi,                    1
       je    main_43_loop_body
      jmp    main_45_loop_exit
 main_43_loop_body:
-     mov                  rdi,                   r8
+     mov                  rdi,                  r12
      sal                  rdi,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rdi
      mov                  rdi,      qword [rsi + 0]
-    push                   r8
+     sub                  rsp,                    8
     call             toString
-     pop                   r8
+     add                  rsp,                    8
      mov                  rdi,                  rax
      mov                  rsi,     __const_string_8
-    push                   r8
+     sub                  rsp,                    8
     call  __string_connection
-     pop                   r8
+     add                  rsp,                    8
      mov                  rdi,                  rax
-    push                   r8
+     sub                  rsp,                    8
     call                print
-     pop                   r8
+     add                  rsp,                    8
 main_44_loop_increment:
-     add                   r8,                    1
+     add                  r12,                    1
      jmp main_42_loop_condition
 main_45_loop_exit:
      mov                  rdi,     __const_string_9
@@ -683,10 +675,10 @@ main_48_loop_condition:
       je    main_49_loop_body
      jmp    main_61_loop_exit
 main_49_loop_body:
-     mov                   r8,                  rdi
-     sal                   r8,                    3
+     mov                  r12,                  rdi
+     sal                  r12,                    3
      mov                  rsi,       qword [@a + 0]
-     add                  rsi,                   r8
+     add                  rsi,                  r12
      cmp      qword [rsi + 0],                    0
      mov                  rsi,                    0
     sete                  sil
@@ -698,20 +690,20 @@ main_50_if_true:
      add                  rsi,                    1
 main_51_loop_condition:
      cmp                  rsi,     qword [@now + 0]
-     mov                   r8,                    0
-    setl                  r8b
-     cmp                   r8,                    1
+     mov                  r12,                    0
+    setl                 r12b
+     cmp                  r12,                    1
       je    main_52_loop_body
      jmp    main_57_loop_exit
 main_52_loop_body:
-     mov                  r13,                  rsi
-     sal                  r13,                    3
+     mov                  r12,                  rsi
+     sal                  r12,                    3
      mov                   r8,       qword [@a + 0]
-     add                   r8,                  r13
+     add                   r8,                  r12
      cmp       qword [r8 + 0],                    0
-     mov                   r8,                    0
-   setne                  r8b
-     cmp                   r8,                    1
+     mov                  r12,                    0
+   setne                 r12b
+     cmp                  r12,                    1
       je      main_53_if_true
      jmp     main_54_if_false
 main_53_if_true:
@@ -741,11 +733,11 @@ main_62_loop_condition:
       je    main_63_loop_body
      jmp    main_68_loop_exit
 main_63_loop_body:
-     mov                  rsi,                  rdi
-     sal                  rsi,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  rsi
-     cmp       qword [r8 + 0],                    0
+     mov                  r12,                  rdi
+     sal                  r12,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  r12
+     cmp      qword [rsi + 0],                    0
      mov                  rsi,                    0
     sete                  sil
      cmp                  rsi,                    1
@@ -781,119 +773,140 @@ main_70_inline_enter:
       je      main_71_if_true
      jmp     main_72_if_false
 main_71_if_true:
-     mov                  rbx,                    0
+     mov                  rsi,                    0
      jmp  main_96_inline_exit
 main_72_if_false:
 main_73_if_exit:
-     mov                  rdi,                    0
+     mov                  r12,                    0
 main_74_loop_condition:
-     cmp                  rdi,     qword [@now + 0]
-     mov                   r8,                    0
-    setl                  r8b
-     cmp                   r8,                    1
+     cmp                  r12,     qword [@now + 0]
+     mov                  rdi,                    0
+    setl                  dil
+     cmp                  rdi,                    1
       je    main_75_loop_body
      jmp    main_77_loop_exit
 main_75_loop_body:
+     mov                   r8,                  r12
+     sal                   r8,                    3
+     mov                  rdi,                  rsi
+     add                  rdi,                   r8
+     mov                  r13,                  r12
+     sal                  r13,                    3
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  r13
+     mov                  rax,       qword [r8 + 0]
+     mov      qword [rdi + 0],                  rax
+main_76_loop_increment:
+     add                  r12,                    1
+     jmp main_74_loop_condition
+main_77_loop_exit:
+     mov                  rdi,                    0
+main_78_loop_condition:
+     mov                  r12,     qword [@now + 0]
+     sub                  r12,                    1
+     cmp                  rdi,                  r12
+     mov                  r12,                    0
+    setl                 r12b
+     cmp                  r12,                    1
+      je    main_79_loop_body
+     jmp    main_88_loop_exit
+main_79_loop_body:
+     mov                  r12,                  rdi
+     add                  r12,                    1
+main_80_loop_condition:
+     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+    setl                  r8b
+     cmp                   r8,                    1
+      je    main_81_loop_body
+     jmp    main_86_loop_exit
+main_81_loop_body:
      mov                  r13,                  rdi
      sal                  r13,                    3
      mov                   r8,                  rsi
      add                   r8,                  r13
-     mov                   r9,                  rdi
+     mov                   r9,                  r12
      sal                   r9,                    3
-     mov                  r13,       qword [@a + 0]
-     add                  r13,                   r9
-     mov                  rax,      qword [r13 + 0]
-     mov       qword [r8 + 0],                  rax
-main_76_loop_increment:
-     add                  rdi,                    1
-     jmp main_74_loop_condition
-main_77_loop_exit:
-     mov                   r8,                    0
-main_78_loop_condition:
-     mov                  rdi,     qword [@now + 0]
-     sub                  rdi,                    1
-     cmp                   r8,                  rdi
-     mov                  rdi,                    0
-    setl                  dil
-     cmp                  rdi,                    1
-      je    main_79_loop_body
-     jmp    main_88_loop_exit
-main_79_loop_body:
-     mov                  rdi,                   r8
-     add                  rdi,                    1
-main_80_loop_condition:
-     cmp                  rdi,     qword [@now + 0]
-     mov                  r13,                    0
-    setl                 r13b
-     cmp                  r13,                    1
-      je    main_81_loop_body
-     jmp    main_86_loop_exit
-main_81_loop_body:
-     mov                  r13,                   r8
-     sal                  r13,                    3
-     mov                   r9,                  rsi
-     add                   r9,                  r13
-     mov                  r14,                  rdi
-     sal                  r14,                    3
      mov                  r13,                  rsi
-     add                  r13,                  r14
-     mov                   r9,       qword [r9 + 0]
-     cmp                   r9,      qword [r13 + 0]
-     mov                  r13,                    0
-    setg                 r13b
-     cmp                  r13,                    1
+     add                  r13,                   r9
+     mov                   r8,       qword [r8 + 0]
+     cmp                   r8,      qword [r13 + 0]
+     mov                   r8,                    0
+    setg                  r8b
+     cmp                   r8,                    1
       je      main_82_if_true
      jmp     main_83_if_false
 main_82_if_true:
-     mov                   r9,                   r8
+     mov                   r8,                  rdi
+     sal                   r8,                    3
+     mov                  r13,                  rsi
+     add                  r13,                   r8
+     mov                   r8,      qword [r13 + 0]
+     mov                   r9,                  rdi
      sal                   r9,                    3
      mov                  r13,                  rsi
      add                  r13,                   r9
-     mov                  r13,      qword [r13 + 0]
-     mov                  r14,                   r8
-     sal                  r14,                    3
-     mov                   r9,                  rsi
-     add                   r9,                  r14
-     mov                  r14,                  rdi
-     sal                  r14,                    3
-     mov                  r10,                  rsi
-     add                  r10,                  r14
-     mov                  rax,      qword [r10 + 0]
-     mov       qword [r9 + 0],                  rax
-     mov                  r14,                  rdi
-     sal                  r14,                    3
-     mov                   r9,                  rsi
-     add                   r9,                  r14
-     mov       qword [r9 + 0],                  r13
+     mov                   r9,                  r12
+     sal                   r9,                    3
+     mov                  r14,                  rsi
+     add                  r14,                   r9
+     mov                  rax,      qword [r14 + 0]
+     mov      qword [r13 + 0],                  rax
+     mov                   r9,                  r12
+     sal                   r9,                    3
+     mov                  r13,                  rsi
+     add                  r13,                   r9
+     mov      qword [r13 + 0],                   r8
      jmp      main_84_if_exit
 main_83_if_false:
 main_84_if_exit:
 main_85_loop_increment:
-     add                  rdi,                    1
+     add                  r12,                    1
      jmp main_80_loop_condition
 main_86_loop_exit:
 main_87_loop_increment:
-     add                   r8,                    1
+     add                  rdi,                    1
      jmp main_78_loop_condition
 main_88_loop_exit:
-     mov                   r8,                    0
+     mov                  rdi,                    0
 main_89_loop_condition:
+     cmp                  rdi,     qword [@now + 0]
+     mov                  r12,                    0
+    setl                 r12b
+     cmp                  r12,                    1
+      je    main_90_loop_body
+     jmp    main_95_loop_exit
 main_90_loop_body:
+     mov                   r8,                  rdi
+     sal                   r8,                    3
+     mov                  r12,                  rsi
+     add                  r12,                   r8
+     mov                   r8,                  rdi
+     add                   r8,                    1
+     cmp      qword [r12 + 0],                   r8
+     mov                  r12,                    0
+   setne                 r12b
+     cmp                  r12,                    1
+      je      main_91_if_true
+     jmp     main_92_if_false
 main_91_if_true:
+     mov                  rsi,                    0
+     jmp  main_96_inline_exit
 main_92_if_false:
 main_93_if_exit:
 main_94_loop_increment:
+     add                  rdi,                    1
+     jmp main_89_loop_condition
 main_95_loop_exit:
-     mov                  rbx,                    1
+     mov                  rsi,                    1
 main_96_inline_exit:
-     mov                  rsi,                  rbx
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
      jmp    main_13_loop_exit
 main_12_loop_body:
-     add                  r12,                    1
-     mov                  rdi,                  r12
+     add                  rbx,                    1
+     mov                  rdi,                  rbx
      sub                  rsp,                    8
     call             toString
      add                  rsp,                    8
@@ -921,21 +934,21 @@ main_98_loop_condition:
       je    main_99_loop_body
      jmp   main_101_loop_exit
 main_99_loop_body:
-     mov                   r8,                  rsi
-     sal                   r8,                    3
+     mov                  r12,                  rsi
+     sal                  r12,                    3
      mov                  rdi,       qword [@a + 0]
-     add                  rdi,                   r8
+     add                  rdi,                  r12
      sub      qword [rdi + 0],                    1
      add                  rsi,                    1
 main_100_loop_increment:
      jmp main_98_loop_condition
 main_101_loop_exit:
-     mov                  rsi,     qword [@now + 0]
-     sal                  rsi,                    3
-     mov                  rdi,       qword [@a + 0]
-     add                  rdi,                  rsi
+     mov                  rdi,     qword [@now + 0]
+     sal                  rdi,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rdi
      mov                  rax,     qword [@now + 0]
-     mov      qword [rdi + 0],                  rax
+     mov      qword [rsi + 0],                  rax
      add     qword [@now + 0],                    1
 main_102_inline_exit:
 main_103_inline_enter:
@@ -948,10 +961,10 @@ main_104_loop_condition:
       je   main_105_loop_body
      jmp   main_117_loop_exit
 main_105_loop_body:
-     mov                   r8,                  rdi
-     sal                   r8,                    3
+     mov                  r12,                  rdi
+     sal                  r12,                    3
      mov                  rsi,       qword [@a + 0]
-     add                  rsi,                   r8
+     add                  rsi,                  r12
      cmp      qword [rsi + 0],                    0
      mov                  rsi,                    0
     sete                  sil
@@ -963,20 +976,20 @@ main_106_if_true:
      add                  rsi,                    1
 main_107_loop_condition:
      cmp                  rsi,     qword [@now + 0]
-     mov                   r8,                    0
-    setl                  r8b
-     cmp                   r8,                    1
+     mov                  r12,                    0
+    setl                 r12b
+     cmp                  r12,                    1
       je   main_108_loop_body
      jmp   main_113_loop_exit
 main_108_loop_body:
-     mov                  r13,                  rsi
-     sal                  r13,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  r13
-     cmp       qword [r8 + 0],                    0
-     mov                   r8,                    0
-   setne                  r8b
-     cmp                   r8,                    1
+     mov                   r8,                  rsi
+     sal                   r8,                    3
+     mov                  r12,       qword [@a + 0]
+     add                  r12,                   r8
+     cmp      qword [r12 + 0],                    0
+     mov                  r12,                    0
+   setne                 r12b
+     cmp                  r12,                    1
       je     main_109_if_true
      jmp    main_110_if_false
 main_109_if_true:
@@ -1008,9 +1021,9 @@ main_118_loop_condition:
 main_119_loop_body:
      mov                  rsi,                  rdi
      sal                  rsi,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  rsi
-     cmp       qword [r8 + 0],                    0
+     mov                  r12,       qword [@a + 0]
+     add                  r12,                  rsi
+     cmp      qword [r12 + 0],                    0
      mov                  rsi,                    0
     sete                  sil
      cmp                  rsi,                    1
@@ -1027,34 +1040,34 @@ main_123_loop_increment:
 main_124_loop_exit:
 main_125_inline_exit:
 main_126_inline_enter:
-     mov                   r8,                    0
+     mov                  r12,                    0
 main_127_loop_condition:
-     cmp                   r8,     qword [@now + 0]
+     cmp                  r12,     qword [@now + 0]
      mov                  rsi,                    0
     setl                  sil
      cmp                  rsi,                    1
       je   main_128_loop_body
      jmp   main_130_loop_exit
 main_128_loop_body:
-     mov                  rsi,                   r8
-     sal                  rsi,                    3
-     mov                  rdi,       qword [@a + 0]
-     add                  rdi,                  rsi
-     mov                  rdi,      qword [rdi + 0]
-    push                   r8
+     mov                  rdi,                  r12
+     sal                  rdi,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rdi
+     mov                  rdi,      qword [rsi + 0]
+     sub                  rsp,                    8
     call             toString
-     pop                   r8
+     add                  rsp,                    8
      mov                  rdi,                  rax
      mov                  rsi,    __const_string_10
-    push                   r8
+     sub                  rsp,                    8
     call  __string_connection
-     pop                   r8
+     add                  rsp,                    8
      mov                  rdi,                  rax
-    push                   r8
+     sub                  rsp,                    8
     call                print
-     pop                   r8
+     add                  rsp,                    8
 main_129_loop_increment:
-     add                   r8,                    1
+     add                  r12,                    1
      jmp main_127_loop_condition
 main_130_loop_exit:
      mov                  rdi,    __const_string_11
@@ -1064,7 +1077,7 @@ main_130_loop_exit:
 main_131_inline_exit:
      jmp main_11_loop_condition
 main_13_loop_exit:
-     mov                  rdi,                  r12
+     mov                  rdi,                  rbx
      sub                  rsp,                    8
     call             toString
      add                  rsp,                    8
@@ -1175,42 +1188,42 @@ win_10_loop_condition:
       je     win_11_loop_body
      jmp     win_16_loop_exit
 win_11_loop_body:
-     mov                  r10,                  rdi
-     sal                  r10,                    3
-     mov                   r9,                  rsi
-     add                   r9,                  r10
+     mov                   r9,                  rdi
+     sal                   r9,                    3
+     mov                  r10,                  rsi
+     add                  r10,                   r9
      mov                  r11,                   r8
      sal                  r11,                    3
-     mov                  r10,                  rsi
-     add                  r10,                  r11
-     mov                   r9,       qword [r9 + 0]
-     cmp                   r9,      qword [r10 + 0]
+     mov                   r9,                  rsi
+     add                   r9,                  r11
+     mov                  r10,      qword [r10 + 0]
+     cmp                  r10,       qword [r9 + 0]
      mov                   r9,                    0
     setg                  r9b
      cmp                   r9,                    1
       je       win_12_if_true
      jmp      win_13_if_false
 win_12_if_true:
-     mov                   r9,                  rdi
-     sal                   r9,                    3
-     mov                  r10,                  rsi
-     add                  r10,                   r9
-     mov                   r9,      qword [r10 + 0]
+     mov                  r10,                  rdi
+     sal                  r10,                    3
+     mov                   r9,                  rsi
+     add                   r9,                  r10
+     mov                   r9,       qword [r9 + 0]
      mov                  r11,                  rdi
      sal                  r11,                    3
      mov                  r10,                  rsi
      add                  r10,                  r11
-     mov                  r11,                   r8
-     sal                  r11,                    3
-     mov                  rbx,                  rsi
-     add                  rbx,                  r11
-     mov                  rax,      qword [rbx + 0]
+     mov                  rbx,                   r8
+     sal                  rbx,                    3
+     mov                  r11,                  rsi
+     add                  r11,                  rbx
+     mov                  rax,      qword [r11 + 0]
      mov      qword [r10 + 0],                  rax
-     mov                  r11,                   r8
-     sal                  r11,                    3
-     mov                  r10,                  rsi
-     add                  r10,                  r11
-     mov      qword [r10 + 0],                   r9
+     mov                  r10,                   r8
+     sal                  r10,                    3
+     mov                  r11,                  rsi
+     add                  r11,                  r10
+     mov      qword [r11 + 0],                   r9
      jmp       win_14_if_exit
 win_13_if_false:
 win_14_if_exit:

@@ -51,6 +51,7 @@ public class BlocksRazor {
                             if (!valid) break;
                         }
                     }
+                    if (!valid) break;
                 }
                 if (!valid) continue;
                 Set<VirtualRegister> killSet = new HashSet<>();
