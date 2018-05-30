@@ -63,6 +63,7 @@ public class RegisterAllocator {
         /*for (VirtualRegister virtualRegister : virtualRegisterList) {
             System.out.println(virtualRegister.toString() + " " + countMap.get(virtualRegister));
         }*/
+        //System.out.println(virtualRegisterList.size());
         if (virtualRegisterList.size() < 200) {
             for (VirtualRegister virtualRegister : virtualRegisterList) {
                 allocateRegisterList.add(virtualRegister);
@@ -76,7 +77,7 @@ public class RegisterAllocator {
             for (VirtualRegister virtualRegister : criticalRegisterList) {
                 tryColor(virtualRegister, virtualRegister.getSystemRegister());
             }
-            for (VirtualRegister virtualRegister : allocateRegisterList) {
+            for (VirtualRegister virtualRegister : virtualRegisterList) {
                 for (String systemRegister : allocateOrder) {
                     if (tryColor(virtualRegister, systemRegister)) {
                         break;
