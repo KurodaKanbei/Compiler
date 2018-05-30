@@ -29,7 +29,7 @@ public class BinaryInstructionRazor {
                         if (moveInstruction1.getTarget() instanceof VirtualRegister && moveInstruction1.getSource() instanceof VirtualRegister) {
                             VirtualRegister t = (VirtualRegister) moveInstruction1.getTarget();
                             VirtualRegister A = (VirtualRegister) moveInstruction1.getSource();
-                            if (t == binaryInstruction.getTarget() && A == moveInstruction2.getTarget() && !moveInstruction2.getLiveOut().contains(t)) {
+                            if (t == binaryInstruction.getTarget() && A == moveInstruction2.getTarget() && !moveInstruction2.getLiveOut().contains(t) && t.getSystemRegister() == null) {
                                 binaryInstruction.setTarget(A);
                                 block.getInstructionList().remove(i + 1);
                                 block.getInstructionList().remove(i - 1);

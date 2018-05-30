@@ -1,312 +1,3107 @@
-//Compute and Crack SHA-1
-//by zzk
-
-int hex2int(string x)
-{
-	int i;
-	int result = 0;
-	for(i=0;i<x.length();i++)
-	{
-		int digit = x.ord(i);
-		if(digit >= 48 && digit <= 57)
-			result = result * 16 + digit - 48;
-		else if(digit >= 65 && digit <= 70)
-			result = result * 16 + digit - 65 + 10;
-		else if(digit >= 97 && digit <= 102)
-			result = result * 16 + digit - 97 + 10;
-		else
-			return 0;
-	}
-	return result;
-}
-
-string asciiTable = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-string int2chr(int x)
-{
-	if(x >= 32 && x <= 126)
-		return asciiTable.substring(x-32, x-32);
-	return "";
-}
-string toStringHex(int x)
-{
-	string ret = "";
-	int i;
-	for(i=28;i>=0;i=i-4)
-	{
-		int digit = (x >> i) & 15;
-		if(digit < 10)
-			ret = ret + int2chr(48+digit);
-		else
-			ret = ret + int2chr(65+digit-10);
-	}
-	return ret;
-}
-int rotate_left(int x, int shift)
-{
-	if(shift == 1)
-		return ((x & 2147483647) << 1) | ((x >> 31) & 1);
-	if(shift == 31)
-		return ((x & 1) << 31) | ((x >> 1) & 2147483647);
-	return ((x & ((1 << (32-shift)) - 1)) << shift) | ((x >> (32-shift)) & ((1 << shift) - 1));
-}
-int add(int x, int y)	//to avoid possible undefined behaviour when overflow
-{
-	int low = (x & 65535) + (y & 65535);
-	int high = (((x >> 16) & 65535) + ((y >> 16) & 65535) + (low >> 16)) & 65535;
-	return (high << 16) | (low & 65535);
-}
-int lohi(int lo, int hi)
-{
-	return lo | (hi << 16);
-}
-
-int MAXCHUNK = 100;
-int MAXLENGTH = (MAXCHUNK-1) * 64 - 16;
-int[][] chunks = new int[MAXCHUNK][80];
-int[] inputBuffer = new int[MAXLENGTH];
-int[] outputBuffer = new int[5];
-int[] sha1(int[] input, int length)
-{
-	int nChunk = (length + 64 - 56) / 64 + 1;
-	if(nChunk > MAXCHUNK)
-	{
-		println("nChunk > MAXCHUNK!");
-		return null;
-	}
-	int i;
-	int j;
-	for(i=0;i<nChunk;i++)
-		for(j=0;j<80;j++)
-			chunks[i][j] = 0;
-	for(i=0;i<length;i++)
-		chunks[i/64][i%64/4] = chunks[i/64][i%64/4] | (input[i] << ((3-i%4)*8));
-	chunks[i/64][i%64/4] = chunks[i/64][i%64/4] | (128 << ((3-i%4)*8));
-	chunks[nChunk-1][15] = length << 3;
-	chunks[nChunk-1][14] = (length >> 29) & 7;
-
-	int h0 = 1732584193;  //0x67452301
-	int h1 = lohi(43913, 61389);  //0xEFCDAB89
-	int h2 = lohi(56574, 39098); //0x98BADCFE
-	int h3 = 271733878;   //0x10325476
-	int h4 = lohi(57840, 50130); //0xC3D2E1F0
-	for(i=0;i<nChunk;i++)
-	{
-		for(j=16;j<80;j++)
-			chunks[i][j] = rotate_left(chunks[i][j-3] ^ chunks[i][j-8] ^ chunks[i][j-14] ^ chunks[i][j-16], 1);
-
-		int a = h0;
-		int b = h1;
-		int c = h2;
-		int d = h3;
-		int e = h4;
-		for(j=0;j<80;j++)
-		{
-			int f;
-			int k;
-			if(j<20)
-			{
-				f = (b & c) | ((~b) & d);
-				k = 1518500249; //0x5A827999
-			}
-			else if(j<40)
-			{
-				f = b ^ c ^ d;
-				if (j == 20) {
-				    println("fuck" + toString(f));
-				}
-				k = 1859775393; //0x6ED9EBA1
-			}
-			else if(j<60)
-			{
-				f = (b & c) | (b & d) | (c & d);
-				k = lohi(48348, 36635); //0x8F1BBCDC
-			}
-			else
-			{
-				f = b ^ c ^ d;
-				k = lohi(49622, 51810); //0xCA62C1D6
-			}
-			int temp = add(add(add(rotate_left(a, 5), e), add(f, k)), chunks[i][j]);
-			e = d;
-			d = c;
-			c = rotate_left(b, 30);
-			b = a;
-			a = temp;
-			if (j == 19 || j == 20) println(toString(a) + " " + toString(b) + " " + toString(c) + " " + toString(d) + " " + toString(e));
-		}
-		h0 = add(h0, a);
-		h1 = add(h1, b);
-		h2 = add(h2, c);
-		h3 = add(h3, d);
-		h4 = add(h4, e);
-	}
-	outputBuffer[0] = h0;
-	outputBuffer[1] = h1;
-	outputBuffer[2] = h2;
-	outputBuffer[3] = h3;
-	outputBuffer[4] = h4;
-	return outputBuffer;
-}
-
-void computeSHA1(string input)
-{
-	int i;
-	for(i=0; i<input.length(); i++)
-		inputBuffer[i] = input.ord(i);
-	int[] result = sha1(inputBuffer, input.length());
-	for(i=0; i<result.size(); i++)
-		print(toStringHex(result[i]));
-	println("");
-}
-
-int nextLetter(int now)
-{
-	if(now == 122) //'z'
-		return -1;
-	if(now == 90)  //'Z'
-		return 97; //'a'
-	if(now == 57)  //'9'
-		return 65;
-	return now + 1;
-}
-
-bool nextText(int[] now, int length)
-{
-	int i;
-	for(i=length-1; i>=0; i--)
-	{
-		now[i] = nextLetter(now[i]);
-		if(now[i] == -1)
-			now[i] = 48;	//'0'
-		else
-			return true;
-	}
-	return false;
-}
-
-bool array_equal(int[] a, int[] b)
-{
-	if(a.size() != b.size()) {
-		return false;
-	}
-	int i;
-	for(i=0; i<a.size(); i++)
-		if(a[i] != b[i])
-			return false;
-	return true;
-}
-
-void crackSHA1(string input)
-{
-	int[] target = new int[5];
-	if(input.length() != 40)
-	{
-		println("Invalid input");
-		return;
-	}
-	int i;
-	for(i=0;i<5;i++)
-		target[i] = 0;
-	for(i=0;i<40;i=i+4)
-		target[i/8] = target[i/8] | (hex2int(input.substring(i, i+3)) << (1 - (i / 4) % 2) * 16);
-    for (i = 0 ; i < 5; i++) print(toString(target[i]) + " ");
-    println("\n-------------------------------------------------------");
-	int MAXDIGIT = 4;
-	int digit;
-	for(digit=3; digit <= 3; digit++)
-	{
-		inputBuffer[0] = 65;
-		inputBuffer[1] = 67;
-		inputBuffer[2] = 77;
-		while(true)
-		{
-			int[] out = sha1(inputBuffer, digit);
-			for (i = 0 ; i < 5; i++) print(toString(out[i]) + " ");
-            println("");
-			if(array_equal(out, target))
-			{
-				for(i=0;i<digit;i++)
-					print(int2chr(inputBuffer[i]));
-				println("");
-				return;
-			}
-			if(!nextText(inputBuffer, digit))
-				break;
-			break;
-		}
-	}
-	println("Not Found!");
-}
-
-int main()
-{
-	int op;
-	string input;
-	while(true)
-	{
-		op = 2;
-		if(op == 0)
-			break;
-		if(op == 1)
-		{
-			input = getString();
-			computeSHA1(input);
-		}
-		else if(op == 2)
-		{
-			input = "ABC64A57029F21F165A96BDB59F0351C7C7D1769";
-			crackSHA1(input);
-			break;
-		}
-	}
-	return 0;
-}
-
-/*!! metadata:
-=== comment ===
-sha-515030910628-zhangzhekai.txt Compute and Crack SHA-1
-=== is_public ===
-True
-=== assert ===
-output
-=== timeout ===
-4.5
-=== input ===
-1
-ACM
-1
-acm2015
-1
-compiler2017
-1
-optim-extended
-1
-SJTU
-1
-2017
-2
-ABC64A57029F21F165A96BDB59F0351C7C7D1769
-2
-04E8696E6424C21D717E46008780505D598EB59A
-2
-52fdb9f68c503e11d168fe52035901864c0a4861
-2
-cd3f0c85b158c08a2b113464991810cf2cdfc387
-0
-=== phase ===
-optim pretest
-=== output ===
-ABC64A57029F21F165A96BDB59F0351C7C7D1769
-5B38674EB4BD02CEC1D41C8DE3CC14A9872A2656
-082178164865B8E6425C5955DEB97DDC21DEC6DC
-E77812CE4574964BC144E3DB97953235B5A149DA
-BD1B591F0B3E8FCC2035F9FB2043FAB18E0DBDDA
-04E8696E6424C21D717E46008780505D598EB59A
-ACM
-2017
-233
-666
-=== exitcode ===
-0
-
-!!*/
+global __global_init
+global shift_l
+global hilo
+global int2chr
+global assert
+global shift_r
+global xorshift
+global main
+global xorshift10
+global toStringHex
+global print_Int
+global println_Int
+global print
+global println
+global getInt
+global getString
+global toString
+global __array_size
+global __string_substring
+global __string_length
+global __string_parseInt
+global __string_ord
+global __string_connection
+global __string_LE
+global __string_LEEQ
+global __string_GR
+global __string_GREQ
+global __string_EQ
+global __string_NEQ
+extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
+SECTION .text
+__global_init:
+    push                  rbp
+     mov                  rbp,                  rsp
+     sub                  rsp,                    8
+__global_init_0_block_enter:
+     mov qword [@asciiTable + 0],     __const_string_8
+__global_init_1_block_exit:
+     add                  rsp,                    8
+     pop                  rbp
+     ret
+shift_l:
+    push                  rbp
+     mov                  rbp,                  rsp
+shift_l_0_block_enter:
+     mov                   r8,                  rdi
+     mov                  rdi,                  rsi
+     mov                  rsi,                   r8
+     mov                  rcx,                  rdi
+     sal                  rsi,                   cl
+     mov                  rdi,                65535
+     mov                   r8,                65535
+shift_l_2_inline_enter:
+     sal                  rdi,                   16
+      or                   r8,                  rdi
+     mov                  rdi,                   r8
+shift_l_3_inline_exit:
+     and                  rsi,                  rdi
+     mov                  rax,                  rsi
+shift_l_1_block_exit:
+     pop                  rbp
+     ret
+hilo:
+    push                  rbp
+     mov                  rbp,                  rsp
+hilo_0_block_enter:
+     sal                  rdi,                   16
+      or                  rsi,                  rdi
+     mov                  rax,                  rsi
+hilo_1_block_exit:
+     pop                  rbp
+     ret
+int2chr:
+    push                  rbp
+     mov                  rbp,                  rsp
+     sub                  rsp,                    8
+    push                  r12
+    push                  rbx
+int2chr_0_block_enter:
+     mov                  rsi,                  rdi
+     cmp                  rsi,                   32
+     mov                  rbx,                    0
+   setge                   bl
+     cmp                  rbx,                    1
+     jne int2chr_2_logical_false
+int2chr_1_logical_true:
+     cmp                  rsi,                  126
+     mov                  rbx,                    0
+   setle                   bl
+     jmp int2chr_3_logical_exit
+int2chr_2_logical_false:
+     mov                  rbx,                    0
+int2chr_3_logical_exit:
+     cmp                  rbx,                    1
+      je    int2chr_4_if_true
+     jmp   int2chr_5_if_false
+int2chr_4_if_true:
+     mov                  r12,                  rsi
+     sub                  r12,                   32
+     mov                  rbx,                  rsi
+     sub                  rbx,                   32
+     mov                  rdi, qword [@asciiTable + 0]
+     mov                  rsi,                  r12
+     mov                  rdx,                  rbx
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rax,                  rsi
+     jmp int2chr_7_block_exit
+int2chr_5_if_false:
+int2chr_6_if_exit:
+     mov                  rax,     __const_string_7
+int2chr_7_block_exit:
+     pop                  rbx
+     pop                  r12
+     add                  rsp,                    8
+     pop                  rbp
+     ret
+assert:
+    push                  rbp
+     mov                  rbp,                  rsp
+assert_0_block_enter:
+     mov                  rsi,                  rdi
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je     assert_1_if_true
+     jmp    assert_2_if_false
+assert_1_if_true:
+     mov                  rdi,     __const_string_5
+    call              println
+     jmp     assert_3_if_exit
+assert_2_if_false:
+assert_3_if_exit:
+assert_4_block_exit:
+     pop                  rbp
+     ret
+shift_r:
+    push                  rbp
+     mov                  rbp,                  rsp
+shift_r_0_block_enter:
+     mov                  r10,                32767
+     mov                   r9,                65535
+shift_r_2_inline_enter:
+     mov                   r8,                  r10
+     sal                   r8,                   16
+      or                   r9,                   r8
+     mov                   r8,                   r9
+shift_r_3_inline_exit:
+     mov                  rcx,                  rsi
+     sar                   r8,                   cl
+     sal                   r8,                    1
+     add                   r8,                    1
+     mov                  rcx,                  rsi
+     sar                  rdi,                   cl
+     and                   r8,                  rdi
+     mov                  r10,                65535
+     mov                   r9,                65535
+shift_r_4_inline_enter:
+     mov                  rsi,                  r10
+     sal                  rsi,                   16
+     mov                  rdi,                   r9
+      or                  rdi,                  rsi
+     mov                  rsi,                  rdi
+shift_r_5_inline_exit:
+     mov                  rdi,                   r8
+     and                  rdi,                  rsi
+     mov                  rax,                  rdi
+shift_r_1_block_exit:
+     pop                  rbp
+     ret
+xorshift:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  r12
+    push                  rbx
+xorshift_0_block_enter:
+     mov                  rbx,                  rdi
+     mov                  rsi,                   13
+xorshift_2_inline_enter:
+     mov                  r12,                  rbx
+     mov                  rcx,                  rsi
+     sal                  r12,                   cl
+     mov                  rdi,                65535
+     mov                  rsi,                65535
+    call                 hilo
+     mov                  rsi,                  rax
+     mov                  rdi,                  r12
+     and                  rdi,                  rsi
+     mov                  rsi,                  rdi
+xorshift_3_inline_exit:
+     xor                  rbx,                  rsi
+     mov                  r12,                   17
+xorshift_4_inline_enter:
+     mov                  rdi,                32767
+     mov                  rsi,                65535
+    call                 hilo
+     mov                  rsi,                  rax
+     mov                  rcx,                  r12
+     sar                  rsi,                   cl
+     sal                  rsi,                    1
+     add                  rsi,                    1
+     mov                   r8,                  rsi
+     mov                  rsi,                  rbx
+     mov                  rcx,                  r12
+     sar                  rsi,                   cl
+     and                   r8,                  rsi
+     mov                  rdi,                65535
+     mov                  rsi,                65535
+    push                   r8
+     sub                  rsp,                    8
+    call                 hilo
+     add                  rsp,                    8
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                   r8
+     and                  rdi,                  rsi
+     mov                  rsi,                  rdi
+xorshift_5_inline_exit:
+     xor                  rbx,                  rsi
+     mov                  rsi,                    5
+xorshift_6_inline_enter:
+     mov                  r12,                  rbx
+     mov                  rcx,                  rsi
+     sal                  r12,                   cl
+     mov                  rdi,                65535
+     mov                  rsi,                65535
+    call                 hilo
+     mov                  rsi,                  rax
+     mov                  rdi,                  r12
+     and                  rdi,                  rsi
+     mov                  rsi,                  rdi
+xorshift_7_inline_exit:
+     xor                  rbx,                  rsi
+     mov                  rax,                  rbx
+xorshift_1_block_exit:
+     pop                  rbx
+     pop                  r12
+     pop                  rbp
+     ret
+main:
+    push                  rbp
+     mov                  rbp,                  rsp
+    call        __global_init
+     sub                  rsp,                   96
+    push                  r12
+    push                  r14
+    push                  r13
+    push                  r15
+    push                  rbx
+main_0_block_enter:
+     sub                  rsp,                    8
+    call               getInt
+     add                  rsp,                    8
+     mov                  r15,                  rax
+     sub                  rsp,                    8
+    call               getInt
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+    push                  rsi
+    call               getInt
+     pop                  rsi
+     mov                  r12,                  rax
+    push                  rsi
+    call               getInt
+     pop                  rsi
+     mov      qword [rbp - 8],                  rax
+     mov                  rbx,                  r15
+     add                  rbx,                    1
+     mov                  rdi,                  rbx
+main_15_inline_enter:
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+    call             xorshift
+     pop                  rsi
+     mov                  rbx,                  rax
+main_16_inline_exit:
+     mov                  r15,                  rbx
+     mov                  rbx,                32767
+     mov                  rdi,                65535
+main_17_inline_enter:
+     sal                  rbx,                   16
+      or                  rdi,                  rbx
+     mov                  rbx,                  rdi
+main_18_inline_exit:
+     mov     qword [rbp - 16],                  rbx
+     mov     qword [rbp - 24],                    0
+     mov     qword [rbp - 32],                    0
+     mov                  r10,                    0
+     mov     qword [rbp - 40],                    0
+     mov     qword [rbp - 48],                  rsi
+main_1_loop_condition:
+     cmp     qword [rbp - 48],                  r12
+     mov                  rsi,                    0
+    setl                  sil
+     cmp                  rsi,                    1
+      je     main_2_loop_body
+     jmp    main_13_loop_exit
+main_2_loop_body:
+     mov                  rsi,                  r15
+main_19_inline_enter:
+     mov                  rdi,                  rsi
+     mov                  rsi,                   13
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                   17
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                    5
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     mov                  rbx,                  rdi
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+main_20_inline_exit:
+     mov                  r15,                  rsi
+     mov                  rsi,                  r15
+     and                  rsi,     qword [rbp - 16]
+     mov     qword [rbp - 56],                  rsi
+     mov                  rsi,                  r15
+main_21_inline_enter:
+     mov                  rdi,                  rsi
+     mov                  rsi,                   13
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                   17
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                    5
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     mov                  rbx,                  rdi
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+main_22_inline_exit:
+     mov                  r15,                  rsi
+     mov                  rsi,                  r15
+     and                  rsi,     qword [rbp - 16]
+     mov                  rbx,                  rsi
+     mov                  rsi,                  r15
+main_23_inline_enter:
+     mov                  rdi,                  rsi
+     mov                  rsi,                   13
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                   17
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                    5
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                  rdi
+main_24_inline_exit:
+     mov                  r15,                  rsi
+     mov                  rsi,                  r15
+     and                  rsi,     qword [rbp - 16]
+     mov                   r9,                  rsi
+     mov                  rsi,                  r15
+main_25_inline_enter:
+     mov                  rdi,                  rsi
+     mov                  rsi,                   13
+    push                   r9
+    push                  r10
+    push                  rdi
+    call              shift_l
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                   17
+    push                   r9
+    push                  r10
+    push                  rdi
+    call              shift_r
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                    5
+    push                   r9
+    push                  r10
+    push                  rdi
+    call              shift_l
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                  rdi
+main_26_inline_exit:
+     mov                  r15,                  rsi
+     mov                  rsi,                  r15
+     and                  rsi,     qword [rbp - 16]
+     mov     qword [rbp - 64],                  rsi
+     mov                  rsi,                  r15
+main_27_inline_enter:
+     mov                  rdi,                  rsi
+     mov                  rsi,                   13
+    push                   r9
+    push                  r10
+    push                  rdi
+    call              shift_l
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                   17
+    push                   r9
+    push                  r10
+    push                  rdi
+    call              shift_r
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                    5
+    push                   r9
+    push                  r10
+    push                  rdi
+    call              shift_l
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     mov                   r8,                  rax
+     mov                  rsi,                  rdi
+     xor                  rsi,                   r8
+main_28_inline_exit:
+     mov                  r15,                  rsi
+     mov                  rsi,                  r15
+     and                  rsi,     qword [rbp - 16]
+     mov                  r11,                  rsi
+     mov                  rsi,                  r15
+main_29_inline_enter:
+     mov                  rdi,                  rsi
+     mov                  rsi,                   13
+    push                  r11
+    push                   r9
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     pop                  r11
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                   17
+    push                  r11
+    push                   r9
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     pop                  r11
+     mov                  rsi,                  rax
+     xor                  rdi,                  rsi
+     mov                  rsi,                    5
+    push                  r11
+    push                   r9
+    push                  r10
+    push                  rdi
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     pop                  rdi
+     pop                  r10
+     pop                   r9
+     pop                  r11
+     mov                   r8,                  rax
+     mov                  rsi,                  rdi
+     xor                  rsi,                   r8
+main_30_inline_exit:
+     mov                  r15,                  rsi
+     mov                  rsi,                  r15
+     and                  rsi,     qword [rbp - 16]
+     mov                   r8,                  rsi
+     mov                  rsi,     qword [rbp - 56]
+     xor                  rsi,                  rbx
+     xor                  rsi,                   r9
+     mov                  r13,                  rsi
+     mov                  rsi,     qword [rbp - 64]
+     xor                  rsi,                  r11
+     xor                  rsi,                   r8
+     mov                  rdi,                  r13
+     xor                  rdi,                  rsi
+     mov                  rsi,                  rdi
+     and                  rsi,     qword [rbp - 16]
+     mov                  r13,                  rsi
+     mov                  rsi,     qword [rbp - 56]
+     add                  rsi,                  rbx
+     add                  rsi,                   r9
+     add                  rsi,                    1
+     mov     qword [rbp - 72],                  rsi
+     mov                  rsi,     qword [rbp - 64]
+     add                  rsi,                  r11
+     add                  rsi,                   r8
+     mov                  rdi,     qword [rbp - 72]
+     sub                  rdi,                  rsi
+     mov                  rsi,                  rdi
+     and                  rsi,     qword [rbp - 16]
+     mov     qword [rbp - 72],                  rsi
+     mov                  rsi,     qword [rbp - 56]
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  r14,                  rbx
+     mov                  rax,                  r14
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r14,                  rdx
+     mov                  rdi,                  rsi
+    imul                  rdi,                  r14
+     mov                  rsi,                   r9
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+    imul                  rdi,                  rsi
+     mov                  r14,                  rdi
+     mov                  rsi,     qword [rbp - 64]
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                  r14
+    imul                  rdi,                  rsi
+     mov                  rsi,                  r11
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  r14,                  rdi
+    imul                  r14,                  rsi
+     mov                  rdi,                   r8
+     mov                  rax,                  rdi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                  r14
+    imul                  rsi,                  rdi
+     and                  rsi,     qword [rbp - 16]
+     mov                  r14,                  rsi
+     mov                  rsi,     qword [rbp - 56]
+     xor                  rsi,                  rbx
+     mov                  rdi,                  rsi
+     xor                  rdi,                   r9
+     mov                  rsi,     qword [rbp - 64]
+     xor                  rsi,                  r11
+     xor                  rsi,                   r8
+     cmp                  rdi,                  rsi
+     mov                  rsi,                    0
+    setg                  sil
+     cmp                  rsi,                    1
+      je       main_3_if_true
+     jmp      main_4_if_false
+main_3_if_true:
+     mov                  rsi,     qword [rbp - 56]
+     add                  rsi,                  rbx
+     and                  rsi,     qword [rbp - 16]
+     mov                  rdi,                  rsi
+     mov                  rax,                  rdi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov     qword [rbp - 80],                  rdi
+     jmp       main_5_if_exit
+main_4_if_false:
+     mov                  rsi,                   r9
+     add                  rsi,                  rbx
+     and                  rsi,     qword [rbp - 16]
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,     qword [rbp - 56]
+     mov                  rax,                  rdi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     add                  rdi,                    1
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov     qword [rbp - 80],                  rsi
+main_5_if_exit:
+     mov                  rsi,                  r13
+     xor                  rsi,                10001
+     mov                  rdi,                  rsi
+main_31_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_32_inline_exit:
+     add     qword [rbp - 24],                  rsi
+     mov                  rsi,     qword [rbp - 72]
+     xor                  rsi,                10002
+     mov                  rdi,                  rsi
+main_33_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_34_inline_exit:
+     add     qword [rbp - 32],                  rsi
+     mov                  rsi,                  r14
+     xor                  rsi,                10003
+     mov                  rdi,                  rsi
+main_35_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_36_inline_exit:
+     add                  r10,                  rsi
+     mov                  rsi,     qword [rbp - 80]
+     xor                  rsi,                10004
+     mov                  rdi,                  rsi
+main_37_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_38_inline_exit:
+     add     qword [rbp - 40],                  rsi
+     mov                  rsi,     qword [rbp - 64]
+     xor                  rsi,                  rbx
+     xor                  rsi,                   r9
+     xor                  rsi,     qword [rbp - 56]
+     xor                  rsi,                   r8
+     xor                  rsi,                  r11
+     and                  rsi,     qword [rbp - 16]
+     mov                  rdi,                  rsi
+     mov                  rsi,     qword [rbp - 64]
+     neg                  rsi
+     add                  rsi,                  rbx
+     add                  rsi,                   r9
+     add                  rsi,     qword [rbp - 56]
+     sub                  rsi,                   r8
+     sub                  rsi,                  r11
+     add                  rsi,                    1
+     and                  rsi,     qword [rbp - 16]
+     mov     qword [rbp - 88],                  rsi
+     mov                  r13,     qword [rbp - 64]
+     mov                  rax,                  r13
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+     mov                  rsi,                  rbx
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  r14,                  r13
+    imul                  r14,                  rsi
+     mov                  r13,                   r9
+     mov                  rax,                  r13
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+     mov                  rsi,                  r14
+    imul                  rsi,                  r13
+     mov                  r13,                  rsi
+     mov                  r14,     qword [rbp - 56]
+     mov                  rax,                  r14
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r14,                  rdx
+     mov                  rsi,                  r13
+    imul                  rsi,                  r14
+     mov                  r13,                   r8
+     mov                  rax,                  r13
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+    imul                  rsi,                  r13
+     mov                  r13,                  r11
+     mov                  rax,                  r13
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+    imul                  rsi,                  r13
+     and                  rsi,     qword [rbp - 16]
+     mov                  r13,                  rsi
+     mov                  rsi,     qword [rbp - 56]
+     xor                  rsi,                  rbx
+     mov                  r14,                  rsi
+     xor                  r14,                   r9
+     mov                  rsi,     qword [rbp - 64]
+     xor                  rsi,                  r11
+     xor                  rsi,                   r8
+     cmp                  r14,                  rsi
+     mov                  rsi,                    0
+   setle                  sil
+     cmp                  rsi,                    1
+      je       main_6_if_true
+     jmp      main_7_if_false
+main_6_if_true:
+     mov                  rsi,                   r9
+     add                  rsi,                  rbx
+     and                  rsi,     qword [rbp - 16]
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  r14,     qword [rbp - 56]
+     mov                  rax,                  r14
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r14,                  rdx
+     add                  r14,                    1
+     mov                  eax,                  esi
+     mov                  ecx,                 r14d
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  r14,                  rsi
+     jmp       main_8_if_exit
+main_7_if_false:
+     mov                  rsi,     qword [rbp - 56]
+     add                  rsi,                  rbx
+     and                  rsi,     qword [rbp - 16]
+     mov                  r14,                  rsi
+     mov                  rax,                  r14
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r14,                  rdx
+     mov                  rsi,                   r9
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov                  eax,                 r14d
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  r14,                  rdx
+main_8_if_exit:
+     mov                  rsi,                  rdi
+     xor                  rsi,                10001
+     mov                  rdi,                  rsi
+main_39_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_40_inline_exit:
+     add     qword [rbp - 24],                  rsi
+     mov                  rsi,     qword [rbp - 88]
+     xor                  rsi,                10002
+     mov                  rdi,                  rsi
+main_41_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_42_inline_exit:
+     add     qword [rbp - 32],                  rsi
+     mov                  rsi,                  r13
+     xor                  rsi,                10003
+     mov                  rdi,                  rsi
+main_43_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_44_inline_exit:
+     add                  r10,                  rsi
+     mov                  rsi,                  r14
+     xor                  rsi,                10004
+     mov                  rdi,                  rsi
+main_45_inline_enter:
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rdi,                  rax
+    push                  r11
+    push                   r8
+    push                   r9
+    push                  r10
+     sub                  rsp,                    8
+    call             xorshift
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r9
+     pop                   r8
+     pop                  r11
+     mov                  rsi,                  rax
+main_46_inline_exit:
+     add     qword [rbp - 40],                  rsi
+     mov                  rsi,     qword [rbp - 64]
+     xor                  rsi,     qword [rbp - 56]
+     xor                  rsi,                   r9
+     xor                  rsi,                  rbx
+     xor                  rsi,                   r8
+     xor                  rsi,                  r11
+     and                  rsi,     qword [rbp - 16]
+     mov                  rdi,                  rsi
+     mov                  r13,     qword [rbp - 64]
+     sub                  r13,                  rbx
+     mov                  rsi,                   r9
+     neg                  rsi
+     add                  r13,                  rsi
+     mov                  rsi,                  r13
+     sub                  rsi,     qword [rbp - 56]
+     add                  rsi,                   r8
+     add                  rsi,                  r11
+     sub                  rsi,                    1
+     neg                  rsi
+     and                  rsi,     qword [rbp - 16]
+     mov                  r14,                  rsi
+     mov                  r13,     qword [rbp - 64]
+     mov                  rax,                  r13
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+     mov                  rsi,                  r11
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+    imul                  r13,                  rsi
+     mov                  rsi,                   r8
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+    imul                  r13,                  rsi
+     mov                  rax,     qword [rbp - 56]
+     mov     qword [rbp - 96],                  rax
+     mov                  rax,     qword [rbp - 96]
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov     qword [rbp - 96],                  rdx
+     mov                  rsi,                  r13
+     mov                  rax,                  rsi
+    imul                  rax,     qword [rbp - 96]
+     mov                  rsi,                  rax
+     mov                  r13,                  rbx
+     mov                  rax,                  r13
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+    imul                  rsi,                  r13
+     mov                  r13,                   r9
+     mov                  rax,                  r13
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  r13,                  rdx
+    imul                  rsi,                  r13
+     and                  rsi,     qword [rbp - 16]
+     mov                  r13,                  rsi
+     mov                  rsi,     qword [rbp - 64]
+     xor                  rsi,                  r11
+     xor                  rsi,                   r8
+     mov                   r8,                   r9
+     xor                   r8,                  rbx
+     xor                   r8,     qword [rbp - 56]
+     cmp                  rsi,                   r8
+     mov                  rsi,                    0
+    setl                  sil
+     cmp                  rsi,                    1
+      je       main_9_if_true
+     jmp     main_10_if_false
+main_9_if_true:
+     mov                  rsi,     qword [rbp - 56]
+     add                  rsi,                  rbx
+     and                  rsi,     qword [rbp - 16]
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rbx,                   r9
+     mov                  rax,                  rbx
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rbx,                  rdx
+     add                  rbx,                    1
+     mov                  eax,                  esi
+     mov                  ecx,                  ebx
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rbx,                  rsi
+     jmp      main_11_if_exit
+main_10_if_false:
+     mov                  rsi,                   r9
+     add                  rsi,                  rbx
+     and                  rsi,     qword [rbp - 16]
+     mov                  rax,                  rsi
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rbx,     qword [rbp - 56]
+     mov                  rax,                  rbx
+     mov                  rcx,      qword [rbp - 8]
+     cdq
+    idiv                  ecx
+     mov                  rbx,                  rdx
+     add                  rbx,                    1
+     mov                  eax,                  esi
+     mov                  ecx,                  ebx
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rbx,                  rsi
+main_11_if_exit:
+     mov                  rsi,                  rdi
+     xor                  rsi,                10001
+     mov                  rdi,                  rsi
+main_47_inline_enter:
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rsi,                  rax
+main_48_inline_exit:
+     add     qword [rbp - 24],                  rsi
+     mov                  rsi,                  r14
+     xor                  rsi,                10002
+     mov                  rdi,                  rsi
+main_49_inline_enter:
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rsi,                  rax
+main_50_inline_exit:
+     add     qword [rbp - 32],                  rsi
+     mov                  rsi,                  r13
+     xor                  rsi,                10003
+     mov                  rdi,                  rsi
+main_51_inline_enter:
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rsi,                  rax
+main_52_inline_exit:
+     add                  r10,                  rsi
+     mov                  rsi,                  rbx
+     xor                  rsi,                10004
+     mov                  rdi,                  rsi
+main_53_inline_enter:
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call             xorshift
+     pop                  r10
+     mov                  rsi,                  rax
+main_54_inline_exit:
+     add     qword [rbp - 40],                  rsi
+main_12_loop_increment:
+     add     qword [rbp - 48],                    1
+     jmp main_1_loop_condition
+main_13_loop_exit:
+     mov                   r8,     qword [rbp - 24]
+main_55_inline_enter:
+     mov                  rbx,     __const_string_9
+     mov                  r12,                   28
+main_56_loop_condition:
+     cmp                  r12,                    0
+     mov                  rsi,                    0
+   setge                  sil
+     cmp                  rsi,                    1
+      je    main_57_loop_body
+     jmp    main_62_loop_exit
+main_57_loop_body:
+     mov                  rsi,                   r8
+     mov                  rcx,                  r12
+     sar                  rsi,                   cl
+     and                  rsi,                   15
+     mov                  rdi,                  rsi
+     cmp                  rdi,                   10
+     mov                  rsi,                    0
+    setl                  sil
+     cmp                  rsi,                    1
+      je      main_58_if_true
+     jmp     main_59_if_false
+main_58_if_true:
+     mov                  rsi,                   48
+     add                  rsi,                  rdi
+     mov                  rdi,                  rsi
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call              int2chr
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rbx,                  rax
+     jmp      main_60_if_exit
+main_59_if_false:
+     mov                  rsi,                   65
+     add                  rsi,                  rdi
+     sub                  rsi,                   10
+     mov                  rdi,                  rsi
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call              int2chr
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rbx,                  rax
+main_60_if_exit:
+main_61_loop_increment:
+     sub                  r12,                    4
+     jmp main_56_loop_condition
+main_62_loop_exit:
+     mov                  rsi,                  rbx
+main_63_inline_exit:
+     mov                  rdi,                  rsi
+     mov                  rsi,     __const_string_0
+    push                  r10
+    call  __string_connection
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call                print
+     pop                  r10
+     mov                   r8,     qword [rbp - 32]
+main_64_inline_enter:
+     mov                  rbx,    __const_string_10
+     mov                  r12,                   28
+main_65_loop_condition:
+     cmp                  r12,                    0
+     mov                  rsi,                    0
+   setge                  sil
+     cmp                  rsi,                    1
+      je    main_66_loop_body
+     jmp    main_71_loop_exit
+main_66_loop_body:
+     mov                  rsi,                   r8
+     mov                  rcx,                  r12
+     sar                  rsi,                   cl
+     and                  rsi,                   15
+     mov                  rdi,                  rsi
+     cmp                  rdi,                   10
+     mov                  rsi,                    0
+    setl                  sil
+     cmp                  rsi,                    1
+      je      main_67_if_true
+     jmp     main_68_if_false
+main_67_if_true:
+     mov                  rsi,                   48
+     add                  rsi,                  rdi
+     mov                  rdi,                  rsi
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call              int2chr
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rbx,                  rax
+     jmp      main_69_if_exit
+main_68_if_false:
+     mov                  rsi,                   65
+     add                  rsi,                  rdi
+     sub                  rsi,                   10
+     mov                  rdi,                  rsi
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call              int2chr
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    push                  r10
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     pop                  r10
+     pop                   r8
+     mov                  rbx,                  rax
+main_69_if_exit:
+main_70_loop_increment:
+     sub                  r12,                    4
+     jmp main_65_loop_condition
+main_71_loop_exit:
+     mov                  rsi,                  rbx
+main_72_inline_exit:
+     mov                  rdi,                  rsi
+     mov                  rsi,     __const_string_1
+    push                  r10
+    call  __string_connection
+     pop                  r10
+     mov                  rdi,                  rax
+    push                  r10
+    call                print
+     pop                  r10
+     mov                   r8,                  r10
+main_73_inline_enter:
+     mov                  rbx,    __const_string_11
+     mov                  r12,                   28
+main_74_loop_condition:
+     cmp                  r12,                    0
+     mov                  rsi,                    0
+   setge                  sil
+     cmp                  rsi,                    1
+      je    main_75_loop_body
+     jmp    main_80_loop_exit
+main_75_loop_body:
+     mov                  rsi,                   r8
+     mov                  rcx,                  r12
+     sar                  rsi,                   cl
+     and                  rsi,                   15
+     mov                  rdi,                  rsi
+     cmp                  rdi,                   10
+     mov                  rsi,                    0
+    setl                  sil
+     cmp                  rsi,                    1
+      je      main_76_if_true
+     jmp     main_77_if_false
+main_76_if_true:
+     mov                  rsi,                   48
+     add                  rsi,                  rdi
+     mov                  rdi,                  rsi
+    push                   r8
+    call              int2chr
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    call  __string_connection
+     pop                   r8
+     mov                  rbx,                  rax
+     jmp      main_78_if_exit
+main_77_if_false:
+     mov                  rsi,                   65
+     add                  rsi,                  rdi
+     sub                  rsi,                   10
+     mov                  rdi,                  rsi
+    push                   r8
+    call              int2chr
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    call  __string_connection
+     pop                   r8
+     mov                  rbx,                  rax
+main_78_if_exit:
+main_79_loop_increment:
+     sub                  r12,                    4
+     jmp main_74_loop_condition
+main_80_loop_exit:
+     mov                  rsi,                  rbx
+main_81_inline_exit:
+     mov                  rdi,                  rsi
+     mov                  rsi,     __const_string_2
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call                print
+     add                  rsp,                    8
+     mov                   r8,     qword [rbp - 40]
+main_82_inline_enter:
+     mov                  rbx,    __const_string_12
+     mov                  r12,                   28
+main_83_loop_condition:
+     cmp                  r12,                    0
+     mov                  rsi,                    0
+   setge                  sil
+     cmp                  rsi,                    1
+      je    main_84_loop_body
+     jmp    main_89_loop_exit
+main_84_loop_body:
+     mov                  rsi,                   r8
+     mov                  rcx,                  r12
+     sar                  rsi,                   cl
+     and                  rsi,                   15
+     mov                  rdi,                  rsi
+     cmp                  rdi,                   10
+     mov                  rsi,                    0
+    setl                  sil
+     cmp                  rsi,                    1
+      je      main_85_if_true
+     jmp     main_86_if_false
+main_85_if_true:
+     mov                  rsi,                   48
+     add                  rsi,                  rdi
+     mov                  rdi,                  rsi
+    push                   r8
+    call              int2chr
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    call  __string_connection
+     pop                   r8
+     mov                  rbx,                  rax
+     jmp      main_87_if_exit
+main_86_if_false:
+     mov                  rsi,                   65
+     add                  rsi,                  rdi
+     sub                  rsi,                   10
+     mov                  rdi,                  rsi
+    push                   r8
+    call              int2chr
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  rbx
+    push                   r8
+    call  __string_connection
+     pop                   r8
+     mov                  rbx,                  rax
+main_87_if_exit:
+main_88_loop_increment:
+     sub                  r12,                    4
+     jmp main_83_loop_condition
+main_89_loop_exit:
+     mov                  rsi,                  rbx
+main_90_inline_exit:
+     mov                  rdi,                  rsi
+     mov                  rsi,     __const_string_3
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call                print
+     add                  rsp,                    8
+     mov                  rdi,     __const_string_4
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+main_14_block_exit:
+     pop                  rbx
+     pop                  r15
+     pop                  r13
+     pop                  r14
+     pop                  r12
+     add                  rsp,                   96
+     pop                  rbp
+     ret
+xorshift10:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  rbx
+xorshift10_0_block_enter:
+     mov                  rsi,                  rdi
+xorshift10_2_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_3_inline_exit:
+xorshift10_4_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_5_inline_exit:
+xorshift10_6_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_7_inline_exit:
+xorshift10_8_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_9_inline_exit:
+xorshift10_10_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_11_inline_exit:
+xorshift10_12_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_13_inline_exit:
+xorshift10_14_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_15_inline_exit:
+xorshift10_16_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_17_inline_exit:
+xorshift10_18_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_19_inline_exit:
+xorshift10_20_inline_enter:
+     mov                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   13
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                   17
+     sub                  rsp,                    8
+    call              shift_r
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rdi,                  rbx
+     mov                  rsi,                    5
+     sub                  rsp,                    8
+    call              shift_l
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     xor                  rbx,                  rsi
+     mov                  rsi,                  rbx
+xorshift10_21_inline_exit:
+     mov                  rax,                  rsi
+xorshift10_1_block_exit:
+     pop                  rbx
+     pop                  rbp
+     ret
+toStringHex:
+    push                  rbp
+     mov                  rbp,                  rsp
+     sub                  rsp,                    8
+    push                  r12
+    push                  r13
+    push                  rbx
+toStringHex_0_block_enter:
+     mov                  r12,                  rdi
+     mov                   r8,     __const_string_6
+     mov                  rbx,                   28
+toStringHex_1_loop_condition:
+     cmp                  rbx,                    0
+     mov                  rsi,                    0
+   setge                  sil
+     cmp                  rsi,                    1
+      je toStringHex_2_loop_body
+     jmp toStringHex_7_loop_exit
+toStringHex_2_loop_body:
+     mov                  rsi,                  r12
+     mov                  rcx,                  rbx
+     sar                  rsi,                   cl
+     and                  rsi,                   15
+     cmp                  rsi,                   10
+     mov                  rdi,                    0
+    setl                  dil
+     cmp                  rdi,                    1
+      je toStringHex_3_if_true
+     jmp toStringHex_4_if_false
+toStringHex_3_if_true:
+     mov                  rdi,                   48
+     add                  rdi,                  rsi
+     mov                  rsi,                  rdi
+toStringHex_9_inline_enter:
+     cmp                  rsi,                   32
+     mov                  rdi,                    0
+   setge                  dil
+     cmp                  rdi,                    1
+     jne toStringHex_11_logical_false
+toStringHex_10_logical_true:
+     cmp                  rsi,                  126
+     mov                  rdi,                    0
+   setle                  dil
+     jmp toStringHex_12_logical_exit
+toStringHex_11_logical_false:
+     mov                  rdi,                    0
+toStringHex_12_logical_exit:
+     cmp                  rdi,                    1
+      je toStringHex_13_if_true
+     jmp toStringHex_14_if_false
+toStringHex_13_if_true:
+     mov                  r13,                  rsi
+     sub                  r13,                   32
+     mov                   r9,                  rsi
+     sub                   r9,                   32
+     mov                  rdi, qword [@asciiTable + 0]
+     mov                  rsi,                  r13
+     mov                  rdx,                   r9
+    push                   r8
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                   r8
+     mov                  rsi,                  rax
+     jmp toStringHex_16_inline_exit
+toStringHex_14_if_false:
+toStringHex_15_if_exit:
+     mov                  rsi,    __const_string_13
+toStringHex_16_inline_exit:
+     mov                  rdi,                   r8
+    call  __string_connection
+     mov                   r8,                  rax
+     jmp toStringHex_5_if_exit
+toStringHex_4_if_false:
+     mov                  rdi,                   65
+     add                  rdi,                  rsi
+     mov                  rsi,                  rdi
+     sub                  rsi,                   10
+toStringHex_17_inline_enter:
+     cmp                  rsi,                   32
+     mov                  rdi,                    0
+   setge                  dil
+     cmp                  rdi,                    1
+     jne toStringHex_19_logical_false
+toStringHex_18_logical_true:
+     cmp                  rsi,                  126
+     mov                  rdi,                    0
+   setle                  dil
+     jmp toStringHex_20_logical_exit
+toStringHex_19_logical_false:
+     mov                  rdi,                    0
+toStringHex_20_logical_exit:
+     cmp                  rdi,                    1
+      je toStringHex_21_if_true
+     jmp toStringHex_22_if_false
+toStringHex_21_if_true:
+     mov                  r13,                  rsi
+     sub                  r13,                   32
+     mov                   r9,                  rsi
+     sub                   r9,                   32
+     mov                  rdi, qword [@asciiTable + 0]
+     mov                  rsi,                  r13
+     mov                  rdx,                   r9
+    push                   r8
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                   r8
+     mov                  rsi,                  rax
+     jmp toStringHex_24_inline_exit
+toStringHex_22_if_false:
+toStringHex_23_if_exit:
+     mov                  rsi,    __const_string_14
+toStringHex_24_inline_exit:
+     mov                  rdi,                   r8
+    call  __string_connection
+     mov                   r8,                  rax
+toStringHex_5_if_exit:
+toStringHex_6_loop_increment:
+     sub                  rbx,                    4
+     jmp toStringHex_1_loop_condition
+toStringHex_7_loop_exit:
+     mov                  rax,                   r8
+toStringHex_8_block_exit:
+     pop                  rbx
+     pop                  r13
+     pop                  r12
+     add                  rsp,                    8
+     pop                  rbp
+     ret
+SECTION .data
+      dq                    1
+__const_string_0:
+	db  32,   0
+      dq                    1
+__const_string_1:
+	db  32,   0
+      dq                    1
+__const_string_2:
+	db  32,   0
+      dq                    1
+__const_string_3:
+	db  32,   0
+      dq                    0
+__const_string_4:
+	db   0
+      dq                   17
+__const_string_5:
+	db  65, 115, 115, 101, 114, 116, 105, 111, 110,  32,  70,  97, 105, 108, 101, 100,  33,   0
+      dq                    0
+__const_string_6:
+	db   0
+      dq                    0
+__const_string_7:
+	db   0
+      dq                   97
+__const_string_8:
+	db  32,  33,  34,  35,  36,  37,  38,  39,  40,  41,  42,  43,  44,  45,  46,  47,  48,  49,  50,  51,  52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62,  63,  64,  65,  66,  67,  68,  69,  70,  71,  72,  73,  74,  75,  76,  77,  78,  79,  80,  81,  82,  83,  84,  85,  86,  87,  88,  89,  90,  91,  92,  93,  94,  95,  96,  97,  98,  99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126,   0
+      dq                    0
+__const_string_9:
+	db   0
+      dq                    0
+__const_string_10:
+	db   0
+      dq                    0
+__const_string_11:
+	db   0
+      dq                    0
+__const_string_12:
+	db   0
+      dq                    0
+__const_string_13:
+	db   0
+      dq                    0
+__const_string_14:
+	db   0
+SECTION .bss
+@asciiTable:
+    resq                    1
+SECTION .data
+__println_int_format:
+      db         "%ld", 10, 0
+__print_int_format:
+      db             "%ld", 0
+__print_format:
+      db              "%s", 0
+__scanf_int_format:
+      db             "%ld", 0
+__scanf_string_format:
+      db              "%s", 0
+__toString_format:
+      db             "%ld", 0
+__parseInt_format:
+      db             "%ld", 0
+SECTION .bss
+__scanf_int_buf:
+    resq                    1
+__sscanf_int_buf:
+    resq                    1
+SECTION .text
+print_Int:
+     mov                  rsi,                  rdi
+     mov                  rdi,   __print_int_format
+     sub                  rsp,                    8
+    call               printf
+     add                  rsp,                    8
+     ret
+println_Int:
+     mov                  rsi,                  rdi
+     mov                  rdi, __println_int_format
+     sub                  rsp,                    8
+    call               printf
+     add                  rsp,                    8
+     ret
+print:
+     mov                  rsi,                  rdi
+     mov                  rdi,       __print_format
+     sub                  rsp,                    8
+    call               printf
+     add                  rsp,                    8
+     ret
+println:
+     sub                  rsp,                    8
+    call                 puts
+     add                  rsp,                    8
+     ret
+getInt:
+     mov                  rdi,   __scanf_int_format
+     mov                  rsi,      __scanf_int_buf
+     sub                  rsp,                    8
+    call                scanf
+     add                  rsp,                    8
+     mov                  rax, qword [__scanf_int_buf]
+     ret
+getString:
+    push                  r15
+     mov                  rdi,                  300
+    call               malloc
+     mov                  r15,                  rax
+     add                  r15,                    8
+     mov                  rdi, __scanf_string_format
+     mov                  rsi,                  r15
+    call                scanf
+     mov                  rdi,                  r15
+    call               strlen
+     mov      qword [r15 - 8],                  rax
+     mov                  rax,                  r15
+     pop                  r15
+     ret
+toString:
+    push                  r15
+    push                  rdi
+     mov                  rdi,                   20
+     sub                  rsp,                    8
+    call               malloc
+     add                  rsp,                    8
+     mov                  r15,                  rax
+     add                  r15,                    8
+     mov                  rdi,                  r15
+     mov                  rsi,    __toString_format
+     pop                  rdx
+    call              sprintf
+     mov                  rdi,                  r15
+    call               strlen
+     mov      qword [r15 - 8],                  rax
+     mov                  rax,                  r15
+     pop                  r15
+     ret
+__array_size:
+     mov                  rax,      qword [rdi - 8]
+     ret
+__string_length:
+     mov                  rax,      qword [rdi - 8]
+     ret
+__string_parseInt:
+     mov                  rsi,   __scanf_int_format
+     mov                  rdx,     __sscanf_int_buf
+     sub                  rsp,                    8
+    call               sscanf
+     add                  rsp,                    8
+     mov                  rax, qword [__sscanf_int_buf]
+     ret
+__string_ord:
+     add                  rdi,                  rsi
+   movsx                  rax,           byte [rdi]
+     ret
+__string_connection:
+    push                  r15
+    push                  r14
+    push                  r13
+     mov                  r15,      qword [rdi - 8]
+     add                  r15,      qword [rsi - 8]
+     add                  r15,                    9
+     mov                  r14,                  rdi
+     mov                  r13,                  rsi
+     mov                  rdi,                  r15
+    call               malloc
+     sub                  r15,                    9
+     mov          qword [rax],                  r15
+     mov                  r15,                  rax
+     add                  r15,                    8
+     mov                  rdi,                  r15
+     mov                  rsi,                  r14
+    call               strcpy
+     add                  r15,      qword [r14 - 8]
+     mov                  r14,                  rax
+     mov                  rdi,                  r15
+     mov                  rsi,                  r13
+    call               strcpy
+     mov                  rax,                  r14
+     pop                  r13
+     pop                  r14
+     pop                  r15
+     ret
+__string_substring:
+    push                  r15
+    push                  r14
+     mov                  r15,                  rdi
+     add                  r15,                  rsi
+     mov                  r14,                  rdx
+     sub                  r14,                  rsi
+     add                  r14,                    1
+     mov                  rdi,                  r14
+     add                  rdi,                    9
+     sub                  rsp,                    8
+    call               malloc
+     add                  rsp,                    8
+     add                  rax,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,                  r15
+     mov                  rdx,                  r14
+     sub                  rsp,                    8
+    call               memcpy
+     add                  rsp,                    8
+     mov      qword [rax - 8],                  r14
+     mov                  r15,                  rax
+     add                  r15,                  r14
+     mov                  r15,                    0
+     pop                  r14
+     pop                  r15
+     ret
+__string_LE:
+     cmp                  eax,                    0
+     mov                  rax,                    0
+    setl                   al
+     ret
+__string_LEEQ:
+     cmp                  eax,                    0
+     mov                  rax,                    0
+   setle                   al
+     ret
+__string_GR:
+     cmp                  eax,                    0
+     mov                  rax,                    0
+    setg                   al
+     ret
+__string_GREQ:
+     cmp                  eax,                    0
+     mov                  rax,                    0
+   setge                   al
+     ret
+__string_EQ:
+     cmp                  eax,                    0
+     mov                  rax,                    0
+    sete                   al
+     ret
+__string_NEQ:
+     cmp                  eax,                    0
+     mov                  rax,                    0
+   setne                   al
+     ret

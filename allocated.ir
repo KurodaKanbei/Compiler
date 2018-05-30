@@ -1,12 +1,1698 @@
 __global_init {
 	__global_init_0_block_enter
+		Address (asciiTable(@asciiTable) + 0) = mov __const_string_8
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
+shift_l x(rdi) n(r8) {
+	shift_l_0_block_enter
+		x(rdi) = mov t353(rdi)
+		n(r8) = mov t354(rsi)
+		t355(rsi) = mov x(rdi)
+		t355(rsi) = t355(rsi) SHL n(r8)
+		hi(r8) = mov 65535
+		lo(rdi) = mov 65535
+		jump shift_l_2_inline_enter
+	shift_l_2_inline_enter
+		t376(r8) = mov hi(r8)
+		t376(r8) = t376(r8) SHL 16
+		t377(rdi) = mov lo(rdi)
+		t377(rdi) = t377(rdi) OR t376(r8)
+		t359(rdi) = mov t377(rdi)
+		jump shift_l_3_inline_exit
+	shift_l_3_inline_exit
+		t360(rsi) = mov t355(rsi)
+		t360(rsi) = t360(rsi) AND t359(rdi)
+		ret t360(rsi)
+		jump shift_l_1_block_exit
+	shift_l_1_block_exit
+}
+hilo hi(rdi) lo(rsi) {
+	hilo_0_block_enter
+		hi(rdi) = mov t361(rdi)
+		lo(rsi) = mov t362(rsi)
+		t363(rdi) = mov hi(rdi)
+		t363(rdi) = t363(rdi) SHL 16
+		t364(rsi) = mov lo(rsi)
+		t364(rsi) = t364(rsi) OR t363(rdi)
+		ret t364(rsi)
+		jump hilo_1_block_exit
+	hilo_1_block_exit
+}
+int2chr x(rsi) {
+	int2chr_0_block_enter
+		x(rsi) = mov t365(rdi)
+		cmp x(rsi) 32
+		set GREQ t367(rbx)
+		cmp t367(rbx) 1
+		CJump NEQ int2chr_2_logical_false
+		jump int2chr_1_logical_true
+	int2chr_1_logical_true
+		cmp x(rsi) 126
+		set LEEQ t368(rbx)
+		t366(rbx) = mov t368(rbx)
+		jump int2chr_3_logical_exit
+	int2chr_2_logical_false
+		t366(rbx) = mov 0
+		jump int2chr_3_logical_exit
+	int2chr_3_logical_exit
+		cmp t366(rbx) 1
+		CJump EQ int2chr_4_if_true
+		jump int2chr_5_if_false
+	int2chr_4_if_true
+		t369(rbx) = mov x(rsi)
+		t369(rbx) = t369(rbx) SUB 32
+		t370(r12) = mov x(rsi)
+		t370(r12) = t370(r12) SUB 32
+		t372(rdi) = mov Address (asciiTable(@asciiTable) + 0)
+		t373(rsi) = mov t369(rbx)
+		t374(rdx) = mov t370(r12)
+		call __string_substring return value = t371(rax)
+		t375(rsi) = mov t371(rax)
+		ret t375(rsi)
+		jump int2chr_7_block_exit
+	int2chr_5_if_false
+		jump int2chr_6_if_exit
+	int2chr_6_if_exit
+		ret __const_string_7
+		jump int2chr_7_block_exit
+	int2chr_7_block_exit
+}
+assert expression(null) {
+	assert_0_block_enter
+		t265(rsi) = mov t264(rdi)
+		t265(rsi) = t265(rsi) XOR 1
+		cmp t265(rsi) 1
+		CJump EQ assert_1_if_true
+		jump assert_2_if_false
+	assert_1_if_true
+		t266(rdi) = mov __const_string_5
+		call println return value = null
+		jump assert_3_if_exit
+	assert_2_if_false
+		jump assert_3_if_exit
+	assert_3_if_exit
+		jump assert_4_block_exit
+	assert_4_block_exit
+}
+shift_r x(rdi) n(rsi) {
+	shift_r_0_block_enter
+		x(rdi) = mov t298(rdi)
+		n(rsi) = mov t299(rsi)
+		hi(r10) = mov 32767
+		lo(r9) = mov 65535
+		jump shift_r_2_inline_enter
+	shift_r_2_inline_enter
+		t378(r8) = mov hi(r10)
+		t378(r8) = t378(r8) SHL 16
+		t379(r9) = mov lo(r9)
+		t379(r9) = t379(r9) OR t378(r8)
+		t303(r8) = mov t379(r9)
+		jump shift_r_3_inline_exit
+	shift_r_3_inline_exit
+		t304(r8) = mov t303(r8)
+		t304(r8) = t304(r8) SHR n(rsi)
+		t305(r8) = mov t304(r8)
+		t305(r8) = t305(r8) SHL 1
+		t306(r8) = mov t305(r8)
+		t306(r8) = t306(r8) ADD 1
+		tmp(r8) = mov t306(r8)
+		t307(rdi) = mov x(rdi)
+		t307(rdi) = t307(rdi) SHR n(rsi)
+		tmp(r8) = tmp(r8) AND t307(rdi)
+		hi(r10) = mov 65535
+		lo(r9) = mov 65535
+		jump shift_r_4_inline_enter
+	shift_r_4_inline_enter
+		t380(rsi) = mov hi(r10)
+		t380(rsi) = t380(rsi) SHL 16
+		t381(rdi) = mov lo(r9)
+		t381(rdi) = t381(rdi) OR t380(rsi)
+		t312(rsi) = mov t381(rdi)
+		jump shift_r_5_inline_exit
+	shift_r_5_inline_exit
+		t313(rdi) = mov tmp(r8)
+		t313(rdi) = t313(rdi) AND t312(rsi)
+		ret t313(rdi)
+		jump shift_r_1_block_exit
+	shift_r_1_block_exit
+}
+xorshift seed(null) {
+	xorshift_0_block_enter
+		x(rbx) = mov t314(rdi)
+		x(rbx) = mov x(rbx)
+		n(rsi) = mov 13
+		jump xorshift_2_inline_enter
+	xorshift_2_inline_enter
+		t382(r12) = mov x(rbx)
+		t382(r12) = t382(r12) SHL n(rsi)
+		t384(rdi) = mov 65535
+		t385(rsi) = mov 65535
+		call hilo return value = t383(rax)
+		t386(rsi) = mov t383(rax)
+		t387(rdi) = mov t382(r12)
+		t387(rdi) = t387(rdi) AND t386(rsi)
+		t318(rsi) = mov t387(rdi)
+		jump xorshift_3_inline_exit
+	xorshift_3_inline_exit
+		x(rbx) = x(rbx) XOR t318(rsi)
+		x(rbx) = mov x(rbx)
+		n(r12) = mov 17
+		jump xorshift_4_inline_enter
+	xorshift_4_inline_enter
+		t389(rdi) = mov 32767
+		t390(rsi) = mov 65535
+		call hilo return value = t388(rax)
+		t392(rsi) = mov t388(rax)
+		t392(rsi) = t392(rsi) SHR n(r12)
+		t393(rsi) = mov t392(rsi)
+		t393(rsi) = t393(rsi) SHL 1
+		t394(rsi) = mov t393(rsi)
+		t394(rsi) = t394(rsi) ADD 1
+		tmp(r8) = mov t394(rsi)
+		t395(rsi) = mov x(rbx)
+		t395(rsi) = t395(rsi) SHR n(r12)
+		tmp(r8) = tmp(r8) AND t395(rsi)
+		t398(rdi) = mov 65535
+		t399(rsi) = mov 65535
+		call hilo return value = t397(rax)
+		t400(rsi) = mov t397(rax)
+		t401(rdi) = mov tmp(r8)
+		t401(rdi) = t401(rdi) AND t400(rsi)
+		t323(rsi) = mov t401(rdi)
+		jump xorshift_5_inline_exit
+	xorshift_5_inline_exit
+		x(rbx) = x(rbx) XOR t323(rsi)
+		x(rbx) = mov x(rbx)
+		n(rsi) = mov 5
+		jump xorshift_6_inline_enter
+	xorshift_6_inline_enter
+		t402(r12) = mov x(rbx)
+		t402(r12) = t402(r12) SHL n(rsi)
+		t404(rdi) = mov 65535
+		t405(rsi) = mov 65535
+		call hilo return value = t403(rax)
+		t406(rsi) = mov t403(rax)
+		t407(rdi) = mov t402(r12)
+		t407(rdi) = t407(rdi) AND t406(rsi)
+		t328(rsi) = mov t407(rdi)
+		jump xorshift_7_inline_exit
+	xorshift_7_inline_exit
+		x(rbx) = x(rbx) XOR t328(rsi)
+		ret x(rbx)
+		jump xorshift_1_block_exit
+	xorshift_1_block_exit
+}
 main {
 	main_0_block_enter
-		t1(rdi) = mov 24323454
-		call println_Int return value = t0(rax)
-		jump main_1_block_exit
-	main_1_block_exit
+		call getInt return value = t0(rax)
+		seed(null) = mov t0(rax)
+		call getInt return value = t2(rax)
+		l(r12) = mov t2(rax)
+		call getInt return value = t4(rax)
+		r(rbx) = mov t4(rax)
+		call getInt return value = t6(rax)
+		P(null) = mov t6(rax)
+		t8(rsi) = mov seed(null)
+		t8(rsi) = t8(rsi) ADD 1
+		seed(rsi) = mov t8(rsi)
+		jump main_15_inline_enter
+	main_15_inline_enter
+		t409(rdi) = mov seed(rsi)
+		call xorshift return value = t408(rax)
+		t412(rdi) = mov t408(rax)
+		call xorshift return value = t411(rax)
+		t415(rdi) = mov t411(rax)
+		call xorshift return value = t414(rax)
+		t418(rdi) = mov t414(rax)
+		call xorshift return value = t417(rax)
+		t421(rdi) = mov t417(rax)
+		call xorshift return value = t420(rax)
+		t424(rdi) = mov t420(rax)
+		call xorshift return value = t423(rax)
+		t427(rdi) = mov t423(rax)
+		call xorshift return value = t426(rax)
+		t430(rdi) = mov t426(rax)
+		call xorshift return value = t429(rax)
+		t433(rdi) = mov t429(rax)
+		call xorshift return value = t432(rax)
+		t436(rdi) = mov t432(rax)
+		call xorshift return value = t435(rax)
+		t11(rsi) = mov t435(rax)
+		jump main_16_inline_exit
+	main_16_inline_exit
+		seed(null) = mov t11(rsi)
+		hi(rsi) = mov 32767
+		lo(rdi) = mov 65535
+		jump main_17_inline_enter
+	main_17_inline_enter
+		t438(r8) = mov hi(rsi)
+		t438(r8) = t438(r8) SHL 16
+		t439(rsi) = mov lo(rdi)
+		t439(rsi) = t439(rsi) OR t438(r8)
+		t15(rsi) = mov t439(rsi)
+		jump main_18_inline_exit
+	main_18_inline_exit
+		INT_MAX(null) = mov t15(rsi)
+		r1(r10) = mov 0
+		r2(r11) = mov 0
+		r3(null) = mov 0
+		r4(r15) = mov 0
+		i(r14) = mov l(r12)
+		jump main_1_loop_condition
+	main_1_loop_condition
+		cmp i(r14) r(rbx)
+		set LE t16(rsi)
+		cmp t16(rsi) 1
+		CJump EQ main_2_loop_body
+		jump main_13_loop_exit
+	main_2_loop_body
+		seed(rsi) = mov seed(null)
+		jump main_19_inline_enter
+	main_19_inline_enter
+		x(rdi) = mov seed(rsi)
+		t441(rdi) = mov x(rdi)
+		t442(rsi) = mov 13
+		call shift_l return value = t440(rax)
+		t443(rsi) = mov t440(rax)
+		x(rdi) = x(rdi) XOR t443(rsi)
+		t446(rdi) = mov x(rdi)
+		t447(rsi) = mov 17
+		call shift_r return value = t445(rax)
+		t448(rsi) = mov t445(rax)
+		x(rdi) = x(rdi) XOR t448(rsi)
+		t451(rdi) = mov x(rdi)
+		t452(rsi) = mov 5
+		call shift_l return value = t450(rax)
+		t453(rsi) = mov t450(rax)
+		t454(rdi) = mov x(rdi)
+		t454(rdi) = t454(rdi) XOR t453(rsi)
+		t19(rsi) = mov t454(rdi)
+		jump main_20_inline_exit
+	main_20_inline_exit
+		seed(null) = mov t19(rsi)
+		t20(rsi) = mov seed(null)
+		t20(rsi) = t20(rsi) AND INT_MAX(null)
+		v1(null) = mov t20(rsi)
+		seed(rsi) = mov seed(null)
+		jump main_21_inline_enter
+	main_21_inline_enter
+		x(rdi) = mov seed(rsi)
+		t456(rdi) = mov x(rdi)
+		t457(rsi) = mov 13
+		call shift_l return value = t455(rax)
+		t458(rsi) = mov t455(rax)
+		x(rdi) = x(rdi) XOR t458(rsi)
+		t461(rdi) = mov x(rdi)
+		t462(rsi) = mov 17
+		call shift_r return value = t460(rax)
+		t463(rsi) = mov t460(rax)
+		x(rdi) = x(rdi) XOR t463(rsi)
+		t466(rdi) = mov x(rdi)
+		t467(rsi) = mov 5
+		call shift_l return value = t465(rax)
+		t468(rsi) = mov t465(rax)
+		t469(rdi) = mov x(rdi)
+		t469(rdi) = t469(rdi) XOR t468(rsi)
+		t23(rsi) = mov t469(rdi)
+		jump main_22_inline_exit
+	main_22_inline_exit
+		seed(null) = mov t23(rsi)
+		t24(rsi) = mov seed(null)
+		t24(rsi) = t24(rsi) AND INT_MAX(null)
+		v2(null) = mov t24(rsi)
+		seed(rsi) = mov seed(null)
+		jump main_23_inline_enter
+	main_23_inline_enter
+		x(rdi) = mov seed(rsi)
+		t471(rdi) = mov x(rdi)
+		t472(rsi) = mov 13
+		call shift_l return value = t470(rax)
+		t473(rsi) = mov t470(rax)
+		x(rdi) = x(rdi) XOR t473(rsi)
+		t476(rdi) = mov x(rdi)
+		t477(rsi) = mov 17
+		call shift_r return value = t475(rax)
+		t478(rsi) = mov t475(rax)
+		x(rdi) = x(rdi) XOR t478(rsi)
+		t481(rdi) = mov x(rdi)
+		t482(rsi) = mov 5
+		call shift_l return value = t480(rax)
+		t483(rsi) = mov t480(rax)
+		t484(rdi) = mov x(rdi)
+		t484(rdi) = t484(rdi) XOR t483(rsi)
+		t27(rsi) = mov t484(rdi)
+		jump main_24_inline_exit
+	main_24_inline_exit
+		seed(null) = mov t27(rsi)
+		t28(rsi) = mov seed(null)
+		t28(rsi) = t28(rsi) AND INT_MAX(null)
+		v3(null) = mov t28(rsi)
+		seed(rsi) = mov seed(null)
+		jump main_25_inline_enter
+	main_25_inline_enter
+		x(rdi) = mov seed(rsi)
+		t486(rdi) = mov x(rdi)
+		t487(rsi) = mov 13
+		call shift_l return value = t485(rax)
+		t488(rsi) = mov t485(rax)
+		x(rdi) = x(rdi) XOR t488(rsi)
+		t491(rdi) = mov x(rdi)
+		t492(rsi) = mov 17
+		call shift_r return value = t490(rax)
+		t493(rsi) = mov t490(rax)
+		x(rdi) = x(rdi) XOR t493(rsi)
+		t496(rdi) = mov x(rdi)
+		t497(rsi) = mov 5
+		call shift_l return value = t495(rax)
+		t498(rsi) = mov t495(rax)
+		t499(rdi) = mov x(rdi)
+		t499(rdi) = t499(rdi) XOR t498(rsi)
+		t31(rsi) = mov t499(rdi)
+		jump main_26_inline_exit
+	main_26_inline_exit
+		seed(null) = mov t31(rsi)
+		t32(rsi) = mov seed(null)
+		t32(rsi) = t32(rsi) AND INT_MAX(null)
+		v4(null) = mov t32(rsi)
+		seed(rsi) = mov seed(null)
+		jump main_27_inline_enter
+	main_27_inline_enter
+		x(rdi) = mov seed(rsi)
+		t501(rdi) = mov x(rdi)
+		t502(rsi) = mov 13
+		call shift_l return value = t500(rax)
+		t503(rsi) = mov t500(rax)
+		x(rdi) = x(rdi) XOR t503(rsi)
+		t506(rdi) = mov x(rdi)
+		t507(rsi) = mov 17
+		call shift_r return value = t505(rax)
+		t508(rsi) = mov t505(rax)
+		x(rdi) = x(rdi) XOR t508(rsi)
+		t511(rdi) = mov x(rdi)
+		t512(rsi) = mov 5
+		call shift_l return value = t510(rax)
+		t513(rsi) = mov t510(rax)
+		t514(rdi) = mov x(rdi)
+		t514(rdi) = t514(rdi) XOR t513(rsi)
+		t35(rsi) = mov t514(rdi)
+		jump main_28_inline_exit
+	main_28_inline_exit
+		seed(null) = mov t35(rsi)
+		t36(rsi) = mov seed(null)
+		t36(rsi) = t36(rsi) AND INT_MAX(null)
+		v5(null) = mov t36(rsi)
+		seed(rsi) = mov seed(null)
+		jump main_29_inline_enter
+	main_29_inline_enter
+		x(rdi) = mov seed(rsi)
+		t516(rdi) = mov x(rdi)
+		t517(rsi) = mov 13
+		call shift_l return value = t515(rax)
+		t518(rsi) = mov t515(rax)
+		x(rdi) = x(rdi) XOR t518(rsi)
+		t521(rdi) = mov x(rdi)
+		t522(rsi) = mov 17
+		call shift_r return value = t520(rax)
+		t523(rsi) = mov t520(rax)
+		x(rdi) = x(rdi) XOR t523(rsi)
+		t526(rdi) = mov x(rdi)
+		t527(rsi) = mov 5
+		call shift_l return value = t525(rax)
+		t528(rsi) = mov t525(rax)
+		t529(rdi) = mov x(rdi)
+		t529(rdi) = t529(rdi) XOR t528(rsi)
+		t39(rsi) = mov t529(rdi)
+		jump main_30_inline_exit
+	main_30_inline_exit
+		seed(null) = mov t39(rsi)
+		t40(rsi) = mov seed(null)
+		t40(rsi) = t40(rsi) AND INT_MAX(null)
+		v6(null) = mov t40(rsi)
+		t41(rsi) = mov v1(null)
+		t41(rsi) = t41(rsi) XOR v2(null)
+		t42(rsi) = mov t41(rsi)
+		t42(rsi) = t42(rsi) XOR v3(null)
+		a1(r13) = mov t42(rsi)
+		t43(rsi) = mov v4(null)
+		t43(rsi) = t43(rsi) XOR v5(null)
+		t44(rsi) = mov t43(rsi)
+		t44(rsi) = t44(rsi) XOR v6(null)
+		t45(rdi) = mov a1(r13)
+		t45(rdi) = t45(rdi) XOR t44(rsi)
+		t46(rsi) = mov t45(rdi)
+		t46(rsi) = t46(rsi) AND INT_MAX(null)
+		a1(r13) = mov t46(rsi)
+		t47(rsi) = mov v1(null)
+		t47(rsi) = t47(rsi) ADD v2(null)
+		t48(rsi) = mov t47(rsi)
+		t48(rsi) = t48(rsi) ADD v3(null)
+		t49(rsi) = mov t48(rsi)
+		t49(rsi) = t49(rsi) ADD 1
+		a2(r9) = mov t49(rsi)
+		t50(rsi) = mov v4(null)
+		t50(rsi) = t50(rsi) ADD v5(null)
+		t51(rsi) = mov t50(rsi)
+		t51(rsi) = t51(rsi) ADD v6(null)
+		t52(rdi) = mov a2(r9)
+		t52(rdi) = t52(rdi) SUB t51(rsi)
+		t53(rsi) = mov t52(rdi)
+		t53(rsi) = t53(rsi) AND INT_MAX(null)
+		a2(r9) = mov t53(rsi)
+		t54(rdi) = mov v1(null)
+		t54(rdi) = t54(rdi) MOD P(null)
+		t55(rsi) = mov v2(null)
+		t55(rsi) = t55(rsi) MOD P(null)
+		t56(rdi) = mov t54(rdi)
+		t56(rdi) = t56(rdi) MUL t55(rsi)
+		t57(r12) = mov v3(null)
+		t57(r12) = t57(r12) MOD P(null)
+		t58(rsi) = mov t56(rdi)
+		t58(rsi) = t58(rsi) MUL t57(r12)
+		a3(r8) = mov t58(rsi)
+		t59(rsi) = mov v4(null)
+		t59(rsi) = t59(rsi) MOD P(null)
+		t60(rdi) = mov a3(r8)
+		t60(rdi) = t60(rdi) MUL t59(rsi)
+		t61(rsi) = mov v5(null)
+		t61(rsi) = t61(rsi) MOD P(null)
+		t62(rdi) = mov t60(rdi)
+		t62(rdi) = t62(rdi) MUL t61(rsi)
+		t63(rsi) = mov v6(null)
+		t63(rsi) = t63(rsi) MOD P(null)
+		t64(rdi) = mov t62(rdi)
+		t64(rdi) = t64(rdi) MUL t63(rsi)
+		t65(rsi) = mov t64(rdi)
+		t65(rsi) = t65(rsi) AND INT_MAX(null)
+		a3(r8) = mov t65(rsi)
+		t66(rsi) = mov v1(null)
+		t66(rsi) = t66(rsi) XOR v2(null)
+		t67(rdi) = mov t66(rsi)
+		t67(rdi) = t67(rdi) XOR v3(null)
+		t68(rsi) = mov v4(null)
+		t68(rsi) = t68(rsi) XOR v5(null)
+		t69(rsi) = mov t68(rsi)
+		t69(rsi) = t69(rsi) XOR v6(null)
+		cmp t67(rdi) t69(rsi)
+		set GR t70(rsi)
+		cmp t70(rsi) 1
+		CJump EQ main_3_if_true
+		jump main_4_if_false
+	main_3_if_true
+		t71(rsi) = mov v1(null)
+		t71(rsi) = t71(rsi) ADD v2(null)
+		t72(rsi) = mov t71(rsi)
+		t72(rsi) = t72(rsi) AND INT_MAX(null)
+		t73(rdi) = mov t72(rsi)
+		t73(rdi) = t73(rdi) MOD P(null)
+		t74(rsi) = mov v3(null)
+		t74(rsi) = t74(rsi) MOD P(null)
+		t75(rsi) = mov t74(rsi)
+		t75(rsi) = t75(rsi) ADD 1
+		t76(rdi) = mov t73(rdi)
+		t76(rdi) = t76(rdi) MOD t75(rsi)
+		a4(r12) = mov t76(rdi)
+		jump main_5_if_exit
+	main_4_if_false
+		t77(rsi) = mov v3(null)
+		t77(rsi) = t77(rsi) ADD v2(null)
+		t78(rsi) = mov t77(rsi)
+		t78(rsi) = t78(rsi) AND INT_MAX(null)
+		t79(rdi) = mov t78(rsi)
+		t79(rdi) = t79(rdi) MOD P(null)
+		t80(rsi) = mov v1(null)
+		t80(rsi) = t80(rsi) MOD P(null)
+		t81(rsi) = mov t80(rsi)
+		t81(rsi) = t81(rsi) ADD 1
+		t82(rdi) = mov t79(rdi)
+		t82(rdi) = t82(rdi) MOD t81(rsi)
+		a4(r12) = mov t82(rdi)
+		jump main_5_if_exit
+	main_5_if_exit
+		t83(rsi) = mov a1(r13)
+		t83(rsi) = t83(rsi) XOR 10001
+		seed(rsi) = mov t83(rsi)
+		jump main_31_inline_enter
+	main_31_inline_enter
+		t531(rdi) = mov seed(rsi)
+		call xorshift return value = t530(rax)
+		t534(rdi) = mov t530(rax)
+		call xorshift return value = t533(rax)
+		t537(rdi) = mov t533(rax)
+		call xorshift return value = t536(rax)
+		t540(rdi) = mov t536(rax)
+		call xorshift return value = t539(rax)
+		t543(rdi) = mov t539(rax)
+		call xorshift return value = t542(rax)
+		t546(rdi) = mov t542(rax)
+		call xorshift return value = t545(rax)
+		t549(rdi) = mov t545(rax)
+		call xorshift return value = t548(rax)
+		t552(rdi) = mov t548(rax)
+		call xorshift return value = t551(rax)
+		t555(rdi) = mov t551(rax)
+		call xorshift return value = t554(rax)
+		t558(rdi) = mov t554(rax)
+		call xorshift return value = t557(rax)
+		t86(rsi) = mov t557(rax)
+		jump main_32_inline_exit
+	main_32_inline_exit
+		r1(r10) = r1(r10) ADD t86(rsi)
+		t88(rsi) = mov a2(r9)
+		t88(rsi) = t88(rsi) XOR 10002
+		seed(rsi) = mov t88(rsi)
+		jump main_33_inline_enter
+	main_33_inline_enter
+		t561(rdi) = mov seed(rsi)
+		call xorshift return value = t560(rax)
+		t564(rdi) = mov t560(rax)
+		call xorshift return value = t563(rax)
+		t567(rdi) = mov t563(rax)
+		call xorshift return value = t566(rax)
+		t570(rdi) = mov t566(rax)
+		call xorshift return value = t569(rax)
+		t573(rdi) = mov t569(rax)
+		call xorshift return value = t572(rax)
+		t576(rdi) = mov t572(rax)
+		call xorshift return value = t575(rax)
+		t579(rdi) = mov t575(rax)
+		call xorshift return value = t578(rax)
+		t582(rdi) = mov t578(rax)
+		call xorshift return value = t581(rax)
+		t585(rdi) = mov t581(rax)
+		call xorshift return value = t584(rax)
+		t588(rdi) = mov t584(rax)
+		call xorshift return value = t587(rax)
+		t91(rsi) = mov t587(rax)
+		jump main_34_inline_exit
+	main_34_inline_exit
+		r2(r11) = r2(r11) ADD t91(rsi)
+		t93(rsi) = mov a3(r8)
+		t93(rsi) = t93(rsi) XOR 10003
+		seed(rsi) = mov t93(rsi)
+		jump main_35_inline_enter
+	main_35_inline_enter
+		t591(rdi) = mov seed(rsi)
+		call xorshift return value = t590(rax)
+		t594(rdi) = mov t590(rax)
+		call xorshift return value = t593(rax)
+		t597(rdi) = mov t593(rax)
+		call xorshift return value = t596(rax)
+		t600(rdi) = mov t596(rax)
+		call xorshift return value = t599(rax)
+		t603(rdi) = mov t599(rax)
+		call xorshift return value = t602(rax)
+		t606(rdi) = mov t602(rax)
+		call xorshift return value = t605(rax)
+		t609(rdi) = mov t605(rax)
+		call xorshift return value = t608(rax)
+		t612(rdi) = mov t608(rax)
+		call xorshift return value = t611(rax)
+		t615(rdi) = mov t611(rax)
+		call xorshift return value = t614(rax)
+		t618(rdi) = mov t614(rax)
+		call xorshift return value = t617(rax)
+		t96(rsi) = mov t617(rax)
+		jump main_36_inline_exit
+	main_36_inline_exit
+		r3(null) = r3(null) ADD t96(rsi)
+		t98(rsi) = mov a4(r12)
+		t98(rsi) = t98(rsi) XOR 10004
+		seed(rsi) = mov t98(rsi)
+		jump main_37_inline_enter
+	main_37_inline_enter
+		t621(rdi) = mov seed(rsi)
+		call xorshift return value = t620(rax)
+		t624(rdi) = mov t620(rax)
+		call xorshift return value = t623(rax)
+		t627(rdi) = mov t623(rax)
+		call xorshift return value = t626(rax)
+		t630(rdi) = mov t626(rax)
+		call xorshift return value = t629(rax)
+		t633(rdi) = mov t629(rax)
+		call xorshift return value = t632(rax)
+		t636(rdi) = mov t632(rax)
+		call xorshift return value = t635(rax)
+		t639(rdi) = mov t635(rax)
+		call xorshift return value = t638(rax)
+		t642(rdi) = mov t638(rax)
+		call xorshift return value = t641(rax)
+		t645(rdi) = mov t641(rax)
+		call xorshift return value = t644(rax)
+		t648(rdi) = mov t644(rax)
+		call xorshift return value = t647(rax)
+		t101(rsi) = mov t647(rax)
+		jump main_38_inline_exit
+	main_38_inline_exit
+		r4(r15) = r4(r15) ADD t101(rsi)
+		t103(rsi) = mov v4(null)
+		t103(rsi) = t103(rsi) XOR v2(null)
+		t104(rsi) = mov t103(rsi)
+		t104(rsi) = t104(rsi) XOR v3(null)
+		t105(rsi) = mov t104(rsi)
+		t105(rsi) = t105(rsi) XOR v1(null)
+		t106(rsi) = mov t105(rsi)
+		t106(rsi) = t106(rsi) XOR v6(null)
+		t107(rsi) = mov t106(rsi)
+		t107(rsi) = t107(rsi) XOR v5(null)
+		t108(rsi) = mov t107(rsi)
+		t108(rsi) = t108(rsi) AND INT_MAX(null)
+		b1(rsi) = mov t108(rsi)
+		t109(rdi) = mov v4(null)
+		NEG t109(rdi)
+		t110(rdi) = mov t109(rdi)
+		t110(rdi) = t110(rdi) ADD v2(null)
+		t111(rdi) = mov t110(rdi)
+		t111(rdi) = t111(rdi) ADD v3(null)
+		t112(rdi) = mov t111(rdi)
+		t112(rdi) = t112(rdi) ADD v1(null)
+		t113(rdi) = mov t112(rdi)
+		t113(rdi) = t113(rdi) SUB v6(null)
+		t114(rdi) = mov t113(rdi)
+		t114(rdi) = t114(rdi) SUB v5(null)
+		t115(rdi) = mov t114(rdi)
+		t115(rdi) = t115(rdi) ADD 1
+		t116(rdi) = mov t115(rdi)
+		t116(rdi) = t116(rdi) AND INT_MAX(null)
+		b2(r12) = mov t116(rdi)
+		t117(rdi) = mov v4(null)
+		t117(rdi) = t117(rdi) MOD P(null)
+		t118(r13) = mov v2(null)
+		t118(r13) = t118(r13) MOD P(null)
+		t119(r8) = mov t117(rdi)
+		t119(r8) = t119(r8) MUL t118(r13)
+		t120(rdi) = mov v3(null)
+		t120(rdi) = t120(rdi) MOD P(null)
+		t121(r8) = mov t119(r8)
+		t121(r8) = t121(r8) MUL t120(rdi)
+		b3(r13) = mov t121(r8)
+		t122(rdi) = mov v1(null)
+		t122(rdi) = t122(rdi) MOD P(null)
+		t123(r8) = mov b3(r13)
+		t123(r8) = t123(r8) MUL t122(rdi)
+		t124(rdi) = mov v6(null)
+		t124(rdi) = t124(rdi) MOD P(null)
+		t125(r8) = mov t123(r8)
+		t125(r8) = t125(r8) MUL t124(rdi)
+		t126(rdi) = mov v5(null)
+		t126(rdi) = t126(rdi) MOD P(null)
+		t127(r8) = mov t125(r8)
+		t127(r8) = t127(r8) MUL t126(rdi)
+		t128(rdi) = mov t127(r8)
+		t128(rdi) = t128(rdi) AND INT_MAX(null)
+		b3(r13) = mov t128(rdi)
+		t129(rdi) = mov v1(null)
+		t129(rdi) = t129(rdi) XOR v2(null)
+		t130(r8) = mov t129(rdi)
+		t130(r8) = t130(r8) XOR v3(null)
+		t131(rdi) = mov v4(null)
+		t131(rdi) = t131(rdi) XOR v5(null)
+		t132(rdi) = mov t131(rdi)
+		t132(rdi) = t132(rdi) XOR v6(null)
+		cmp t130(r8) t132(rdi)
+		set LEEQ t133(rdi)
+		cmp t133(rdi) 1
+		CJump EQ main_6_if_true
+		jump main_7_if_false
+	main_6_if_true
+		t134(rdi) = mov v3(null)
+		t134(rdi) = t134(rdi) ADD v2(null)
+		t135(rdi) = mov t134(rdi)
+		t135(rdi) = t135(rdi) AND INT_MAX(null)
+		t136(rdi) = mov t135(rdi)
+		t136(rdi) = t136(rdi) MOD P(null)
+		t137(r8) = mov v1(null)
+		t137(r8) = t137(r8) MOD P(null)
+		t138(r8) = mov t137(r8)
+		t138(r8) = t138(r8) ADD 1
+		t139(rdi) = mov t136(rdi)
+		t139(rdi) = t139(rdi) MOD t138(r8)
+		b4(r8) = mov t139(rdi)
+		jump main_8_if_exit
+	main_7_if_false
+		t140(rdi) = mov v1(null)
+		t140(rdi) = t140(rdi) ADD v2(null)
+		t141(rdi) = mov t140(rdi)
+		t141(rdi) = t141(rdi) AND INT_MAX(null)
+		t142(r9) = mov t141(rdi)
+		t142(r9) = t142(r9) MOD P(null)
+		t143(rdi) = mov v3(null)
+		t143(rdi) = t143(rdi) MOD P(null)
+		t144(r8) = mov t143(rdi)
+		t144(r8) = t144(r8) ADD 1
+		t145(rdi) = mov t142(r9)
+		t145(rdi) = t145(rdi) MOD t144(r8)
+		b4(r8) = mov t145(rdi)
+		jump main_8_if_exit
+	main_8_if_exit
+		t146(rsi) = mov b1(rsi)
+		t146(rsi) = t146(rsi) XOR 10001
+		seed(rsi) = mov t146(rsi)
+		jump main_39_inline_enter
+	main_39_inline_enter
+		t651(rdi) = mov seed(rsi)
+		call xorshift return value = t650(rax)
+		t654(rdi) = mov t650(rax)
+		call xorshift return value = t653(rax)
+		t657(rdi) = mov t653(rax)
+		call xorshift return value = t656(rax)
+		t660(rdi) = mov t656(rax)
+		call xorshift return value = t659(rax)
+		t663(rdi) = mov t659(rax)
+		call xorshift return value = t662(rax)
+		t666(rdi) = mov t662(rax)
+		call xorshift return value = t665(rax)
+		t669(rdi) = mov t665(rax)
+		call xorshift return value = t668(rax)
+		t672(rdi) = mov t668(rax)
+		call xorshift return value = t671(rax)
+		t675(rdi) = mov t671(rax)
+		call xorshift return value = t674(rax)
+		t678(rdi) = mov t674(rax)
+		call xorshift return value = t677(rax)
+		t149(rsi) = mov t677(rax)
+		jump main_40_inline_exit
+	main_40_inline_exit
+		r1(r10) = r1(r10) ADD t149(rsi)
+		t151(rsi) = mov b2(r12)
+		t151(rsi) = t151(rsi) XOR 10002
+		seed(rsi) = mov t151(rsi)
+		jump main_41_inline_enter
+	main_41_inline_enter
+		t681(rdi) = mov seed(rsi)
+		call xorshift return value = t680(rax)
+		t684(rdi) = mov t680(rax)
+		call xorshift return value = t683(rax)
+		t687(rdi) = mov t683(rax)
+		call xorshift return value = t686(rax)
+		t690(rdi) = mov t686(rax)
+		call xorshift return value = t689(rax)
+		t693(rdi) = mov t689(rax)
+		call xorshift return value = t692(rax)
+		t696(rdi) = mov t692(rax)
+		call xorshift return value = t695(rax)
+		t699(rdi) = mov t695(rax)
+		call xorshift return value = t698(rax)
+		t702(rdi) = mov t698(rax)
+		call xorshift return value = t701(rax)
+		t705(rdi) = mov t701(rax)
+		call xorshift return value = t704(rax)
+		t708(rdi) = mov t704(rax)
+		call xorshift return value = t707(rax)
+		t154(rsi) = mov t707(rax)
+		jump main_42_inline_exit
+	main_42_inline_exit
+		r2(r11) = r2(r11) ADD t154(rsi)
+		t156(rsi) = mov b3(r13)
+		t156(rsi) = t156(rsi) XOR 10003
+		seed(rsi) = mov t156(rsi)
+		jump main_43_inline_enter
+	main_43_inline_enter
+		t711(rdi) = mov seed(rsi)
+		call xorshift return value = t710(rax)
+		t714(rdi) = mov t710(rax)
+		call xorshift return value = t713(rax)
+		t717(rdi) = mov t713(rax)
+		call xorshift return value = t716(rax)
+		t720(rdi) = mov t716(rax)
+		call xorshift return value = t719(rax)
+		t723(rdi) = mov t719(rax)
+		call xorshift return value = t722(rax)
+		t726(rdi) = mov t722(rax)
+		call xorshift return value = t725(rax)
+		t729(rdi) = mov t725(rax)
+		call xorshift return value = t728(rax)
+		t732(rdi) = mov t728(rax)
+		call xorshift return value = t731(rax)
+		t735(rdi) = mov t731(rax)
+		call xorshift return value = t734(rax)
+		t738(rdi) = mov t734(rax)
+		call xorshift return value = t737(rax)
+		t159(rsi) = mov t737(rax)
+		jump main_44_inline_exit
+	main_44_inline_exit
+		r3(null) = r3(null) ADD t159(rsi)
+		t161(rsi) = mov b4(r8)
+		t161(rsi) = t161(rsi) XOR 10004
+		seed(rsi) = mov t161(rsi)
+		jump main_45_inline_enter
+	main_45_inline_enter
+		t741(rdi) = mov seed(rsi)
+		call xorshift return value = t740(rax)
+		t744(rdi) = mov t740(rax)
+		call xorshift return value = t743(rax)
+		t747(rdi) = mov t743(rax)
+		call xorshift return value = t746(rax)
+		t750(rdi) = mov t746(rax)
+		call xorshift return value = t749(rax)
+		t753(rdi) = mov t749(rax)
+		call xorshift return value = t752(rax)
+		t756(rdi) = mov t752(rax)
+		call xorshift return value = t755(rax)
+		t759(rdi) = mov t755(rax)
+		call xorshift return value = t758(rax)
+		t762(rdi) = mov t758(rax)
+		call xorshift return value = t761(rax)
+		t765(rdi) = mov t761(rax)
+		call xorshift return value = t764(rax)
+		t768(rdi) = mov t764(rax)
+		call xorshift return value = t767(rax)
+		t164(rsi) = mov t767(rax)
+		jump main_46_inline_exit
+	main_46_inline_exit
+		r4(r15) = r4(r15) ADD t164(rsi)
+		t166(rsi) = mov v4(null)
+		t166(rsi) = t166(rsi) XOR v1(null)
+		t167(rsi) = mov t166(rsi)
+		t167(rsi) = t167(rsi) XOR v3(null)
+		t168(rsi) = mov t167(rsi)
+		t168(rsi) = t168(rsi) XOR v2(null)
+		t169(rsi) = mov t168(rsi)
+		t169(rsi) = t169(rsi) XOR v6(null)
+		t170(rsi) = mov t169(rsi)
+		t170(rsi) = t170(rsi) XOR v5(null)
+		t171(rsi) = mov t170(rsi)
+		t171(rsi) = t171(rsi) AND INT_MAX(null)
+		c1(rdi) = mov t171(rsi)
+		t172(rsi) = mov v4(null)
+		t172(rsi) = t172(rsi) SUB v2(null)
+		t173(r12) = mov v3(null)
+		NEG t173(r12)
+		t174(rsi) = mov t172(rsi)
+		t174(rsi) = t174(rsi) ADD t173(r12)
+		t175(rsi) = mov t174(rsi)
+		t175(rsi) = t175(rsi) SUB v1(null)
+		t176(rsi) = mov t175(rsi)
+		t176(rsi) = t176(rsi) ADD v6(null)
+		t177(rsi) = mov t176(rsi)
+		t177(rsi) = t177(rsi) ADD v5(null)
+		t178(rsi) = mov t177(rsi)
+		t178(rsi) = t178(rsi) SUB 1
+		t179(rsi) = mov t178(rsi)
+		NEG t179(rsi)
+		t180(rsi) = mov t179(rsi)
+		t180(rsi) = t180(rsi) AND INT_MAX(null)
+		c2(r12) = mov t180(rsi)
+		t181(rsi) = mov v4(null)
+		t181(rsi) = t181(rsi) MOD P(null)
+		t182(r8) = mov v5(null)
+		t182(r8) = t182(r8) MOD P(null)
+		t183(rsi) = mov t181(rsi)
+		t183(rsi) = t183(rsi) MUL t182(r8)
+		t184(r8) = mov v6(null)
+		t184(r8) = t184(r8) MOD P(null)
+		t185(rsi) = mov t183(rsi)
+		t185(rsi) = t185(rsi) MUL t184(r8)
+		c3(r13) = mov t185(rsi)
+		t186(rsi) = mov v1(null)
+		t186(rsi) = t186(rsi) MOD P(null)
+		t187(r8) = mov c3(r13)
+		t187(r8) = t187(r8) MUL t186(rsi)
+		t188(rsi) = mov v2(null)
+		t188(rsi) = t188(rsi) MOD P(null)
+		t189(r8) = mov t187(r8)
+		t189(r8) = t189(r8) MUL t188(rsi)
+		t190(rsi) = mov v3(null)
+		t190(rsi) = t190(rsi) MOD P(null)
+		t191(r8) = mov t189(r8)
+		t191(r8) = t191(r8) MUL t190(rsi)
+		t192(rsi) = mov t191(r8)
+		t192(rsi) = t192(rsi) AND INT_MAX(null)
+		c3(r13) = mov t192(rsi)
+		t193(rsi) = mov v4(null)
+		t193(rsi) = t193(rsi) XOR v5(null)
+		t194(r8) = mov t193(rsi)
+		t194(r8) = t194(r8) XOR v6(null)
+		t195(rsi) = mov v3(null)
+		t195(rsi) = t195(rsi) XOR v2(null)
+		t196(rsi) = mov t195(rsi)
+		t196(rsi) = t196(rsi) XOR v1(null)
+		cmp t194(r8) t196(rsi)
+		set LE t197(rsi)
+		cmp t197(rsi) 1
+		CJump EQ main_9_if_true
+		jump main_10_if_false
+	main_9_if_true
+		t198(rsi) = mov v1(null)
+		t198(rsi) = t198(rsi) ADD v2(null)
+		t199(rsi) = mov t198(rsi)
+		t199(rsi) = t199(rsi) AND INT_MAX(null)
+		t200(rsi) = mov t199(rsi)
+		t200(rsi) = t200(rsi) MOD P(null)
+		t201(r8) = mov v3(null)
+		t201(r8) = t201(r8) MOD P(null)
+		t202(r8) = mov t201(r8)
+		t202(r8) = t202(r8) ADD 1
+		t203(rsi) = mov t200(rsi)
+		t203(rsi) = t203(rsi) MOD t202(r8)
+		c4(r8) = mov t203(rsi)
+		jump main_11_if_exit
+	main_10_if_false
+		t204(rsi) = mov v3(null)
+		t204(rsi) = t204(rsi) ADD v2(null)
+		t205(rsi) = mov t204(rsi)
+		t205(rsi) = t205(rsi) AND INT_MAX(null)
+		t206(rsi) = mov t205(rsi)
+		t206(rsi) = t206(rsi) MOD P(null)
+		t207(r8) = mov v1(null)
+		t207(r8) = t207(r8) MOD P(null)
+		t208(r8) = mov t207(r8)
+		t208(r8) = t208(r8) ADD 1
+		t209(rsi) = mov t206(rsi)
+		t209(rsi) = t209(rsi) MOD t208(r8)
+		c4(r8) = mov t209(rsi)
+		jump main_11_if_exit
+	main_11_if_exit
+		t210(rsi) = mov c1(rdi)
+		t210(rsi) = t210(rsi) XOR 10001
+		seed(rsi) = mov t210(rsi)
+		jump main_47_inline_enter
+	main_47_inline_enter
+		t771(rdi) = mov seed(rsi)
+		call xorshift return value = t770(rax)
+		t774(rdi) = mov t770(rax)
+		call xorshift return value = t773(rax)
+		t777(rdi) = mov t773(rax)
+		call xorshift return value = t776(rax)
+		t780(rdi) = mov t776(rax)
+		call xorshift return value = t779(rax)
+		t783(rdi) = mov t779(rax)
+		call xorshift return value = t782(rax)
+		t786(rdi) = mov t782(rax)
+		call xorshift return value = t785(rax)
+		t789(rdi) = mov t785(rax)
+		call xorshift return value = t788(rax)
+		t792(rdi) = mov t788(rax)
+		call xorshift return value = t791(rax)
+		t795(rdi) = mov t791(rax)
+		call xorshift return value = t794(rax)
+		t798(rdi) = mov t794(rax)
+		call xorshift return value = t797(rax)
+		t213(rsi) = mov t797(rax)
+		jump main_48_inline_exit
+	main_48_inline_exit
+		r1(r10) = r1(r10) ADD t213(rsi)
+		t215(rsi) = mov c2(r12)
+		t215(rsi) = t215(rsi) XOR 10002
+		seed(rsi) = mov t215(rsi)
+		jump main_49_inline_enter
+	main_49_inline_enter
+		t801(rdi) = mov seed(rsi)
+		call xorshift return value = t800(rax)
+		t804(rdi) = mov t800(rax)
+		call xorshift return value = t803(rax)
+		t807(rdi) = mov t803(rax)
+		call xorshift return value = t806(rax)
+		t810(rdi) = mov t806(rax)
+		call xorshift return value = t809(rax)
+		t813(rdi) = mov t809(rax)
+		call xorshift return value = t812(rax)
+		t816(rdi) = mov t812(rax)
+		call xorshift return value = t815(rax)
+		t819(rdi) = mov t815(rax)
+		call xorshift return value = t818(rax)
+		t822(rdi) = mov t818(rax)
+		call xorshift return value = t821(rax)
+		t825(rdi) = mov t821(rax)
+		call xorshift return value = t824(rax)
+		t828(rdi) = mov t824(rax)
+		call xorshift return value = t827(rax)
+		t218(rsi) = mov t827(rax)
+		jump main_50_inline_exit
+	main_50_inline_exit
+		r2(r11) = r2(r11) ADD t218(rsi)
+		t220(rsi) = mov c3(r13)
+		t220(rsi) = t220(rsi) XOR 10003
+		seed(rsi) = mov t220(rsi)
+		jump main_51_inline_enter
+	main_51_inline_enter
+		t831(rdi) = mov seed(rsi)
+		call xorshift return value = t830(rax)
+		t834(rdi) = mov t830(rax)
+		call xorshift return value = t833(rax)
+		t837(rdi) = mov t833(rax)
+		call xorshift return value = t836(rax)
+		t840(rdi) = mov t836(rax)
+		call xorshift return value = t839(rax)
+		t843(rdi) = mov t839(rax)
+		call xorshift return value = t842(rax)
+		t846(rdi) = mov t842(rax)
+		call xorshift return value = t845(rax)
+		t849(rdi) = mov t845(rax)
+		call xorshift return value = t848(rax)
+		t852(rdi) = mov t848(rax)
+		call xorshift return value = t851(rax)
+		t855(rdi) = mov t851(rax)
+		call xorshift return value = t854(rax)
+		t858(rdi) = mov t854(rax)
+		call xorshift return value = t857(rax)
+		t223(rsi) = mov t857(rax)
+		jump main_52_inline_exit
+	main_52_inline_exit
+		r3(null) = r3(null) ADD t223(rsi)
+		t225(rsi) = mov c4(r8)
+		t225(rsi) = t225(rsi) XOR 10004
+		seed(rsi) = mov t225(rsi)
+		jump main_53_inline_enter
+	main_53_inline_enter
+		t861(rdi) = mov seed(rsi)
+		call xorshift return value = t860(rax)
+		t864(rdi) = mov t860(rax)
+		call xorshift return value = t863(rax)
+		t867(rdi) = mov t863(rax)
+		call xorshift return value = t866(rax)
+		t870(rdi) = mov t866(rax)
+		call xorshift return value = t869(rax)
+		t873(rdi) = mov t869(rax)
+		call xorshift return value = t872(rax)
+		t876(rdi) = mov t872(rax)
+		call xorshift return value = t875(rax)
+		t879(rdi) = mov t875(rax)
+		call xorshift return value = t878(rax)
+		t882(rdi) = mov t878(rax)
+		call xorshift return value = t881(rax)
+		t885(rdi) = mov t881(rax)
+		call xorshift return value = t884(rax)
+		t888(rdi) = mov t884(rax)
+		call xorshift return value = t887(rax)
+		t228(rsi) = mov t887(rax)
+		jump main_54_inline_exit
+	main_54_inline_exit
+		r4(r15) = r4(r15) ADD t228(rsi)
+		jump main_12_loop_increment
+	main_12_loop_increment
+		INC i(r14)
+		jump main_1_loop_condition
+	main_13_loop_exit
+		x(rbx) = mov r1(r10)
+		jump main_55_inline_enter
+	main_55_inline_enter
+		ret(r8) = mov __const_string_9
+		i(r12) = mov 28
+		jump main_56_loop_condition
+	main_56_loop_condition
+		cmp i(r12) 0
+		set GREQ t890(rsi)
+		cmp t890(rsi) 1
+		CJump EQ main_57_loop_body
+		jump main_62_loop_exit
+	main_57_loop_body
+		t891(rsi) = mov x(rbx)
+		t891(rsi) = t891(rsi) SHR i(r12)
+		t892(rsi) = mov t891(rsi)
+		t892(rsi) = t892(rsi) AND 15
+		digit(rdi) = mov t892(rsi)
+		cmp digit(rdi) 10
+		set LE t893(rsi)
+		cmp t893(rsi) 1
+		CJump EQ main_58_if_true
+		jump main_59_if_false
+	main_58_if_true
+		t894(rsi) = mov 48
+		t894(rsi) = t894(rsi) ADD digit(rdi)
+		t896(rdi) = mov t894(rsi)
+		call int2chr return value = t895(rax)
+		t897(rsi) = mov t895(rax)
+		t899(rdi) = mov ret(r8)
+		t900(rsi) = mov t897(rsi)
+		call __string_connection return value = t898(rax)
+		ret(r8) = mov t898(rax)
+		jump main_60_if_exit
+	main_59_if_false
+		t902(rsi) = mov 65
+		t902(rsi) = t902(rsi) ADD digit(rdi)
+		t903(rsi) = mov t902(rsi)
+		t903(rsi) = t903(rsi) SUB 10
+		t905(rdi) = mov t903(rsi)
+		call int2chr return value = t904(rax)
+		t906(rsi) = mov t904(rax)
+		t908(rdi) = mov ret(r8)
+		t909(rsi) = mov t906(rsi)
+		call __string_connection return value = t907(rax)
+		ret(r8) = mov t907(rax)
+		jump main_60_if_exit
+	main_60_if_exit
+		jump main_61_loop_increment
+	main_61_loop_increment
+		i(r12) = i(r12) SUB 4
+		jump main_56_loop_condition
+	main_62_loop_exit
+		t233(rsi) = mov ret(r8)
+		jump main_63_inline_exit
+	main_63_inline_exit
+		t235(rdi) = mov t233(rsi)
+		t236(rsi) = mov __const_string_0
+		call __string_connection return value = t234(rax)
+		t238(rdi) = mov t234(rax)
+		call print return value = null
+		x(rbx) = mov r2(r11)
+		jump main_64_inline_enter
+	main_64_inline_enter
+		ret(r8) = mov __const_string_10
+		i(r12) = mov 28
+		jump main_65_loop_condition
+	main_65_loop_condition
+		cmp i(r12) 0
+		set GREQ t912(rsi)
+		cmp t912(rsi) 1
+		CJump EQ main_66_loop_body
+		jump main_71_loop_exit
+	main_66_loop_body
+		t913(rsi) = mov x(rbx)
+		t913(rsi) = t913(rsi) SHR i(r12)
+		t914(rsi) = mov t913(rsi)
+		t914(rsi) = t914(rsi) AND 15
+		digit(rdi) = mov t914(rsi)
+		cmp digit(rdi) 10
+		set LE t915(rsi)
+		cmp t915(rsi) 1
+		CJump EQ main_67_if_true
+		jump main_68_if_false
+	main_67_if_true
+		t916(rsi) = mov 48
+		t916(rsi) = t916(rsi) ADD digit(rdi)
+		t918(rdi) = mov t916(rsi)
+		call int2chr return value = t917(rax)
+		t919(rsi) = mov t917(rax)
+		t921(rdi) = mov ret(r8)
+		t922(rsi) = mov t919(rsi)
+		call __string_connection return value = t920(rax)
+		ret(r8) = mov t920(rax)
+		jump main_69_if_exit
+	main_68_if_false
+		t924(rsi) = mov 65
+		t924(rsi) = t924(rsi) ADD digit(rdi)
+		t925(rsi) = mov t924(rsi)
+		t925(rsi) = t925(rsi) SUB 10
+		t927(rdi) = mov t925(rsi)
+		call int2chr return value = t926(rax)
+		t928(rsi) = mov t926(rax)
+		t930(rdi) = mov ret(r8)
+		t931(rsi) = mov t928(rsi)
+		call __string_connection return value = t929(rax)
+		ret(r8) = mov t929(rax)
+		jump main_69_if_exit
+	main_69_if_exit
+		jump main_70_loop_increment
+	main_70_loop_increment
+		i(r12) = i(r12) SUB 4
+		jump main_65_loop_condition
+	main_71_loop_exit
+		t241(rsi) = mov ret(r8)
+		jump main_72_inline_exit
+	main_72_inline_exit
+		t243(rdi) = mov t241(rsi)
+		t244(rsi) = mov __const_string_1
+		call __string_connection return value = t242(rax)
+		t246(rdi) = mov t242(rax)
+		call print return value = null
+		x(rbx) = mov r3(null)
+		jump main_73_inline_enter
+	main_73_inline_enter
+		ret(r8) = mov __const_string_11
+		i(r12) = mov 28
+		jump main_74_loop_condition
+	main_74_loop_condition
+		cmp i(r12) 0
+		set GREQ t934(rsi)
+		cmp t934(rsi) 1
+		CJump EQ main_75_loop_body
+		jump main_80_loop_exit
+	main_75_loop_body
+		t935(rsi) = mov x(rbx)
+		t935(rsi) = t935(rsi) SHR i(r12)
+		t936(rsi) = mov t935(rsi)
+		t936(rsi) = t936(rsi) AND 15
+		digit(rdi) = mov t936(rsi)
+		cmp digit(rdi) 10
+		set LE t937(rsi)
+		cmp t937(rsi) 1
+		CJump EQ main_76_if_true
+		jump main_77_if_false
+	main_76_if_true
+		t938(rsi) = mov 48
+		t938(rsi) = t938(rsi) ADD digit(rdi)
+		t940(rdi) = mov t938(rsi)
+		call int2chr return value = t939(rax)
+		t941(rsi) = mov t939(rax)
+		t943(rdi) = mov ret(r8)
+		t944(rsi) = mov t941(rsi)
+		call __string_connection return value = t942(rax)
+		ret(r8) = mov t942(rax)
+		jump main_78_if_exit
+	main_77_if_false
+		t946(rsi) = mov 65
+		t946(rsi) = t946(rsi) ADD digit(rdi)
+		t947(rsi) = mov t946(rsi)
+		t947(rsi) = t947(rsi) SUB 10
+		t949(rdi) = mov t947(rsi)
+		call int2chr return value = t948(rax)
+		t950(rsi) = mov t948(rax)
+		t952(rdi) = mov ret(r8)
+		t953(rsi) = mov t950(rsi)
+		call __string_connection return value = t951(rax)
+		ret(r8) = mov t951(rax)
+		jump main_78_if_exit
+	main_78_if_exit
+		jump main_79_loop_increment
+	main_79_loop_increment
+		i(r12) = i(r12) SUB 4
+		jump main_74_loop_condition
+	main_80_loop_exit
+		t249(rsi) = mov ret(r8)
+		jump main_81_inline_exit
+	main_81_inline_exit
+		t251(rdi) = mov t249(rsi)
+		t252(rsi) = mov __const_string_2
+		call __string_connection return value = t250(rax)
+		t254(rdi) = mov t250(rax)
+		call print return value = null
+		x(rbx) = mov r4(r15)
+		jump main_82_inline_enter
+	main_82_inline_enter
+		ret(r8) = mov __const_string_12
+		i(r12) = mov 28
+		jump main_83_loop_condition
+	main_83_loop_condition
+		cmp i(r12) 0
+		set GREQ t956(rsi)
+		cmp t956(rsi) 1
+		CJump EQ main_84_loop_body
+		jump main_89_loop_exit
+	main_84_loop_body
+		t957(rsi) = mov x(rbx)
+		t957(rsi) = t957(rsi) SHR i(r12)
+		t958(rsi) = mov t957(rsi)
+		t958(rsi) = t958(rsi) AND 15
+		digit(rdi) = mov t958(rsi)
+		cmp digit(rdi) 10
+		set LE t959(rsi)
+		cmp t959(rsi) 1
+		CJump EQ main_85_if_true
+		jump main_86_if_false
+	main_85_if_true
+		t960(rsi) = mov 48
+		t960(rsi) = t960(rsi) ADD digit(rdi)
+		t962(rdi) = mov t960(rsi)
+		call int2chr return value = t961(rax)
+		t963(rsi) = mov t961(rax)
+		t965(rdi) = mov ret(r8)
+		t966(rsi) = mov t963(rsi)
+		call __string_connection return value = t964(rax)
+		ret(r8) = mov t964(rax)
+		jump main_87_if_exit
+	main_86_if_false
+		t968(rsi) = mov 65
+		t968(rsi) = t968(rsi) ADD digit(rdi)
+		t969(rsi) = mov t968(rsi)
+		t969(rsi) = t969(rsi) SUB 10
+		t971(rdi) = mov t969(rsi)
+		call int2chr return value = t970(rax)
+		t972(rsi) = mov t970(rax)
+		t974(rdi) = mov ret(r8)
+		t975(rsi) = mov t972(rsi)
+		call __string_connection return value = t973(rax)
+		ret(r8) = mov t973(rax)
+		jump main_87_if_exit
+	main_87_if_exit
+		jump main_88_loop_increment
+	main_88_loop_increment
+		i(r12) = i(r12) SUB 4
+		jump main_83_loop_condition
+	main_89_loop_exit
+		t257(rsi) = mov ret(r8)
+		jump main_90_inline_exit
+	main_90_inline_exit
+		t259(rdi) = mov t257(rsi)
+		t260(rsi) = mov __const_string_3
+		call __string_connection return value = t258(rax)
+		t262(rdi) = mov t258(rax)
+		call print return value = null
+		t263(rdi) = mov __const_string_4
+		call println return value = null
+		ret 0
+		jump main_14_block_exit
+	main_14_block_exit
+}
+xorshift10 seed(null) {
+	xorshift10_0_block_enter
+		seed(rsi) = mov t267(rdi)
+		jump xorshift10_2_inline_enter
+	xorshift10_2_inline_enter
+		x(rbx) = mov seed(rsi)
+		t979(rdi) = mov x(rbx)
+		t980(rsi) = mov 13
+		call shift_l return value = t978(rax)
+		t981(rsi) = mov t978(rax)
+		x(rbx) = x(rbx) XOR t981(rsi)
+		t984(rdi) = mov x(rbx)
+		t985(rsi) = mov 17
+		call shift_r return value = t983(rax)
+		t986(rsi) = mov t983(rax)
+		x(rbx) = x(rbx) XOR t986(rsi)
+		t989(rdi) = mov x(rbx)
+		t990(rsi) = mov 5
+		call shift_l return value = t988(rax)
+		t991(rsi) = mov t988(rax)
+		t992(rbx) = mov x(rbx)
+		t992(rbx) = t992(rbx) XOR t991(rsi)
+		t270(rsi) = mov t992(rbx)
+		jump xorshift10_3_inline_exit
+	xorshift10_3_inline_exit
+		seed(rsi) = mov t270(rsi)
+		jump xorshift10_4_inline_enter
+	xorshift10_4_inline_enter
+		x(rbx) = mov seed(rsi)
+		t994(rdi) = mov x(rbx)
+		t995(rsi) = mov 13
+		call shift_l return value = t993(rax)
+		t996(rsi) = mov t993(rax)
+		x(rbx) = x(rbx) XOR t996(rsi)
+		t999(rdi) = mov x(rbx)
+		t1000(rsi) = mov 17
+		call shift_r return value = t998(rax)
+		t1001(rsi) = mov t998(rax)
+		x(rbx) = x(rbx) XOR t1001(rsi)
+		t1004(rdi) = mov x(rbx)
+		t1005(rsi) = mov 5
+		call shift_l return value = t1003(rax)
+		t1006(rsi) = mov t1003(rax)
+		t1007(rbx) = mov x(rbx)
+		t1007(rbx) = t1007(rbx) XOR t1006(rsi)
+		t273(rsi) = mov t1007(rbx)
+		jump xorshift10_5_inline_exit
+	xorshift10_5_inline_exit
+		seed(rsi) = mov t273(rsi)
+		jump xorshift10_6_inline_enter
+	xorshift10_6_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1009(rdi) = mov x(rbx)
+		t1010(rsi) = mov 13
+		call shift_l return value = t1008(rax)
+		t1011(rsi) = mov t1008(rax)
+		x(rbx) = x(rbx) XOR t1011(rsi)
+		t1014(rdi) = mov x(rbx)
+		t1015(rsi) = mov 17
+		call shift_r return value = t1013(rax)
+		t1016(rsi) = mov t1013(rax)
+		x(rbx) = x(rbx) XOR t1016(rsi)
+		t1019(rdi) = mov x(rbx)
+		t1020(rsi) = mov 5
+		call shift_l return value = t1018(rax)
+		t1021(rsi) = mov t1018(rax)
+		t1022(rbx) = mov x(rbx)
+		t1022(rbx) = t1022(rbx) XOR t1021(rsi)
+		t276(rsi) = mov t1022(rbx)
+		jump xorshift10_7_inline_exit
+	xorshift10_7_inline_exit
+		seed(rsi) = mov t276(rsi)
+		jump xorshift10_8_inline_enter
+	xorshift10_8_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1024(rdi) = mov x(rbx)
+		t1025(rsi) = mov 13
+		call shift_l return value = t1023(rax)
+		t1026(rsi) = mov t1023(rax)
+		x(rbx) = x(rbx) XOR t1026(rsi)
+		t1029(rdi) = mov x(rbx)
+		t1030(rsi) = mov 17
+		call shift_r return value = t1028(rax)
+		t1031(rsi) = mov t1028(rax)
+		x(rbx) = x(rbx) XOR t1031(rsi)
+		t1034(rdi) = mov x(rbx)
+		t1035(rsi) = mov 5
+		call shift_l return value = t1033(rax)
+		t1036(rsi) = mov t1033(rax)
+		t1037(rbx) = mov x(rbx)
+		t1037(rbx) = t1037(rbx) XOR t1036(rsi)
+		t279(rsi) = mov t1037(rbx)
+		jump xorshift10_9_inline_exit
+	xorshift10_9_inline_exit
+		seed(rsi) = mov t279(rsi)
+		jump xorshift10_10_inline_enter
+	xorshift10_10_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1039(rdi) = mov x(rbx)
+		t1040(rsi) = mov 13
+		call shift_l return value = t1038(rax)
+		t1041(rsi) = mov t1038(rax)
+		x(rbx) = x(rbx) XOR t1041(rsi)
+		t1044(rdi) = mov x(rbx)
+		t1045(rsi) = mov 17
+		call shift_r return value = t1043(rax)
+		t1046(rsi) = mov t1043(rax)
+		x(rbx) = x(rbx) XOR t1046(rsi)
+		t1049(rdi) = mov x(rbx)
+		t1050(rsi) = mov 5
+		call shift_l return value = t1048(rax)
+		t1051(rsi) = mov t1048(rax)
+		t1052(rbx) = mov x(rbx)
+		t1052(rbx) = t1052(rbx) XOR t1051(rsi)
+		t282(rsi) = mov t1052(rbx)
+		jump xorshift10_11_inline_exit
+	xorshift10_11_inline_exit
+		seed(rsi) = mov t282(rsi)
+		jump xorshift10_12_inline_enter
+	xorshift10_12_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1054(rdi) = mov x(rbx)
+		t1055(rsi) = mov 13
+		call shift_l return value = t1053(rax)
+		t1056(rsi) = mov t1053(rax)
+		x(rbx) = x(rbx) XOR t1056(rsi)
+		t1059(rdi) = mov x(rbx)
+		t1060(rsi) = mov 17
+		call shift_r return value = t1058(rax)
+		t1061(rsi) = mov t1058(rax)
+		x(rbx) = x(rbx) XOR t1061(rsi)
+		t1064(rdi) = mov x(rbx)
+		t1065(rsi) = mov 5
+		call shift_l return value = t1063(rax)
+		t1066(rsi) = mov t1063(rax)
+		t1067(rbx) = mov x(rbx)
+		t1067(rbx) = t1067(rbx) XOR t1066(rsi)
+		t285(rsi) = mov t1067(rbx)
+		jump xorshift10_13_inline_exit
+	xorshift10_13_inline_exit
+		seed(rsi) = mov t285(rsi)
+		jump xorshift10_14_inline_enter
+	xorshift10_14_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1069(rdi) = mov x(rbx)
+		t1070(rsi) = mov 13
+		call shift_l return value = t1068(rax)
+		t1071(rsi) = mov t1068(rax)
+		x(rbx) = x(rbx) XOR t1071(rsi)
+		t1074(rdi) = mov x(rbx)
+		t1075(rsi) = mov 17
+		call shift_r return value = t1073(rax)
+		t1076(rsi) = mov t1073(rax)
+		x(rbx) = x(rbx) XOR t1076(rsi)
+		t1079(rdi) = mov x(rbx)
+		t1080(rsi) = mov 5
+		call shift_l return value = t1078(rax)
+		t1081(rsi) = mov t1078(rax)
+		t1082(rbx) = mov x(rbx)
+		t1082(rbx) = t1082(rbx) XOR t1081(rsi)
+		t288(rsi) = mov t1082(rbx)
+		jump xorshift10_15_inline_exit
+	xorshift10_15_inline_exit
+		seed(rsi) = mov t288(rsi)
+		jump xorshift10_16_inline_enter
+	xorshift10_16_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1084(rdi) = mov x(rbx)
+		t1085(rsi) = mov 13
+		call shift_l return value = t1083(rax)
+		t1086(rsi) = mov t1083(rax)
+		x(rbx) = x(rbx) XOR t1086(rsi)
+		t1089(rdi) = mov x(rbx)
+		t1090(rsi) = mov 17
+		call shift_r return value = t1088(rax)
+		t1091(rsi) = mov t1088(rax)
+		x(rbx) = x(rbx) XOR t1091(rsi)
+		t1094(rdi) = mov x(rbx)
+		t1095(rsi) = mov 5
+		call shift_l return value = t1093(rax)
+		t1096(rsi) = mov t1093(rax)
+		t1097(rbx) = mov x(rbx)
+		t1097(rbx) = t1097(rbx) XOR t1096(rsi)
+		t291(rsi) = mov t1097(rbx)
+		jump xorshift10_17_inline_exit
+	xorshift10_17_inline_exit
+		seed(rsi) = mov t291(rsi)
+		jump xorshift10_18_inline_enter
+	xorshift10_18_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1099(rdi) = mov x(rbx)
+		t1100(rsi) = mov 13
+		call shift_l return value = t1098(rax)
+		t1101(rsi) = mov t1098(rax)
+		x(rbx) = x(rbx) XOR t1101(rsi)
+		t1104(rdi) = mov x(rbx)
+		t1105(rsi) = mov 17
+		call shift_r return value = t1103(rax)
+		t1106(rsi) = mov t1103(rax)
+		x(rbx) = x(rbx) XOR t1106(rsi)
+		t1109(rdi) = mov x(rbx)
+		t1110(rsi) = mov 5
+		call shift_l return value = t1108(rax)
+		t1111(rsi) = mov t1108(rax)
+		t1112(rbx) = mov x(rbx)
+		t1112(rbx) = t1112(rbx) XOR t1111(rsi)
+		t294(rsi) = mov t1112(rbx)
+		jump xorshift10_19_inline_exit
+	xorshift10_19_inline_exit
+		seed(rsi) = mov t294(rsi)
+		jump xorshift10_20_inline_enter
+	xorshift10_20_inline_enter
+		x(rbx) = mov seed(rsi)
+		t1114(rdi) = mov x(rbx)
+		t1115(rsi) = mov 13
+		call shift_l return value = t1113(rax)
+		t1116(rsi) = mov t1113(rax)
+		x(rbx) = x(rbx) XOR t1116(rsi)
+		t1119(rdi) = mov x(rbx)
+		t1120(rsi) = mov 17
+		call shift_r return value = t1118(rax)
+		t1121(rsi) = mov t1118(rax)
+		x(rbx) = x(rbx) XOR t1121(rsi)
+		t1124(rdi) = mov x(rbx)
+		t1125(rsi) = mov 5
+		call shift_l return value = t1123(rax)
+		t1126(rsi) = mov t1123(rax)
+		t1127(rbx) = mov x(rbx)
+		t1127(rbx) = t1127(rbx) XOR t1126(rsi)
+		t297(rsi) = mov t1127(rbx)
+		jump xorshift10_21_inline_exit
+	xorshift10_21_inline_exit
+		x(rsi) = mov t297(rsi)
+		ret x(rsi)
+		jump xorshift10_1_block_exit
+	xorshift10_1_block_exit
+}
+toStringHex x(rbx) {
+	toStringHex_0_block_enter
+		x(rbx) = mov t330(rdi)
+		ret(r8) = mov __const_string_6
+		i(r12) = mov 28
+		jump toStringHex_1_loop_condition
+	toStringHex_1_loop_condition
+		cmp i(r12) 0
+		set GREQ t331(rsi)
+		cmp t331(rsi) 1
+		CJump EQ toStringHex_2_loop_body
+		jump toStringHex_7_loop_exit
+	toStringHex_2_loop_body
+		t332(rsi) = mov x(rbx)
+		t332(rsi) = t332(rsi) SHR i(r12)
+		t333(rsi) = mov t332(rsi)
+		t333(rsi) = t333(rsi) AND 15
+		digit(rsi) = mov t333(rsi)
+		cmp digit(rsi) 10
+		set LE t334(rdi)
+		cmp t334(rdi) 1
+		CJump EQ toStringHex_3_if_true
+		jump toStringHex_4_if_false
+	toStringHex_3_if_true
+		t335(rdi) = mov 48
+		t335(rdi) = t335(rdi) ADD digit(rsi)
+		x(rsi) = mov t335(rdi)
+		jump toStringHex_9_inline_enter
+	toStringHex_9_inline_enter
+		cmp x(rsi) 32
+		set GREQ t1129(rdi)
+		cmp t1129(rdi) 1
+		CJump NEQ toStringHex_11_logical_false
+		jump toStringHex_10_logical_true
+	toStringHex_10_logical_true
+		cmp x(rsi) 126
+		set LEEQ t1130(rdi)
+		t1128(rdi) = mov t1130(rdi)
+		jump toStringHex_12_logical_exit
+	toStringHex_11_logical_false
+		t1128(rdi) = mov 0
+		jump toStringHex_12_logical_exit
+	toStringHex_12_logical_exit
+		cmp t1128(rdi) 1
+		CJump EQ toStringHex_13_if_true
+		jump toStringHex_14_if_false
+	toStringHex_13_if_true
+		t1131(r9) = mov x(rsi)
+		t1131(r9) = t1131(r9) SUB 32
+		t1132(r13) = mov x(rsi)
+		t1132(r13) = t1132(r13) SUB 32
+		t1134(rdi) = mov Address (asciiTable(@asciiTable) + 0)
+		t1135(rsi) = mov t1131(r9)
+		t1136(rdx) = mov t1132(r13)
+		call __string_substring return value = t1133(rax)
+		t338(rsi) = mov t1133(rax)
+		jump toStringHex_16_inline_exit
+	toStringHex_14_if_false
+		jump toStringHex_15_if_exit
+	toStringHex_15_if_exit
+		t338(rsi) = mov __const_string_13
+		jump toStringHex_16_inline_exit
+	toStringHex_16_inline_exit
+		t340(rdi) = mov ret(r8)
+		t341(rsi) = mov t338(rsi)
+		call __string_connection return value = t339(rax)
+		ret(r8) = mov t339(rax)
+		jump toStringHex_5_if_exit
+	toStringHex_4_if_false
+		t343(rdi) = mov 65
+		t343(rdi) = t343(rdi) ADD digit(rsi)
+		t344(rsi) = mov t343(rdi)
+		t344(rsi) = t344(rsi) SUB 10
+		x(rsi) = mov t344(rsi)
+		jump toStringHex_17_inline_enter
+	toStringHex_17_inline_enter
+		cmp x(rsi) 32
+		set GREQ t1139(rdi)
+		cmp t1139(rdi) 1
+		CJump NEQ toStringHex_19_logical_false
+		jump toStringHex_18_logical_true
+	toStringHex_18_logical_true
+		cmp x(rsi) 126
+		set LEEQ t1140(rdi)
+		t1138(rdi) = mov t1140(rdi)
+		jump toStringHex_20_logical_exit
+	toStringHex_19_logical_false
+		t1138(rdi) = mov 0
+		jump toStringHex_20_logical_exit
+	toStringHex_20_logical_exit
+		cmp t1138(rdi) 1
+		CJump EQ toStringHex_21_if_true
+		jump toStringHex_22_if_false
+	toStringHex_21_if_true
+		t1141(r13) = mov x(rsi)
+		t1141(r13) = t1141(r13) SUB 32
+		t1142(r9) = mov x(rsi)
+		t1142(r9) = t1142(r9) SUB 32
+		t1144(rdi) = mov Address (asciiTable(@asciiTable) + 0)
+		t1145(rsi) = mov t1141(r13)
+		t1146(rdx) = mov t1142(r9)
+		call __string_substring return value = t1143(rax)
+		t347(rsi) = mov t1143(rax)
+		jump toStringHex_24_inline_exit
+	toStringHex_22_if_false
+		jump toStringHex_23_if_exit
+	toStringHex_23_if_exit
+		t347(rsi) = mov __const_string_14
+		jump toStringHex_24_inline_exit
+	toStringHex_24_inline_exit
+		t349(rdi) = mov ret(r8)
+		t350(rsi) = mov t347(rsi)
+		call __string_connection return value = t348(rax)
+		ret(r8) = mov t348(rax)
+		jump toStringHex_5_if_exit
+	toStringHex_5_if_exit
+		jump toStringHex_6_loop_increment
+	toStringHex_6_loop_increment
+		i(r12) = i(r12) SUB 4
+		jump toStringHex_1_loop_condition
+	toStringHex_7_loop_exit
+		ret ret(r8)
+		jump toStringHex_8_block_exit
+	toStringHex_8_block_exit
 }
