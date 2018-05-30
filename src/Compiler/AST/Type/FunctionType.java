@@ -39,6 +39,10 @@ public class FunctionType extends Type implements Scope {
         }
     }
 
+    public boolean isConstructFunction() {
+        return name == null;
+    }
+
     public Type getReturnType() {
         return returnType;
     }

@@ -13,7 +13,7 @@ main {
 		set LE t0(null)
 		cmp t0(null) 1
 		CJump EQ main_2_loop_body
-		jump main_10_loop_exit
+		jump main_13_loop_exit
 	main_2_loop_body
 		t1(null) = mov T(null)
 		t1(null) = t1(null) ADD 1
@@ -1563,12 +1563,51 @@ main {
 		Address (C(@C) + 0) = mov t763(null)
 		jump main_3_loop_condition
 	main_8_loop_exit
-		jump main_9_loop_increment
-	main_9_loop_increment
+		t764(null) = mov T(null)
+		t764(null) = t764(null) MOD 1000
+		cmp t764(null) 0
+		set EQ t765(null)
+		cmp t765(null) 1
+		CJump EQ main_9_if_true
+		jump main_10_if_false
+	main_9_if_true
+		t767(rdi) = mov Address (A(@A) + 0)
+		call toString return value = t766(rax)
+		t768(null) = mov t766(rax)
+		t770(rdi) = mov t768(null)
+		t771(rsi) = mov __const_string_0
+		call __string_connection return value = t769(rax)
+		t772(null) = mov t769(rax)
+		t774(rdi) = mov Address (B(@B) + 0)
+		call toString return value = t773(rax)
+		t775(null) = mov t773(rax)
+		t777(rdi) = mov t772(null)
+		t778(rsi) = mov t775(null)
+		call __string_connection return value = t776(rax)
+		t779(null) = mov t776(rax)
+		t781(rdi) = mov t779(null)
+		t782(rsi) = mov __const_string_1
+		call __string_connection return value = t780(rax)
+		t783(null) = mov t780(rax)
+		t785(rdi) = mov Address (C(@C) + 0)
+		call toString return value = t784(rax)
+		t786(null) = mov t784(rax)
+		t788(rdi) = mov t783(null)
+		t789(rsi) = mov t786(null)
+		call __string_connection return value = t787(rax)
+		t790(null) = mov t787(rax)
+		t791(rdi) = mov t790(null)
+		call println return value = null
+		jump main_11_if_exit
+	main_10_if_false
+		jump main_11_if_exit
+	main_11_if_exit
+		jump main_12_loop_increment
+	main_12_loop_increment
 		INC T(null)
 		jump main_1_loop_condition
-	main_10_loop_exit
+	main_13_loop_exit
 		ret 0
-		jump main_11_block_exit
-	main_11_block_exit
+		jump main_14_block_exit
+	main_14_block_exit
 }

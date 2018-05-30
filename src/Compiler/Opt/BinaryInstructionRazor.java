@@ -3,7 +3,6 @@ package Compiler.Opt;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.BinaryInstruction;
 import Compiler.CFG.Instruction.MoveInstruction;
-import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 
 import java.util.ArrayList;

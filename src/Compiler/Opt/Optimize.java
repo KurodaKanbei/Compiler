@@ -5,6 +5,7 @@ import Compiler.CFG.ProgramIR;
 public class Optimize {
     public static void optimize() {
         ProgramIR.getFunctionMap().values().forEach(functionIR -> {
+            NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             BinaryInstructionRazor.uselessMoveInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);

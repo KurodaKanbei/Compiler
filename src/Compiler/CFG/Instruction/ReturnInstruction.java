@@ -19,6 +19,14 @@ public class ReturnInstruction extends Instruction {
         }
     }
 
+    public Operand getReturnValue() {
+        return returnValue;
+    }
+
+    public void setReturnValue(Operand returnValue) {
+        this.returnValue = returnValue;
+    }
+
     @Override
     public void init() {
         returnValue.init();
