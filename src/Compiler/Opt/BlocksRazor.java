@@ -47,6 +47,11 @@ public class BlocksRazor {
                     }
                 }
                 if (!canBeResolved) continue;
+                /*System.out.println(i + " " + j);
+                for (int k = i; k < j; k++) {
+                    System.out.println(functionIR.getBlockList().get(k).toString());
+                    System.out.println(functionIR.getBlockList().get(k).getInstructionList().toString());
+                }*/
                 for (int k = i; k < j; k++) {
                     functionIR.getBlockList().get(k).clear();
                     functionIR.getBlockList().get(k).addInstruction(new JumpInstruction(functionIR.getBlockList().get(k + 1).getLabelInstruction()));

@@ -5,9 +5,9 @@ import Compiler.CFG.ProgramIR;
 public class Optimize {
     public static void optimize() {
         ProgramIR.getFunctionMap().values().forEach(functionIR -> {
-            NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             BlocksRazor.deadForStatementBlocksRemove(functionIR);
+            NaiveInliner.inline(functionIR);
             OutputConverter.convertOutput(functionIR);
             LivenessAnalyst.analysis(functionIR);
             int round = 0;

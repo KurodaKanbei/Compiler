@@ -49,7 +49,6 @@ public class Main {
 
     private static void buildIR() throws IOException {
         ProgramIR.init();
-        //ProgramIR.print();
         FileOutputStream fileOutputStream = new FileOutputStream(new File("raw.ir"));
         String code = ProgramIR.toString(0);
         byte[] bytes = code.getBytes();
