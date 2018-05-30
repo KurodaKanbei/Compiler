@@ -33,6 +33,10 @@ public class FunctionCallInstruction extends Instruction {
         }
     }
 
+    public FunctionType getFunctionType() {
+        return functionType;
+    }
+
     @Override
     public void init() {
         operandList.forEach(Operand::init);

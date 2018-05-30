@@ -55,23 +55,32 @@ public class RegisterAllocator {
             }
         }
         allocateOrder = functionIR.isLeaf() ? leafOrder : normalOrder;
-        /*virtualRegisterList.sort((lhs, rhs) -> {
+        virtualRegisterList.sort((lhs, rhs) -> {
             int leftValue = countMap.get(lhs);
             int rightValue = countMap.get(rhs);
             return Integer.compare(leftValue, rightValue);
-        });*/
+        });
         /*for (VirtualRegister virtualRegister : virtualRegisterList) {
             System.out.println(virtualRegister.toString() + " " + countMap.get(virtualRegister));
         }*/
-        virtualRegisterStringMap = new HashMap<>();
-        allocateRegisterList = virtualRegisterList;
-        for (VirtualRegister virtualRegister : criticalRegisterList) {
-            tryColor(virtualRegister, virtualRegister.getSystemRegister());
-        }
-        for (VirtualRegister virtualRegister : allocateRegisterList) {
-            for (String systemRegister : allocateOrder) {
-                if (tryColor(virtualRegister, systemRegister)) {
-                    break;
+        if (virtualRegisterList.size() < 200) {
+            for (VirtualRegister virtualRegister : virtualRegisterList) {
+                allocateRegisterList.add(virtualRegister);
+                if (!color(allocateRegisterList)) {
+                    allocateRegisterList.remove(allocateRegisterList.size() - 1);
+                }
+            }
+            color(allocateRegisterList);
+        } else {
+            virtualRegisterStringMap = new HashMap<>();
+            for (VirtualRegister virtualRegister : criticalRegisterList) {
+                tryColor(virtualRegister, virtualRegister.getSystemRegister());
+            }
+            for (VirtualRegister virtualRegister : allocateRegisterList) {
+                for (String systemRegister : allocateOrder) {
+                    if (tryColor(virtualRegister, systemRegister)) {
+                        break;
+                    }
                 }
             }
         }

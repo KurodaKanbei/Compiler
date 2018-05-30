@@ -1,846 +1,1338 @@
-search x(r8) y(r9) z(r12) {
-	search_0_block_enter
-		x(r8) = mov t27(rdi)
-		y(r9) = mov t28(rsi)
-		z(r12) = mov t29(rdx)
-		cmp y(r9) 0
-		set GR t33(rsi)
-		cmp t33(rsi) 1
-		CJump EQ search_1_logical_true
-		jump search_2_logical_false
-	search_1_logical_true
-		t32(rsi) = mov 1
-		jump search_3_logical_exit
-	search_2_logical_false
-		cmp y(r9) 0
-		set LE t34(rsi)
-		t32(rsi) = mov t34(rsi)
-		jump search_3_logical_exit
-	search_3_logical_exit
-		cmp t32(rsi) 1
-		CJump EQ search_4_logical_true
-		jump search_5_logical_false
-	search_4_logical_true
-		t31(rsi) = mov 1
-		jump search_6_logical_exit
-	search_5_logical_false
-		cmp x(r8) 0
-		set EQ t35(rsi)
-		t31(rsi) = mov t35(rsi)
-		jump search_6_logical_exit
-	search_6_logical_exit
-		cmp t31(rsi) 1
-		CJump EQ search_7_logical_true
-		jump search_8_logical_false
-	search_7_logical_true
-		t30(rsi) = mov 1
-		jump search_9_logical_exit
-	search_8_logical_false
-		t36(rsi) = mov x(r8)
-		t36(rsi) = t36(rsi) SUB 1
-		t37(rsi) = mov t36(rsi)
-		t37(rsi) = t37(rsi) SHL 3
-		t38(rbx) = mov Address (make(@make) + 0)
-		t38(rbx) = t38(rbx) ADD t37(rsi)
-		t39(rdi) = mov 0
-		t39(rdi) = t39(rdi) SHL 3
-		t40(rsi) = mov Address (t38(rbx) + 0)
-		t40(rsi) = t40(rsi) ADD t39(rdi)
-		t41(rbx) = mov x(r8)
-		t41(rbx) = t41(rbx) SUB 1
-		t42(rdi) = mov t41(rbx)
-		t42(rdi) = t42(rdi) SHL 3
-		t43(rbx) = mov Address (make(@make) + 0)
-		t43(rbx) = t43(rbx) ADD t42(rdi)
-		t44(r13) = mov 1
-		t44(r13) = t44(r13) SHL 3
-		t45(rdi) = mov Address (t43(rbx) + 0)
-		t45(rdi) = t45(rdi) ADD t44(r13)
-		t46(rbx) = mov Address (t40(rsi) + 0)
-		t46(rbx) = t46(rbx) ADD Address (t45(rdi) + 0)
-		t47(rsi) = mov x(r8)
-		t47(rsi) = t47(rsi) SUB 1
-		t48(rsi) = mov t47(rsi)
-		t48(rsi) = t48(rsi) SHL 3
-		t49(rdi) = mov Address (make(@make) + 0)
-		t49(rdi) = t49(rdi) ADD t48(rsi)
-		t50(rsi) = mov 2
-		t50(rsi) = t50(rsi) SHL 3
-		t51(rdi) = mov Address (t49(rdi) + 0)
-		t51(rdi) = t51(rdi) ADD t50(rsi)
-		t52(rsi) = mov t46(rbx)
-		t52(rsi) = t52(rsi) ADD Address (t51(rdi) + 0)
-		cmp t52(rsi) 15
-		set EQ t53(rsi)
-		t30(rsi) = mov t53(rsi)
-		jump search_9_logical_exit
-	search_9_logical_exit
-		cmp t30(rsi) 1
-		CJump EQ search_10_if_true
-		jump search_71_if_false
-	search_10_if_true
-		cmp x(r8) 2
-		set EQ t55(rsi)
-		cmp t55(rsi) 1
-		CJump NEQ search_12_logical_false
-		jump search_11_logical_true
-	search_11_logical_true
-		cmp y(r9) 2
-		set EQ t56(rsi)
-		t54(rsi) = mov t56(rsi)
-		jump search_13_logical_exit
-	search_12_logical_false
-		t54(rsi) = mov 0
-		jump search_13_logical_exit
-	search_13_logical_exit
-		cmp t54(rsi) 1
-		CJump EQ search_14_if_true
-		jump search_44_if_false
-	search_14_if_true
-		t57(rbx) = mov 2
-		t57(rbx) = t57(rbx) SHL 3
-		t58(rsi) = mov Address (make(@make) + 0)
-		t58(rsi) = t58(rsi) ADD t57(rbx)
-		t59(rbx) = mov 2
-		t59(rbx) = t59(rbx) SHL 3
-		t60(rdi) = mov Address (t58(rsi) + 0)
-		t60(rdi) = t60(rdi) ADD t59(rbx)
-		t61(rsi) = mov 45
-		t61(rsi) = t61(rsi) SUB z(r12)
-		Address (t60(rdi) + 0) = mov t61(rsi)
-		t62(rbx) = mov 0
-		t62(rbx) = t62(rbx) SHL 3
-		t63(rsi) = mov Address (make(@make) + 0)
-		t63(rsi) = t63(rsi) ADD t62(rbx)
-		t64(rbx) = mov 0
-		t64(rbx) = t64(rbx) SHL 3
-		t65(rsi) = mov Address (t63(rsi) + 0)
-		t65(rsi) = t65(rsi) ADD t64(rbx)
-		t66(rbx) = mov 0
-		t66(rbx) = t66(rbx) SHL 3
-		t67(rdi) = mov Address (make(@make) + 0)
-		t67(rdi) = t67(rdi) ADD t66(rbx)
-		t68(r12) = mov 1
-		t68(r12) = t68(r12) SHL 3
-		t69(rbx) = mov Address (t67(rdi) + 0)
-		t69(rbx) = t69(rbx) ADD t68(r12)
-		t70(r12) = mov Address (t65(rsi) + 0)
-		t70(r12) = t70(r12) ADD Address (t69(rbx) + 0)
-		t71(rsi) = mov 0
-		t71(rsi) = t71(rsi) SHL 3
-		t72(rdi) = mov Address (make(@make) + 0)
-		t72(rdi) = t72(rdi) ADD t71(rsi)
-		t73(rbx) = mov 2
-		t73(rbx) = t73(rbx) SHL 3
-		t74(rsi) = mov Address (t72(rdi) + 0)
-		t74(rsi) = t74(rsi) ADD t73(rbx)
-		t75(rbx) = mov t70(r12)
-		t75(rbx) = t75(rbx) ADD Address (t74(rsi) + 0)
-		s(rdi) = mov t75(rbx)
-		t82(rsi) = mov 1
-		t82(rsi) = t82(rsi) SHL 3
-		t83(rbx) = mov Address (make(@make) + 0)
-		t83(rbx) = t83(rbx) ADD t82(rsi)
-		t84(rsi) = mov 0
-		t84(rsi) = t84(rsi) SHL 3
-		t85(rbx) = mov Address (t83(rbx) + 0)
-		t85(rbx) = t85(rbx) ADD t84(rsi)
-		t86(rsi) = mov 1
-		t86(rsi) = t86(rsi) SHL 3
-		t87(r12) = mov Address (make(@make) + 0)
-		t87(r12) = t87(r12) ADD t86(rsi)
-		t88(rsi) = mov 1
-		t88(rsi) = t88(rsi) SHL 3
-		t89(r12) = mov Address (t87(r12) + 0)
-		t89(r12) = t89(r12) ADD t88(rsi)
-		t90(rbx) = mov Address (t85(rbx) + 0)
-		t90(rbx) = t90(rbx) ADD Address (t89(r12) + 0)
-		t91(rsi) = mov 1
-		t91(rsi) = t91(rsi) SHL 3
-		t92(r12) = mov Address (make(@make) + 0)
-		t92(r12) = t92(r12) ADD t91(rsi)
-		t93(r8) = mov 2
-		t93(r8) = t93(r8) SHL 3
-		t94(rsi) = mov Address (t92(r12) + 0)
-		t94(rsi) = t94(rsi) ADD t93(r8)
-		t95(rbx) = mov t90(rbx)
-		t95(rbx) = t95(rbx) ADD Address (t94(rsi) + 0)
-		cmp t95(rbx) s(rdi)
-		set EQ t96(rsi)
-		cmp t96(rsi) 1
-		CJump NEQ search_16_logical_false
-		jump search_15_logical_true
-	search_15_logical_true
-		t97(rbx) = mov 2
-		t97(rbx) = t97(rbx) SHL 3
-		t98(rsi) = mov Address (make(@make) + 0)
-		t98(rsi) = t98(rsi) ADD t97(rbx)
-		t99(r12) = mov 0
-		t99(r12) = t99(r12) SHL 3
-		t100(rbx) = mov Address (t98(rsi) + 0)
-		t100(rbx) = t100(rbx) ADD t99(r12)
-		t101(rsi) = mov 2
-		t101(rsi) = t101(rsi) SHL 3
-		t102(r12) = mov Address (make(@make) + 0)
-		t102(r12) = t102(r12) ADD t101(rsi)
-		t103(rsi) = mov 1
-		t103(rsi) = t103(rsi) SHL 3
-		t104(r12) = mov Address (t102(r12) + 0)
-		t104(r12) = t104(r12) ADD t103(rsi)
-		t105(r8) = mov Address (t100(rbx) + 0)
-		t105(r8) = t105(r8) ADD Address (t104(r12) + 0)
-		t106(rsi) = mov 2
-		t106(rsi) = t106(rsi) SHL 3
-		t107(rbx) = mov Address (make(@make) + 0)
-		t107(rbx) = t107(rbx) ADD t106(rsi)
-		t108(rsi) = mov 2
-		t108(rsi) = t108(rsi) SHL 3
-		t109(rbx) = mov Address (t107(rbx) + 0)
-		t109(rbx) = t109(rbx) ADD t108(rsi)
-		t110(rsi) = mov t105(r8)
-		t110(rsi) = t110(rsi) ADD Address (t109(rbx) + 0)
-		cmp t110(rsi) s(rdi)
-		set EQ t111(rsi)
-		t81(rsi) = mov t111(rsi)
-		jump search_17_logical_exit
-	search_16_logical_false
-		t81(rsi) = mov 0
-		jump search_17_logical_exit
-	search_17_logical_exit
-		cmp t81(rsi) 1
-		CJump NEQ search_19_logical_false
-		jump search_18_logical_true
-	search_18_logical_true
-		t112(rsi) = mov 0
-		t112(rsi) = t112(rsi) SHL 3
-		t113(rbx) = mov Address (make(@make) + 0)
-		t113(rbx) = t113(rbx) ADD t112(rsi)
-		t114(rsi) = mov 0
-		t114(rsi) = t114(rsi) SHL 3
-		t115(r12) = mov Address (t113(rbx) + 0)
-		t115(r12) = t115(r12) ADD t114(rsi)
-		t116(rsi) = mov 1
-		t116(rsi) = t116(rsi) SHL 3
-		t117(rbx) = mov Address (make(@make) + 0)
-		t117(rbx) = t117(rbx) ADD t116(rsi)
-		t118(rsi) = mov 0
-		t118(rsi) = t118(rsi) SHL 3
-		t119(rbx) = mov Address (t117(rbx) + 0)
-		t119(rbx) = t119(rbx) ADD t118(rsi)
-		t120(r12) = mov Address (t115(r12) + 0)
-		t120(r12) = t120(r12) ADD Address (t119(rbx) + 0)
-		t121(rsi) = mov 2
-		t121(rsi) = t121(rsi) SHL 3
-		t122(rbx) = mov Address (make(@make) + 0)
-		t122(rbx) = t122(rbx) ADD t121(rsi)
-		t123(rsi) = mov 0
-		t123(rsi) = t123(rsi) SHL 3
-		t124(rbx) = mov Address (t122(rbx) + 0)
-		t124(rbx) = t124(rbx) ADD t123(rsi)
-		t125(rsi) = mov t120(r12)
-		t125(rsi) = t125(rsi) ADD Address (t124(rbx) + 0)
-		cmp t125(rsi) s(rdi)
-		set EQ t126(rsi)
-		t80(rsi) = mov t126(rsi)
-		jump search_20_logical_exit
-	search_19_logical_false
-		t80(rsi) = mov 0
-		jump search_20_logical_exit
-	search_20_logical_exit
-		cmp t80(rsi) 1
-		CJump NEQ search_22_logical_false
-		jump search_21_logical_true
-	search_21_logical_true
-		t127(rsi) = mov 0
-		t127(rsi) = t127(rsi) SHL 3
-		t128(rbx) = mov Address (make(@make) + 0)
-		t128(rbx) = t128(rbx) ADD t127(rsi)
-		t129(rsi) = mov 1
-		t129(rsi) = t129(rsi) SHL 3
-		t130(r12) = mov Address (t128(rbx) + 0)
-		t130(r12) = t130(r12) ADD t129(rsi)
-		t131(rbx) = mov 1
-		t131(rbx) = t131(rbx) SHL 3
-		t132(rsi) = mov Address (make(@make) + 0)
-		t132(rsi) = t132(rsi) ADD t131(rbx)
-		t133(rbx) = mov 1
-		t133(rbx) = t133(rbx) SHL 3
-		t134(rsi) = mov Address (t132(rsi) + 0)
-		t134(rsi) = t134(rsi) ADD t133(rbx)
-		t135(r12) = mov Address (t130(r12) + 0)
-		t135(r12) = t135(r12) ADD Address (t134(rsi) + 0)
-		t136(rsi) = mov 2
-		t136(rsi) = t136(rsi) SHL 3
-		t137(rbx) = mov Address (make(@make) + 0)
-		t137(rbx) = t137(rbx) ADD t136(rsi)
-		t138(rsi) = mov 1
-		t138(rsi) = t138(rsi) SHL 3
-		t139(rbx) = mov Address (t137(rbx) + 0)
-		t139(rbx) = t139(rbx) ADD t138(rsi)
-		t140(rsi) = mov t135(r12)
-		t140(rsi) = t140(rsi) ADD Address (t139(rbx) + 0)
-		cmp t140(rsi) s(rdi)
-		set EQ t141(rsi)
-		t79(rsi) = mov t141(rsi)
-		jump search_23_logical_exit
-	search_22_logical_false
-		t79(rsi) = mov 0
-		jump search_23_logical_exit
-	search_23_logical_exit
-		cmp t79(rsi) 1
-		CJump NEQ search_25_logical_false
-		jump search_24_logical_true
-	search_24_logical_true
-		t142(rbx) = mov 0
-		t142(rbx) = t142(rbx) SHL 3
-		t143(rsi) = mov Address (make(@make) + 0)
-		t143(rsi) = t143(rsi) ADD t142(rbx)
-		t144(rbx) = mov 2
-		t144(rbx) = t144(rbx) SHL 3
-		t145(r12) = mov Address (t143(rsi) + 0)
-		t145(r12) = t145(r12) ADD t144(rbx)
-		t146(rbx) = mov 1
-		t146(rbx) = t146(rbx) SHL 3
-		t147(rsi) = mov Address (make(@make) + 0)
-		t147(rsi) = t147(rsi) ADD t146(rbx)
-		t148(rbx) = mov 2
-		t148(rbx) = t148(rbx) SHL 3
-		t149(rsi) = mov Address (t147(rsi) + 0)
-		t149(rsi) = t149(rsi) ADD t148(rbx)
-		t150(rbx) = mov Address (t145(r12) + 0)
-		t150(rbx) = t150(rbx) ADD Address (t149(rsi) + 0)
-		t151(r12) = mov 2
-		t151(r12) = t151(r12) SHL 3
-		t152(rsi) = mov Address (make(@make) + 0)
-		t152(rsi) = t152(rsi) ADD t151(r12)
-		t153(r12) = mov 2
-		t153(r12) = t153(r12) SHL 3
-		t154(rsi) = mov Address (t152(rsi) + 0)
-		t154(rsi) = t154(rsi) ADD t153(r12)
-		t155(rbx) = mov t150(rbx)
-		t155(rbx) = t155(rbx) ADD Address (t154(rsi) + 0)
-		cmp t155(rbx) s(rdi)
-		set EQ t156(rsi)
-		t78(rsi) = mov t156(rsi)
-		jump search_26_logical_exit
-	search_25_logical_false
-		t78(rsi) = mov 0
-		jump search_26_logical_exit
-	search_26_logical_exit
-		cmp t78(rsi) 1
-		CJump NEQ search_28_logical_false
-		jump search_27_logical_true
-	search_27_logical_true
-		t157(rsi) = mov 0
-		t157(rsi) = t157(rsi) SHL 3
-		t158(rbx) = mov Address (make(@make) + 0)
-		t158(rbx) = t158(rbx) ADD t157(rsi)
-		t159(rsi) = mov 0
-		t159(rsi) = t159(rsi) SHL 3
-		t160(r12) = mov Address (t158(rbx) + 0)
-		t160(r12) = t160(r12) ADD t159(rsi)
-		t161(rsi) = mov 1
-		t161(rsi) = t161(rsi) SHL 3
-		t162(rbx) = mov Address (make(@make) + 0)
-		t162(rbx) = t162(rbx) ADD t161(rsi)
-		t163(rsi) = mov 1
-		t163(rsi) = t163(rsi) SHL 3
-		t164(rbx) = mov Address (t162(rbx) + 0)
-		t164(rbx) = t164(rbx) ADD t163(rsi)
-		t165(r12) = mov Address (t160(r12) + 0)
-		t165(r12) = t165(r12) ADD Address (t164(rbx) + 0)
-		t166(rbx) = mov 2
-		t166(rbx) = t166(rbx) SHL 3
-		t167(rsi) = mov Address (make(@make) + 0)
-		t167(rsi) = t167(rsi) ADD t166(rbx)
-		t168(rbx) = mov 2
-		t168(rbx) = t168(rbx) SHL 3
-		t169(rsi) = mov Address (t167(rsi) + 0)
-		t169(rsi) = t169(rsi) ADD t168(rbx)
-		t170(rbx) = mov t165(r12)
-		t170(rbx) = t170(rbx) ADD Address (t169(rsi) + 0)
-		cmp t170(rbx) s(rdi)
-		set EQ t171(rsi)
-		t77(rsi) = mov t171(rsi)
-		jump search_29_logical_exit
-	search_28_logical_false
-		t77(rsi) = mov 0
-		jump search_29_logical_exit
-	search_29_logical_exit
-		cmp t77(rsi) 1
-		CJump NEQ search_31_logical_false
-		jump search_30_logical_true
-	search_30_logical_true
-		t172(rbx) = mov 2
-		t172(rbx) = t172(rbx) SHL 3
-		t173(rsi) = mov Address (make(@make) + 0)
-		t173(rsi) = t173(rsi) ADD t172(rbx)
-		t174(rbx) = mov 0
-		t174(rbx) = t174(rbx) SHL 3
-		t175(r12) = mov Address (t173(rsi) + 0)
-		t175(r12) = t175(r12) ADD t174(rbx)
-		t176(rsi) = mov 1
-		t176(rsi) = t176(rsi) SHL 3
-		t177(rbx) = mov Address (make(@make) + 0)
-		t177(rbx) = t177(rbx) ADD t176(rsi)
-		t178(rsi) = mov 1
-		t178(rsi) = t178(rsi) SHL 3
-		t179(rbx) = mov Address (t177(rbx) + 0)
-		t179(rbx) = t179(rbx) ADD t178(rsi)
-		t180(r12) = mov Address (t175(r12) + 0)
-		t180(r12) = t180(r12) ADD Address (t179(rbx) + 0)
-		t181(rsi) = mov 0
-		t181(rsi) = t181(rsi) SHL 3
-		t182(rbx) = mov Address (make(@make) + 0)
-		t182(rbx) = t182(rbx) ADD t181(rsi)
-		t183(rsi) = mov 2
-		t183(rsi) = t183(rsi) SHL 3
-		t184(rbx) = mov Address (t182(rbx) + 0)
-		t184(rbx) = t184(rbx) ADD t183(rsi)
-		t185(rsi) = mov t180(r12)
-		t185(rsi) = t185(rsi) ADD Address (t184(rbx) + 0)
-		cmp t185(rsi) s(rdi)
-		set EQ t186(rsi)
-		t76(rsi) = mov t186(rsi)
-		jump search_32_logical_exit
-	search_31_logical_false
-		t76(rsi) = mov 0
-		jump search_32_logical_exit
-	search_32_logical_exit
-		cmp t76(rsi) 1
-		CJump EQ search_33_if_true
-		jump search_42_if_false
-	search_33_if_true
-		t187(rsi) = mov 0
-		t187(rsi) = t187(rsi) SHL 3
-		t188(rdi) = mov Address (count(@count) + 0)
-		t188(rdi) = t188(rdi) ADD t187(rsi)
-		t189(rsi) = mov 0
-		t189(rsi) = t189(rsi) SHL 3
-		t190(rbx) = mov Address (count(@count) + 0)
-		t190(rbx) = t190(rbx) ADD t189(rsi)
-		t191(rsi) = mov Address (t190(rbx) + 0)
-		t191(rsi) = t191(rsi) ADD 1
-		Address (t188(rdi) + 0) = mov t191(rsi)
-		i(r13) = mov 0
-		jump search_34_loop_condition
-	search_34_loop_condition
-		cmp i(r13) 2
-		set LEEQ t192(rsi)
-		cmp t192(rsi) 1
-		CJump EQ search_35_loop_body
-		jump search_41_loop_exit
-	search_35_loop_body
-		j(r12) = mov 0
-		jump search_36_loop_condition
-	search_36_loop_condition
-		cmp j(r12) 2
-		set LEEQ t193(rsi)
-		cmp t193(rsi) 1
-		CJump EQ search_37_loop_body
-		jump search_39_loop_exit
-	search_37_loop_body
-		t194(rbx) = mov i(r13)
-		t194(rbx) = t194(rbx) SHL 3
-		t195(rsi) = mov Address (make(@make) + 0)
-		t195(rsi) = t195(rsi) ADD t194(rbx)
-		t196(rbx) = mov j(r12)
-		t196(rbx) = t196(rbx) SHL 3
-		t197(rsi) = mov Address (t195(rsi) + 0)
-		t197(rsi) = t197(rsi) ADD t196(rbx)
-		t199(rdi) = mov Address (t197(rsi) + 0)
-		call toString return value = t198(rax)
-		t201(rdi) = mov t198(rax)
-		call print return value = null
-		t202(rdi) = mov __const_string_0
-		call print return value = null
-		jump search_38_loop_increment
-	search_38_loop_increment
-		t203(rsi) = mov j(r12)
-		INC j(r12)
-		jump search_36_loop_condition
-	search_39_loop_exit
-		t204(rdi) = mov __const_string_1
-		call print return value = null
-		jump search_40_loop_increment
-	search_40_loop_increment
-		t205(rsi) = mov i(r13)
-		INC i(r13)
-		jump search_34_loop_condition
-	search_41_loop_exit
-		t206(rdi) = mov __const_string_2
-		call print return value = null
-		jump search_43_if_exit
-	search_42_if_false
-		jump search_43_if_exit
-	search_43_if_exit
-		jump search_70_if_exit
-	search_44_if_false
-		cmp y(r9) 2
-		set EQ t207(rsi)
-		cmp t207(rsi) 1
-		CJump EQ search_45_if_true
-		jump search_58_if_false
-	search_45_if_true
-		t208(rbx) = mov x(r8)
-		t208(rbx) = t208(rbx) SHL 3
-		t209(rsi) = mov Address (make(@make) + 0)
-		t209(rsi) = t209(rsi) ADD t208(rbx)
-		t210(rbx) = mov y(r9)
-		t210(rbx) = t210(rbx) SHL 3
-		t211(r13) = mov Address (t209(rsi) + 0)
-		t211(r13) = t211(r13) ADD t210(rbx)
-		t212(rbx) = mov x(r8)
-		t212(rbx) = t212(rbx) SHL 3
-		t213(rsi) = mov Address (make(@make) + 0)
-		t213(rsi) = t213(rsi) ADD t212(rbx)
-		t214(rbx) = mov 0
-		t214(rbx) = t214(rbx) SHL 3
-		t215(rsi) = mov Address (t213(rsi) + 0)
-		t215(rsi) = t215(rsi) ADD t214(rbx)
-		t216(rdi) = mov 15
-		t216(rdi) = t216(rdi) SUB Address (t215(rsi) + 0)
-		t217(rsi) = mov x(r8)
-		t217(rsi) = t217(rsi) SHL 3
-		t218(rbx) = mov Address (make(@make) + 0)
-		t218(rbx) = t218(rbx) ADD t217(rsi)
-		t219(rsi) = mov 1
-		t219(rsi) = t219(rsi) SHL 3
-		t220(rbx) = mov Address (t218(rbx) + 0)
-		t220(rbx) = t220(rbx) ADD t219(rsi)
-		t221(rsi) = mov t216(rdi)
-		t221(rsi) = t221(rsi) SUB Address (t220(rbx) + 0)
-		Address (t211(r13) + 0) = mov t221(rsi)
-		t224(rbx) = mov x(r8)
-		t224(rbx) = t224(rbx) SHL 3
-		t225(rsi) = mov Address (make(@make) + 0)
-		t225(rsi) = t225(rsi) ADD t224(rbx)
-		t226(rbx) = mov y(r9)
-		t226(rbx) = t226(rbx) SHL 3
-		t227(rsi) = mov Address (t225(rsi) + 0)
-		t227(rsi) = t227(rsi) ADD t226(rbx)
-		cmp Address (t227(rsi) + 0) 0
-		set GR t228(rsi)
-		cmp t228(rsi) 1
-		CJump NEQ search_47_logical_false
-		jump search_46_logical_true
-	search_46_logical_true
-		t229(rsi) = mov x(r8)
-		t229(rsi) = t229(rsi) SHL 3
-		t230(rbx) = mov Address (make(@make) + 0)
-		t230(rbx) = t230(rbx) ADD t229(rsi)
-		t231(rsi) = mov y(r9)
-		t231(rsi) = t231(rsi) SHL 3
-		t232(rbx) = mov Address (t230(rbx) + 0)
-		t232(rbx) = t232(rbx) ADD t231(rsi)
-		cmp Address (t232(rbx) + 0) 10
-		set LE t233(rsi)
-		t223(rsi) = mov t233(rsi)
-		jump search_48_logical_exit
-	search_47_logical_false
-		t223(rsi) = mov 0
-		jump search_48_logical_exit
-	search_48_logical_exit
-		cmp t223(rsi) 1
-		CJump NEQ search_50_logical_false
-		jump search_49_logical_true
-	search_49_logical_true
-		t234(rbx) = mov x(r8)
-		t234(rbx) = t234(rbx) SHL 3
-		t235(rsi) = mov Address (make(@make) + 0)
-		t235(rsi) = t235(rsi) ADD t234(rbx)
-		t236(rbx) = mov y(r9)
-		t236(rbx) = t236(rbx) SHL 3
-		t237(rsi) = mov Address (t235(rsi) + 0)
-		t237(rsi) = t237(rsi) ADD t236(rbx)
-		t238(rsi) = mov Address (t237(rsi) + 0)
-		t238(rsi) = t238(rsi) SHL 3
-		t239(rbx) = mov Address (color(@color) + 0)
-		t239(rbx) = t239(rbx) ADD t238(rsi)
-		cmp Address (t239(rbx) + 0) 0
-		set EQ t240(rsi)
-		t222(rsi) = mov t240(rsi)
-		jump search_51_logical_exit
-	search_50_logical_false
-		t222(rsi) = mov 0
-		jump search_51_logical_exit
-	search_51_logical_exit
-		cmp t222(rsi) 1
-		CJump EQ search_52_if_true
-		jump search_56_if_false
-	search_52_if_true
-		t241(rsi) = mov x(r8)
-		t241(rsi) = t241(rsi) SHL 3
-		t242(rbx) = mov Address (make(@make) + 0)
-		t242(rbx) = t242(rbx) ADD t241(rsi)
-		t243(rsi) = mov y(r9)
-		t243(rsi) = t243(rsi) SHL 3
-		t244(rbx) = mov Address (t242(rbx) + 0)
-		t244(rbx) = t244(rbx) ADD t243(rsi)
-		t245(rbx) = mov Address (t244(rbx) + 0)
-		t245(rbx) = t245(rbx) SHL 3
-		t246(rsi) = mov Address (color(@color) + 0)
-		t246(rsi) = t246(rsi) ADD t245(rbx)
-		Address (t246(rsi) + 0) = mov 1
-		cmp y(r9) 2
-		set EQ t247(rsi)
-		cmp t247(rsi) 1
-		CJump EQ search_53_if_true
-		jump search_54_if_false
-	search_53_if_true
-		t248(rdi) = mov x(r8)
-		t248(rdi) = t248(rdi) ADD 1
-		t249(rsi) = mov x(r8)
-		t249(rsi) = t249(rsi) SHL 3
-		t250(rbx) = mov Address (make(@make) + 0)
-		t250(rbx) = t250(rbx) ADD t249(rsi)
-		t251(rsi) = mov y(r9)
-		t251(rsi) = t251(rsi) SHL 3
-		t252(rbx) = mov Address (t250(rbx) + 0)
-		t252(rbx) = t252(rbx) ADD t251(rsi)
-		t253(r12) = mov z(r12)
-		t253(r12) = t253(r12) ADD Address (t252(rbx) + 0)
-		t255(rdi) = mov t248(rdi)
-		t256(rsi) = mov 0
-		t257(rdx) = mov t253(r12)
-		call search return value = t254(rax)
-		t258(rsi) = mov t254(rax)
-		jump search_55_if_exit
-	search_54_if_false
-		t259(r13) = mov y(r9)
-		t259(r13) = t259(r13) ADD 1
-		t260(rsi) = mov x(r8)
-		t260(rsi) = t260(rsi) SHL 3
-		t261(rbx) = mov Address (make(@make) + 0)
-		t261(rbx) = t261(rbx) ADD t260(rsi)
-		t262(rsi) = mov y(r9)
-		t262(rsi) = t262(rsi) SHL 3
-		t263(rdi) = mov Address (t261(rbx) + 0)
-		t263(rdi) = t263(rdi) ADD t262(rsi)
-		t264(rbx) = mov z(r12)
-		t264(rbx) = t264(rbx) ADD Address (t263(rdi) + 0)
-		t266(rdi) = mov x(r8)
-		t267(rsi) = mov t259(r13)
-		t268(rdx) = mov t264(rbx)
-		call search return value = t265(rax)
-		t269(rsi) = mov t265(rax)
-		jump search_55_if_exit
-	search_55_if_exit
-		t270(rsi) = mov x(r8)
-		t270(rsi) = t270(rsi) SHL 3
-		t271(rbx) = mov Address (make(@make) + 0)
-		t271(rbx) = t271(rbx) ADD t270(rsi)
-		t272(rsi) = mov y(r9)
-		t272(rsi) = t272(rsi) SHL 3
-		t273(rbx) = mov Address (t271(rbx) + 0)
-		t273(rbx) = t273(rbx) ADD t272(rsi)
-		t274(rsi) = mov Address (t273(rbx) + 0)
-		t274(rsi) = t274(rsi) SHL 3
-		t275(rbx) = mov Address (color(@color) + 0)
-		t275(rbx) = t275(rbx) ADD t274(rsi)
-		Address (t275(rbx) + 0) = mov 0
-		jump search_57_if_exit
-	search_56_if_false
-		jump search_57_if_exit
-	search_57_if_exit
-		jump search_69_if_exit
-	search_58_if_false
-		i(r13) = mov 1
-		jump search_59_loop_condition
-	search_59_loop_condition
-		cmp i(r13) 9
-		set LEEQ t276(rsi)
-		cmp t276(rsi) 1
-		CJump EQ search_60_loop_body
-		jump search_68_loop_exit
-	search_60_loop_body
-		t277(rsi) = mov i(r13)
-		t277(rsi) = t277(rsi) SHL 3
-		t278(rbx) = mov Address (color(@color) + 0)
-		t278(rbx) = t278(rbx) ADD t277(rsi)
-		cmp Address (t278(rbx) + 0) 0
-		set EQ t279(rsi)
-		cmp t279(rsi) 1
-		CJump EQ search_61_if_true
-		jump search_65_if_false
-	search_61_if_true
-		t280(rsi) = mov i(r13)
-		t280(rsi) = t280(rsi) SHL 3
-		t281(rbx) = mov Address (color(@color) + 0)
-		t281(rbx) = t281(rbx) ADD t280(rsi)
-		Address (t281(rbx) + 0) = mov 1
-		t282(rsi) = mov x(r8)
-		t282(rsi) = t282(rsi) SHL 3
-		t283(rbx) = mov Address (make(@make) + 0)
-		t283(rbx) = t283(rbx) ADD t282(rsi)
-		t284(rsi) = mov y(r9)
-		t284(rsi) = t284(rsi) SHL 3
-		t285(rbx) = mov Address (t283(rbx) + 0)
-		t285(rbx) = t285(rbx) ADD t284(rsi)
-		Address (t285(rbx) + 0) = mov i(r13)
-		cmp y(r9) 2
-		set EQ t286(rsi)
-		cmp t286(rsi) 1
-		CJump EQ search_62_if_true
-		jump search_63_if_false
-	search_62_if_true
-		t287(rsi) = mov x(r8)
-		t287(rsi) = t287(rsi) ADD 1
-		t288(rbx) = mov z(r12)
-		t288(rbx) = t288(rbx) ADD i(r13)
-		t290(rdi) = mov t287(rsi)
-		t291(rsi) = mov 0
-		t292(rdx) = mov t288(rbx)
-		call search return value = t289(rax)
-		t293(rsi) = mov t289(rax)
-		jump search_64_if_exit
-	search_63_if_false
-		t294(rsi) = mov y(r9)
-		t294(rsi) = t294(rsi) ADD 1
-		t295(rbx) = mov z(r12)
-		t295(rbx) = t295(rbx) ADD i(r13)
-		t297(rdi) = mov x(r8)
-		t298(rsi) = mov t294(rsi)
-		t299(rdx) = mov t295(rbx)
-		call search return value = t296(rax)
-		t300(rsi) = mov t296(rax)
-		jump search_64_if_exit
-	search_64_if_exit
-		t301(rsi) = mov x(r8)
-		t301(rsi) = t301(rsi) SHL 3
-		t302(rbx) = mov Address (make(@make) + 0)
-		t302(rbx) = t302(rbx) ADD t301(rsi)
-		t303(rsi) = mov y(r9)
-		t303(rsi) = t303(rsi) SHL 3
-		t304(rbx) = mov Address (t302(rbx) + 0)
-		t304(rbx) = t304(rbx) ADD t303(rsi)
-		Address (t304(rbx) + 0) = mov 0
-		t305(rsi) = mov i(r13)
-		t305(rsi) = t305(rsi) SHL 3
-		t306(rbx) = mov Address (color(@color) + 0)
-		t306(rbx) = t306(rbx) ADD t305(rsi)
-		Address (t306(rbx) + 0) = mov 0
-		jump search_66_if_exit
-	search_65_if_false
-		jump search_66_if_exit
-	search_66_if_exit
-		jump search_67_loop_increment
-	search_67_loop_increment
-		t307(rsi) = mov i(r13)
-		INC i(r13)
-		jump search_59_loop_condition
-	search_68_loop_exit
-		jump search_69_if_exit
-	search_69_if_exit
-		jump search_70_if_exit
-	search_70_if_exit
-		jump search_72_if_exit
-	search_71_if_false
-		jump search_72_if_exit
-	search_72_if_exit
-		jump search_73_block_exit
-	search_73_block_exit
+add x(r8) y(rdi) {
+	add_0_block_enter
+		x(r8) = mov t98(rdi)
+		y(rdi) = mov t99(rsi)
+		t100(r9) = mov x(r8)
+		t100(r9) = t100(r9) AND 65535
+		t101(rsi) = mov y(rdi)
+		t101(rsi) = t101(rsi) AND 65535
+		t102(r9) = mov t100(r9)
+		t102(r9) = t102(r9) ADD t101(rsi)
+		low(rsi) = mov t102(r9)
+		t103(r8) = mov x(r8)
+		t103(r8) = t103(r8) SHR 16
+		t104(r8) = mov t103(r8)
+		t104(r8) = t104(r8) AND 65535
+		t105(rdi) = mov y(rdi)
+		t105(rdi) = t105(rdi) SHR 16
+		t106(rdi) = mov t105(rdi)
+		t106(rdi) = t106(rdi) AND 65535
+		t107(r8) = mov t104(r8)
+		t107(r8) = t107(r8) ADD t106(rdi)
+		t108(rdi) = mov low(rsi)
+		t108(rdi) = t108(rdi) SHR 16
+		t109(r8) = mov t107(r8)
+		t109(r8) = t109(r8) ADD t108(rdi)
+		t110(rdi) = mov t109(r8)
+		t110(rdi) = t110(rdi) AND 65535
+		t111(rdi) = mov t110(rdi)
+		t111(rdi) = t111(rdi) SHL 16
+		t112(rsi) = mov low(rsi)
+		t112(rsi) = t112(rsi) AND 65535
+		t113(rdi) = mov t111(rdi)
+		t113(rdi) = t113(rdi) XOR t112(rsi)
+		ret t113(rdi)
+		jump add_1_block_exit
+	add_1_block_exit
 }
-__global_init {
-	__global_init_0_block_enter
-		t309(rsi) = mov 10
-		INC t309(rsi)
-		t309(rsi) = t309(rsi) SHL 3
-		malloc t308(rsi) t309(rsi)
-		Address (t308(rsi) + 0) = mov 10
-		t308(rsi) = t308(rsi) ADD 8
-		Address (color(@color) + 0) = mov t308(rsi)
-		t311(rsi) = mov 1
-		INC t311(rsi)
-		t311(rsi) = t311(rsi) SHL 3
-		malloc t310(rsi) t311(rsi)
-		Address (t310(rsi) + 0) = mov 1
-		t310(rsi) = t310(rsi) ADD 8
-		Address (count(@count) + 0) = mov t310(rsi)
-		jump __global_init_1_block_exit
-	__global_init_1_block_exit
-}
-origin N(rsi) {
-	origin_0_block_enter
-		N(rsi) = mov t0(rdi)
-		t2(rdi) = mov N(rsi)
-		INC t2(rdi)
-		t2(rdi) = t2(rdi) SHL 3
-		malloc t1(rdi) t2(rdi)
-		Address (t1(rdi) + 0) = mov N(rsi)
-		t1(rdi) = t1(rdi) ADD 8
-		Address (make(@make) + 0) = mov t1(rdi)
-		Address (i(@i) + 0) = mov 0
-		jump origin_1_loop_condition
-	origin_1_loop_condition
-		cmp Address (i(@i) + 0) N(rsi)
-		set LE t3(rdi)
-		cmp t3(rdi) 1
-		CJump EQ origin_2_loop_body
-		jump origin_8_loop_exit
-	origin_2_loop_body
-		t4(rdi) = mov Address (i(@i) + 0)
-		t4(rdi) = t4(rdi) SHL 3
-		t5(r8) = mov Address (make(@make) + 0)
-		t5(r8) = t5(r8) ADD t4(rdi)
-		t7(rdi) = mov N(rsi)
-		INC t7(rdi)
-		t7(rdi) = t7(rdi) SHL 3
-		malloc t6(rdi) t7(rdi)
-		Address (t6(rdi) + 0) = mov N(rsi)
-		t6(rdi) = t6(rdi) ADD 8
-		Address (t5(r8) + 0) = mov t6(rdi)
-		Address (j(@j) + 0) = mov 0
-		jump origin_3_loop_condition
-	origin_3_loop_condition
-		cmp Address (j(@j) + 0) N(rsi)
-		set LE t8(rdi)
-		cmp t8(rdi) 1
-		CJump EQ origin_4_loop_body
-		jump origin_6_loop_exit
-	origin_4_loop_body
-		t9(rdi) = mov Address (i(@i) + 0)
-		t9(rdi) = t9(rdi) SHL 3
-		t10(r8) = mov Address (make(@make) + 0)
-		t10(r8) = t10(r8) ADD t9(rdi)
-		t11(rdi) = mov Address (j(@j) + 0)
-		t11(rdi) = t11(rdi) SHL 3
-		t12(r8) = mov Address (t10(r8) + 0)
-		t12(r8) = t12(r8) ADD t11(rdi)
-		Address (t12(r8) + 0) = mov 0
-		jump origin_5_loop_increment
-	origin_5_loop_increment
-		t13(rdi) = mov Address (j(@j) + 0)
-		INC Address (j(@j) + 0)
-		jump origin_3_loop_condition
-	origin_6_loop_exit
-		jump origin_7_loop_increment
-	origin_7_loop_increment
-		t14(rdi) = mov Address (i(@i) + 0)
-		INC Address (i(@i) + 0)
-		jump origin_1_loop_condition
-	origin_8_loop_exit
-		jump origin_9_block_exit
-	origin_9_block_exit
+nextText now(rbx) length(null) {
+	nextText_0_block_enter
+		now(rbx) = mov t114(rdi)
+		t116(rsi) = mov t115(rsi)
+		t116(rsi) = t116(rsi) SUB 1
+		i(rsi) = mov t116(rsi)
+		jump nextText_1_loop_condition
+	nextText_1_loop_condition
+		cmp i(rsi) 0
+		set GREQ t117(rdi)
+		cmp t117(rdi) 1
+		CJump EQ nextText_2_loop_body
+		jump nextText_7_loop_exit
+	nextText_2_loop_body
+		t118(rdi) = mov i(rsi)
+		t118(rdi) = t118(rdi) SHL 3
+		t119(r12) = mov now(rbx)
+		t119(r12) = t119(r12) ADD t118(rdi)
+		t120(r8) = mov i(rsi)
+		t120(r8) = t120(r8) SHL 3
+		t121(rdi) = mov now(rbx)
+		t121(rdi) = t121(rdi) ADD t120(r8)
+		t123(rdi) = mov Address (t121(rdi) + 0)
+		call nextLetter return value = t122(rax)
+		Address (t119(r12) + 0) = mov t122(rax)
+		t125(r12) = mov i(rsi)
+		t125(r12) = t125(r12) SHL 3
+		t126(rdi) = mov now(rbx)
+		t126(rdi) = t126(rdi) ADD t125(r12)
+		t127(r12) = mov 1
+		NEG t127(r12)
+		cmp Address (t126(rdi) + 0) t127(r12)
+		set EQ t128(rdi)
+		cmp t128(rdi) 1
+		CJump EQ nextText_3_if_true
+		jump nextText_4_if_false
+	nextText_3_if_true
+		t129(r12) = mov i(rsi)
+		t129(r12) = t129(r12) SHL 3
+		t130(rdi) = mov now(rbx)
+		t130(rdi) = t130(rdi) ADD t129(r12)
+		Address (t130(rdi) + 0) = mov 48
+		jump nextText_5_if_exit
+	nextText_4_if_false
+		ret 1
+		jump nextText_8_block_exit
+	nextText_5_if_exit
+		jump nextText_6_loop_increment
+	nextText_6_loop_increment
+		t131(rsi) = mov i(rsi)
+		DEC i(rsi)
+		jump nextText_1_loop_condition
+	nextText_7_loop_exit
+		ret 0
+		jump nextText_8_block_exit
+	nextText_8_block_exit
 }
 main {
 	main_0_block_enter
-		t15(rdi) = mov 3
-		call origin return value = null
-		t17(rdi) = mov 0
-		t18(rsi) = mov 0
-		t19(rdx) = mov 0
-		call search return value = t16(rax)
-		t20(rsi) = mov t16(rax)
-		t21(rbx) = mov 0
-		t21(rbx) = t21(rbx) SHL 3
-		t22(rsi) = mov Address (count(@count) + 0)
-		t22(rsi) = t22(rsi) ADD t21(rbx)
-		t24(rdi) = mov Address (t22(rsi) + 0)
-		call toString return value = t23(rax)
-		t26(rdi) = mov t23(rax)
+		jump main_1_loop_condition
+	main_1_loop_condition
+		cmp 1 1
+		CJump EQ main_2_loop_body
+		jump main_12_loop_exit
+	main_2_loop_body
+		call getInt return value = t0(rax)
+		op(rsi) = mov t0(rax)
+		cmp op(rsi) 0
+		set EQ t2(rbx)
+		cmp t2(rbx) 1
+		CJump EQ main_3_if_true
+		jump main_4_if_false
+	main_3_if_true
+		jump main_12_loop_exit
+	main_4_if_false
+		jump main_5_if_exit
+	main_5_if_exit
+		cmp op(rsi) 1
+		set EQ t3(rbx)
+		cmp t3(rbx) 1
+		CJump EQ main_6_if_true
+		jump main_7_if_false
+	main_6_if_true
+		call getString return value = t4(rax)
+		t6(rdi) = mov t4(rax)
+		call computeSHA1 return value = null
+		jump main_11_if_exit
+	main_7_if_false
+		cmp op(rsi) 2
+		set EQ t7(rsi)
+		cmp t7(rsi) 1
+		CJump EQ main_8_if_true
+		jump main_9_if_false
+	main_8_if_true
+		call getString return value = t8(rax)
+		t10(rdi) = mov t8(rax)
+		call crackSHA1 return value = null
+		jump main_10_if_exit
+	main_9_if_false
+		jump main_10_if_exit
+	main_10_if_exit
+		jump main_11_if_exit
+	main_11_if_exit
+		jump main_1_loop_condition
+	main_12_loop_exit
+		ret 0
+		jump main_13_block_exit
+	main_13_block_exit
+}
+hex2int x(rbx) {
+	hex2int_0_block_enter
+		x(rbx) = mov t11(rdi)
+		result(r12) = mov 0
+		i(rsi) = mov 0
+		jump hex2int_1_loop_condition
+	hex2int_1_loop_condition
+		t13(rdi) = mov x(rbx)
+		call __string_length return value = t12(rax)
+		t14(rdi) = mov t12(rax)
+		cmp i(rsi) t14(rdi)
+		set LE t15(rdi)
+		cmp t15(rdi) 1
+		CJump EQ hex2int_2_loop_body
+		jump hex2int_22_loop_exit
+	hex2int_2_loop_body
+		t17(rdi) = mov x(rbx)
+		t18(rsi) = mov i(rsi)
+		call __string_ord return value = t16(rax)
+		digit(rdi) = mov t16(rax)
+		cmp digit(rdi) 48
+		set GREQ t21(r8)
+		cmp t21(r8) 1
+		CJump NEQ hex2int_4_logical_false
+		jump hex2int_3_logical_true
+	hex2int_3_logical_true
+		cmp digit(rdi) 57
+		set LEEQ t22(r8)
+		t20(r8) = mov t22(r8)
+		jump hex2int_5_logical_exit
+	hex2int_4_logical_false
+		t20(r8) = mov 0
+		jump hex2int_5_logical_exit
+	hex2int_5_logical_exit
+		cmp t20(r8) 1
+		CJump EQ hex2int_6_if_true
+		jump hex2int_7_if_false
+	hex2int_6_if_true
+		t23(r12) = mov result(r12)
+		t23(r12) = t23(r12) SHL 4
+		t24(r12) = mov t23(r12)
+		t24(r12) = t24(r12) ADD digit(rdi)
+		t25(rdi) = mov t24(r12)
+		t25(rdi) = t25(rdi) SUB 48
+		result(r12) = mov t25(rdi)
+		jump hex2int_20_if_exit
+	hex2int_7_if_false
+		cmp digit(rdi) 65
+		set GREQ t27(r8)
+		cmp t27(r8) 1
+		CJump NEQ hex2int_9_logical_false
+		jump hex2int_8_logical_true
+	hex2int_8_logical_true
+		cmp digit(rdi) 70
+		set LEEQ t28(r8)
+		t26(r8) = mov t28(r8)
+		jump hex2int_10_logical_exit
+	hex2int_9_logical_false
+		t26(r8) = mov 0
+		jump hex2int_10_logical_exit
+	hex2int_10_logical_exit
+		cmp t26(r8) 1
+		CJump EQ hex2int_11_if_true
+		jump hex2int_12_if_false
+	hex2int_11_if_true
+		t29(r12) = mov result(r12)
+		t29(r12) = t29(r12) SHL 4
+		t30(r12) = mov t29(r12)
+		t30(r12) = t30(r12) ADD digit(rdi)
+		t31(rdi) = mov t30(r12)
+		t31(rdi) = t31(rdi) SUB 65
+		t32(rdi) = mov t31(rdi)
+		t32(rdi) = t32(rdi) ADD 10
+		result(r12) = mov t32(rdi)
+		jump hex2int_19_if_exit
+	hex2int_12_if_false
+		cmp digit(rdi) 97
+		set GREQ t34(r8)
+		cmp t34(r8) 1
+		CJump NEQ hex2int_14_logical_false
+		jump hex2int_13_logical_true
+	hex2int_13_logical_true
+		cmp digit(rdi) 102
+		set LEEQ t35(r8)
+		t33(r8) = mov t35(r8)
+		jump hex2int_15_logical_exit
+	hex2int_14_logical_false
+		t33(r8) = mov 0
+		jump hex2int_15_logical_exit
+	hex2int_15_logical_exit
+		cmp t33(r8) 1
+		CJump EQ hex2int_16_if_true
+		jump hex2int_17_if_false
+	hex2int_16_if_true
+		t36(r12) = mov result(r12)
+		t36(r12) = t36(r12) SHL 4
+		t37(r12) = mov t36(r12)
+		t37(r12) = t37(r12) ADD digit(rdi)
+		t38(rdi) = mov t37(r12)
+		t38(rdi) = t38(rdi) SUB 97
+		t39(rdi) = mov t38(rdi)
+		t39(rdi) = t39(rdi) ADD 10
+		result(r12) = mov t39(rdi)
+		jump hex2int_18_if_exit
+	hex2int_17_if_false
+		ret 0
+		jump hex2int_23_block_exit
+	hex2int_18_if_exit
+		jump hex2int_19_if_exit
+	hex2int_19_if_exit
+		jump hex2int_20_if_exit
+	hex2int_20_if_exit
+		jump hex2int_21_loop_increment
+	hex2int_21_loop_increment
+		t40(rsi) = mov i(rsi)
+		INC i(rsi)
+		jump hex2int_1_loop_condition
+	hex2int_22_loop_exit
+		ret result(r12)
+		jump hex2int_23_block_exit
+	hex2int_23_block_exit
+}
+crackSHA1 input(r12) {
+	crackSHA1_0_block_enter
+		input(r12) = mov t132(rdi)
+		t134(rsi) = mov 5
+		INC t134(rsi)
+		t134(rsi) = t134(rsi) SHL 3
+		malloc t133(rsi) t134(rsi)
+		Address (t133(rsi) + 0) = mov 5
+		t133(rsi) = t133(rsi) ADD 8
+		target(rbx) = mov t133(rsi)
+		t136(rdi) = mov input(r12)
+		call __string_length return value = t135(rax)
+		t137(rsi) = mov t135(rax)
+		cmp t137(rsi) 40
+		set NEQ t138(rsi)
+		cmp t138(rsi) 1
+		CJump EQ crackSHA1_1_if_true
+		jump crackSHA1_2_if_false
+	crackSHA1_1_if_true
+		t139(rdi) = mov __const_string_1
+		call println return value = null
+		jump crackSHA1_33_block_exit
+	crackSHA1_2_if_false
+		jump crackSHA1_3_if_exit
+	crackSHA1_3_if_exit
+		i(rsi) = mov 0
+		jump crackSHA1_4_loop_condition
+	crackSHA1_4_loop_condition
+		cmp i(rsi) 5
+		set LE t140(rdi)
+		cmp t140(rdi) 1
+		CJump EQ crackSHA1_5_loop_body
+		jump crackSHA1_7_loop_exit
+	crackSHA1_5_loop_body
+		t141(r8) = mov i(rsi)
+		t141(r8) = t141(r8) SHL 3
+		t142(rdi) = mov target(rbx)
+		t142(rdi) = t142(rdi) ADD t141(r8)
+		Address (t142(rdi) + 0) = mov 0
+		jump crackSHA1_6_loop_increment
+	crackSHA1_6_loop_increment
+		t143(rsi) = mov i(rsi)
+		INC i(rsi)
+		jump crackSHA1_4_loop_condition
+	crackSHA1_7_loop_exit
+		i(rsi) = mov 0
+		jump crackSHA1_8_loop_condition
+	crackSHA1_8_loop_condition
+		cmp i(rsi) 40
+		set LE t144(rdi)
+		cmp t144(rdi) 1
+		CJump EQ crackSHA1_9_loop_body
+		jump crackSHA1_11_loop_exit
+	crackSHA1_9_loop_body
+		t145(rdi) = mov i(rsi)
+		t145(rdi) = t145(rdi) DIV 8
+		t146(rdi) = mov t145(rdi)
+		t146(rdi) = t146(rdi) SHL 3
+		t147(r8) = mov target(rbx)
+		t147(r8) = t147(r8) ADD t146(rdi)
+		t148(rdi) = mov i(rsi)
+		t148(rdi) = t148(rdi) DIV 8
+		t149(rdi) = mov t148(rdi)
+		t149(rdi) = t149(rdi) SHL 3
+		t150(r13) = mov target(rbx)
+		t150(r13) = t150(r13) ADD t149(rdi)
+		t151(r9) = mov i(rsi)
+		t151(r9) = t151(r9) ADD 3
+		t153(rdi) = mov input(r12)
+		t154(rsi) = mov i(rsi)
+		t155(rdx) = mov t151(r9)
+		call __string_substring return value = t152(rax)
+		t158(rdi) = mov t152(rax)
+		call hex2int return value = t157(rax)
+		t159(rdi) = mov t157(rax)
+		t160(r9) = mov i(rsi)
+		t160(r9) = t160(r9) DIV 4
+		t161(r14) = mov t160(r9)
+		t161(r14) = t161(r14) MOD 2
+		t162(r9) = mov 1
+		t162(r9) = t162(r9) SUB t161(r14)
+		t163(r9) = mov t162(r9)
+		t163(r9) = t163(r9) SHL 4
+		t164(rdi) = mov t159(rdi)
+		t164(rdi) = t164(rdi) SHL t163(r9)
+		t165(r13) = mov Address (t150(r13) + 0)
+		t165(r13) = t165(r13) XOR t164(rdi)
+		Address (t147(r8) + 0) = mov t165(r13)
+		jump crackSHA1_10_loop_increment
+	crackSHA1_10_loop_increment
+		i(rsi) = i(rsi) ADD 4
+		jump crackSHA1_8_loop_condition
+	crackSHA1_11_loop_exit
+		MAXDIGIT(r8) = mov 4
+		digit(r12) = mov 1
+		jump crackSHA1_12_loop_condition
+	crackSHA1_12_loop_condition
+		cmp digit(r12) MAXDIGIT(r8)
+		set LEEQ t167(rsi)
+		cmp t167(rsi) 1
+		CJump EQ crackSHA1_13_loop_body
+		jump crackSHA1_32_loop_exit
+	crackSHA1_13_loop_body
+		i(rsi) = mov 0
+		jump crackSHA1_14_loop_condition
+	crackSHA1_14_loop_condition
+		cmp i(rsi) digit(r12)
+		set LE t168(rdi)
+		cmp t168(rdi) 1
+		CJump EQ crackSHA1_15_loop_body
+		jump crackSHA1_17_loop_exit
+	crackSHA1_15_loop_body
+		t169(r13) = mov i(rsi)
+		t169(r13) = t169(r13) SHL 3
+		t170(rdi) = mov Address (inputBuffer(@inputBuffer) + 0)
+		t170(rdi) = t170(rdi) ADD t169(r13)
+		Address (t170(rdi) + 0) = mov 48
+		jump crackSHA1_16_loop_increment
+	crackSHA1_16_loop_increment
+		t171(rsi) = mov i(rsi)
+		INC i(rsi)
+		jump crackSHA1_14_loop_condition
+	crackSHA1_17_loop_exit
+		jump crackSHA1_18_loop_condition
+	crackSHA1_18_loop_condition
+		cmp 1 1
+		CJump EQ crackSHA1_19_loop_body
+		jump crackSHA1_30_loop_exit
+	crackSHA1_19_loop_body
+		t173(rdi) = mov Address (inputBuffer(@inputBuffer) + 0)
+		t174(rsi) = mov digit(r12)
+		call sha1 return value = t172(rax)
+		t177(rdi) = mov t172(rax)
+		t178(rsi) = mov target(rbx)
+		call array_equal return value = t176(rax)
+		t179(rsi) = mov t176(rax)
+		cmp t179(rsi) 1
+		CJump EQ crackSHA1_20_if_true
+		jump crackSHA1_25_if_false
+	crackSHA1_20_if_true
+		i(rsi) = mov 0
+		jump crackSHA1_21_loop_condition
+	crackSHA1_21_loop_condition
+		cmp i(rsi) digit(r12)
+		set LE t180(rbx)
+		cmp t180(rbx) 1
+		CJump EQ crackSHA1_22_loop_body
+		jump crackSHA1_24_loop_exit
+	crackSHA1_22_loop_body
+		t181(rbx) = mov i(rsi)
+		t181(rbx) = t181(rbx) SHL 3
+		t182(rdi) = mov Address (inputBuffer(@inputBuffer) + 0)
+		t182(rdi) = t182(rdi) ADD t181(rbx)
+		t184(rdi) = mov Address (t182(rdi) + 0)
+		call int2chr return value = t183(rax)
+		t186(rdi) = mov t183(rax)
+		call print return value = null
+		jump crackSHA1_23_loop_increment
+	crackSHA1_23_loop_increment
+		t187(rsi) = mov i(rsi)
+		INC i(rsi)
+		jump crackSHA1_21_loop_condition
+	crackSHA1_24_loop_exit
+		t188(rdi) = mov __const_string_2
+		call println return value = null
+		jump crackSHA1_33_block_exit
+	crackSHA1_25_if_false
+		jump crackSHA1_26_if_exit
+	crackSHA1_26_if_exit
+		t190(rdi) = mov Address (inputBuffer(@inputBuffer) + 0)
+		t191(rsi) = mov digit(r12)
+		call nextText return value = t189(rax)
+		t193(rsi) = mov t189(rax)
+		t193(rsi) = t193(rsi) XOR 1
+		cmp t193(rsi) 1
+		CJump EQ crackSHA1_27_if_true
+		jump crackSHA1_28_if_false
+	crackSHA1_27_if_true
+		jump crackSHA1_30_loop_exit
+	crackSHA1_28_if_false
+		jump crackSHA1_29_if_exit
+	crackSHA1_29_if_exit
+		jump crackSHA1_18_loop_condition
+	crackSHA1_30_loop_exit
+		jump crackSHA1_31_loop_increment
+	crackSHA1_31_loop_increment
+		t194(rsi) = mov digit(r12)
+		INC digit(r12)
+		jump crackSHA1_12_loop_condition
+	crackSHA1_32_loop_exit
+		t195(rdi) = mov __const_string_3
+		call println return value = null
+		jump crackSHA1_33_block_exit
+	crackSHA1_33_block_exit
+}
+computeSHA1 input(rbx) {
+	computeSHA1_0_block_enter
+		input(rbx) = mov t41(rdi)
+		i(rsi) = mov 0
+		jump computeSHA1_1_loop_condition
+	computeSHA1_1_loop_condition
+		t43(rdi) = mov input(rbx)
+		call __string_length return value = t42(rax)
+		t44(rdi) = mov t42(rax)
+		cmp i(rsi) t44(rdi)
+		set LE t45(rdi)
+		cmp t45(rdi) 1
+		CJump EQ computeSHA1_2_loop_body
+		jump computeSHA1_4_loop_exit
+	computeSHA1_2_loop_body
+		t46(rdi) = mov i(rsi)
+		t46(rdi) = t46(rdi) SHL 3
+		t47(r12) = mov Address (inputBuffer(@inputBuffer) + 0)
+		t47(r12) = t47(r12) ADD t46(rdi)
+		t49(rdi) = mov input(rbx)
+		t50(rsi) = mov i(rsi)
+		call __string_ord return value = t48(rax)
+		Address (t47(r12) + 0) = mov t48(rax)
+		jump computeSHA1_3_loop_increment
+	computeSHA1_3_loop_increment
+		t52(rsi) = mov i(rsi)
+		INC i(rsi)
+		jump computeSHA1_1_loop_condition
+	computeSHA1_4_loop_exit
+		t54(rdi) = mov input(rbx)
+		call __string_length return value = t53(rax)
+		t55(rsi) = mov t53(rax)
+		t57(rdi) = mov Address (inputBuffer(@inputBuffer) + 0)
+		t58(rsi) = mov t55(rsi)
+		call sha1 return value = t56(rax)
+		result(rbx) = mov t56(rax)
+		i(rsi) = mov 0
+		jump computeSHA1_5_loop_condition
+	computeSHA1_5_loop_condition
+		t61(rdi) = mov result(rbx)
+		call __array_size return value = t60(rax)
+		t62(rdi) = mov t60(rax)
+		cmp i(rsi) t62(rdi)
+		set LE t63(rdi)
+		cmp t63(rdi) 1
+		CJump EQ computeSHA1_6_loop_body
+		jump computeSHA1_8_loop_exit
+	computeSHA1_6_loop_body
+		t64(rdi) = mov i(rsi)
+		t64(rdi) = t64(rdi) SHL 3
+		t65(r12) = mov result(rbx)
+		t65(r12) = t65(r12) ADD t64(rdi)
+		t67(rdi) = mov Address (t65(r12) + 0)
+		call toStringHex return value = t66(rax)
+		t69(rdi) = mov t66(rax)
+		call print return value = null
+		jump computeSHA1_7_loop_increment
+	computeSHA1_7_loop_increment
+		t70(rsi) = mov i(rsi)
+		INC i(rsi)
+		jump computeSHA1_5_loop_condition
+	computeSHA1_8_loop_exit
+		t71(rdi) = mov __const_string_0
+		call println return value = null
+		jump computeSHA1_9_block_exit
+	computeSHA1_9_block_exit
+}
+toStringHex x(rbx) {
+	toStringHex_0_block_enter
+		x(rbx) = mov t196(rdi)
+		ret(rsi) = mov __const_string_4
+		i(r12) = mov 28
+		jump toStringHex_1_loop_condition
+	toStringHex_1_loop_condition
+		cmp i(r12) 0
+		set GREQ t197(rdi)
+		cmp t197(rdi) 1
+		CJump EQ toStringHex_2_loop_body
+		jump toStringHex_7_loop_exit
+	toStringHex_2_loop_body
+		t198(rdi) = mov x(rbx)
+		t198(rdi) = t198(rdi) SHR i(r12)
+		t199(rdi) = mov t198(rdi)
+		t199(rdi) = t199(rdi) AND 15
+		digit(rdi) = mov t199(rdi)
+		cmp digit(rdi) 10
+		set LE t200(r8)
+		cmp t200(r8) 1
+		CJump EQ toStringHex_3_if_true
+		jump toStringHex_4_if_false
+	toStringHex_3_if_true
+		t201(r8) = mov 48
+		t201(r8) = t201(r8) ADD digit(rdi)
+		t203(rdi) = mov t201(r8)
+		call int2chr return value = t202(rax)
+		t204(r8) = mov t202(rax)
+		t206(rdi) = mov ret(rsi)
+		t207(rsi) = mov t204(r8)
+		call __string_connection return value = t205(rax)
+		ret(rsi) = mov t205(rax)
+		jump toStringHex_5_if_exit
+	toStringHex_4_if_false
+		t209(r8) = mov 65
+		t209(r8) = t209(r8) ADD digit(rdi)
+		t210(rdi) = mov t209(r8)
+		t210(rdi) = t210(rdi) SUB 10
+		t212(rdi) = mov t210(rdi)
+		call int2chr return value = t211(rax)
+		t213(r8) = mov t211(rax)
+		t215(rdi) = mov ret(rsi)
+		t216(rsi) = mov t213(r8)
+		call __string_connection return value = t214(rax)
+		ret(rsi) = mov t214(rax)
+		jump toStringHex_5_if_exit
+	toStringHex_5_if_exit
+		jump toStringHex_6_loop_increment
+	toStringHex_6_loop_increment
+		i(r12) = i(r12) SUB 4
+		jump toStringHex_1_loop_condition
+	toStringHex_7_loop_exit
+		ret ret(rsi)
+		jump toStringHex_8_block_exit
+	toStringHex_8_block_exit
+}
+sha1 input(rbx) length(rsi) {
+	sha1_0_block_enter
+		input(rbx) = mov t219(rdi)
+		length(rsi) = mov t220(rsi)
+		t221(rdi) = mov length(rsi)
+		t221(rdi) = t221(rdi) ADD 64
+		t222(rdi) = mov t221(rdi)
+		t222(rdi) = t222(rdi) SUB 56
+		t223(rdi) = mov t222(rdi)
+		t223(rdi) = t223(rdi) DIV 64
+		t224(rdi) = mov t223(rdi)
+		t224(rdi) = t224(rdi) ADD 1
+		nChunk(null) = mov t224(rdi)
+		cmp nChunk(null) Address (MAXCHUNK(@MAXCHUNK) + 0)
+		set GR t225(rdi)
+		cmp t225(rdi) 1
+		CJump EQ sha1_1_if_true
+		jump sha1_2_if_false
+	sha1_1_if_true
+		t226(rdi) = mov __const_string_5
 		call println return value = null
 		ret 0
-		jump main_1_block_exit
-	main_1_block_exit
+		jump sha1_37_block_exit
+	sha1_2_if_false
+		jump sha1_3_if_exit
+	sha1_3_if_exit
+		i(null) = mov 0
+		jump sha1_4_loop_condition
+	sha1_4_loop_condition
+		cmp i(null) nChunk(null)
+		set LE t227(rdi)
+		cmp t227(rdi) 1
+		CJump EQ sha1_5_loop_body
+		jump sha1_11_loop_exit
+	sha1_5_loop_body
+		j(null) = mov 0
+		jump sha1_6_loop_condition
+	sha1_6_loop_condition
+		cmp j(null) 80
+		set LE t228(rdi)
+		cmp t228(rdi) 1
+		CJump EQ sha1_7_loop_body
+		jump sha1_9_loop_exit
+	sha1_7_loop_body
+		t229(r12) = mov i(null)
+		t229(r12) = t229(r12) SHL 3
+		t230(rdi) = mov Address (chunks(@chunks) + 0)
+		t230(rdi) = t230(rdi) ADD t229(r12)
+		t231(r12) = mov j(null)
+		t231(r12) = t231(r12) SHL 3
+		t232(rdi) = mov Address (t230(rdi) + 0)
+		t232(rdi) = t232(rdi) ADD t231(r12)
+		Address (t232(rdi) + 0) = mov 0
+		jump sha1_8_loop_increment
+	sha1_8_loop_increment
+		t233(rdi) = mov j(null)
+		INC j(null)
+		jump sha1_6_loop_condition
+	sha1_9_loop_exit
+		jump sha1_10_loop_increment
+	sha1_10_loop_increment
+		t234(rdi) = mov i(null)
+		INC i(null)
+		jump sha1_4_loop_condition
+	sha1_11_loop_exit
+		i(null) = mov 0
+		jump sha1_12_loop_condition
+	sha1_12_loop_condition
+		cmp i(null) length(rsi)
+		set LE t235(rdi)
+		cmp t235(rdi) 1
+		CJump EQ sha1_13_loop_body
+		jump sha1_15_loop_exit
+	sha1_13_loop_body
+		t236(rdi) = mov i(null)
+		t236(rdi) = t236(rdi) DIV 64
+		t237(r12) = mov t236(rdi)
+		t237(r12) = t237(r12) SHL 3
+		t238(rdi) = mov Address (chunks(@chunks) + 0)
+		t238(rdi) = t238(rdi) ADD t237(r12)
+		t239(r12) = mov i(null)
+		t239(r12) = t239(r12) MOD 64
+		t240(r12) = mov t239(r12)
+		t240(r12) = t240(r12) DIV 4
+		t241(r12) = mov t240(r12)
+		t241(r12) = t241(r12) SHL 3
+		t242(rdi) = mov Address (t238(rdi) + 0)
+		t242(rdi) = t242(rdi) ADD t241(r12)
+		t243(r12) = mov i(null)
+		t243(r12) = t243(r12) DIV 64
+		t244(r8) = mov t243(r12)
+		t244(r8) = t244(r8) SHL 3
+		t245(r12) = mov Address (chunks(@chunks) + 0)
+		t245(r12) = t245(r12) ADD t244(r8)
+		t246(r8) = mov i(null)
+		t246(r8) = t246(r8) MOD 64
+		t247(r8) = mov t246(r8)
+		t247(r8) = t247(r8) DIV 4
+		t248(r8) = mov t247(r8)
+		t248(r8) = t248(r8) SHL 3
+		t249(r12) = mov Address (t245(r12) + 0)
+		t249(r12) = t249(r12) ADD t248(r8)
+		t250(r13) = mov i(null)
+		t250(r13) = t250(r13) SHL 3
+		t251(r8) = mov input(rbx)
+		t251(r8) = t251(r8) ADD t250(r13)
+		t252(r9) = mov i(null)
+		t252(r9) = t252(r9) MOD 4
+		t253(r13) = mov 3
+		t253(r13) = t253(r13) SUB t252(r9)
+		t254(r13) = mov t253(r13)
+		t254(r13) = t254(r13) SHL 3
+		t255(r8) = mov Address (t251(r8) + 0)
+		t255(r8) = t255(r8) SHL t254(r13)
+		t256(r12) = mov Address (t249(r12) + 0)
+		t256(r12) = t256(r12) XOR t255(r8)
+		Address (t242(rdi) + 0) = mov t256(r12)
+		jump sha1_14_loop_increment
+	sha1_14_loop_increment
+		t257(rdi) = mov i(null)
+		INC i(null)
+		jump sha1_12_loop_condition
+	sha1_15_loop_exit
+		t258(rbx) = mov i(null)
+		t258(rbx) = t258(rbx) DIV 64
+		t259(rdi) = mov t258(rbx)
+		t259(rdi) = t259(rdi) SHL 3
+		t260(rbx) = mov Address (chunks(@chunks) + 0)
+		t260(rbx) = t260(rbx) ADD t259(rdi)
+		t261(rdi) = mov i(null)
+		t261(rdi) = t261(rdi) MOD 64
+		t262(rdi) = mov t261(rdi)
+		t262(rdi) = t262(rdi) DIV 4
+		t263(rdi) = mov t262(rdi)
+		t263(rdi) = t263(rdi) SHL 3
+		t264(rbx) = mov Address (t260(rbx) + 0)
+		t264(rbx) = t264(rbx) ADD t263(rdi)
+		t265(rdi) = mov i(null)
+		t265(rdi) = t265(rdi) DIV 64
+		t266(r12) = mov t265(rdi)
+		t266(r12) = t266(r12) SHL 3
+		t267(rdi) = mov Address (chunks(@chunks) + 0)
+		t267(rdi) = t267(rdi) ADD t266(r12)
+		t268(r12) = mov i(null)
+		t268(r12) = t268(r12) MOD 64
+		t269(r12) = mov t268(r12)
+		t269(r12) = t269(r12) DIV 4
+		t270(r12) = mov t269(r12)
+		t270(r12) = t270(r12) SHL 3
+		t271(rdi) = mov Address (t267(rdi) + 0)
+		t271(rdi) = t271(rdi) ADD t270(r12)
+		t272(r12) = mov i(null)
+		t272(r12) = t272(r12) MOD 4
+		t273(r8) = mov 3
+		t273(r8) = t273(r8) SUB t272(r12)
+		t274(r8) = mov t273(r8)
+		t274(r8) = t274(r8) SHL 3
+		t275(r12) = mov 128
+		t275(r12) = t275(r12) SHL t274(r8)
+		t276(rdi) = mov Address (t271(rdi) + 0)
+		t276(rdi) = t276(rdi) XOR t275(r12)
+		Address (t264(rbx) + 0) = mov t276(rdi)
+		t277(rbx) = mov nChunk(null)
+		t277(rbx) = t277(rbx) SUB 1
+		t278(rbx) = mov t277(rbx)
+		t278(rbx) = t278(rbx) SHL 3
+		t279(rdi) = mov Address (chunks(@chunks) + 0)
+		t279(rdi) = t279(rdi) ADD t278(rbx)
+		t280(rbx) = mov 15
+		t280(rbx) = t280(rbx) SHL 3
+		t281(rdi) = mov Address (t279(rdi) + 0)
+		t281(rdi) = t281(rdi) ADD t280(rbx)
+		t282(rbx) = mov length(rsi)
+		t282(rbx) = t282(rbx) SHL 3
+		Address (t281(rdi) + 0) = mov t282(rbx)
+		t283(rbx) = mov nChunk(null)
+		t283(rbx) = t283(rbx) SUB 1
+		t284(rdi) = mov t283(rbx)
+		t284(rdi) = t284(rdi) SHL 3
+		t285(rbx) = mov Address (chunks(@chunks) + 0)
+		t285(rbx) = t285(rbx) ADD t284(rdi)
+		t286(rdi) = mov 14
+		t286(rdi) = t286(rdi) SHL 3
+		t287(rbx) = mov Address (t285(rbx) + 0)
+		t287(rbx) = t287(rbx) ADD t286(rdi)
+		t288(rsi) = mov length(rsi)
+		t288(rsi) = t288(rsi) SHR 29
+		t289(rsi) = mov t288(rsi)
+		t289(rsi) = t289(rsi) AND 7
+		Address (t287(rbx) + 0) = mov t289(rsi)
+		h0(rbx) = mov 1732584193
+		t291(rdi) = mov 43913
+		t292(rsi) = mov 61389
+		call lohi return value = t290(rax)
+		h1(r8) = mov t290(rax)
+		t295(rdi) = mov 56574
+		t296(rsi) = mov 39098
+		call lohi return value = t294(rax)
+		h2(r9) = mov t294(rax)
+		h3(r12) = mov 271733878
+		t299(rdi) = mov 57840
+		t300(rsi) = mov 50130
+		call lohi return value = t298(rax)
+		h4(r13) = mov t298(rax)
+		i(null) = mov 0
+		jump sha1_16_loop_condition
+	sha1_16_loop_condition
+		cmp i(null) nChunk(null)
+		set LE t302(rsi)
+		cmp t302(rsi) 1
+		CJump EQ sha1_17_loop_body
+		jump sha1_36_loop_exit
+	sha1_17_loop_body
+		j(null) = mov 16
+		jump sha1_18_loop_condition
+	sha1_18_loop_condition
+		cmp j(null) 80
+		set LE t303(rsi)
+		cmp t303(rsi) 1
+		CJump EQ sha1_19_loop_body
+		jump sha1_21_loop_exit
+	sha1_19_loop_body
+		t304(rdi) = mov i(null)
+		t304(rdi) = t304(rdi) SHL 3
+		t305(rsi) = mov Address (chunks(@chunks) + 0)
+		t305(rsi) = t305(rsi) ADD t304(rdi)
+		t306(rdi) = mov j(null)
+		t306(rdi) = t306(rdi) SHL 3
+		t307(r14) = mov Address (t305(rsi) + 0)
+		t307(r14) = t307(r14) ADD t306(rdi)
+		t308(rdi) = mov i(null)
+		t308(rdi) = t308(rdi) SHL 3
+		t309(rsi) = mov Address (chunks(@chunks) + 0)
+		t309(rsi) = t309(rsi) ADD t308(rdi)
+		t310(rdi) = mov j(null)
+		t310(rdi) = t310(rdi) SUB 3
+		t311(rdi) = mov t310(rdi)
+		t311(rdi) = t311(rdi) SHL 3
+		t312(rsi) = mov Address (t309(rsi) + 0)
+		t312(rsi) = t312(rsi) ADD t311(rdi)
+		t313(r10) = mov i(null)
+		t313(r10) = t313(r10) SHL 3
+		t314(rdi) = mov Address (chunks(@chunks) + 0)
+		t314(rdi) = t314(rdi) ADD t313(r10)
+		t315(r10) = mov j(null)
+		t315(r10) = t315(r10) SUB 8
+		t316(r10) = mov t315(r10)
+		t316(r10) = t316(r10) SHL 3
+		t317(rdi) = mov Address (t314(rdi) + 0)
+		t317(rdi) = t317(rdi) ADD t316(r10)
+		t318(rsi) = mov Address (t312(rsi) + 0)
+		t318(rsi) = t318(rsi) OR Address (t317(rdi) + 0)
+		t319(r10) = mov i(null)
+		t319(r10) = t319(r10) SHL 3
+		t320(rdi) = mov Address (chunks(@chunks) + 0)
+		t320(rdi) = t320(rdi) ADD t319(r10)
+		t321(r10) = mov j(null)
+		t321(r10) = t321(r10) SUB 14
+		t322(r10) = mov t321(r10)
+		t322(r10) = t322(r10) SHL 3
+		t323(rdi) = mov Address (t320(rdi) + 0)
+		t323(rdi) = t323(rdi) ADD t322(r10)
+		t324(rsi) = mov t318(rsi)
+		t324(rsi) = t324(rsi) OR Address (t323(rdi) + 0)
+		t325(r10) = mov i(null)
+		t325(r10) = t325(r10) SHL 3
+		t326(rdi) = mov Address (chunks(@chunks) + 0)
+		t326(rdi) = t326(rdi) ADD t325(r10)
+		t327(r10) = mov j(null)
+		t327(r10) = t327(r10) SUB 16
+		t328(r10) = mov t327(r10)
+		t328(r10) = t328(r10) SHL 3
+		t329(rdi) = mov Address (t326(rdi) + 0)
+		t329(rdi) = t329(rdi) ADD t328(r10)
+		t330(rsi) = mov t324(rsi)
+		t330(rsi) = t330(rsi) OR Address (t329(rdi) + 0)
+		t332(rdi) = mov t330(rsi)
+		t333(rsi) = mov 1
+		call rotate_left return value = t331(rax)
+		Address (t307(r14) + 0) = mov t331(rax)
+		jump sha1_20_loop_increment
+	sha1_20_loop_increment
+		t335(rsi) = mov j(null)
+		INC j(null)
+		jump sha1_18_loop_condition
+	sha1_21_loop_exit
+		a(r14) = mov h0(rbx)
+		b(null) = mov h1(r8)
+		c(null) = mov h2(r9)
+		d(null) = mov h3(r12)
+		e(r10) = mov h4(r13)
+		j(null) = mov 0
+		jump sha1_22_loop_condition
+	sha1_22_loop_condition
+		cmp j(null) 80
+		set LE t336(rsi)
+		cmp t336(rsi) 1
+		CJump EQ sha1_23_loop_body
+		jump sha1_34_loop_exit
+	sha1_23_loop_body
+		cmp j(null) 20
+		set LE t337(rsi)
+		cmp t337(rsi) 1
+		CJump EQ sha1_24_if_true
+		jump sha1_25_if_false
+	sha1_24_if_true
+		t338(rsi) = mov b(null)
+		t338(rsi) = t338(rsi) AND c(null)
+		t339(rdi) = mov b(null)
+		REV t339(rdi)
+		t340(rdi) = mov t339(rdi)
+		t340(rdi) = t340(rdi) AND d(null)
+		t341(rsi) = mov t338(rsi)
+		t341(rsi) = t341(rsi) XOR t340(rdi)
+		f(r15) = mov t341(rsi)
+		k(r11) = mov 1518500249
+		jump sha1_32_if_exit
+	sha1_25_if_false
+		cmp j(null) 40
+		set LE t342(rsi)
+		cmp t342(rsi) 1
+		CJump EQ sha1_26_if_true
+		jump sha1_27_if_false
+	sha1_26_if_true
+		t343(rsi) = mov b(null)
+		t343(rsi) = t343(rsi) OR c(null)
+		t344(rsi) = mov t343(rsi)
+		t344(rsi) = t344(rsi) OR d(null)
+		f(r15) = mov t344(rsi)
+		k(r11) = mov 1859775393
+		jump sha1_31_if_exit
+	sha1_27_if_false
+		cmp j(null) 60
+		set LE t345(rsi)
+		cmp t345(rsi) 1
+		CJump EQ sha1_28_if_true
+		jump sha1_29_if_false
+	sha1_28_if_true
+		t346(rsi) = mov b(null)
+		t346(rsi) = t346(rsi) AND c(null)
+		t347(rdi) = mov b(null)
+		t347(rdi) = t347(rdi) AND d(null)
+		t348(rsi) = mov t346(rsi)
+		t348(rsi) = t348(rsi) XOR t347(rdi)
+		t349(rdi) = mov c(null)
+		t349(rdi) = t349(rdi) AND d(null)
+		t350(rsi) = mov t348(rsi)
+		t350(rsi) = t350(rsi) XOR t349(rdi)
+		f(r15) = mov t350(rsi)
+		t352(rdi) = mov 48348
+		t353(rsi) = mov 36635
+		call lohi return value = t351(rax)
+		k(r11) = mov t351(rax)
+		jump sha1_30_if_exit
+	sha1_29_if_false
+		t355(rsi) = mov b(null)
+		t355(rsi) = t355(rsi) OR c(null)
+		t356(rsi) = mov t355(rsi)
+		t356(rsi) = t356(rsi) OR d(null)
+		f(r15) = mov t356(rsi)
+		t358(rdi) = mov 49622
+		t359(rsi) = mov 51810
+		call lohi return value = t357(rax)
+		k(r11) = mov t357(rax)
+		jump sha1_30_if_exit
+	sha1_30_if_exit
+		jump sha1_31_if_exit
+	sha1_31_if_exit
+		jump sha1_32_if_exit
+	sha1_32_if_exit
+		t362(rdi) = mov a(r14)
+		t363(rsi) = mov 5
+		call rotate_left return value = t361(rax)
+		t366(rdi) = mov t361(rax)
+		t367(rsi) = mov e(r10)
+		call add return value = t365(rax)
+		t368(r10) = mov t365(rax)
+		t370(rdi) = mov f(r15)
+		t371(rsi) = mov k(r11)
+		call add return value = t369(rax)
+		t372(rsi) = mov t369(rax)
+		t374(rdi) = mov t368(r10)
+		t375(rsi) = mov t372(rsi)
+		call add return value = t373(rax)
+		t376(rsi) = mov t373(rax)
+		t377(rdi) = mov i(null)
+		t377(rdi) = t377(rdi) SHL 3
+		t378(r10) = mov Address (chunks(@chunks) + 0)
+		t378(r10) = t378(r10) ADD t377(rdi)
+		t379(rdi) = mov j(null)
+		t379(rdi) = t379(rdi) SHL 3
+		t380(r10) = mov Address (t378(r10) + 0)
+		t380(r10) = t380(r10) ADD t379(rdi)
+		t382(rdi) = mov t376(rsi)
+		t383(rsi) = mov Address (t380(r10) + 0)
+		call add return value = t381(rax)
+		temp(r15) = mov t381(rax)
+		e(r10) = mov d(null)
+		d(null) = mov c(null)
+		t386(rdi) = mov b(null)
+		t387(rsi) = mov 30
+		call rotate_left return value = t385(rax)
+		c(null) = mov t385(rax)
+		b(null) = mov a(r14)
+		a(r14) = mov temp(r15)
+		jump sha1_33_loop_increment
+	sha1_33_loop_increment
+		t389(rsi) = mov j(null)
+		INC j(null)
+		jump sha1_22_loop_condition
+	sha1_34_loop_exit
+		t391(rdi) = mov h0(rbx)
+		t392(rsi) = mov a(r14)
+		call add return value = t390(rax)
+		h0(rbx) = mov t390(rax)
+		t395(rdi) = mov h1(r8)
+		t396(rsi) = mov b(null)
+		call add return value = t394(rax)
+		h1(r8) = mov t394(rax)
+		t399(rdi) = mov h2(r9)
+		t400(rsi) = mov c(null)
+		call add return value = t398(rax)
+		h2(r9) = mov t398(rax)
+		t403(rdi) = mov h3(r12)
+		t404(rsi) = mov d(null)
+		call add return value = t402(rax)
+		h3(r12) = mov t402(rax)
+		t407(rdi) = mov h4(r13)
+		t408(rsi) = mov e(r10)
+		call add return value = t406(rax)
+		h4(r13) = mov t406(rax)
+		jump sha1_35_loop_increment
+	sha1_35_loop_increment
+		t410(rsi) = mov i(null)
+		INC i(null)
+		jump sha1_16_loop_condition
+	sha1_36_loop_exit
+		t411(rdi) = mov 0
+		t411(rdi) = t411(rdi) SHL 3
+		t412(rsi) = mov Address (outputBuffer(@outputBuffer) + 0)
+		t412(rsi) = t412(rsi) ADD t411(rdi)
+		Address (t412(rsi) + 0) = mov h0(rbx)
+		t413(rbx) = mov 1
+		t413(rbx) = t413(rbx) SHL 3
+		t414(rsi) = mov Address (outputBuffer(@outputBuffer) + 0)
+		t414(rsi) = t414(rsi) ADD t413(rbx)
+		Address (t414(rsi) + 0) = mov h1(r8)
+		t415(rbx) = mov 2
+		t415(rbx) = t415(rbx) SHL 3
+		t416(rsi) = mov Address (outputBuffer(@outputBuffer) + 0)
+		t416(rsi) = t416(rsi) ADD t415(rbx)
+		Address (t416(rsi) + 0) = mov h2(r9)
+		t417(rsi) = mov 3
+		t417(rsi) = t417(rsi) SHL 3
+		t418(rbx) = mov Address (outputBuffer(@outputBuffer) + 0)
+		t418(rbx) = t418(rbx) ADD t417(rsi)
+		Address (t418(rbx) + 0) = mov h3(r12)
+		t419(rbx) = mov 4
+		t419(rbx) = t419(rbx) SHL 3
+		t420(rsi) = mov Address (outputBuffer(@outputBuffer) + 0)
+		t420(rsi) = t420(rsi) ADD t419(rbx)
+		Address (t420(rsi) + 0) = mov h4(r13)
+		ret Address (outputBuffer(@outputBuffer) + 0)
+		jump sha1_37_block_exit
+	sha1_37_block_exit
+}
+__global_init {
+	__global_init_0_block_enter
+		Address (asciiTable(@asciiTable) + 0) = mov __const_string_7
+		Address (MAXCHUNK(@MAXCHUNK) + 0) = mov 100
+		t461(rsi) = mov Address (MAXCHUNK(@MAXCHUNK) + 0)
+		t461(rsi) = t461(rsi) SUB 1
+		t462(rsi) = mov t461(rsi)
+		t462(rsi) = t462(rsi) SHL 6
+		t463(rsi) = mov t462(rsi)
+		t463(rsi) = t463(rsi) SUB 16
+		Address (MAXLENGTH(@MAXLENGTH) + 0) = mov t463(rsi)
+		t465(r9) = mov Address (MAXCHUNK(@MAXCHUNK) + 0)
+		INC t465(r9)
+		t465(r9) = t465(r9) SHL 3
+		malloc t464(r8) t465(r9)
+		Address (t464(r8) + 0) = mov Address (MAXCHUNK(@MAXCHUNK) + 0)
+		t464(r8) = t464(r8) ADD 8
+		t467(rdi) = mov t464(r8)
+		t468(rsi) = mov t464(r8)
+		t465(r9) = t465(r9) SUB 8
+		t468(rsi) = t468(rsi) ADD t465(r9)
+		jump __global_init_1_malloc_condition
+	__global_init_1_malloc_condition
+		cmp t467(rdi) t468(rsi)
+		CJump LE __global_init_2_malloc_body
+		jump __global_init_3_malloc_exit
+	__global_init_2_malloc_body
+		t469(r9) = mov Address (t467(rdi) + 0)
+		t470(r9) = mov 80
+		INC t470(r9)
+		t470(r9) = t470(r9) SHL 3
+		malloc t469(r9) t470(r9)
+		Address (t469(r9) + 0) = mov 80
+		t469(r9) = t469(r9) ADD 8
+		Address (t467(rdi) + 0) = mov t469(r9)
+		t467(rdi) = t467(rdi) ADD 8
+		jump __global_init_1_malloc_condition
+	__global_init_3_malloc_exit
+		Address (chunks(@chunks) + 0) = mov t464(r8)
+		t472(rsi) = mov Address (MAXLENGTH(@MAXLENGTH) + 0)
+		INC t472(rsi)
+		t472(rsi) = t472(rsi) SHL 3
+		malloc t471(rsi) t472(rsi)
+		Address (t471(rsi) + 0) = mov Address (MAXLENGTH(@MAXLENGTH) + 0)
+		t471(rsi) = t471(rsi) ADD 8
+		Address (inputBuffer(@inputBuffer) + 0) = mov t471(rsi)
+		t475(rsi) = mov 5
+		INC t475(rsi)
+		t475(rsi) = t475(rsi) SHL 3
+		malloc t474(rsi) t475(rsi)
+		Address (t474(rsi) + 0) = mov 5
+		t474(rsi) = t474(rsi) ADD 8
+		Address (outputBuffer(@outputBuffer) + 0) = mov t474(rsi)
+		jump __global_init_4_block_exit
+	__global_init_4_block_exit
+}
+array_equal a(rbx) b(rsi) {
+	array_equal_0_block_enter
+		a(rbx) = mov t72(rdi)
+		b(rsi) = mov t73(rsi)
+		t75(rdi) = mov a(rbx)
+		call __array_size return value = t74(rax)
+		t76(r12) = mov t74(rax)
+		t78(rdi) = mov b(rsi)
+		call __array_size return value = t77(rax)
+		t79(rdi) = mov t77(rax)
+		cmp t76(r12) t79(rdi)
+		set NEQ t80(rdi)
+		cmp t80(rdi) 1
+		CJump EQ array_equal_1_if_true
+		jump array_equal_2_if_false
+	array_equal_1_if_true
+		ret 0
+		jump array_equal_11_block_exit
+	array_equal_2_if_false
+		jump array_equal_3_if_exit
+	array_equal_3_if_exit
+		i(r12) = mov 0
+		jump array_equal_4_loop_condition
+	array_equal_4_loop_condition
+		t82(rdi) = mov a(rbx)
+		call __array_size return value = t81(rax)
+		t83(rdi) = mov t81(rax)
+		cmp i(r12) t83(rdi)
+		set LE t84(rdi)
+		cmp t84(rdi) 1
+		CJump EQ array_equal_5_loop_body
+		jump array_equal_10_loop_exit
+	array_equal_5_loop_body
+		t85(r8) = mov i(r12)
+		t85(r8) = t85(r8) SHL 3
+		t86(rdi) = mov a(rbx)
+		t86(rdi) = t86(rdi) ADD t85(r8)
+		t87(r13) = mov i(r12)
+		t87(r13) = t87(r13) SHL 3
+		t88(r8) = mov b(rsi)
+		t88(r8) = t88(r8) ADD t87(r13)
+		t90(rdi) = mov Address (t86(rdi) + 0)
+		cmp t90(rdi) Address (t88(r8) + 0)
+		set NEQ t89(rdi)
+		cmp t89(rdi) 1
+		CJump EQ array_equal_6_if_true
+		jump array_equal_7_if_false
+	array_equal_6_if_true
+		ret 0
+		jump array_equal_11_block_exit
+	array_equal_7_if_false
+		jump array_equal_8_if_exit
+	array_equal_8_if_exit
+		jump array_equal_9_loop_increment
+	array_equal_9_loop_increment
+		t91(rdi) = mov i(r12)
+		INC i(r12)
+		jump array_equal_4_loop_condition
+	array_equal_10_loop_exit
+		ret 1
+		jump array_equal_11_block_exit
+	array_equal_11_block_exit
+}
+int2chr x(rsi) {
+	int2chr_0_block_enter
+		x(rsi) = mov t421(rdi)
+		cmp x(rsi) 32
+		set GREQ t423(rbx)
+		cmp t423(rbx) 1
+		CJump NEQ int2chr_2_logical_false
+		jump int2chr_1_logical_true
+	int2chr_1_logical_true
+		cmp x(rsi) 126
+		set LEEQ t424(rbx)
+		t422(rbx) = mov t424(rbx)
+		jump int2chr_3_logical_exit
+	int2chr_2_logical_false
+		t422(rbx) = mov 0
+		jump int2chr_3_logical_exit
+	int2chr_3_logical_exit
+		cmp t422(rbx) 1
+		CJump EQ int2chr_4_if_true
+		jump int2chr_5_if_false
+	int2chr_4_if_true
+		t425(rbx) = mov x(rsi)
+		t425(rbx) = t425(rbx) SUB 32
+		t426(r12) = mov x(rsi)
+		t426(r12) = t426(r12) SUB 32
+		t428(rdi) = mov Address (asciiTable(@asciiTable) + 0)
+		t429(rsi) = mov t425(rbx)
+		t430(rdx) = mov t426(r12)
+		call __string_substring return value = t427(rax)
+		t431(rsi) = mov t427(rax)
+		ret t431(rsi)
+		jump int2chr_7_block_exit
+	int2chr_5_if_false
+		jump int2chr_6_if_exit
+	int2chr_6_if_exit
+		ret __const_string_6
+		jump int2chr_7_block_exit
+	int2chr_7_block_exit
+}
+rotate_left x(rdi) shift(rsi) {
+	rotate_left_0_block_enter
+		x(rdi) = mov t432(rdi)
+		shift(rsi) = mov t433(rsi)
+		cmp shift(rsi) 1
+		set EQ t434(r8)
+		cmp t434(r8) 1
+		CJump EQ rotate_left_1_if_true
+		jump rotate_left_2_if_false
+	rotate_left_1_if_true
+		t435(rsi) = mov x(rdi)
+		t435(rsi) = t435(rsi) AND 2147483647
+		t436(rsi) = mov t435(rsi)
+		t436(rsi) = t436(rsi) SHL 1
+		t437(rdi) = mov x(rdi)
+		t437(rdi) = t437(rdi) SHR 31
+		t438(rdi) = mov t437(rdi)
+		t438(rdi) = t438(rdi) AND 1
+		t439(rsi) = mov t436(rsi)
+		t439(rsi) = t439(rsi) XOR t438(rdi)
+		ret t439(rsi)
+		jump rotate_left_7_block_exit
+	rotate_left_2_if_false
+		jump rotate_left_3_if_exit
+	rotate_left_3_if_exit
+		cmp shift(rsi) 31
+		set EQ t440(r8)
+		cmp t440(r8) 1
+		CJump EQ rotate_left_4_if_true
+		jump rotate_left_5_if_false
+	rotate_left_4_if_true
+		t441(rsi) = mov x(rdi)
+		t441(rsi) = t441(rsi) AND 1
+		t442(rsi) = mov t441(rsi)
+		t442(rsi) = t442(rsi) SHL 31
+		t443(rdi) = mov x(rdi)
+		t443(rdi) = t443(rdi) SHR 1
+		t444(rdi) = mov t443(rdi)
+		t444(rdi) = t444(rdi) AND 2147483647
+		t445(rsi) = mov t442(rsi)
+		t445(rsi) = t445(rsi) XOR t444(rdi)
+		ret t445(rsi)
+		jump rotate_left_7_block_exit
+	rotate_left_5_if_false
+		jump rotate_left_6_if_exit
+	rotate_left_6_if_exit
+		t446(r9) = mov 32
+		t446(r9) = t446(r9) SUB shift(rsi)
+		t447(r8) = mov 1
+		t447(r8) = t447(r8) SHL t446(r9)
+		t448(r9) = mov t447(r8)
+		t448(r9) = t448(r9) SUB 1
+		t449(r8) = mov x(rdi)
+		t449(r8) = t449(r8) AND t448(r9)
+		t450(r8) = mov t449(r8)
+		t450(r8) = t450(r8) SHL shift(rsi)
+		t451(r9) = mov 32
+		t451(r9) = t451(r9) SUB shift(rsi)
+		t452(rdi) = mov x(rdi)
+		t452(rdi) = t452(rdi) SHR t451(r9)
+		t453(r9) = mov 1
+		t453(r9) = t453(r9) SHL shift(rsi)
+		t454(r9) = mov t453(r9)
+		t454(r9) = t454(r9) SUB 1
+		t455(rsi) = mov t452(rdi)
+		t455(rsi) = t455(rsi) AND t454(r9)
+		t456(rdi) = mov t450(r8)
+		t456(rdi) = t456(rdi) XOR t455(rsi)
+		ret t456(rdi)
+		jump rotate_left_7_block_exit
+	rotate_left_7_block_exit
+}
+lohi lo(rdi) hi(null) {
+	lohi_0_block_enter
+		lo(rdi) = mov t457(rdi)
+		t459(rsi) = mov t458(rsi)
+		t459(rsi) = t459(rsi) SHL 16
+		t460(rdi) = mov lo(rdi)
+		t460(rdi) = t460(rdi) XOR t459(rsi)
+		ret t460(rdi)
+		jump lohi_1_block_exit
+	lohi_1_block_exit
+}
+nextLetter now(rsi) {
+	nextLetter_0_block_enter
+		now(rsi) = mov t92(rdi)
+		cmp now(rsi) 122
+		set EQ t93(rdi)
+		cmp t93(rdi) 1
+		CJump EQ nextLetter_1_if_true
+		jump nextLetter_2_if_false
+	nextLetter_1_if_true
+		t94(rsi) = mov 1
+		NEG t94(rsi)
+		ret t94(rsi)
+		jump nextLetter_10_block_exit
+	nextLetter_2_if_false
+		jump nextLetter_3_if_exit
+	nextLetter_3_if_exit
+		cmp now(rsi) 90
+		set EQ t95(rdi)
+		cmp t95(rdi) 1
+		CJump EQ nextLetter_4_if_true
+		jump nextLetter_5_if_false
+	nextLetter_4_if_true
+		ret 97
+		jump nextLetter_10_block_exit
+	nextLetter_5_if_false
+		jump nextLetter_6_if_exit
+	nextLetter_6_if_exit
+		cmp now(rsi) 57
+		set EQ t96(rdi)
+		cmp t96(rdi) 1
+		CJump EQ nextLetter_7_if_true
+		jump nextLetter_8_if_false
+	nextLetter_7_if_true
+		ret 65
+		jump nextLetter_10_block_exit
+	nextLetter_8_if_false
+		jump nextLetter_9_if_exit
+	nextLetter_9_if_exit
+		t97(rsi) = mov now(rsi)
+		t97(rsi) = t97(rsi) ADD 1
+		ret t97(rsi)
+		jump nextLetter_10_block_exit
+	nextLetter_10_block_exit
 }
