@@ -133,10 +133,10 @@ public class BinaryInstruction extends Instruction {
             str.append(Translator.getInstruction("cdq"));
             str.append(Translator.getInstruction("idiv", "ecx"));
             if (operator.equals("DIV")) {
-                str.append(Translator.getInstruction("mov", targetName, "rax"));
+                str.append(Translator.getInstruction("mov", targetName, "eax"));
             }
             if (operator.equals("MOD")) {
-                str.append(Translator.getInstruction("mov", targetName, "rdx"));
+                str.append(Translator.getInstruction("mov", targetName, "edx"));
             }
             return str.toString();
         }
