@@ -86,8 +86,8 @@ expression  :   constant    #constantExpression
             |   expression operator=('<' | '>' | '<=' | '>=') expression    #relationalExpression
             |   expression operator=('==' | '!=') expression    #equalityExpression
             |   expression '&' expression   #bitAndExpression
-            |   expression '^' expression   #bitOrExpression
-            |   expression '|' expression   #bitXorExpression
+            |   expression '^' expression   #bitXorExpression
+            |   expression '|' expression   #bitOrExpression
             |   expression '&&' expression  #logicalAndExpression
             |   expression '||' expression  #logicalOrExpression
             |   <assoc=right> expression '=' expression #assignmentExpression

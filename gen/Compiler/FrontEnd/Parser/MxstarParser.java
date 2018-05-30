@@ -2076,7 +2076,7 @@ public class MxstarParser extends Parser {
 						break;
 					case 7:
 						{
-						_localctx = new BitOrExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new BitXorExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(235);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
@@ -2088,7 +2088,7 @@ public class MxstarParser extends Parser {
 						break;
 					case 8:
 						{
-						_localctx = new BitXorExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new BitOrExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(238);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
