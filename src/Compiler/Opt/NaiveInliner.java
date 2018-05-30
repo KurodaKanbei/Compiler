@@ -21,8 +21,9 @@ public class NaiveInliner {
                     if (functionType.isBuiltin() || functionType == functionIR.getFunctionType()) {
                         continue;
                     }
+                    block.getInstructionList().remove(j);
                     int parameterSize = Math.min(6, functionType.getParameterList().size());
-                    for (int k = 0; k < parameterSize; k++, j++) {
+                    for (int k = 0; k < parameterSize; k++) {
                         if (!(block.getInstructionList().get(j + k - parameterSize) instanceof MoveInstruction)) {
                             throw new InternalError("The instruction is expected to be move instruction");
                         }
