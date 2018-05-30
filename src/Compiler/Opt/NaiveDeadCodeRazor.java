@@ -18,21 +18,21 @@ public class NaiveDeadCodeRazor {
                 Instruction instruction = block.getInstructionList().get(i);
                 if (instruction instanceof MoveInstruction) {
                     Operand target = ((MoveInstruction) instruction).getTarget();
-                    if (target instanceof VirtualRegister && !instruction.getLiveOut().contains(target)) {
+                    if (target instanceof VirtualRegister && !instruction.getLiveOut().contains(target) && ((VirtualRegister) target).getSystemRegister() == null) {
                         block.getInstructionList().remove(i--);
                         hasImproved = true;
                     }
                 }
                 if (instruction instanceof BinaryInstruction) {
                     Operand target = ((BinaryInstruction) instruction).getTarget();
-                    if (target instanceof VirtualRegister && !instruction.getLiveOut().contains(target)) {
+                    if (target instanceof VirtualRegister && !instruction.getLiveOut().contains(target) && ((VirtualRegister) target).getSystemRegister() == null) {
                         block.getInstructionList().remove(i--);
                         hasImproved = true;
                     }
                 }
                 if (instruction instanceof UnaryInstruction) {
                     Operand target = ((UnaryInstruction) instruction).getTarget();
-                    if (target instanceof VirtualRegister && !instruction.getLiveOut().contains(target)) {
+                    if (target instanceof VirtualRegister && !instruction.getLiveOut().contains(target) && ((VirtualRegister) target).getSystemRegister() == null) {
                         block.getInstructionList().remove(i--);
                         hasImproved = true;
                     }

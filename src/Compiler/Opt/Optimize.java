@@ -7,12 +7,12 @@ public class Optimize {
         ProgramIR.getFunctionMap().values().forEach(functionIR -> {
             NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
-            /*int round = 0;
+            int round = 0;
             while (NaiveDeadCodeRazor.deadCodeEliminate(functionIR)) {
                 LivenessAnalyst.analysis(functionIR);
                 ++round;
                 if (round == 100) break;
-            }*/
+            }
             LivenessAnalyst.analysis(functionIR);
             BinaryInstructionRazor.uselessMoveInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);

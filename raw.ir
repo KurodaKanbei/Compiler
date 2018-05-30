@@ -56,6 +56,7 @@ foo d(null) x(null) y(null) {
 }
 main {
 	main_0_block_enter
+		k(null) = mov 12341
 		t23(rdi) = mov 7
 		t24(rsi) = mov 5
 		t25(rdx) = mov 3
