@@ -12,13 +12,14 @@ import java.util.List;
 
 public class NaiveInliner {
     public static void inline(FunctionIR functionIR) {
+        if (!functionIR.getFunctionType().isIntact()) return;
         for (int i = 0; i < functionIR.getBlockList().size(); i++) {
             Block block = functionIR.getBlockList().get(i);
             for (int j = 0; j < block.getInstructionList().size(); j++) {
                 Instruction instruction = block.getInstructionList().get(j);
                 if (instruction instanceof FunctionCallInstruction) {
                     FunctionType functionType = ((FunctionCallInstruction) instruction).getFunctionType();
-                    if (functionType.isBuiltin() || functionType == functionIR.getFunctionType()) {
+                    if (functionType.isBuiltin() || functionType == functionIR.getFunctionType() || !functionType.isIntact()) {
                         continue;
                     }
                     block.getInstructionList().remove(j);

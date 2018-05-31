@@ -4,6 +4,8 @@ import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.FunctionType;
 import Compiler.AST.Type.IntType;
 import Compiler.CFG.Instruction.*;
+import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Utility;
@@ -15,6 +17,10 @@ public class FunctionIR {
     private List<VirtualRegister> parameterList;
     private List<VirtualRegister> reservedBooleanList;
     private List<VirtualRegister> reservedIntegerList;
+    private List<Instruction> checkInstructionList;
+    private List<Instruction> returnInstructionList;
+    private VirtualRegister backupVirtualRegister;
+    private static final int memorySize = 15;
 
     private List<Block> blockList;
     private LabelInstruction enterBlock, exitBlock;
@@ -33,6 +39,7 @@ public class FunctionIR {
     }};
 
     private void construct() {
+        beMemorized = false;
         enterBlock = new LabelInstruction("block_enter");
         exitBlock = new LabelInstruction("block_exit");
         functionType.setEnterLabel(enterBlock);
@@ -60,17 +67,30 @@ public class FunctionIR {
         }
         instructionList.add(exitBlock);
 
-        beMemorized = canBeResolved(instructionList);
-        /*if (beMemorized) {
-            for (int i = 0; i < 20; i++) {
-                VirtualRegister virtualRegister = new VirtualRegister(functionType.getIRName() + "_boolean_" + i);
-                virtualRegister.setGlobal(true);
-                reservedBooleanList.add(virtualRegister);
+        /*beMemorized = canBeResolved(instructionList);
+        if (beMemorized) {
+            functionType.setIntact(false);
+            reservedIntegerList = new ArrayList<>();
+            reservedBooleanList = new ArrayList<>();
+            backupVirtualRegister = RegisterManager.getTemporaryRegister();
+            backupVirtualRegister.setSystemRegister("@" + functionType.getOriginName() + "_backup");
+            backupVirtualRegister.setGlobal(true);
+            for (int i = 0; i < memorySize; i++) {
+                VirtualRegister reserveBoolean = RegisterManager.getTemporaryRegister();
+                reserveBoolean.setSystemRegister("@" + functionType.getOriginName() + "_bool_" + i);
+                reservedBooleanList.add(reserveBoolean);
+                VirtualRegister reserveInteger = RegisterManager.getTemporaryRegister();
+                reserveInteger.setSystemRegister("@" + functionType.getOriginName() + "_int_" + i);
+                reservedIntegerList.add(reserveInteger);
             }
-            for (int i = 0; i < 20; i++) {
-                VirtualRegister virtualRegister = new VirtualRegister(functionType.getIRName() + "_integer_" + i);
-                virtualRegister.setGlobal(true);
-                reservedBooleanList.add(virtualRegister);
+            constructCheckList();
+            for (int i = 0; i < checkInstructionList.size(); i++) {
+                instructionList.add(t++, checkInstructionList.get(i));
+            }
+            constructReturnList();
+            t = instructionList.size() - 1;
+            for (int i = 0; i < returnInstructionList.size(); i++) {
+                instructionList.add(t++, returnInstructionList.get(i));
             }
         }*/
 
@@ -88,9 +108,65 @@ public class FunctionIR {
         }
     }
 
+    private void constructCheckList() {
+        VirtualRegister virtualRegister = parameterList.get(0);
+        checkInstructionList = new ArrayList<>();
+        List<LabelInstruction> checkLabelInstructionList = new ArrayList<>();
+        List<LabelInstruction> successLabelInstructionList = new ArrayList<>();
+        List<LabelInstruction> returnLabelInstructionList = new ArrayList<>();
+        for (int i = 0; i < memorySize; i++) {
+            checkLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_check_" + i));
+            successLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_success_" + i));
+            returnLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_escape_" + i));
+        }
+        checkLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_check_" + memorySize));
+        checkInstructionList.add(new MoveInstruction(new AddressOperand(backupVirtualRegister), virtualRegister));
+        checkInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(0)));
+        for (int i = 0; i < memorySize; i++) {
+            checkInstructionList.add(checkLabelInstructionList.get(i));
+            checkInstructionList.add(new CompareInstruction(virtualRegister, new ImmediateOperand(i)));
+            checkInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, successLabelInstructionList.get(i)));
+            checkInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(i + 1)));
+            checkInstructionList.add(successLabelInstructionList.get(i));
+            checkInstructionList.add(new CompareInstruction(new AddressOperand(reservedBooleanList.get(i)), new ImmediateOperand(1)));
+            checkInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, returnLabelInstructionList.get(i)));
+            checkInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(i + 1)));
+            checkInstructionList.add(returnLabelInstructionList.get(i));
+            checkInstructionList.add(new ReturnInstruction(new AddressOperand(reservedIntegerList.get(i))));
+            checkInstructionList.add(new JumpInstruction(exitBlock));
+        }
+        checkInstructionList.add(checkLabelInstructionList.get(memorySize));
+    }
+
+    private void constructReturnList() {
+        returnInstructionList = new ArrayList<>();
+        List<LabelInstruction> checkLabelInstructionList = new ArrayList<>();
+        List<LabelInstruction> successLabelInstructionList = new ArrayList<>();
+        for (int i = 0; i < memorySize; i++) {
+            checkLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_return_check_" + i));
+            successLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_return_success_" + i));
+        }
+        checkLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_return_check" + memorySize));
+        for (int i = 0; i < memorySize; i++) {
+            returnInstructionList.add(checkLabelInstructionList.get(i));
+            returnInstructionList.add(new CompareInstruction(new AddressOperand(backupVirtualRegister), new ImmediateOperand(i)));
+            returnInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, successLabelInstructionList.get(i)));
+            returnInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(i + 1)));
+            returnInstructionList.add(successLabelInstructionList.get(i));
+            returnInstructionList.add(new MoveInstruction(new AddressOperand(reservedBooleanList.get(i)), new ImmediateOperand(1)));
+            VirtualRegister t = RegisterManager.getTemporaryRegister();
+            t.setSystemRegister("rax");
+            returnInstructionList.add(new MoveInstruction(new AddressOperand(reservedIntegerList.get(i)), t));
+            returnInstructionList.add(new JumpInstruction(exitBlock));
+        }
+        returnInstructionList.add(checkLabelInstructionList.get(memorySize));
+        returnInstructionList.add(new JumpInstruction(exitBlock));
+    }
+
     private boolean canBeResolved(List<Instruction> instructionList) {
-        int n = instructionList.size();
         if (parameterList.size() != 1) return false;
+        if (functionType.getParameterList().size() != 1) return false;
+        if (functionType.getParameterList().get(0).getType() != IntType.getInstance()) return false;
         if (functionType.getReturnType() != IntType.getInstance()) return false;
         for (Instruction instruction : instructionList) {
             if (instruction.hasGlobalImpact()) return false;
@@ -149,6 +225,19 @@ public class FunctionIR {
 
         str.append(Translator.getInstruction("pop", "rbp"));
         str.append(Translator.getInstruction("ret"));
+        return str.toString();
+    }
+
+    public String getDefinedDataSection() {
+        if (!beMemorized) return "";
+        StringBuilder str = new StringBuilder();
+        str.append(backupVirtualRegister.getDefinedDataSection());
+        for (int i = 0; i < memorySize; i++) {
+            str.append(reservedBooleanList.get(i).getDefinedDataSection());
+        }
+        for (int i = 0; i < memorySize; i++) {
+            str.append(reservedIntegerList.get(i).getDefinedDataSection());
+        }
         return str.toString();
     }
 

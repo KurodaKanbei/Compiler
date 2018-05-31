@@ -79,6 +79,13 @@ public class VirtualRegister extends Operand {
         }
     }
 
+    public String getDefinedDataSection() {
+        StringBuilder str = new StringBuilder();
+        str.append(systemRegister + ":\n");
+        str.append("\tdq\t0\n");
+        return str.toString();
+    }
+
     @Override
     public PhysicalOperand getPhysicalOperand(StringBuilder str) {
         if (getRegister() != null) {

@@ -13,6 +13,11 @@ public class AddressOperand extends Operand {
         this.offset = offset;
     }
 
+    public AddressOperand(VirtualRegister base) {
+        this.base = base;
+        this.offset = new ImmediateOperand(0);
+    }
+
     public VirtualRegister getBase() {
         return base;
     }

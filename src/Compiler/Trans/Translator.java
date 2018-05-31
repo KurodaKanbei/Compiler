@@ -176,6 +176,9 @@ public class Translator {
             }
             str.append("   0\n");
         }
+        for (FunctionIR functionIR: ProgramIR.getFunctionMap().values()) {
+            str.append(functionIR.getDefinedDataSection());
+        }
         return str.toString();
     }
 

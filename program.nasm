@@ -1,4 +1,5 @@
 global __global_init
+global h
 global main
 global print_Int
 global println_Int
@@ -28,19 +29,150 @@ __global_init_0_block_enter:
 __global_init_1_block_exit:
      pop                  rbp
      ret
+h:
+    push                  rbp
+     mov                  rbp,                  rsp
+    push                  r12
+    push                  rbx
+h_0_block_enter:
+     mov                  rsi,                  rdi
+     cmp                  rsi,                    0
+     mov                  rbx,                    0
+    sete                   bl
+     cmp                  rbx,                    1
+      je     h_1_logical_true
+     jmp    h_2_logical_false
+h_1_logical_true:
+     mov                  rbx,                    1
+     jmp     h_3_logical_exit
+h_2_logical_false:
+     cmp                  rsi,                    1
+     mov                  rbx,                    0
+    sete                   bl
+h_3_logical_exit:
+     cmp                  rbx,                    1
+      je          h_4_if_true
+     jmp         h_5_if_false
+h_4_if_true:
+     mov                  rax,                    1
+     jmp      h_11_block_exit
+h_5_if_false:
+h_6_if_exit:
+     mov                  rbx,                    0
+     mov                  r12,                    0
+h_7_loop_condition:
+     cmp                  r12,                  rsi
+     mov                  rdi,                    0
+    setl                  dil
+     cmp                  rdi,                    1
+      je        h_8_loop_body
+     jmp       h_10_loop_exit
+h_8_loop_body:
+     mov                  rdi,                  r12
+    push                  rsi
+     sub                  rsp,                    8
+    call                    h
+     add                  rsp,                    8
+     pop                  rsi
+     mov                   r8,                  rax
+     mov                  rdi,                  rsi
+     sub                  rdi,                    1
+     sub                  rdi,                  r12
+    push                   r8
+    push                  rsi
+    call                    h
+     pop                  rsi
+     pop                   r8
+     mov                  rdi,                  rax
+    imul                   r8,                  rdi
+     add                  rbx,                   r8
+h_9_loop_increment:
+     add                  r12,                    1
+     jmp   h_7_loop_condition
+h_10_loop_exit:
+     mov                  rax,                  rbx
+h_11_block_exit:
+     pop                  rbx
+     pop                  r12
+     pop                  rbp
+     ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
+    push                  r12
+    push                  rbx
 main_0_block_enter:
-     mov                  rsi,                    0
-main_4_loop_exit:
+     mov                  rsi,                   17
+main_2_inline_enter:
+     cmp                  rsi,                    0
+     mov                  rbx,                    0
+    sete                   bl
+     cmp                  rbx,                    1
+      je  main_3_logical_true
+     jmp main_4_logical_false
+main_3_logical_true:
+     mov                  rbx,                    1
+     jmp  main_5_logical_exit
+main_4_logical_false:
+     cmp                  rsi,                    1
+     mov                  rbx,                    0
+    sete                   bl
+main_5_logical_exit:
+     cmp                  rbx,                    1
+      je       main_6_if_true
+     jmp      main_7_if_false
+main_6_if_true:
+     mov                  rsi,                    1
+     jmp  main_13_inline_exit
+main_7_if_false:
+main_8_if_exit:
+     mov                  rbx,                    0
+     mov                  r12,                    0
+main_9_loop_condition:
+     cmp                  r12,                  rsi
+     mov                  rdi,                    0
+    setl                  dil
+     cmp                  rdi,                    1
+      je    main_10_loop_body
+     jmp    main_12_loop_exit
+main_10_loop_body:
+     mov                  rdi,                  r12
+    push                  rsi
+     sub                  rsp,                    8
+    call                    h
+     add                  rsp,                    8
+     pop                  rsi
+     mov                   r8,                  rax
+     mov                  rdi,                  rsi
+     sub                  rdi,                    1
+     sub                  rdi,                  r12
+    push                   r8
+    push                  rsi
+    call                    h
+     pop                  rsi
+     pop                   r8
+     mov                  rdi,                  rax
+    imul                   r8,                  rdi
+     add                  rbx,                   r8
+main_11_loop_increment:
+     add                  r12,                    1
+     jmp main_9_loop_condition
+main_12_loop_exit:
+     mov                  rsi,                  rbx
+main_13_inline_exit:
+     mov                  rdi,                  rsi
+    call          println_Int
      mov                  rax,                    0
-main_5_block_exit:
+main_1_block_exit:
+     pop                  rbx
+     pop                  r12
      pop                  rbp
      ret
 SECTION .data
 SECTION .bss
+@n:
+    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0

@@ -17,6 +17,7 @@ public class FunctionType extends Type implements Scope {
     private Scope classScope;
     private boolean builtin;
     private LabelInstruction enterLabel, exitLabel;
+    private boolean intact;
 
     public FunctionType(String name, Type returnType, List<Symbol> parameterList) {
         this.name = name;
@@ -25,6 +26,15 @@ public class FunctionType extends Type implements Scope {
         this.blockStatement = null;
         this.classScope = null;
         this.builtin = false;
+        this.intact = true;
+    }
+
+    public boolean isIntact() {
+        return intact;
+    }
+
+    public void setIntact(boolean intact) {
+        this.intact = intact;
     }
 
     public String getOriginName() {
