@@ -79,7 +79,7 @@ public class VirtualRegister extends Operand {
         }
     }
 
-    public String getDefinedDataSection() {
+    public String getAssembly() {
         StringBuilder str = new StringBuilder();
         str.append(systemRegister + ":\n");
         str.append("\tdq\t0\n");

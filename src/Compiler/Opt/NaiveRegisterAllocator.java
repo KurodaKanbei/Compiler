@@ -64,24 +64,14 @@ public class NaiveRegisterAllocator {
             System.out.println(virtualRegister.toString() + " " + countMap.get(virtualRegister));
         }*/
         //System.out.println(virtualRegisterList.size());
-        if (virtualRegisterList.size() < 200) {
-            for (VirtualRegister virtualRegister : virtualRegisterList) {
-                allocateRegisterList.add(virtualRegister);
-                if (!color(allocateRegisterList)) {
-                    allocateRegisterList.remove(allocateRegisterList.size() - 1);
-                }
-            }
-            color(allocateRegisterList);
-        } else {
-            virtualRegisterStringMap = new HashMap<>();
-            for (VirtualRegister virtualRegister : criticalRegisterList) {
-                tryColor(virtualRegister, virtualRegister.getSystemRegister());
-            }
-            for (VirtualRegister virtualRegister : virtualRegisterList) {
-                for (String systemRegister : allocateOrder) {
-                    if (tryColor(virtualRegister, systemRegister)) {
-                        break;
-                    }
+        virtualRegisterStringMap = new HashMap<>();
+        for (VirtualRegister virtualRegister : criticalRegisterList) {
+            tryColor(virtualRegister, virtualRegister.getSystemRegister());
+        }
+        for (VirtualRegister virtualRegister : virtualRegisterList) {
+            for (String systemRegister : allocateOrder) {
+                if (tryColor(virtualRegister, systemRegister)) {
+                    break;
                 }
             }
         }

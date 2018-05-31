@@ -1,5 +1,6 @@
 global __global_init
 global main
+global fib
 global print_Int
 global println_Int
 global print
@@ -24,232 +25,147 @@ SECTION .text
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
-     sub                  rsp,                  184
-__global_init_0_block_enter:
-     mov       qword [@i + 0],                    0
-     mov      qword [@a0 + 0],                    0
-     mov      qword [@a1 + 0],                    0
-     mov      qword [@a2 + 0],                    0
-     mov      qword [@a3 + 0],                    0
-     mov      qword [@a4 + 0],                    0
-     mov      qword [@a5 + 0],                    0
-     mov      qword [@a6 + 0],                    0
-     mov      qword [@a7 + 0],                    0
-     mov      qword [@a8 + 0],                    0
-     mov      qword [@a9 + 0],                    0
-     mov     qword [@a10 + 0],                    0
-     mov      qword [@b0 + 0],                    0
-     mov      qword [@b1 + 0],                    0
-     mov      qword [@b2 + 0],                    0
-     mov      qword [@b3 + 0],                    0
-     mov      qword [@b4 + 0],                    0
-     mov      qword [@b5 + 0],                    0
-     mov      qword [@b6 + 0],                    0
-     mov      qword [@b7 + 0],                    0
-     mov      qword [@b8 + 0],                    0
-     mov      qword [@b9 + 0],                    0
-     mov     qword [@b10 + 0],                    0
 __global_init_1_block_exit:
-     add                  rsp,                  184
      pop                  rbp
      ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
-     sub                  rsp,                  184
-    push                  rbx
 main_0_block_enter:
-     mov                  rbx,                    0
-    call               getInt
+     mov                  rdi,                  100
+    call                  fib
+     mov                  rdi,                  rax
+    call          println_Int
+main_1_block_exit:
+     pop                  rbp
+     ret
+fib:
+    push                  rbp
+     mov                  rbp,                  rsp
+     sub                  rsp,                   24
+    push                  r12
+    push                  rbx
+fib_0_block_enter:
+     mov qword [@fib_backup + 0],                   r8
+     mov                  rsi,                   r8
+     sal                  rsi,                    3
+     mov                  r12,             @fib_int
+     add                  r12,                  rsi
+     cmp                   r8,                    0
+     jge    fib_1_fib_success
+     mov                   r8,                  rdi
+     cmp                   r8,                    2
+     jle        fib_5_if_true
+     mov                  rsi,                   r8
+     sub                  rsi,                    1
+     mov                  rdi,                  rsi
+    push                   r8
+    call                  fib
+     pop                   r8
+     mov                  rbx,                  rax
+     mov                  rsi,                   r8
+     sub                  rsi,                    2
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    call                  fib
+     add                  rsp,                    8
      mov                  rsi,                  rax
-     mov       qword [@i + 0],                    0
-     cmp       qword [@i + 0],                  rsi
-      jl     main_2_loop_body
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  rax,                    0
-     jmp    main_8_block_exit
-main_1_loop_condition:
-     cmp       qword [@i + 0],                  rsi
-      jl     main_2_loop_body
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  rax,                    0
-     jmp    main_8_block_exit
-main_2_loop_body:
-     mov                  rdi,      qword [@a0 + 0]
-     add                  rdi,                    1
-     mov      qword [@a0 + 0],                  rdi
-     mov                  rdi,      qword [@a1 + 0]
-     add                  rdi,                    1
-     mov      qword [@a1 + 0],                  rdi
-     mov                  rdi,      qword [@a2 + 0]
-     add                  rdi,                    1
-     mov      qword [@a2 + 0],                  rdi
-     mov                  rdi,      qword [@a0 + 0]
-     add                  rdi,                    1
-     mov      qword [@a3 + 0],                  rdi
-     mov                  rdi,      qword [@a1 + 0]
-     add                  rdi,                    1
-     mov      qword [@a4 + 0],                  rdi
-     mov                  rdi,      qword [@a2 + 0]
-     add                  rdi,                    1
-     mov      qword [@a5 + 0],                  rdi
-     mov                  rdi,      qword [@a0 + 0]
-     add                  rdi,                    1
-     mov      qword [@a6 + 0],                  rdi
-     mov                  rdi,      qword [@a1 + 0]
-     add                  rdi,                    1
-     mov      qword [@a7 + 0],                  rdi
-     mov                  rdi,      qword [@a2 + 0]
-     add                  rdi,                    1
-     mov      qword [@a8 + 0],                  rdi
-     mov                  rdi,      qword [@a0 + 0]
-     add                  rdi,                    1
-     mov      qword [@a9 + 0],                  rdi
-     mov                  rdi,      qword [@a1 + 0]
-     add                  rdi,                    0
-     mov     qword [@a10 + 0],                  rdi
-     mov                  rax,      qword [@a0 + 0]
-     mov      qword [@b0 + 0],                  rax
-     mov                  rax,      qword [@a1 + 0]
-     mov      qword [@b1 + 0],                  rax
-     mov                  rax,      qword [@a2 + 0]
-     mov      qword [@b2 + 0],                  rax
-     mov                  rax,      qword [@a3 + 0]
-     mov      qword [@b3 + 0],                  rax
-     mov                  rax,      qword [@a4 + 0]
-     mov      qword [@b4 + 0],                  rax
-     mov                  rax,      qword [@a5 + 0]
-     mov      qword [@b5 + 0],                  rax
-     mov                  rax,      qword [@a6 + 0]
-     mov      qword [@b6 + 0],                  rax
-     mov                  rax,      qword [@a7 + 0]
-     mov      qword [@b7 + 0],                  rax
-     mov                  rax,      qword [@a8 + 0]
-     mov      qword [@b8 + 0],                  rax
-     mov                  rax,      qword [@a9 + 0]
-     mov      qword [@b9 + 0],                  rax
-     mov                  rax,     qword [@a10 + 0]
-     mov     qword [@b10 + 0],                  rax
-     mov                  rdi,       qword [@i + 0]
-     mov                  rax,                  rdi
-     mov                  rcx,             10000000
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     cmp                  rdi,                    0
-      je       main_3_if_true
-     mov                  rdi,       qword [@i + 0]
-     add                  rdi,                    1
-     mov       qword [@i + 0],                  rdi
-     cmp       qword [@i + 0],                  rsi
-      jl     main_2_loop_body
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  rax,                    0
-     jmp    main_8_block_exit
-main_3_if_true:
-     add                  rbx,      qword [@a0 + 0]
-     add                  rbx,      qword [@a1 + 0]
-     add                  rbx,      qword [@a2 + 0]
-     add                  rbx,      qword [@a3 + 0]
-     add                  rbx,      qword [@a4 + 0]
-     add                  rbx,      qword [@a5 + 0]
-     add                  rbx,      qword [@a6 + 0]
-     add                  rbx,      qword [@a7 + 0]
-     add                  rbx,      qword [@a8 + 0]
-     add                  rbx,      qword [@a9 + 0]
-     add                  rbx,     qword [@a10 + 0]
-     add                  rbx,      qword [@b0 + 0]
-     add                  rbx,      qword [@b1 + 0]
-     add                  rbx,      qword [@b2 + 0]
-     add                  rbx,      qword [@b3 + 0]
-     add                  rbx,      qword [@b4 + 0]
-     add                  rbx,      qword [@b5 + 0]
-     add                  rbx,      qword [@b6 + 0]
-     add                  rbx,      qword [@b7 + 0]
-     add                  rbx,      qword [@b8 + 0]
-     add                  rbx,      qword [@b9 + 0]
-     add                  rbx,     qword [@b10 + 0]
-     and                  rbx,           2147450879
-     mov                  rdi,       qword [@i + 0]
-     add                  rdi,                    1
-     mov       qword [@i + 0],                  rdi
-     cmp       qword [@i + 0],                  rsi
-      jl     main_2_loop_body
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  rax,                    0
-     jmp    main_8_block_exit
-main_6_loop_increment:
-     mov                  rdi,       qword [@i + 0]
-     add                  rdi,                    1
-     mov       qword [@i + 0],                  rdi
-     cmp       qword [@i + 0],                  rsi
-      jl     main_2_loop_body
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  rax,                    0
-     jmp    main_8_block_exit
-main_7_loop_exit:
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  rax,                    0
-main_8_block_exit:
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
+     jmp     fib_8_block_exit
+fib_1_fib_success:
+     cmp                   r8,                  200
+      jl     fib_2_fib_escape
+     mov                   r8,                  rdi
+     cmp                   r8,                    2
+     jle        fib_5_if_true
+     mov                  rsi,                   r8
+     sub                  rsi,                    1
+     mov                  rdi,                  rsi
+    push                   r8
+    call                  fib
+     pop                   r8
+     mov                  rbx,                  rax
+     mov                  rsi,                   r8
+     sub                  rsi,                    2
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    call                  fib
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
+     jmp     fib_8_block_exit
+fib_2_fib_escape:
+     cmp      qword [r12 + 0],                    0
+      je      fib_4_fib_start
+     mov                  rax,      qword [r12 + 0]
+     jmp     fib_8_block_exit
+fib_3_fib_return:
+     mov                  rax,      qword [r12 + 0]
+     jmp     fib_8_block_exit
+fib_4_fib_start:
+     mov                   r8,                  rdi
+     cmp                   r8,                    2
+     jle        fib_5_if_true
+     mov                  rsi,                   r8
+     sub                  rsi,                    1
+     mov                  rdi,                  rsi
+    push                   r8
+    call                  fib
+     pop                   r8
+     mov                  rbx,                  rax
+     mov                  rsi,                   r8
+     sub                  rsi,                    2
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    call                  fib
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
+     jmp     fib_8_block_exit
+fib_5_if_true:
+     mov                  rax,                    1
+     jmp     fib_8_block_exit
+fib_7_if_exit:
+     mov                  rsi,                   r8
+     sub                  rsi,                    1
+     mov                  rdi,                  rsi
+    push                   r8
+    call                  fib
+     pop                   r8
+     mov                  rbx,                  rax
+     mov                  rsi,                   r8
+     sub                  rsi,                    2
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    call                  fib
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
+fib_8_block_exit:
+     cmp qword [@fib_backup + 0],                    0
+     jge   fib_9_fib_positive
+fib_9_fib_positive:
+     cmp qword [@fib_backup + 0],                  200
+      jl    fib_10_fib_update
+fib_10_fib_update:
+     mov      qword [r12 + 0],                  rax
+fib_11_fib_fail:
      pop                  rbx
-     add                  rsp,                  184
+     pop                  r12
+     add                  rsp,                   24
      pop                  rbp
      ret
 SECTION .data
+@fib_backup:
+	 dq 0
+@fib_int:
+	dq	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,0
 SECTION .bss
-@i:
-    resq                    1
-@a0:
-    resq                    1
-@a1:
-    resq                    1
-@a2:
-    resq                    1
-@a3:
-    resq                    1
-@a4:
-    resq                    1
-@a5:
-    resq                    1
-@a6:
-    resq                    1
-@a7:
-    resq                    1
-@a8:
-    resq                    1
-@a9:
-    resq                    1
-@a10:
-    resq                    1
-@b0:
-    resq                    1
-@b1:
-    resq                    1
-@b2:
-    resq                    1
-@b3:
-    resq                    1
-@b4:
-    resq                    1
-@b5:
-    resq                    1
-@b6:
-    resq                    1
-@b7:
-    resq                    1
-@b8:
-    resq                    1
-@b9:
-    resq                    1
-@b10:
-    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0
