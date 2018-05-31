@@ -12,7 +12,7 @@ import Compiler.CFG.Operand.VirtualRegister;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BlocksRazor {
+public class DeadLoopRazor {
 
     private static FunctionIR currentFunctionIR;
 

@@ -40,6 +40,22 @@ public class CSetInstruction extends Instruction {
         killSet.add(this.target);
     }
 
+    public ProgramIR.ConditionOp getConditionOp() {
+        return conditionOp;
+    }
+
+    public VirtualRegister getTarget() {
+        return target;
+    }
+
+    public void setConditionOp(ProgramIR.ConditionOp conditionOp) {
+        this.conditionOp = conditionOp;
+    }
+
+    public void setTarget(VirtualRegister target) {
+        this.target = target;
+    }
+
     @Override
     public boolean hasGlobalImpact() {
         return false;

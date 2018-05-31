@@ -7,8 +7,6 @@ h a(rsi) {
 	h_0_block_enter
 		a(rsi) = mov t0(rdi)
 		cmp a(rsi) 0
-		set EQ t2(rbx)
-		cmp t2(rbx) 1
 		CJump EQ h_1_logical_true
 		jump h_2_logical_false
 	h_1_logical_true
@@ -34,9 +32,7 @@ h a(rsi) {
 		jump h_7_loop_condition
 	h_7_loop_condition
 		cmp i(r12) a(rsi)
-		set LE t4(rdi)
-		cmp t4(rdi) 1
-		CJump EQ h_8_loop_body
+		CJump LE h_8_loop_body
 		jump h_10_loop_exit
 	h_8_loop_body
 		t6(rdi) = mov i(r12)
@@ -67,8 +63,6 @@ main {
 		jump main_2_inline_enter
 	main_2_inline_enter
 		cmp a(rsi) 0
-		set EQ t24(rbx)
-		cmp t24(rbx) 1
 		CJump EQ main_3_logical_true
 		jump main_4_logical_false
 	main_3_logical_true
@@ -94,9 +88,7 @@ main {
 		jump main_9_loop_condition
 	main_9_loop_condition
 		cmp i(r12) a(rsi)
-		set LE t26(rdi)
-		cmp t26(rdi) 1
-		CJump EQ main_10_loop_body
+		CJump LE main_10_loop_body
 		jump main_12_loop_exit
 	main_10_loop_body
 		t28(rdi) = mov i(r12)

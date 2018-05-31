@@ -7,7 +7,8 @@ public class Optimize {
         ProgramIR.getFunctionMap().values().forEach(functionIR -> {
             NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
-            BlocksRazor.deadForStatementBlocksRemove(functionIR);
+            DeadLoopRazor.deadForStatementBlocksRemove(functionIR);
+            LoopConditionManager.loopConditionImprove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             OutputConverter.convertOutput(functionIR);
             LivenessAnalyst.analysis(functionIR);

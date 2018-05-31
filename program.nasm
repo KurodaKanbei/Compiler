@@ -37,9 +37,6 @@ h:
 h_0_block_enter:
      mov                  rsi,                  rdi
      cmp                  rsi,                    0
-     mov                  rbx,                    0
-    sete                   bl
-     cmp                  rbx,                    1
       je     h_1_logical_true
      jmp    h_2_logical_false
 h_1_logical_true:
@@ -62,10 +59,7 @@ h_6_if_exit:
      mov                  r12,                    0
 h_7_loop_condition:
      cmp                  r12,                  rsi
-     mov                  rdi,                    0
-    setl                  dil
-     cmp                  rdi,                    1
-      je        h_8_loop_body
+      jl        h_8_loop_body
      jmp       h_10_loop_exit
 h_8_loop_body:
      mov                  rdi,                  r12
@@ -106,9 +100,6 @@ main_0_block_enter:
      mov                  rsi,                   17
 main_2_inline_enter:
      cmp                  rsi,                    0
-     mov                  rbx,                    0
-    sete                   bl
-     cmp                  rbx,                    1
       je  main_3_logical_true
      jmp main_4_logical_false
 main_3_logical_true:
@@ -131,10 +122,7 @@ main_8_if_exit:
      mov                  r12,                    0
 main_9_loop_condition:
      cmp                  r12,                  rsi
-     mov                  rdi,                    0
-    setl                  dil
-     cmp                  rdi,                    1
-      je    main_10_loop_body
+      jl    main_10_loop_body
      jmp    main_12_loop_exit
 main_10_loop_body:
      mov                  rdi,                  r12
@@ -147,11 +135,11 @@ main_10_loop_body:
      mov                  rdi,                  rsi
      sub                  rdi,                    1
      sub                  rdi,                  r12
-    push                   r8
     push                  rsi
+    push                   r8
     call                    h
-     pop                  rsi
      pop                   r8
+     pop                  rsi
      mov                  rdi,                  rax
     imul                   r8,                  rdi
      add                  rbx,                   r8

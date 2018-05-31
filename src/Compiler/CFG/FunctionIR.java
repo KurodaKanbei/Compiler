@@ -314,7 +314,6 @@ public class FunctionIR {
     }
 
     public void initialize(VirtualRegister virtualRegister) {
-        //System.out.println(virtualRegister.toString());
         if (!registerIntegerMap.containsKey(virtualRegister) && !registerStringMap.containsKey(virtualRegister)) {
             registerManager.addRegisterInMemory();
             registerIntegerMap.put(virtualRegister, registerManager.getRegisterInMemory());

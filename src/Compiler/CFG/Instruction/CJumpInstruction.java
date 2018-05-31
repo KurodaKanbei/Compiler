@@ -20,6 +20,14 @@ public class CJumpInstruction extends Instruction {
         return target;
     }
 
+    public void setTarget(LabelInstruction target) {
+        this.target = target;
+    }
+
+    public void setConditionOp(ProgramIR.ConditionOp conditionOp) {
+        this.conditionOp = conditionOp;
+    }
+
     @Override
     public boolean hasGlobalImpact() {
         return false;
