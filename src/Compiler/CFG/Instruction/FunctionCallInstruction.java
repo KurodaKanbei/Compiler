@@ -52,6 +52,7 @@ public class FunctionCallInstruction extends Instruction {
             if (operand instanceof MemoryLabel || operand instanceof AddressOperand) return true;
             if (operand instanceof VirtualRegister && ((VirtualRegister) operand).isGlobal()) return true;
         }
+        if (functionType.isBuiltin()) return true;
         return false;
     }
 
