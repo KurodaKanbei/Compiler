@@ -58,4 +58,6 @@ public abstract class Instruction {
     }
 
     public abstract String getAssembly();
+
+    public abstract boolean hasGlobalImpact();
 }

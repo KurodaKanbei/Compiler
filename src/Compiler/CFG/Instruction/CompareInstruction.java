@@ -40,6 +40,11 @@ public class CompareInstruction extends Instruction {
     }
 
     @Override
+    public boolean hasGlobalImpact() {
+        return false;
+    }
+
+    @Override
     public void init() {
         leftOperand.init();
         rightOperand.init();

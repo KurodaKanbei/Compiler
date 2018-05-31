@@ -1,593 +1,87 @@
-random {
-	random_0_block_enter
-		t83(null) = mov Address (seed(@seed) + 0)
-		t83(null) = t83(null) MOD Address (Q(@Q) + 0)
-		t84(null) = mov Address (A(@A) + 0)
-		t84(null) = t84(null) MUL t83(null)
-		t85(null) = mov Address (seed(@seed) + 0)
-		t85(null) = t85(null) DIV Address (Q(@Q) + 0)
-		t86(null) = mov Address (R(@R) + 0)
-		t86(null) = t86(null) MUL t85(null)
-		t87(null) = mov t84(null)
-		t87(null) = t87(null) SUB t86(null)
-		tempseed(null) = mov t87(null)
-		cmp tempseed(null) 0
-		set GREQ t88(null)
-		cmp t88(null) 1
-		CJump EQ random_1_if_true
-		jump random_2_if_false
-	random_1_if_true
-		Address (seed(@seed) + 0) = mov tempseed(null)
-		jump random_3_if_exit
-	random_2_if_false
-		t89(null) = mov tempseed(null)
-		t89(null) = t89(null) ADD Address (M(@M) + 0)
-		Address (seed(@seed) + 0) = mov t89(null)
-		jump random_3_if_exit
-	random_3_if_exit
-		ret Address (seed(@seed) + 0)
-		jump random_4_block_exit
-	random_4_block_exit
-}
-move {
-	move_0_block_enter
-		i(null) = mov 0
-		jump move_1_loop_condition
-	move_1_loop_condition
-		cmp i(null) Address (now(@now) + 0)
-		set LE t139(null)
-		cmp t139(null) 1
-		CJump EQ move_2_loop_body
-		jump move_4_loop_exit
-	move_2_loop_body
-		t140(null) = mov i(null)
-		t140(null) = t140(null) SHL 3
-		t141(null) = mov Address (a(@a) + 0)
-		t141(null) = t141(null) ADD t140(null)
-		DEC Address (t141(null) + 0)
-		t142(null) = mov i(null)
-		t142(null) = t142(null) ADD 1
-		i(null) = mov t142(null)
-		jump move_3_loop_increment
-	move_3_loop_increment
-		jump move_1_loop_condition
-	move_4_loop_exit
-		t143(null) = mov Address (now(@now) + 0)
-		t143(null) = t143(null) SHL 3
-		t144(null) = mov Address (a(@a) + 0)
-		t144(null) = t144(null) ADD t143(null)
-		t145(null) = mov Address (now(@now) + 0)
-		Address (t144(null) + 0) = mov t145(null)
-		t146(null) = mov Address (now(@now) + 0)
-		INC Address (now(@now) + 0)
-		jump move_5_block_exit
-	move_5_block_exit
-}
 __global_init {
 	__global_init_0_block_enter
-		Address (A(@A) + 0) = mov 48271
-		Address (M(@M) + 0) = mov 2147483647
-		Address (seed(@seed) + 0) = mov 1
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
-pd x(null) {
-	pd_0_block_enter
-		x(null) = mov t158(rdi)
-		jump pd_1_loop_condition
-	pd_1_loop_condition
-		cmp Address (h(@h) + 0) x(null)
-		set LEEQ t159(null)
-		cmp t159(null) 1
-		CJump EQ pd_2_loop_body
-		jump pd_7_loop_exit
-	pd_2_loop_body
-		t160(null) = mov Address (h(@h) + 0)
-		t160(null) = t160(null) ADD 1
-		t161(null) = mov Address (h(@h) + 0)
-		t161(null) = t161(null) MUL t160(null)
-		t162(null) = mov t161(null)
-		t162(null) = t162(null) DIV 2
-		cmp x(null) t162(null)
-		set EQ t163(null)
-		cmp t163(null) 1
-		CJump EQ pd_3_if_true
-		jump pd_4_if_false
-	pd_3_if_true
+h a(null) {
+	h_0_block_enter
+		a(null) = mov t0(rdi)
+		cmp a(null) 0
+		set EQ t2(null)
+		cmp t2(null) 1
+		CJump EQ h_1_logical_true
+		jump h_2_logical_false
+	h_1_logical_true
+		t1(null) = mov 1
+		jump h_3_logical_exit
+	h_2_logical_false
+		cmp a(null) 1
+		set EQ t3(null)
+		t1(null) = mov t3(null)
+		jump h_3_logical_exit
+	h_3_logical_exit
+		cmp t1(null) 1
+		CJump EQ h_4_if_true
+		jump h_5_if_false
+	h_4_if_true
 		ret 1
-		jump pd_8_block_exit
-	pd_4_if_false
-		jump pd_5_if_exit
-	pd_5_if_exit
-		jump pd_6_loop_increment
-	pd_6_loop_increment
-		INC Address (h(@h) + 0)
-		jump pd_1_loop_condition
-	pd_7_loop_exit
-		ret 0
-		jump pd_8_block_exit
-	pd_8_block_exit
-}
-swap x(null) y(null) {
-	swap_0_block_enter
-		x(null) = mov t147(rdi)
-		y(null) = mov t148(rsi)
-		t149(null) = mov x(null)
-		t149(null) = t149(null) SHL 3
-		t150(null) = mov Address (a(@a) + 0)
-		t150(null) = t150(null) ADD t149(null)
-		temp(null) = mov Address (t150(null) + 0)
-		t151(null) = mov x(null)
-		t151(null) = t151(null) SHL 3
-		t152(null) = mov Address (a(@a) + 0)
-		t152(null) = t152(null) ADD t151(null)
-		t153(null) = mov y(null)
-		t153(null) = t153(null) SHL 3
-		t154(null) = mov Address (a(@a) + 0)
-		t154(null) = t154(null) ADD t153(null)
-		t155(null) = mov Address (t154(null) + 0)
-		Address (t152(null) + 0) = mov t155(null)
-		t156(null) = mov y(null)
-		t156(null) = t156(null) SHL 3
-		t157(null) = mov Address (a(@a) + 0)
-		t157(null) = t157(null) ADD t156(null)
-		Address (t157(null) + 0) = mov temp(null)
-		jump swap_1_block_exit
-	swap_1_block_exit
-}
-merge {
-	merge_0_block_enter
+		jump h_11_block_exit
+	h_5_if_false
+		jump h_6_if_exit
+	h_6_if_exit
+		sum(null) = mov 0
 		i(null) = mov 0
-		jump merge_1_loop_condition
-	merge_1_loop_condition
-		cmp i(null) Address (now(@now) + 0)
-		set LE t90(null)
-		cmp t90(null) 1
-		CJump EQ merge_2_loop_body
-		jump merge_14_loop_exit
-	merge_2_loop_body
-		t91(null) = mov i(null)
-		t91(null) = t91(null) SHL 3
-		t92(null) = mov Address (a(@a) + 0)
-		t92(null) = t92(null) ADD t91(null)
-		cmp Address (t92(null) + 0) 0
-		set EQ t93(null)
-		cmp t93(null) 1
-		CJump EQ merge_3_if_true
-		jump merge_11_if_false
-	merge_3_if_true
-		t94(null) = mov i(null)
-		t94(null) = t94(null) ADD 1
-		j(null) = mov t94(null)
-		jump merge_4_loop_condition
-	merge_4_loop_condition
-		cmp j(null) Address (now(@now) + 0)
-		set LE t95(null)
-		cmp t95(null) 1
-		CJump EQ merge_5_loop_body
-		jump merge_10_loop_exit
-	merge_5_loop_body
-		t96(null) = mov j(null)
-		t96(null) = t96(null) SHL 3
-		t97(null) = mov Address (a(@a) + 0)
-		t97(null) = t97(null) ADD t96(null)
-		cmp Address (t97(null) + 0) 0
-		set NEQ t98(null)
-		cmp t98(null) 1
-		CJump EQ merge_6_if_true
-		jump merge_7_if_false
-	merge_6_if_true
-		t99(rdi) = mov i(null)
-		t100(rsi) = mov j(null)
-		call swap return value = null
-		jump merge_10_loop_exit
-	merge_7_if_false
-		jump merge_8_if_exit
-	merge_8_if_exit
-		jump merge_9_loop_increment
-	merge_9_loop_increment
-		INC j(null)
-		jump merge_4_loop_condition
-	merge_10_loop_exit
-		jump merge_12_if_exit
-	merge_11_if_false
-		jump merge_12_if_exit
-	merge_12_if_exit
-		jump merge_13_loop_increment
-	merge_13_loop_increment
+		jump h_7_loop_condition
+	h_7_loop_condition
+		cmp i(null) a(null)
+		set LE t4(null)
+		cmp t4(null) 1
+		CJump EQ h_8_loop_body
+		jump h_10_loop_exit
+	h_8_loop_body
+		t6(rdi) = mov i(null)
+		call h return value = t5(rax)
+		t7(null) = mov t5(rax)
+		t8(null) = mov a(null)
+		t8(null) = t8(null) SUB 1
+		t9(null) = mov t8(null)
+		t9(null) = t9(null) SUB i(null)
+		t11(rdi) = mov t9(null)
+		call h return value = t10(rax)
+		t12(null) = mov t10(rax)
+		t13(null) = mov t7(null)
+		t13(null) = t13(null) MUL t12(null)
+		t14(null) = mov sum(null)
+		t14(null) = t14(null) ADD t13(null)
+		t15(null) = mov i(null)
+		t15(null) = t15(null) SHL 3
+		t16(null) = mov Address (b(@b) + 0)
+		t16(null) = t16(null) ADD t15(null)
+		t17(null) = mov t14(null)
+		t17(null) = t17(null) ADD Address (t16(null) + 0)
+		sum(null) = mov t17(null)
+		jump h_9_loop_increment
+	h_9_loop_increment
+		t18(null) = mov i(null)
 		INC i(null)
-		jump merge_1_loop_condition
-	merge_14_loop_exit
-		i(null) = mov 0
-		jump merge_15_loop_condition
-	merge_15_loop_condition
-		cmp i(null) Address (now(@now) + 0)
-		set LE t101(null)
-		cmp t101(null) 1
-		CJump EQ merge_16_loop_body
-		jump merge_21_loop_exit
-	merge_16_loop_body
-		t102(null) = mov i(null)
-		t102(null) = t102(null) SHL 3
-		t103(null) = mov Address (a(@a) + 0)
-		t103(null) = t103(null) ADD t102(null)
-		cmp Address (t103(null) + 0) 0
-		set EQ t104(null)
-		cmp t104(null) 1
-		CJump EQ merge_17_if_true
-		jump merge_18_if_false
-	merge_17_if_true
-		Address (now(@now) + 0) = mov i(null)
-		jump merge_21_loop_exit
-	merge_18_if_false
-		jump merge_19_if_exit
-	merge_19_if_exit
-		jump merge_20_loop_increment
-	merge_20_loop_increment
-		INC i(null)
-		jump merge_15_loop_condition
-	merge_21_loop_exit
-		jump merge_22_block_exit
-	merge_22_block_exit
-}
-show {
-	show_0_block_enter
-		i(null) = mov 0
-		jump show_1_loop_condition
-	show_1_loop_condition
-		cmp i(null) Address (now(@now) + 0)
-		set LE t0(null)
-		cmp t0(null) 1
-		CJump EQ show_2_loop_body
-		jump show_4_loop_exit
-	show_2_loop_body
-		t1(null) = mov i(null)
-		t1(null) = t1(null) SHL 3
-		t2(null) = mov Address (a(@a) + 0)
-		t2(null) = t2(null) ADD t1(null)
-		t4(rdi) = mov Address (t2(null) + 0)
-		call toString return value = t3(rax)
-		t5(null) = mov t3(rax)
-		t7(rdi) = mov t5(null)
-		t8(rsi) = mov __const_string_0
-		call __string_connection return value = t6(rax)
-		t9(null) = mov t6(rax)
-		t10(rdi) = mov t9(null)
-		call print return value = null
-		jump show_3_loop_increment
-	show_3_loop_increment
-		INC i(null)
-		jump show_1_loop_condition
-	show_4_loop_exit
-		t11(rdi) = mov __const_string_1
-		call println return value = null
-		jump show_5_block_exit
-	show_5_block_exit
+		jump h_7_loop_condition
+	h_10_loop_exit
+		ret sum(null)
+		jump h_11_block_exit
+	h_11_block_exit
 }
 main {
 	main_0_block_enter
-		i(null) = mov 0
-		temp(null) = mov 0
-		count(null) = mov 0
-		Address (n(@n) + 0) = mov 210
-		Address (h(@h) + 0) = mov 0
-		t13(null) = mov 100
-		INC t13(null)
-		t13(null) = t13(null) SHL 3
-		malloc t12(null) t13(null)
-		Address (t12(null) + 0) = mov 100
-		t12(null) = t12(null) ADD 8
-		Address (a(@a) + 0) = mov t12(null)
-		t14(null) = mov Address (M(@M) + 0)
-		t14(null) = t14(null) DIV Address (A(@A) + 0)
-		Address (Q(@Q) + 0) = mov t14(null)
-		t15(null) = mov Address (M(@M) + 0)
-		t15(null) = t15(null) MOD Address (A(@A) + 0)
-		Address (R(@R) + 0) = mov t15(null)
-		t17(rdi) = mov Address (n(@n) + 0)
-		call pd return value = t16(rax)
-		t18(null) = mov t16(rax)
-		t19(null) = mov t18(null)
-		t19(null) = t19(null) XOR 1
-		cmp t19(null) 1
-		CJump EQ main_1_if_true
-		jump main_2_if_false
-	main_1_if_true
-		t20(rdi) = mov __const_string_2
-		call println return value = null
-		ret 1
-		jump main_14_block_exit
-	main_2_if_false
-		jump main_3_if_exit
-	main_3_if_exit
-		t21(rdi) = mov __const_string_3
-		call println return value = null
-		t22(rdi) = mov 3654898
-		call initialize return value = null
-		call random return value = t23(rax)
-		t24(null) = mov t23(rax)
-		t25(null) = mov t24(null)
-		t25(null) = t25(null) MOD 10
-		t26(null) = mov t25(null)
-		t26(null) = t26(null) ADD 1
-		Address (now(@now) + 0) = mov t26(null)
-		t28(rdi) = mov Address (now(@now) + 0)
-		call toString return value = t27(rax)
-		t29(null) = mov t27(rax)
-		t30(rdi) = mov t29(null)
-		call println return value = null
-		jump main_4_loop_condition
-	main_4_loop_condition
-		t31(null) = mov Address (now(@now) + 0)
-		t31(null) = t31(null) SUB 1
-		cmp i(null) t31(null)
-		set LE t32(null)
-		cmp t32(null) 1
-		CJump EQ main_5_loop_body
-		jump main_10_loop_exit
-	main_5_loop_body
-		t33(null) = mov i(null)
-		t33(null) = t33(null) SHL 3
-		t34(null) = mov Address (a(@a) + 0)
-		t34(null) = t34(null) ADD t33(null)
-		call random return value = t35(rax)
-		t36(null) = mov t35(rax)
-		t37(null) = mov t36(null)
-		t37(null) = t37(null) MOD 10
-		t38(null) = mov t37(null)
-		t38(null) = t38(null) ADD 1
-		Address (t34(null) + 0) = mov t38(null)
-		jump main_6_loop_condition
-	main_6_loop_condition
-		t39(null) = mov i(null)
-		t39(null) = t39(null) SHL 3
-		t40(null) = mov Address (a(@a) + 0)
-		t40(null) = t40(null) ADD t39(null)
-		t41(null) = mov Address (t40(null) + 0)
-		t41(null) = t41(null) ADD temp(null)
-		cmp t41(null) Address (n(@n) + 0)
-		set GR t42(null)
-		cmp t42(null) 1
-		CJump EQ main_7_loop_body
-		jump main_8_loop_exit
-	main_7_loop_body
-		t43(null) = mov i(null)
-		t43(null) = t43(null) SHL 3
-		t44(null) = mov Address (a(@a) + 0)
-		t44(null) = t44(null) ADD t43(null)
-		call random return value = t45(rax)
-		t46(null) = mov t45(rax)
-		t47(null) = mov t46(null)
-		t47(null) = t47(null) MOD 10
-		t48(null) = mov t47(null)
-		t48(null) = t48(null) ADD 1
-		Address (t44(null) + 0) = mov t48(null)
-		jump main_6_loop_condition
-	main_8_loop_exit
-		t49(null) = mov i(null)
-		t49(null) = t49(null) SHL 3
-		t50(null) = mov Address (a(@a) + 0)
-		t50(null) = t50(null) ADD t49(null)
-		t51(null) = mov temp(null)
-		t51(null) = t51(null) ADD Address (t50(null) + 0)
-		temp(null) = mov t51(null)
-		jump main_9_loop_increment
-	main_9_loop_increment
-		INC i(null)
-		jump main_4_loop_condition
-	main_10_loop_exit
-		t52(null) = mov Address (now(@now) + 0)
-		t52(null) = t52(null) SUB 1
-		t53(null) = mov t52(null)
-		t53(null) = t53(null) SHL 3
-		t54(null) = mov Address (a(@a) + 0)
-		t54(null) = t54(null) ADD t53(null)
-		t55(null) = mov Address (n(@n) + 0)
-		t55(null) = t55(null) SUB temp(null)
-		Address (t54(null) + 0) = mov t55(null)
-		call show return value = null
-		call merge return value = null
-		jump main_11_loop_condition
-	main_11_loop_condition
-		call win return value = t56(rax)
-		t57(null) = mov t56(rax)
-		t58(null) = mov t57(null)
-		t58(null) = t58(null) XOR 1
-		cmp t58(null) 1
-		CJump EQ main_12_loop_body
-		jump main_13_loop_exit
-	main_12_loop_body
-		INC count(null)
-		t60(rdi) = mov count(null)
-		call toString return value = t59(rax)
-		t61(null) = mov t59(rax)
-		t63(rdi) = mov __const_string_4
-		t64(rsi) = mov t61(null)
-		call __string_connection return value = t62(rax)
-		t65(null) = mov t62(rax)
-		t67(rdi) = mov t65(null)
-		t68(rsi) = mov __const_string_5
-		call __string_connection return value = t66(rax)
-		t69(null) = mov t66(rax)
-		t70(rdi) = mov t69(null)
-		call println return value = null
-		call move return value = null
-		call merge return value = null
-		call show return value = null
-		jump main_11_loop_condition
-	main_13_loop_exit
-		t72(rdi) = mov count(null)
-		call toString return value = t71(rax)
-		t73(null) = mov t71(rax)
-		t75(rdi) = mov __const_string_6
-		t76(rsi) = mov t73(null)
-		call __string_connection return value = t74(rax)
-		t77(null) = mov t74(rax)
-		t79(rdi) = mov t77(null)
-		t80(rsi) = mov __const_string_7
-		call __string_connection return value = t78(rax)
-		t81(null) = mov t78(rax)
-		t82(rdi) = mov t81(null)
+		a(null) = mov 17
+		t20(rdi) = mov a(null)
+		call h return value = t19(rax)
+		t21(null) = mov t19(rax)
+		t23(rdi) = mov t21(null)
+		call toString return value = t22(rax)
+		t24(null) = mov t22(rax)
+		t25(rdi) = mov t24(null)
 		call println return value = null
 		ret 0
-		jump main_14_block_exit
-	main_14_block_exit
-}
-initialize val(null) {
-	initialize_0_block_enter
-		val(null) = mov t164(rdi)
-		Address (seed(@seed) + 0) = mov val(null)
-		jump initialize_1_block_exit
-	initialize_1_block_exit
-}
-win {
-	win_0_block_enter
-		t106(null) = mov 100
-		INC t106(null)
-		t106(null) = t106(null) SHL 3
-		malloc t105(null) t106(null)
-		Address (t105(null) + 0) = mov 100
-		t105(null) = t105(null) ADD 8
-		b(null) = mov t105(null)
-		t108(null) = mov Address (now(@now) + 0)
-		cmp t108(null) Address (h(@h) + 0)
-		set NEQ t107(null)
-		cmp t107(null) 1
-		CJump EQ win_1_if_true
-		jump win_2_if_false
-	win_1_if_true
-		ret 0
-		jump win_26_block_exit
-	win_2_if_false
-		jump win_3_if_exit
-	win_3_if_exit
-		j(null) = mov 0
-		jump win_4_loop_condition
-	win_4_loop_condition
-		cmp j(null) Address (now(@now) + 0)
-		set LE t109(null)
-		cmp t109(null) 1
-		CJump EQ win_5_loop_body
-		jump win_7_loop_exit
-	win_5_loop_body
-		t110(null) = mov j(null)
-		t110(null) = t110(null) SHL 3
-		t111(null) = mov b(null)
-		t111(null) = t111(null) ADD t110(null)
-		t112(null) = mov j(null)
-		t112(null) = t112(null) SHL 3
-		t113(null) = mov Address (a(@a) + 0)
-		t113(null) = t113(null) ADD t112(null)
-		t114(null) = mov Address (t113(null) + 0)
-		Address (t111(null) + 0) = mov t114(null)
-		jump win_6_loop_increment
-	win_6_loop_increment
-		INC j(null)
-		jump win_4_loop_condition
-	win_7_loop_exit
-		i(null) = mov 0
-		jump win_8_loop_condition
-	win_8_loop_condition
-		t115(null) = mov Address (now(@now) + 0)
-		t115(null) = t115(null) SUB 1
-		cmp i(null) t115(null)
-		set LE t116(null)
-		cmp t116(null) 1
-		CJump EQ win_9_loop_body
-		jump win_18_loop_exit
-	win_9_loop_body
-		t117(null) = mov i(null)
-		t117(null) = t117(null) ADD 1
-		j(null) = mov t117(null)
-		jump win_10_loop_condition
-	win_10_loop_condition
-		cmp j(null) Address (now(@now) + 0)
-		set LE t118(null)
-		cmp t118(null) 1
-		CJump EQ win_11_loop_body
-		jump win_16_loop_exit
-	win_11_loop_body
-		t119(null) = mov i(null)
-		t119(null) = t119(null) SHL 3
-		t120(null) = mov b(null)
-		t120(null) = t120(null) ADD t119(null)
-		t121(null) = mov j(null)
-		t121(null) = t121(null) SHL 3
-		t122(null) = mov b(null)
-		t122(null) = t122(null) ADD t121(null)
-		t124(null) = mov Address (t120(null) + 0)
-		cmp t124(null) Address (t122(null) + 0)
-		set GR t123(null)
-		cmp t123(null) 1
-		CJump EQ win_12_if_true
-		jump win_13_if_false
-	win_12_if_true
-		t125(null) = mov i(null)
-		t125(null) = t125(null) SHL 3
-		t126(null) = mov b(null)
-		t126(null) = t126(null) ADD t125(null)
-		temp(null) = mov Address (t126(null) + 0)
-		t127(null) = mov i(null)
-		t127(null) = t127(null) SHL 3
-		t128(null) = mov b(null)
-		t128(null) = t128(null) ADD t127(null)
-		t129(null) = mov j(null)
-		t129(null) = t129(null) SHL 3
-		t130(null) = mov b(null)
-		t130(null) = t130(null) ADD t129(null)
-		t131(null) = mov Address (t130(null) + 0)
-		Address (t128(null) + 0) = mov t131(null)
-		t132(null) = mov j(null)
-		t132(null) = t132(null) SHL 3
-		t133(null) = mov b(null)
-		t133(null) = t133(null) ADD t132(null)
-		Address (t133(null) + 0) = mov temp(null)
-		jump win_14_if_exit
-	win_13_if_false
-		jump win_14_if_exit
-	win_14_if_exit
-		jump win_15_loop_increment
-	win_15_loop_increment
-		INC j(null)
-		jump win_10_loop_condition
-	win_16_loop_exit
-		jump win_17_loop_increment
-	win_17_loop_increment
-		INC i(null)
-		jump win_8_loop_condition
-	win_18_loop_exit
-		i(null) = mov 0
-		jump win_19_loop_condition
-	win_19_loop_condition
-		cmp i(null) Address (now(@now) + 0)
-		set LE t134(null)
-		cmp t134(null) 1
-		CJump EQ win_20_loop_body
-		jump win_25_loop_exit
-	win_20_loop_body
-		t135(null) = mov i(null)
-		t135(null) = t135(null) SHL 3
-		t136(null) = mov b(null)
-		t136(null) = t136(null) ADD t135(null)
-		t137(null) = mov i(null)
-		t137(null) = t137(null) ADD 1
-		cmp Address (t136(null) + 0) t137(null)
-		set NEQ t138(null)
-		cmp t138(null) 1
-		CJump EQ win_21_if_true
-		jump win_22_if_false
-	win_21_if_true
-		ret 0
-		jump win_26_block_exit
-	win_22_if_false
-		jump win_23_if_exit
-	win_23_if_exit
-		jump win_24_loop_increment
-	win_24_loop_increment
-		INC i(null)
-		jump win_19_loop_condition
-	win_25_loop_exit
-		ret 1
-		jump win_26_block_exit
-	win_26_block_exit
+		jump main_1_block_exit
+	main_1_block_exit
 }

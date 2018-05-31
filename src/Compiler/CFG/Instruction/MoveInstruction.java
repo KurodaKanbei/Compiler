@@ -1,6 +1,7 @@
 package Compiler.CFG.Instruction;
 
 import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.MemoryLabel;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
@@ -36,6 +37,19 @@ public class MoveInstruction extends Instruction {
         if (source instanceof AddressOperand) {
             useSet.add(((AddressOperand) source).getBase());
         }
+    }
+
+    @Override
+    public boolean hasGlobalImpact() {
+        if (target instanceof AddressOperand || target instanceof MemoryLabel
+                || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {
+            return true;
+        }
+        if (source instanceof AddressOperand || source instanceof MemoryLabel
+                || source instanceof VirtualRegister && ((VirtualRegister) source).isGlobal()) {
+            return true;
+        }
+        return false;
     }
 
     public Operand getTarget() {

@@ -2,6 +2,7 @@ package Compiler.CFG;
 
 import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.FunctionType;
+import Compiler.AST.Type.IntType;
 import Compiler.CFG.Instruction.*;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.Translator;
@@ -46,6 +47,7 @@ public class FunctionIR {
                 registerIntegerMap.put(parameterList.get(i), 4 - i);
             }
         }
+        int t = instructionList.size();
         functionType.getBlockStatement().generateInstruction(instructionList);
         if (instructionList.isEmpty()) {
             instructionList.add(new JumpInstruction(exitBlock));
@@ -55,6 +57,9 @@ public class FunctionIR {
         }
         instructionList.add(exitBlock);
 
+        if (canBeResolved(instructionList)) {
+            System.out.println("Surprise Mother Fucker!");
+        }
         for (int i = 0, j; i < instructionList.size(); i = j) {
             LabelInstruction labelInstruction = (LabelInstruction) instructionList.get(i);
             Block block = new Block(this, labelInstruction, labelInstruction.getName(), blockList.size());
@@ -67,6 +72,16 @@ public class FunctionIR {
             labelInstruction.setBlock(block);
             blockList.add(block);
         }
+    }
+
+    private boolean canBeResolved(List<Instruction> instructionList) {
+        int n = instructionList.size();
+        if (parameterList.size() != 1) return false;
+        if (functionType.getReturnType() != IntType.getInstance()) return false;
+        for (Instruction instruction : instructionList) {
+            if (instruction.hasGlobalImpact()) return false;
+        }
+        return true;
     }
 
     public FunctionIR(FunctionType functionType) {

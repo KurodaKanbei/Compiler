@@ -1,9 +1,6 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.AddressOperand;
-import Compiler.CFG.Operand.ImmediateOperand;
-import Compiler.CFG.Operand.Operand;
-import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.CFG.Operand.*;
 import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
@@ -96,6 +93,19 @@ public class BinaryInstruction extends Instruction {
         if (source instanceof AddressOperand) {
             useSet.add(((AddressOperand) source).getBase());
         }
+    }
+
+    @Override
+    public boolean hasGlobalImpact() {
+        if (target instanceof AddressOperand || target instanceof MemoryLabel
+                || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {
+            return true;
+        }
+        if (source instanceof AddressOperand || source instanceof MemoryLabel
+                || source instanceof VirtualRegister && ((VirtualRegister) source).isGlobal()) {
+            return true;
+        }
+        return false;
     }
 
     @Override

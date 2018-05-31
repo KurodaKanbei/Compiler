@@ -36,6 +36,11 @@ public class MallocInstruction extends Instruction {
     }
 
     @Override
+    public boolean hasGlobalImpact() {
+        return true;
+    }
+
+    @Override
     public void init() {
         target.init();
         mallocSize.init();

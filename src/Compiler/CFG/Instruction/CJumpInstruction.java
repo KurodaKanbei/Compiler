@@ -21,6 +21,11 @@ public class CJumpInstruction extends Instruction {
     }
 
     @Override
+    public boolean hasGlobalImpact() {
+        return false;
+    }
+
+    @Override
     public void init() {
 
     }

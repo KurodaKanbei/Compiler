@@ -3,6 +3,7 @@ package Compiler.CFG.Instruction;
 import Compiler.AST.Type.FunctionType;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.MemoryLabel;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
@@ -43,6 +44,15 @@ public class FunctionCallInstruction extends Instruction {
 
     public void convertFunctionType(FunctionType functionType) {
         this.functionType = functionType;
+    }
+
+    @Override
+    public boolean hasGlobalImpact() {
+        for (Operand operand : operandList) {
+            if (operand instanceof MemoryLabel || operand instanceof AddressOperand) return true;
+            if (operand instanceof VirtualRegister && ((VirtualRegister) operand).isGlobal()) return true;
+        }
+        return false;
     }
 
     @Override

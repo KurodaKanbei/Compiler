@@ -1,9 +1,6 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.AddressOperand;
-import Compiler.CFG.Operand.ImmediateOperand;
-import Compiler.CFG.Operand.Operand;
-import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.CFG.Operand.*;
 import Compiler.Trans.Translator;
 
 public class UnaryInstruction extends Instruction {
@@ -35,6 +32,15 @@ public class UnaryInstruction extends Instruction {
         if (target instanceof AddressOperand) {
             useSet.add(((AddressOperand) target).getBase());
         }
+    }
+
+    @Override
+    public boolean hasGlobalImpact() {
+        if (target instanceof AddressOperand || target instanceof MemoryLabel
+                || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
