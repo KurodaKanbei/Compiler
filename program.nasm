@@ -1,5 +1,5 @@
 global __global_init
-global h
+global func
 global main
 global print_Int
 global println_Int
@@ -25,142 +25,201 @@ SECTION .text
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
-__global_init_0_block_enter:
 __global_init_1_block_exit:
      pop                  rbp
      ret
-h:
+func:
     push                  rbp
      mov                  rbp,                  rsp
-    push                  r12
     push                  rbx
-h_0_block_enter:
-     mov                  rsi,                  rdi
+func_0_block_enter:
+     mov                  r11,                  rsi
+     mov                  r10,                  rdx
+     mov                  rsi,                  rcx
+     mov                  rbx,                   r8
+     mov                   r8,                   r9
+     cmp                  rdi,                  r11
+     mov                   r9,                    0
+    sete                  r9b
+     cmp                   r9,                    1
+     jne func_2_logical_false
+func_1_logical_true:
+     cmp                  r10,                    0
+     mov                   r9,                    0
+    setg                  r9b
+     jmp  func_3_logical_exit
+func_2_logical_false:
+     mov                   r9,                    0
+func_3_logical_exit:
+     cmp                   r9,                    1
+      je  func_4_logical_true
+     jmp func_5_logical_false
+func_4_logical_true:
+     mov                   r9,                    1
+     jmp func_12_logical_exit
+func_5_logical_false:
+     cmp                  rsi,                  rbx
+     mov                   r9,                    0
+    sete                  r9b
+     cmp                   r9,                    1
+     jne func_7_logical_false
+func_6_logical_true:
+     cmp                   r8,                    0
+     mov                   r9,                    0
+    setg                  r9b
+     jmp  func_8_logical_exit
+func_7_logical_false:
+     mov                   r9,                    0
+func_8_logical_exit:
+     cmp                   r9,                    1
+     jne func_10_logical_false
+func_9_logical_true:
+     cmp     qword [rbp + 16],                    0
+     mov                   r9,                    0
+    setg                  r9b
+     jmp func_12_logical_exit
+func_10_logical_false:
+     mov                   r9,                    0
+func_12_logical_exit:
+     cmp                   r9,                    1
+      je func_13_logical_true
+     jmp func_14_logical_false
+func_13_logical_true:
+     mov                  rdi,                    1
+     jmp func_15_logical_exit
+func_14_logical_false:
+     cmp                  rdi,     qword [rbp + 16]
+     mov                  rdi,                    0
+    sete                  dil
+func_15_logical_exit:
+     cmp                  rdi,                    1
+      je func_16_logical_true
+     jmp func_17_logical_false
+func_16_logical_true:
+     mov                  rsi,                    1
+     jmp func_21_logical_exit
+func_17_logical_false:
      cmp                  rsi,                    0
-      je     h_1_logical_true
-     jmp    h_2_logical_false
-h_1_logical_true:
-     mov                  rbx,                    1
-     jmp     h_3_logical_exit
-h_2_logical_false:
+     mov                  rsi,                    0
+    setg                  sil
      cmp                  rsi,                    1
-     mov                  rbx,                    0
-    sete                   bl
-h_3_logical_exit:
-     cmp                  rbx,                    1
-      je          h_4_if_true
-     jmp         h_5_if_false
-h_4_if_true:
+     jne func_19_logical_false
+func_18_logical_true:
+     cmp                   r8,                    0
+     mov                  rsi,                    0
+    setg                  sil
+     jmp func_21_logical_exit
+func_19_logical_false:
+     mov                  rsi,                    0
+func_21_logical_exit:
+     cmp                  rsi,                    1
+      je      func_22_if_true
+     jmp     func_23_if_false
+func_22_if_true:
      mov                  rax,                    1
-     jmp      h_11_block_exit
-h_5_if_false:
-h_6_if_exit:
-     mov                  rbx,                    0
-     mov                  r12,                    0
-h_7_loop_condition:
-     cmp                  r12,                  rsi
-      jl        h_8_loop_body
-     jmp       h_10_loop_exit
-h_8_loop_body:
-     mov                  rdi,                  r12
-    push                  rsi
-     sub                  rsp,                    8
-    call                    h
-     add                  rsp,                    8
-     pop                  rsi
-     mov                   r8,                  rax
-     mov                  rdi,                  rsi
-     sub                  rdi,                    1
-     sub                  rdi,                  r12
-    push                   r8
-    push                  rsi
-    call                    h
-     pop                  rsi
-     pop                   r8
-     mov                  rdi,                  rax
-    imul                   r8,                  rdi
-     add                  rbx,                   r8
-h_9_loop_increment:
-     add                  r12,                    1
-     jmp   h_7_loop_condition
-h_10_loop_exit:
-     mov                  rax,                  rbx
-h_11_block_exit:
+     jmp   func_25_block_exit
+func_23_if_false:
+     mov                  rax,                    0
+func_25_block_exit:
      pop                  rbx
-     pop                  r12
      pop                  rbp
      ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
-    push                  r12
     push                  rbx
 main_0_block_enter:
-     mov                  rsi,                   17
+     mov                   r8,                    1
+     mov                  rbx,                    2
+     mov                  r11,                    3
+     mov                  rdi,                    4
+     mov                  r10,                    5
+     mov                  rsi,                    6
+     mov                   r9,                    7
 main_2_inline_enter:
-     cmp                  rsi,                    0
-      je  main_3_logical_true
-     jmp main_4_logical_false
-main_3_logical_true:
-     mov                  rbx,                    1
-     jmp  main_5_logical_exit
-main_4_logical_false:
-     cmp                  rsi,                    1
+     cmp                   r8,                  rbx
      mov                  rbx,                    0
     sete                   bl
-main_5_logical_exit:
      cmp                  rbx,                    1
-      je       main_6_if_true
-     jmp      main_7_if_false
-main_6_if_true:
+     jne main_4_logical_false
+main_3_logical_true:
+     cmp                  r11,                    0
+     mov                  r11,                    0
+    setg                 r11b
+     jmp  main_5_logical_exit
+main_4_logical_false:
+     mov                  r11,                    0
+main_5_logical_exit:
+     cmp                  r11,                    1
+      je  main_6_logical_true
+     jmp main_7_logical_false
+main_6_logical_true:
+     mov                  r10,                    1
+     jmp main_14_logical_exit
+main_7_logical_false:
+     cmp                  rdi,                  r10
+     mov                  r10,                    0
+    sete                 r10b
+     cmp                  r10,                    1
+     jne main_9_logical_false
+main_8_logical_true:
+     cmp                  rsi,                    0
+     mov                  r10,                    0
+    setg                 r10b
+     jmp main_10_logical_exit
+main_9_logical_false:
+     mov                  r10,                    0
+main_10_logical_exit:
+     cmp                  r10,                    1
+     jne main_12_logical_false
+main_11_logical_true:
+     cmp                   r9,                    0
+     mov                  r10,                    0
+    setg                 r10b
+     jmp main_14_logical_exit
+main_12_logical_false:
+     mov                  r10,                    0
+main_14_logical_exit:
+     cmp                  r10,                    1
+      je main_15_logical_true
+     jmp main_16_logical_false
+main_15_logical_true:
+     mov                   r8,                    1
+     jmp main_17_logical_exit
+main_16_logical_false:
+     cmp                   r8,                   r9
+     mov                   r8,                    0
+    sete                  r8b
+main_17_logical_exit:
+     cmp                   r8,                    1
+      je main_18_logical_true
+     jmp main_19_logical_false
+main_18_logical_true:
      mov                  rsi,                    1
-     jmp  main_13_inline_exit
-main_7_if_false:
-main_8_if_exit:
-     mov                  rbx,                    0
-     mov                  r12,                    0
-main_9_loop_condition:
-     cmp                  r12,                  rsi
-      jl    main_10_loop_body
-     jmp    main_12_loop_exit
-main_10_loop_body:
-     mov                  rdi,                  r12
-    push                  rsi
-     sub                  rsp,                    8
-    call                    h
-     add                  rsp,                    8
-     pop                  rsi
-     mov                   r8,                  rax
-     mov                  rdi,                  rsi
-     sub                  rdi,                    1
-     sub                  rdi,                  r12
-    push                  rsi
-    push                   r8
-    call                    h
-     pop                   r8
-     pop                  rsi
-     mov                  rdi,                  rax
-    imul                   r8,                  rdi
-     add                  rbx,                   r8
-main_11_loop_increment:
-     add                  r12,                    1
-     jmp main_9_loop_condition
-main_12_loop_exit:
-     mov                  rsi,                  rbx
-main_13_inline_exit:
-     mov                  rdi,                  rsi
-    call          println_Int
-     mov                  rax,                    0
+     jmp main_23_logical_exit
+main_19_logical_false:
+     cmp                  rdi,                    0
+     mov                  rdi,                    0
+    setg                  dil
+     cmp                  rdi,                    1
+     jne main_21_logical_false
+main_20_logical_true:
+     cmp                  rsi,                    0
+     mov                  rsi,                    0
+    setg                  sil
+     jmp main_23_logical_exit
+main_21_logical_false:
+     mov                  rsi,                    0
+main_23_logical_exit:
+     cmp                  rsi,                    1
+      je    main_1_block_exit
 main_1_block_exit:
      pop                  rbx
-     pop                  r12
      pop                  rbp
      ret
 SECTION .data
 SECTION .bss
-@n:
-    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0

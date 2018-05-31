@@ -25,6 +25,8 @@ public class Optimize {
             LivenessAnalyst.analysis(functionIR);
             NaiveRegisterAllocator.naiveAllocate(LivenessAnalyst.getEdge(), LivenessAnalyst.getCount(), functionIR);
             RedundantBlockDictator.redundantBlockRemove(functionIR);
+            StupidMoveKiller.uselessMoveRemove(functionIR);
+            BlocksTyrant.emptyBlockRemove(functionIR);
         });
     }
 }

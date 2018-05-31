@@ -3,79 +3,123 @@ __global_init {
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
-h a(null) {
-	h_0_block_enter
-		a(null) = mov t0(rdi)
-		cmp a(null) 0
-		set EQ t2(null)
-		cmp t2(null) 1
-		CJump EQ h_1_logical_true
-		jump h_2_logical_false
-	h_1_logical_true
-		t1(null) = mov 1
-		jump h_3_logical_exit
-	h_2_logical_false
-		cmp a(null) 1
-		set EQ t3(null)
-		t1(null) = mov t3(null)
-		jump h_3_logical_exit
-	h_3_logical_exit
-		cmp t1(null) 1
-		CJump EQ h_4_if_true
-		jump h_5_if_false
-	h_4_if_true
+func a(null) b(null) c(null) d(null) e(null) f(null) g(null) {
+	func_0_block_enter
+		a(null) = mov t8(rdi)
+		b(null) = mov t9(rsi)
+		c(null) = mov t10(rdx)
+		d(null) = mov t11(rcx)
+		e(null) = mov t12(r8)
+		f(null) = mov t13(r9)
+		cmp a(null) b(null)
+		set EQ t18(null)
+		cmp t18(null) 1
+		CJump NEQ func_2_logical_false
+		jump func_1_logical_true
+	func_1_logical_true
+		cmp c(null) 0
+		set GR t19(null)
+		t17(null) = mov t19(null)
+		jump func_3_logical_exit
+	func_2_logical_false
+		t17(null) = mov 0
+		jump func_3_logical_exit
+	func_3_logical_exit
+		cmp t17(null) 1
+		CJump EQ func_4_logical_true
+		jump func_5_logical_false
+	func_4_logical_true
+		t16(null) = mov 1
+		jump func_12_logical_exit
+	func_5_logical_false
+		cmp d(null) e(null)
+		set EQ t22(null)
+		cmp t22(null) 1
+		CJump NEQ func_7_logical_false
+		jump func_6_logical_true
+	func_6_logical_true
+		cmp f(null) 0
+		set GR t23(null)
+		t21(null) = mov t23(null)
+		jump func_8_logical_exit
+	func_7_logical_false
+		t21(null) = mov 0
+		jump func_8_logical_exit
+	func_8_logical_exit
+		cmp t21(null) 1
+		CJump NEQ func_10_logical_false
+		jump func_9_logical_true
+	func_9_logical_true
+		cmp g(null) 0
+		set GR t24(null)
+		t20(null) = mov t24(null)
+		jump func_11_logical_exit
+	func_10_logical_false
+		t20(null) = mov 0
+		jump func_11_logical_exit
+	func_11_logical_exit
+		t16(null) = mov t20(null)
+		jump func_12_logical_exit
+	func_12_logical_exit
+		cmp t16(null) 1
+		CJump EQ func_13_logical_true
+		jump func_14_logical_false
+	func_13_logical_true
+		t15(null) = mov 1
+		jump func_15_logical_exit
+	func_14_logical_false
+		cmp a(null) g(null)
+		set EQ t25(null)
+		t15(null) = mov t25(null)
+		jump func_15_logical_exit
+	func_15_logical_exit
+		cmp t15(null) 1
+		CJump EQ func_16_logical_true
+		jump func_17_logical_false
+	func_16_logical_true
+		t14(null) = mov 1
+		jump func_21_logical_exit
+	func_17_logical_false
+		cmp d(null) 0
+		set GR t27(null)
+		cmp t27(null) 1
+		CJump NEQ func_19_logical_false
+		jump func_18_logical_true
+	func_18_logical_true
+		cmp f(null) 0
+		set GR t28(null)
+		t26(null) = mov t28(null)
+		jump func_20_logical_exit
+	func_19_logical_false
+		t26(null) = mov 0
+		jump func_20_logical_exit
+	func_20_logical_exit
+		t14(null) = mov t26(null)
+		jump func_21_logical_exit
+	func_21_logical_exit
+		cmp t14(null) 1
+		CJump EQ func_22_if_true
+		jump func_23_if_false
+	func_22_if_true
 		ret 1
-		jump h_11_block_exit
-	h_5_if_false
-		jump h_6_if_exit
-	h_6_if_exit
-		sum(null) = mov 0
-		i(null) = mov 0
-		jump h_7_loop_condition
-	h_7_loop_condition
-		cmp i(null) a(null)
-		set LE t4(null)
-		cmp t4(null) 1
-		CJump EQ h_8_loop_body
-		jump h_10_loop_exit
-	h_8_loop_body
-		t6(rdi) = mov i(null)
-		call h return value = t5(rax)
-		t7(null) = mov t5(rax)
-		t8(null) = mov a(null)
-		t8(null) = t8(null) SUB 1
-		t9(null) = mov t8(null)
-		t9(null) = t9(null) SUB i(null)
-		t11(rdi) = mov t9(null)
-		call h return value = t10(rax)
-		t12(null) = mov t10(rax)
-		t13(null) = mov t7(null)
-		t13(null) = t13(null) MUL t12(null)
-		t14(null) = mov sum(null)
-		t14(null) = t14(null) ADD t13(null)
-		sum(null) = mov t14(null)
-		jump h_9_loop_increment
-	h_9_loop_increment
-		t15(null) = mov i(null)
-		INC i(null)
-		jump h_7_loop_condition
-	h_10_loop_exit
-		ret sum(null)
-		jump h_11_block_exit
-	h_11_block_exit
+		jump func_25_block_exit
+	func_23_if_false
+		ret 0
+		jump func_25_block_exit
+	func_24_if_exit
+		jump func_25_block_exit
+	func_25_block_exit
 }
 main {
 	main_0_block_enter
-		a(null) = mov 17
-		t17(rdi) = mov a(null)
-		call h return value = t16(rax)
-		t18(null) = mov t16(rax)
-		t20(rdi) = mov t18(null)
-		call toString return value = t19(rax)
-		t21(null) = mov t19(rax)
-		t22(rdi) = mov t21(null)
-		call println return value = null
-		ret 0
+		t1(rdi) = mov 1
+		t2(rsi) = mov 2
+		t3(rdx) = mov 3
+		t4(rcx) = mov 4
+		t5(r8) = mov 5
+		t6(r9) = mov 6
+		call func 7 return value = t0(rax)
+		t7(null) = mov t0(rax)
 		jump main_1_block_exit
 	main_1_block_exit
 }

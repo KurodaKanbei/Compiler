@@ -1,120 +1,187 @@
 __global_init {
-	__global_init_0_block_enter
-		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
-h a(rsi) {
-	h_0_block_enter
-		a(rsi) = mov t0(rdi)
-		cmp a(rsi) 0
-		CJump EQ h_1_logical_true
-		jump h_2_logical_false
-	h_1_logical_true
-		t1(rbx) = mov 1
-		jump h_3_logical_exit
-	h_2_logical_false
-		cmp a(rsi) 1
-		set EQ t3(rbx)
-		t1(rbx) = mov t3(rbx)
-		jump h_3_logical_exit
-	h_3_logical_exit
-		cmp t1(rbx) 1
-		CJump EQ h_4_if_true
-		jump h_5_if_false
-	h_4_if_true
+func a(rdi) b(r11) c(r10) d(rsi) e(rbx) f(r8) g(null) {
+	func_0_block_enter
+		b(r11) = mov t9(rsi)
+		c(r10) = mov t10(rdx)
+		d(rsi) = mov t11(rcx)
+		e(rbx) = mov t12(r8)
+		f(r8) = mov t13(r9)
+		cmp a(rdi) b(r11)
+		set EQ t18(r9)
+		cmp t18(r9) 1
+		CJump NEQ func_2_logical_false
+		jump func_1_logical_true
+	func_1_logical_true
+		cmp c(r10) 0
+		set GR t19(r9)
+		jump func_3_logical_exit
+	func_2_logical_false
+		t17(r9) = mov 0
+		jump func_3_logical_exit
+	func_3_logical_exit
+		cmp t17(r9) 1
+		CJump EQ func_4_logical_true
+		jump func_5_logical_false
+	func_4_logical_true
+		t16(r9) = mov 1
+		jump func_12_logical_exit
+	func_5_logical_false
+		cmp d(rsi) e(rbx)
+		set EQ t22(r9)
+		cmp t22(r9) 1
+		CJump NEQ func_7_logical_false
+		jump func_6_logical_true
+	func_6_logical_true
+		cmp f(r8) 0
+		set GR t23(r9)
+		jump func_8_logical_exit
+	func_7_logical_false
+		t21(r9) = mov 0
+		jump func_8_logical_exit
+	func_8_logical_exit
+		cmp t21(r9) 1
+		CJump NEQ func_10_logical_false
+		jump func_9_logical_true
+	func_9_logical_true
+		cmp g(null) 0
+		set GR t24(r9)
+		jump func_12_logical_exit
+	func_10_logical_false
+		t20(r9) = mov 0
+		jump func_12_logical_exit
+	func_12_logical_exit
+		cmp t16(r9) 1
+		CJump EQ func_13_logical_true
+		jump func_14_logical_false
+	func_13_logical_true
+		t15(rdi) = mov 1
+		jump func_15_logical_exit
+	func_14_logical_false
+		cmp a(rdi) g(null)
+		set EQ t25(rdi)
+		jump func_15_logical_exit
+	func_15_logical_exit
+		cmp t15(rdi) 1
+		CJump EQ func_16_logical_true
+		jump func_17_logical_false
+	func_16_logical_true
+		t14(rsi) = mov 1
+		jump func_21_logical_exit
+	func_17_logical_false
+		cmp d(rsi) 0
+		set GR t27(rsi)
+		cmp t27(rsi) 1
+		CJump NEQ func_19_logical_false
+		jump func_18_logical_true
+	func_18_logical_true
+		cmp f(r8) 0
+		set GR t28(rsi)
+		jump func_21_logical_exit
+	func_19_logical_false
+		t26(rsi) = mov 0
+		jump func_21_logical_exit
+	func_21_logical_exit
+		cmp t14(rsi) 1
+		CJump EQ func_22_if_true
+		jump func_23_if_false
+	func_22_if_true
 		ret 1
-		jump h_11_block_exit
-	h_5_if_false
-		jump h_6_if_exit
-	h_6_if_exit
-		sum(rbx) = mov 0
-		i(r12) = mov 0
-		jump h_7_loop_condition
-	h_7_loop_condition
-		cmp i(r12) a(rsi)
-		CJump LE h_8_loop_body
-		jump h_10_loop_exit
-	h_8_loop_body
-		t6(rdi) = mov i(r12)
-		call h return value = t5(rax)
-		t7(r8) = mov t5(rax)
-		t8(rdi) = mov a(rsi)
-		t8(rdi) = t8(rdi) SUB 1
-		t9(rdi) = mov t8(rdi)
-		t9(rdi) = t9(rdi) SUB i(r12)
-		t11(rdi) = mov t9(rdi)
-		call h return value = t10(rax)
-		t12(rdi) = mov t10(rax)
-		t13(r8) = mov t7(r8)
-		t13(r8) = t13(r8) MUL t12(rdi)
-		sum(rbx) = sum(rbx) ADD t13(r8)
-		jump h_9_loop_increment
-	h_9_loop_increment
-		INC i(r12)
-		jump h_7_loop_condition
-	h_10_loop_exit
-		ret sum(rbx)
-		jump h_11_block_exit
-	h_11_block_exit
+		jump func_25_block_exit
+	func_23_if_false
+		ret 0
+		jump func_25_block_exit
+	func_25_block_exit
 }
 main {
 	main_0_block_enter
-		a(rsi) = mov 17
+		a(r8) = mov 1
+		b(rbx) = mov 2
+		c(r11) = mov 3
+		d(rdi) = mov 4
+		e(r10) = mov 5
+		f(rsi) = mov 6
+		g(r9) = mov 7
 		jump main_2_inline_enter
 	main_2_inline_enter
-		cmp a(rsi) 0
-		CJump EQ main_3_logical_true
-		jump main_4_logical_false
+		cmp a(r8) b(rbx)
+		set EQ t33(rbx)
+		cmp t33(rbx) 1
+		CJump NEQ main_4_logical_false
+		jump main_3_logical_true
 	main_3_logical_true
-		t23(rbx) = mov 1
+		cmp c(r11) 0
+		set GR t34(r11)
 		jump main_5_logical_exit
 	main_4_logical_false
-		cmp a(rsi) 1
-		set EQ t25(rbx)
-		t23(rbx) = mov t25(rbx)
+		t32(r11) = mov 0
 		jump main_5_logical_exit
 	main_5_logical_exit
-		cmp t23(rbx) 1
-		CJump EQ main_6_if_true
-		jump main_7_if_false
-	main_6_if_true
-		t18(rsi) = mov 1
-		jump main_13_inline_exit
-	main_7_if_false
-		jump main_8_if_exit
-	main_8_if_exit
-		sum(rbx) = mov 0
-		i(r12) = mov 0
-		jump main_9_loop_condition
-	main_9_loop_condition
-		cmp i(r12) a(rsi)
-		CJump LE main_10_loop_body
-		jump main_12_loop_exit
-	main_10_loop_body
-		t28(rdi) = mov i(r12)
-		call h return value = t27(rax)
-		t29(r8) = mov t27(rax)
-		t30(rdi) = mov a(rsi)
-		t30(rdi) = t30(rdi) SUB 1
-		t31(rdi) = mov t30(rdi)
-		t31(rdi) = t31(rdi) SUB i(r12)
-		t33(rdi) = mov t31(rdi)
-		call h return value = t32(rax)
-		t34(rdi) = mov t32(rax)
-		t35(r8) = mov t29(r8)
-		t35(r8) = t35(r8) MUL t34(rdi)
-		sum(rbx) = sum(rbx) ADD t35(r8)
-		jump main_11_loop_increment
-	main_11_loop_increment
-		INC i(r12)
-		jump main_9_loop_condition
-	main_12_loop_exit
-		t18(rsi) = mov sum(rbx)
-		jump main_13_inline_exit
-	main_13_inline_exit
-		t20(rdi) = mov t18(rsi)
-		call println_Int return value = t19(rax)
-		ret 0
+		cmp t32(r11) 1
+		CJump EQ main_6_logical_true
+		jump main_7_logical_false
+	main_6_logical_true
+		t31(r10) = mov 1
+		jump main_14_logical_exit
+	main_7_logical_false
+		cmp d(rdi) e(r10)
+		set EQ t37(r10)
+		cmp t37(r10) 1
+		CJump NEQ main_9_logical_false
+		jump main_8_logical_true
+	main_8_logical_true
+		cmp f(rsi) 0
+		set GR t38(r10)
+		jump main_10_logical_exit
+	main_9_logical_false
+		t36(r10) = mov 0
+		jump main_10_logical_exit
+	main_10_logical_exit
+		cmp t36(r10) 1
+		CJump NEQ main_12_logical_false
+		jump main_11_logical_true
+	main_11_logical_true
+		cmp g(r9) 0
+		set GR t39(r10)
+		jump main_14_logical_exit
+	main_12_logical_false
+		t35(r10) = mov 0
+		jump main_14_logical_exit
+	main_14_logical_exit
+		cmp t31(r10) 1
+		CJump EQ main_15_logical_true
+		jump main_16_logical_false
+	main_15_logical_true
+		t30(r8) = mov 1
+		jump main_17_logical_exit
+	main_16_logical_false
+		cmp a(r8) g(r9)
+		set EQ t40(r8)
+		jump main_17_logical_exit
+	main_17_logical_exit
+		cmp t30(r8) 1
+		CJump EQ main_18_logical_true
+		jump main_19_logical_false
+	main_18_logical_true
+		t29(rsi) = mov 1
+		jump main_23_logical_exit
+	main_19_logical_false
+		cmp d(rdi) 0
+		set GR t42(rdi)
+		cmp t42(rdi) 1
+		CJump NEQ main_21_logical_false
+		jump main_20_logical_true
+	main_20_logical_true
+		cmp f(rsi) 0
+		set GR t43(rsi)
+		jump main_23_logical_exit
+	main_21_logical_false
+		t41(rsi) = mov 0
+		jump main_23_logical_exit
+	main_23_logical_exit
+		cmp t29(rsi) 1
+		CJump EQ main_1_block_exit
 		jump main_1_block_exit
 	main_1_block_exit
 }

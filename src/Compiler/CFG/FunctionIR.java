@@ -67,7 +67,25 @@ public class FunctionIR {
         }
         instructionList.add(exitBlock);
 
-        /*beMemorized = canBeResolved(instructionList);
+        //convertToMemorized(t, instructionList);
+
+
+        for (int i = 0, j; i < instructionList.size(); i = j) {
+            LabelInstruction labelInstruction = (LabelInstruction) instructionList.get(i);
+            Block block = new Block(this, labelInstruction, labelInstruction.getName(), blockList.size());
+            for (j = i + 1; j < instructionList.size(); j++) {
+                if (instructionList.get(j) instanceof LabelInstruction) {
+                    break;
+                }
+                block.addInstruction(instructionList.get(j));
+            }
+            labelInstruction.setBlock(block);
+            blockList.add(block);
+        }
+    }
+
+    private void convertToMemorized(int t, List<Instruction> instructionList) {
+        beMemorized = canBeResolved(instructionList);
         if (beMemorized) {
             functionType.setIntact(false);
             reservedIntegerList = new ArrayList<>();
@@ -92,19 +110,6 @@ public class FunctionIR {
             for (int i = 0; i < returnInstructionList.size(); i++) {
                 instructionList.add(t++, returnInstructionList.get(i));
             }
-        }*/
-
-        for (int i = 0, j; i < instructionList.size(); i = j) {
-            LabelInstruction labelInstruction = (LabelInstruction) instructionList.get(i);
-            Block block = new Block(this, labelInstruction, labelInstruction.getName(), blockList.size());
-            for (j = i + 1; j < instructionList.size(); j++) {
-                if (instructionList.get(j) instanceof LabelInstruction) {
-                    break;
-                }
-                block.addInstruction(instructionList.get(j));
-            }
-            labelInstruction.setBlock(block);
-            blockList.add(block);
         }
     }
 
@@ -321,5 +326,19 @@ public class FunctionIR {
         if (registerStringMap.containsKey(virtualRegister)) {
             registerManager.getUsedRegister().add(registerStringMap.get(virtualRegister));
         }
+    }
+
+    public boolean onlyContainsNaiveFunctionCall() {
+        for (Block block : blockList) {
+            for (Instruction instruction : block.getInstructionList()) {
+                if (instruction instanceof FunctionCallInstruction) {
+                    FunctionType functionType = ((FunctionCallInstruction) instruction).getFunctionType();
+                    if (functionType == this.functionType || functionType.isBuiltin()) continue;
+                    if (functionType.getOriginName() == null) continue;
+                    if (!functionType.getFunctionIR().isLeaf()) return false;
+                }
+            }
+        }
+        return true;
     }
 }

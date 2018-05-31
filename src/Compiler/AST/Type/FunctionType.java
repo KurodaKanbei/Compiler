@@ -1,8 +1,11 @@
 package Compiler.AST.Type;
 
 import Compiler.AST.Statement.BlockStatement;
+import Compiler.AST.Statement.Statement;
 import Compiler.AST.Symbol.Scope;
 import Compiler.AST.Symbol.Symbol;
+import Compiler.CFG.FunctionIR;
+import Compiler.CFG.Instruction.FunctionCallInstruction;
 import Compiler.CFG.Instruction.LabelInstruction;
 import Compiler.Utility.Utility;
 
@@ -18,6 +21,7 @@ public class FunctionType extends Type implements Scope {
     private boolean builtin;
     private LabelInstruction enterLabel, exitLabel;
     private boolean intact;
+    private FunctionIR functionIR;
 
     public FunctionType(String name, Type returnType, List<Symbol> parameterList) {
         this.name = name;
@@ -27,6 +31,15 @@ public class FunctionType extends Type implements Scope {
         this.classScope = null;
         this.builtin = false;
         this.intact = true;
+        this.functionIR = null;
+    }
+
+    public FunctionIR getFunctionIR() {
+        return functionIR;
+    }
+
+    public void setFunctionIR(FunctionIR functionIR) {
+        this.functionIR = functionIR;
     }
 
     public boolean isIntact() {
