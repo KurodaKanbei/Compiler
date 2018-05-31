@@ -13,6 +13,10 @@ public class JumpInstruction extends Instruction {
         return target;
     }
 
+    public void setTarget(LabelInstruction target) {
+        this.target = target;
+    }
+
     @Override
     public boolean hasGlobalImpact() {
         return false;

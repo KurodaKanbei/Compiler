@@ -13,10 +13,13 @@ import java.util.*;
 public class FunctionIR {
     private FunctionType functionType;
     private List<VirtualRegister> parameterList;
+    private List<VirtualRegister> reservedBooleanList;
+    private List<VirtualRegister> reservedIntegerList;
+
     private List<Block> blockList;
     private LabelInstruction enterBlock, exitBlock;
     private RegisterManager registerManager;
-
+    private Boolean beMemorized;
     private List<String> calleeRegisterList;
     private Map<VirtualRegister, String> registerStringMap;
     private Map<VirtualRegister, Integer> registerIntegerMap;
@@ -57,9 +60,20 @@ public class FunctionIR {
         }
         instructionList.add(exitBlock);
 
-        if (canBeResolved(instructionList)) {
-            System.out.println("Surprise Mother Fucker!");
-        }
+        beMemorized = canBeResolved(instructionList);
+        /*if (beMemorized) {
+            for (int i = 0; i < 20; i++) {
+                VirtualRegister virtualRegister = new VirtualRegister(functionType.getIRName() + "_boolean_" + i);
+                virtualRegister.setGlobal(true);
+                reservedBooleanList.add(virtualRegister);
+            }
+            for (int i = 0; i < 20; i++) {
+                VirtualRegister virtualRegister = new VirtualRegister(functionType.getIRName() + "_integer_" + i);
+                virtualRegister.setGlobal(true);
+                reservedBooleanList.add(virtualRegister);
+            }
+        }*/
+
         for (int i = 0, j; i < instructionList.size(); i = j) {
             LabelInstruction labelInstruction = (LabelInstruction) instructionList.get(i);
             Block block = new Block(this, labelInstruction, labelInstruction.getName(), blockList.size());
@@ -111,7 +125,7 @@ public class FunctionIR {
         if (functionType.getIRName().equals("main")) {
             str.append(Translator.getInstruction("call", "__global_init"));
         }
-        //System.out.println(registerManager.getRegisterInMemory());
+
         if (registerManager.getRegisterInMemory() > 0) {
             str.append(Translator.getInstruction("sub", "rsp", String.valueOf(registerManager.getRegisterInMemory() << 3)));
         }

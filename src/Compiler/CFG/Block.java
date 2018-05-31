@@ -82,6 +82,23 @@ public class Block {
         return hasJump;
     }
 
+    public Block getTarget() {
+        Instruction instruction = instructionList.get(instructionList.size() - 1);
+        if (instruction instanceof JumpInstruction) {
+            return ((JumpInstruction) instruction).getTarget().getBlock();
+        }
+        throw new InternalError("The last instruction of a block must be Jump");
+    }
+
+    public Boolean canBeReduced() {
+        return instructionList.size() == 1;
+    }
+
+    public void convertTarget(Block block) {
+        JumpInstruction jumpInstruction = (JumpInstruction) instructionList.get(instructionList.size() - 1);
+        jumpInstruction.setTarget(block.getLabelInstruction());
+    }
+
     public void clear() {
         killSet = new HashSet<>();
         useSet = new HashSet<>();

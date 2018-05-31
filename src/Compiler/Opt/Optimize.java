@@ -23,6 +23,7 @@ public class Optimize {
             BinaryInstructionRazor.uselessBinaryInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             NaiveRegisterAllocator.naiveAllocate(LivenessAnalyst.getEdge(), LivenessAnalyst.getCount(), functionIR);
+            RedundantBlockDictator.redundantBlockRemove(functionIR);
         });
     }
 }
