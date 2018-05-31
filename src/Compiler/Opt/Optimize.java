@@ -27,6 +27,8 @@ public class Optimize {
             RedundantBlockDictator.redundantBlockRemove(functionIR);
             StupidMoveKiller.uselessMoveRemove(functionIR);
             BlocksTyrant.emptyBlockRemove(functionIR);
+            SuperBlockBuilder.buildSuperBlock(functionIR);
+            SuperBlockBuilder.uselessJumpRemove(functionIR);
         });
     }
 }

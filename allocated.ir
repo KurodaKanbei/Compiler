@@ -1,187 +1,153 @@
 __global_init {
+	__global_init_0_block_enter
+		Address (i(@i) + 0) = mov 0
+		Address (a0(@a0) + 0) = mov 0
+		Address (a1(@a1) + 0) = mov 0
+		Address (a2(@a2) + 0) = mov 0
+		Address (a3(@a3) + 0) = mov 0
+		Address (a4(@a4) + 0) = mov 0
+		Address (a5(@a5) + 0) = mov 0
+		Address (a6(@a6) + 0) = mov 0
+		Address (a7(@a7) + 0) = mov 0
+		Address (a8(@a8) + 0) = mov 0
+		Address (a9(@a9) + 0) = mov 0
+		Address (a10(@a10) + 0) = mov 0
+		Address (b0(@b0) + 0) = mov 0
+		Address (b1(@b1) + 0) = mov 0
+		Address (b2(@b2) + 0) = mov 0
+		Address (b3(@b3) + 0) = mov 0
+		Address (b4(@b4) + 0) = mov 0
+		Address (b5(@b5) + 0) = mov 0
+		Address (b6(@b6) + 0) = mov 0
+		Address (b7(@b7) + 0) = mov 0
+		Address (b8(@b8) + 0) = mov 0
+		Address (b9(@b9) + 0) = mov 0
+		Address (b10(@b10) + 0) = mov 0
 	__global_init_1_block_exit
-}
-func a(rdi) b(r11) c(r10) d(rsi) e(rbx) f(r8) g(null) {
-	func_0_block_enter
-		b(r11) = mov t9(rsi)
-		c(r10) = mov t10(rdx)
-		d(rsi) = mov t11(rcx)
-		e(rbx) = mov t12(r8)
-		f(r8) = mov t13(r9)
-		cmp a(rdi) b(r11)
-		set EQ t18(r9)
-		cmp t18(r9) 1
-		CJump NEQ func_2_logical_false
-		jump func_1_logical_true
-	func_1_logical_true
-		cmp c(r10) 0
-		set GR t19(r9)
-		jump func_3_logical_exit
-	func_2_logical_false
-		t17(r9) = mov 0
-		jump func_3_logical_exit
-	func_3_logical_exit
-		cmp t17(r9) 1
-		CJump EQ func_4_logical_true
-		jump func_5_logical_false
-	func_4_logical_true
-		t16(r9) = mov 1
-		jump func_12_logical_exit
-	func_5_logical_false
-		cmp d(rsi) e(rbx)
-		set EQ t22(r9)
-		cmp t22(r9) 1
-		CJump NEQ func_7_logical_false
-		jump func_6_logical_true
-	func_6_logical_true
-		cmp f(r8) 0
-		set GR t23(r9)
-		jump func_8_logical_exit
-	func_7_logical_false
-		t21(r9) = mov 0
-		jump func_8_logical_exit
-	func_8_logical_exit
-		cmp t21(r9) 1
-		CJump NEQ func_10_logical_false
-		jump func_9_logical_true
-	func_9_logical_true
-		cmp g(null) 0
-		set GR t24(r9)
-		jump func_12_logical_exit
-	func_10_logical_false
-		t20(r9) = mov 0
-		jump func_12_logical_exit
-	func_12_logical_exit
-		cmp t16(r9) 1
-		CJump EQ func_13_logical_true
-		jump func_14_logical_false
-	func_13_logical_true
-		t15(rdi) = mov 1
-		jump func_15_logical_exit
-	func_14_logical_false
-		cmp a(rdi) g(null)
-		set EQ t25(rdi)
-		jump func_15_logical_exit
-	func_15_logical_exit
-		cmp t15(rdi) 1
-		CJump EQ func_16_logical_true
-		jump func_17_logical_false
-	func_16_logical_true
-		t14(rsi) = mov 1
-		jump func_21_logical_exit
-	func_17_logical_false
-		cmp d(rsi) 0
-		set GR t27(rsi)
-		cmp t27(rsi) 1
-		CJump NEQ func_19_logical_false
-		jump func_18_logical_true
-	func_18_logical_true
-		cmp f(r8) 0
-		set GR t28(rsi)
-		jump func_21_logical_exit
-	func_19_logical_false
-		t26(rsi) = mov 0
-		jump func_21_logical_exit
-	func_21_logical_exit
-		cmp t14(rsi) 1
-		CJump EQ func_22_if_true
-		jump func_23_if_false
-	func_22_if_true
-		ret 1
-		jump func_25_block_exit
-	func_23_if_false
-		ret 0
-		jump func_25_block_exit
-	func_25_block_exit
 }
 main {
 	main_0_block_enter
-		a(r8) = mov 1
-		b(rbx) = mov 2
-		c(r11) = mov 3
-		d(rdi) = mov 4
-		e(r10) = mov 5
-		f(rsi) = mov 6
-		g(r9) = mov 7
-		jump main_2_inline_enter
-	main_2_inline_enter
-		cmp a(r8) b(rbx)
-		set EQ t33(rbx)
-		cmp t33(rbx) 1
-		CJump NEQ main_4_logical_false
-		jump main_3_logical_true
-	main_3_logical_true
-		cmp c(r11) 0
-		set GR t34(r11)
-		jump main_5_logical_exit
-	main_4_logical_false
-		t32(r11) = mov 0
-		jump main_5_logical_exit
-	main_5_logical_exit
-		cmp t32(r11) 1
-		CJump EQ main_6_logical_true
-		jump main_7_logical_false
-	main_6_logical_true
-		t31(r10) = mov 1
-		jump main_14_logical_exit
-	main_7_logical_false
-		cmp d(rdi) e(r10)
-		set EQ t37(r10)
-		cmp t37(r10) 1
-		CJump NEQ main_9_logical_false
-		jump main_8_logical_true
-	main_8_logical_true
-		cmp f(rsi) 0
-		set GR t38(r10)
-		jump main_10_logical_exit
-	main_9_logical_false
-		t36(r10) = mov 0
-		jump main_10_logical_exit
-	main_10_logical_exit
-		cmp t36(r10) 1
-		CJump NEQ main_12_logical_false
-		jump main_11_logical_true
-	main_11_logical_true
-		cmp g(r9) 0
-		set GR t39(r10)
-		jump main_14_logical_exit
-	main_12_logical_false
-		t35(r10) = mov 0
-		jump main_14_logical_exit
-	main_14_logical_exit
-		cmp t31(r10) 1
-		CJump EQ main_15_logical_true
-		jump main_16_logical_false
-	main_15_logical_true
-		t30(r8) = mov 1
-		jump main_17_logical_exit
-	main_16_logical_false
-		cmp a(r8) g(r9)
-		set EQ t40(r8)
-		jump main_17_logical_exit
-	main_17_logical_exit
-		cmp t30(r8) 1
-		CJump EQ main_18_logical_true
-		jump main_19_logical_false
-	main_18_logical_true
-		t29(rsi) = mov 1
-		jump main_23_logical_exit
-	main_19_logical_false
-		cmp d(rdi) 0
-		set GR t42(rdi)
-		cmp t42(rdi) 1
-		CJump NEQ main_21_logical_false
-		jump main_20_logical_true
-	main_20_logical_true
-		cmp f(rsi) 0
-		set GR t43(rsi)
-		jump main_23_logical_exit
-	main_21_logical_false
-		t41(rsi) = mov 0
-		jump main_23_logical_exit
-	main_23_logical_exit
-		cmp t29(rsi) 1
-		CJump EQ main_1_block_exit
-		jump main_1_block_exit
-	main_1_block_exit
+		sum(rbx) = mov 0
+		call getInt return value = t0(rax)
+		n(rsi) = mov t0(rax)
+		Address (i(@i) + 0) = mov 0
+		cmp Address (i(@i) + 0) n(rsi)
+		CJump LE main_2_loop_body
+		t52(rdi) = mov sum(rbx)
+		call println_Int return value = t51(rax)
+		ret 0
+		jump main_8_block_exit
+	main_1_loop_condition
+		cmp Address (i(@i) + 0) n(rsi)
+		CJump LE main_2_loop_body
+		t52(rdi) = mov sum(rbx)
+		call println_Int return value = t51(rax)
+		ret 0
+		jump main_8_block_exit
+	main_2_loop_body
+		t3(rdi) = mov Address (a0(@a0) + 0)
+		t3(rdi) = t3(rdi) ADD 1
+		Address (a0(@a0) + 0) = mov t3(rdi)
+		t4(rdi) = mov Address (a1(@a1) + 0)
+		t4(rdi) = t4(rdi) ADD 1
+		Address (a1(@a1) + 0) = mov t4(rdi)
+		t5(rdi) = mov Address (a2(@a2) + 0)
+		t5(rdi) = t5(rdi) ADD 1
+		Address (a2(@a2) + 0) = mov t5(rdi)
+		t6(rdi) = mov Address (a0(@a0) + 0)
+		t6(rdi) = t6(rdi) ADD 1
+		Address (a3(@a3) + 0) = mov t6(rdi)
+		t7(rdi) = mov Address (a1(@a1) + 0)
+		t7(rdi) = t7(rdi) ADD 1
+		Address (a4(@a4) + 0) = mov t7(rdi)
+		t8(rdi) = mov Address (a2(@a2) + 0)
+		t8(rdi) = t8(rdi) ADD 1
+		Address (a5(@a5) + 0) = mov t8(rdi)
+		t9(rdi) = mov Address (a0(@a0) + 0)
+		t9(rdi) = t9(rdi) ADD 1
+		Address (a6(@a6) + 0) = mov t9(rdi)
+		t10(rdi) = mov Address (a1(@a1) + 0)
+		t10(rdi) = t10(rdi) ADD 1
+		Address (a7(@a7) + 0) = mov t10(rdi)
+		t11(rdi) = mov Address (a2(@a2) + 0)
+		t11(rdi) = t11(rdi) ADD 1
+		Address (a8(@a8) + 0) = mov t11(rdi)
+		t12(rdi) = mov Address (a0(@a0) + 0)
+		t12(rdi) = t12(rdi) ADD 1
+		Address (a9(@a9) + 0) = mov t12(rdi)
+		t13(rdi) = mov Address (a1(@a1) + 0)
+		t13(rdi) = t13(rdi) ADD 0
+		Address (a10(@a10) + 0) = mov t13(rdi)
+		Address (b0(@b0) + 0) = mov Address (a0(@a0) + 0)
+		Address (b1(@b1) + 0) = mov Address (a1(@a1) + 0)
+		Address (b2(@b2) + 0) = mov Address (a2(@a2) + 0)
+		Address (b3(@b3) + 0) = mov Address (a3(@a3) + 0)
+		Address (b4(@b4) + 0) = mov Address (a4(@a4) + 0)
+		Address (b5(@b5) + 0) = mov Address (a5(@a5) + 0)
+		Address (b6(@b6) + 0) = mov Address (a6(@a6) + 0)
+		Address (b7(@b7) + 0) = mov Address (a7(@a7) + 0)
+		Address (b8(@b8) + 0) = mov Address (a8(@a8) + 0)
+		Address (b9(@b9) + 0) = mov Address (a9(@a9) + 0)
+		Address (b10(@b10) + 0) = mov Address (a10(@a10) + 0)
+		t25(rdi) = mov Address (i(@i) + 0)
+		t25(rdi) = t25(rdi) MOD 10000000
+		cmp t25(rdi) 0
+		CJump EQ main_3_if_true
+		t50(rdi) = mov Address (i(@i) + 0)
+		t50(rdi) = t50(rdi) ADD 1
+		Address (i(@i) + 0) = mov t50(rdi)
+		cmp Address (i(@i) + 0) n(rsi)
+		CJump LE main_2_loop_body
+		t52(rdi) = mov sum(rbx)
+		call println_Int return value = t51(rax)
+		ret 0
+		jump main_8_block_exit
+	main_3_if_true
+		t27(rbx) = t27(rbx) ADD Address (a0(@a0) + 0)
+		t28(rbx) = t28(rbx) ADD Address (a1(@a1) + 0)
+		t29(rbx) = t29(rbx) ADD Address (a2(@a2) + 0)
+		t30(rbx) = t30(rbx) ADD Address (a3(@a3) + 0)
+		t31(rbx) = t31(rbx) ADD Address (a4(@a4) + 0)
+		t32(rbx) = t32(rbx) ADD Address (a5(@a5) + 0)
+		t33(rbx) = t33(rbx) ADD Address (a6(@a6) + 0)
+		t34(rbx) = t34(rbx) ADD Address (a7(@a7) + 0)
+		t35(rbx) = t35(rbx) ADD Address (a8(@a8) + 0)
+		t36(rbx) = t36(rbx) ADD Address (a9(@a9) + 0)
+		t37(rbx) = t37(rbx) ADD Address (a10(@a10) + 0)
+		t38(rbx) = t38(rbx) ADD Address (b0(@b0) + 0)
+		t39(rbx) = t39(rbx) ADD Address (b1(@b1) + 0)
+		t40(rbx) = t40(rbx) ADD Address (b2(@b2) + 0)
+		t41(rbx) = t41(rbx) ADD Address (b3(@b3) + 0)
+		t42(rbx) = t42(rbx) ADD Address (b4(@b4) + 0)
+		t43(rbx) = t43(rbx) ADD Address (b5(@b5) + 0)
+		t44(rbx) = t44(rbx) ADD Address (b6(@b6) + 0)
+		t45(rbx) = t45(rbx) ADD Address (b7(@b7) + 0)
+		t46(rbx) = t46(rbx) ADD Address (b8(@b8) + 0)
+		t47(rbx) = t47(rbx) ADD Address (b9(@b9) + 0)
+		t48(rbx) = t48(rbx) ADD Address (b10(@b10) + 0)
+		t49(rbx) = t49(rbx) AND 2147450879
+		t50(rdi) = mov Address (i(@i) + 0)
+		t50(rdi) = t50(rdi) ADD 1
+		Address (i(@i) + 0) = mov t50(rdi)
+		cmp Address (i(@i) + 0) n(rsi)
+		CJump LE main_2_loop_body
+		t52(rdi) = mov sum(rbx)
+		call println_Int return value = t51(rax)
+		ret 0
+		jump main_8_block_exit
+	main_6_loop_increment
+		t50(rdi) = mov Address (i(@i) + 0)
+		t50(rdi) = t50(rdi) ADD 1
+		Address (i(@i) + 0) = mov t50(rdi)
+		cmp Address (i(@i) + 0) n(rsi)
+		CJump LE main_2_loop_body
+		t52(rdi) = mov sum(rbx)
+		call println_Int return value = t51(rax)
+		ret 0
+		jump main_8_block_exit
+	main_7_loop_exit
+		t52(rdi) = mov sum(rbx)
+		call println_Int return value = t51(rax)
+		ret 0
+	main_8_block_exit
 }

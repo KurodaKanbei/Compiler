@@ -1,5 +1,4 @@
 global __global_init
-global func
 global main
 global print_Int
 global println_Int
@@ -25,201 +24,232 @@ SECTION .text
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
+     sub                  rsp,                  184
+__global_init_0_block_enter:
+     mov       qword [@i + 0],                    0
+     mov      qword [@a0 + 0],                    0
+     mov      qword [@a1 + 0],                    0
+     mov      qword [@a2 + 0],                    0
+     mov      qword [@a3 + 0],                    0
+     mov      qword [@a4 + 0],                    0
+     mov      qword [@a5 + 0],                    0
+     mov      qword [@a6 + 0],                    0
+     mov      qword [@a7 + 0],                    0
+     mov      qword [@a8 + 0],                    0
+     mov      qword [@a9 + 0],                    0
+     mov     qword [@a10 + 0],                    0
+     mov      qword [@b0 + 0],                    0
+     mov      qword [@b1 + 0],                    0
+     mov      qword [@b2 + 0],                    0
+     mov      qword [@b3 + 0],                    0
+     mov      qword [@b4 + 0],                    0
+     mov      qword [@b5 + 0],                    0
+     mov      qword [@b6 + 0],                    0
+     mov      qword [@b7 + 0],                    0
+     mov      qword [@b8 + 0],                    0
+     mov      qword [@b9 + 0],                    0
+     mov     qword [@b10 + 0],                    0
 __global_init_1_block_exit:
-     pop                  rbp
-     ret
-func:
-    push                  rbp
-     mov                  rbp,                  rsp
-    push                  rbx
-func_0_block_enter:
-     mov                  r11,                  rsi
-     mov                  r10,                  rdx
-     mov                  rsi,                  rcx
-     mov                  rbx,                   r8
-     mov                   r8,                   r9
-     cmp                  rdi,                  r11
-     mov                   r9,                    0
-    sete                  r9b
-     cmp                   r9,                    1
-     jne func_2_logical_false
-func_1_logical_true:
-     cmp                  r10,                    0
-     mov                   r9,                    0
-    setg                  r9b
-     jmp  func_3_logical_exit
-func_2_logical_false:
-     mov                   r9,                    0
-func_3_logical_exit:
-     cmp                   r9,                    1
-      je  func_4_logical_true
-     jmp func_5_logical_false
-func_4_logical_true:
-     mov                   r9,                    1
-     jmp func_12_logical_exit
-func_5_logical_false:
-     cmp                  rsi,                  rbx
-     mov                   r9,                    0
-    sete                  r9b
-     cmp                   r9,                    1
-     jne func_7_logical_false
-func_6_logical_true:
-     cmp                   r8,                    0
-     mov                   r9,                    0
-    setg                  r9b
-     jmp  func_8_logical_exit
-func_7_logical_false:
-     mov                   r9,                    0
-func_8_logical_exit:
-     cmp                   r9,                    1
-     jne func_10_logical_false
-func_9_logical_true:
-     cmp     qword [rbp + 16],                    0
-     mov                   r9,                    0
-    setg                  r9b
-     jmp func_12_logical_exit
-func_10_logical_false:
-     mov                   r9,                    0
-func_12_logical_exit:
-     cmp                   r9,                    1
-      je func_13_logical_true
-     jmp func_14_logical_false
-func_13_logical_true:
-     mov                  rdi,                    1
-     jmp func_15_logical_exit
-func_14_logical_false:
-     cmp                  rdi,     qword [rbp + 16]
-     mov                  rdi,                    0
-    sete                  dil
-func_15_logical_exit:
-     cmp                  rdi,                    1
-      je func_16_logical_true
-     jmp func_17_logical_false
-func_16_logical_true:
-     mov                  rsi,                    1
-     jmp func_21_logical_exit
-func_17_logical_false:
-     cmp                  rsi,                    0
-     mov                  rsi,                    0
-    setg                  sil
-     cmp                  rsi,                    1
-     jne func_19_logical_false
-func_18_logical_true:
-     cmp                   r8,                    0
-     mov                  rsi,                    0
-    setg                  sil
-     jmp func_21_logical_exit
-func_19_logical_false:
-     mov                  rsi,                    0
-func_21_logical_exit:
-     cmp                  rsi,                    1
-      je      func_22_if_true
-     jmp     func_23_if_false
-func_22_if_true:
-     mov                  rax,                    1
-     jmp   func_25_block_exit
-func_23_if_false:
-     mov                  rax,                    0
-func_25_block_exit:
-     pop                  rbx
+     add                  rsp,                  184
      pop                  rbp
      ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
+     sub                  rsp,                  184
     push                  rbx
 main_0_block_enter:
-     mov                   r8,                    1
-     mov                  rbx,                    2
-     mov                  r11,                    3
-     mov                  rdi,                    4
-     mov                  r10,                    5
-     mov                  rsi,                    6
-     mov                   r9,                    7
-main_2_inline_enter:
-     cmp                   r8,                  rbx
      mov                  rbx,                    0
-    sete                   bl
-     cmp                  rbx,                    1
-     jne main_4_logical_false
-main_3_logical_true:
-     cmp                  r11,                    0
-     mov                  r11,                    0
-    setg                 r11b
-     jmp  main_5_logical_exit
-main_4_logical_false:
-     mov                  r11,                    0
-main_5_logical_exit:
-     cmp                  r11,                    1
-      je  main_6_logical_true
-     jmp main_7_logical_false
-main_6_logical_true:
-     mov                  r10,                    1
-     jmp main_14_logical_exit
-main_7_logical_false:
-     cmp                  rdi,                  r10
-     mov                  r10,                    0
-    sete                 r10b
-     cmp                  r10,                    1
-     jne main_9_logical_false
-main_8_logical_true:
-     cmp                  rsi,                    0
-     mov                  r10,                    0
-    setg                 r10b
-     jmp main_10_logical_exit
-main_9_logical_false:
-     mov                  r10,                    0
-main_10_logical_exit:
-     cmp                  r10,                    1
-     jne main_12_logical_false
-main_11_logical_true:
-     cmp                   r9,                    0
-     mov                  r10,                    0
-    setg                 r10b
-     jmp main_14_logical_exit
-main_12_logical_false:
-     mov                  r10,                    0
-main_14_logical_exit:
-     cmp                  r10,                    1
-      je main_15_logical_true
-     jmp main_16_logical_false
-main_15_logical_true:
-     mov                   r8,                    1
-     jmp main_17_logical_exit
-main_16_logical_false:
-     cmp                   r8,                   r9
-     mov                   r8,                    0
-    sete                  r8b
-main_17_logical_exit:
-     cmp                   r8,                    1
-      je main_18_logical_true
-     jmp main_19_logical_false
-main_18_logical_true:
-     mov                  rsi,                    1
-     jmp main_23_logical_exit
-main_19_logical_false:
+    call               getInt
+     mov                  rsi,                  rax
+     mov       qword [@i + 0],                    0
+     cmp       qword [@i + 0],                  rsi
+      jl     main_2_loop_body
+     mov                  rdi,                  rbx
+    call          println_Int
+     mov                  rax,                    0
+     jmp    main_8_block_exit
+main_1_loop_condition:
+     cmp       qword [@i + 0],                  rsi
+      jl     main_2_loop_body
+     mov                  rdi,                  rbx
+    call          println_Int
+     mov                  rax,                    0
+     jmp    main_8_block_exit
+main_2_loop_body:
+     mov                  rdi,      qword [@a0 + 0]
+     add                  rdi,                    1
+     mov      qword [@a0 + 0],                  rdi
+     mov                  rdi,      qword [@a1 + 0]
+     add                  rdi,                    1
+     mov      qword [@a1 + 0],                  rdi
+     mov                  rdi,      qword [@a2 + 0]
+     add                  rdi,                    1
+     mov      qword [@a2 + 0],                  rdi
+     mov                  rdi,      qword [@a0 + 0]
+     add                  rdi,                    1
+     mov      qword [@a3 + 0],                  rdi
+     mov                  rdi,      qword [@a1 + 0]
+     add                  rdi,                    1
+     mov      qword [@a4 + 0],                  rdi
+     mov                  rdi,      qword [@a2 + 0]
+     add                  rdi,                    1
+     mov      qword [@a5 + 0],                  rdi
+     mov                  rdi,      qword [@a0 + 0]
+     add                  rdi,                    1
+     mov      qword [@a6 + 0],                  rdi
+     mov                  rdi,      qword [@a1 + 0]
+     add                  rdi,                    1
+     mov      qword [@a7 + 0],                  rdi
+     mov                  rdi,      qword [@a2 + 0]
+     add                  rdi,                    1
+     mov      qword [@a8 + 0],                  rdi
+     mov                  rdi,      qword [@a0 + 0]
+     add                  rdi,                    1
+     mov      qword [@a9 + 0],                  rdi
+     mov                  rdi,      qword [@a1 + 0]
+     add                  rdi,                    0
+     mov     qword [@a10 + 0],                  rdi
+     mov                  rax,      qword [@a0 + 0]
+     mov      qword [@b0 + 0],                  rax
+     mov                  rax,      qword [@a1 + 0]
+     mov      qword [@b1 + 0],                  rax
+     mov                  rax,      qword [@a2 + 0]
+     mov      qword [@b2 + 0],                  rax
+     mov                  rax,      qword [@a3 + 0]
+     mov      qword [@b3 + 0],                  rax
+     mov                  rax,      qword [@a4 + 0]
+     mov      qword [@b4 + 0],                  rax
+     mov                  rax,      qword [@a5 + 0]
+     mov      qword [@b5 + 0],                  rax
+     mov                  rax,      qword [@a6 + 0]
+     mov      qword [@b6 + 0],                  rax
+     mov                  rax,      qword [@a7 + 0]
+     mov      qword [@b7 + 0],                  rax
+     mov                  rax,      qword [@a8 + 0]
+     mov      qword [@b8 + 0],                  rax
+     mov                  rax,      qword [@a9 + 0]
+     mov      qword [@b9 + 0],                  rax
+     mov                  rax,     qword [@a10 + 0]
+     mov     qword [@b10 + 0],                  rax
+     mov                  rdi,       qword [@i + 0]
+     mov                  rax,                  rdi
+     mov                  rcx,             10000000
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
      cmp                  rdi,                    0
-     mov                  rdi,                    0
-    setg                  dil
-     cmp                  rdi,                    1
-     jne main_21_logical_false
-main_20_logical_true:
-     cmp                  rsi,                    0
-     mov                  rsi,                    0
-    setg                  sil
-     jmp main_23_logical_exit
-main_21_logical_false:
-     mov                  rsi,                    0
-main_23_logical_exit:
-     cmp                  rsi,                    1
-      je    main_1_block_exit
-main_1_block_exit:
+      je       main_3_if_true
+     mov                  rdi,       qword [@i + 0]
+     add                  rdi,                    1
+     mov       qword [@i + 0],                  rdi
+     cmp       qword [@i + 0],                  rsi
+      jl     main_2_loop_body
+     mov                  rdi,                  rbx
+    call          println_Int
+     mov                  rax,                    0
+     jmp    main_8_block_exit
+main_3_if_true:
+     add                  rbx,      qword [@a0 + 0]
+     add                  rbx,      qword [@a1 + 0]
+     add                  rbx,      qword [@a2 + 0]
+     add                  rbx,      qword [@a3 + 0]
+     add                  rbx,      qword [@a4 + 0]
+     add                  rbx,      qword [@a5 + 0]
+     add                  rbx,      qword [@a6 + 0]
+     add                  rbx,      qword [@a7 + 0]
+     add                  rbx,      qword [@a8 + 0]
+     add                  rbx,      qword [@a9 + 0]
+     add                  rbx,     qword [@a10 + 0]
+     add                  rbx,      qword [@b0 + 0]
+     add                  rbx,      qword [@b1 + 0]
+     add                  rbx,      qword [@b2 + 0]
+     add                  rbx,      qword [@b3 + 0]
+     add                  rbx,      qword [@b4 + 0]
+     add                  rbx,      qword [@b5 + 0]
+     add                  rbx,      qword [@b6 + 0]
+     add                  rbx,      qword [@b7 + 0]
+     add                  rbx,      qword [@b8 + 0]
+     add                  rbx,      qword [@b9 + 0]
+     add                  rbx,     qword [@b10 + 0]
+     and                  rbx,           2147450879
+     mov                  rdi,       qword [@i + 0]
+     add                  rdi,                    1
+     mov       qword [@i + 0],                  rdi
+     cmp       qword [@i + 0],                  rsi
+      jl     main_2_loop_body
+     mov                  rdi,                  rbx
+    call          println_Int
+     mov                  rax,                    0
+     jmp    main_8_block_exit
+main_6_loop_increment:
+     mov                  rdi,       qword [@i + 0]
+     add                  rdi,                    1
+     mov       qword [@i + 0],                  rdi
+     cmp       qword [@i + 0],                  rsi
+      jl     main_2_loop_body
+     mov                  rdi,                  rbx
+    call          println_Int
+     mov                  rax,                    0
+     jmp    main_8_block_exit
+main_7_loop_exit:
+     mov                  rdi,                  rbx
+    call          println_Int
+     mov                  rax,                    0
+main_8_block_exit:
      pop                  rbx
+     add                  rsp,                  184
      pop                  rbp
      ret
 SECTION .data
 SECTION .bss
+@i:
+    resq                    1
+@a0:
+    resq                    1
+@a1:
+    resq                    1
+@a2:
+    resq                    1
+@a3:
+    resq                    1
+@a4:
+    resq                    1
+@a5:
+    resq                    1
+@a6:
+    resq                    1
+@a7:
+    resq                    1
+@a8:
+    resq                    1
+@a9:
+    resq                    1
+@a10:
+    resq                    1
+@b0:
+    resq                    1
+@b1:
+    resq                    1
+@b2:
+    resq                    1
+@b3:
+    resq                    1
+@b4:
+    resq                    1
+@b5:
+    resq                    1
+@b6:
+    resq                    1
+@b7:
+    resq                    1
+@b8:
+    resq                    1
+@b9:
+    resq                    1
+@b10:
+    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0
