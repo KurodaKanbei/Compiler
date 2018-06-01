@@ -1,343 +1,514 @@
-p n(r9) {
-	p_0_block_enter
-		n(r9) = mov t197(rdi)
-		t198(rsi) = mov n(r9)
-		t198(rsi) = t198(rsi) SUB 1
-		t199(rdi) = mov n(r9)
-		t199(rdi) = t199(rdi) MOD t198(rsi)
-		t200(rsi) = mov n(r9)
-		t200(rsi) = t200(rsi) SUB 2
-		t201(rdi) = t201(rdi) MOD t200(rsi)
-		t202(rsi) = mov n(r9)
-		t202(rsi) = t202(rsi) SUB 3
-		t203(rdi) = t203(rdi) MOD t202(rsi)
-		t204(rsi) = mov n(r9)
-		t204(rsi) = t204(rsi) SUB 4
-		t205(rdi) = t205(rdi) MOD t204(rsi)
-		t206(rsi) = mov n(r9)
-		t206(rsi) = t206(rsi) SUB 5
-		t207(rdi) = t207(rdi) MOD t206(rsi)
-		t208(rsi) = mov n(r9)
-		t208(rsi) = t208(rsi) SUB 6
-		t209(rdi) = t209(rdi) MOD t208(rsi)
-		t210(rsi) = mov n(r9)
-		t210(rsi) = t210(rsi) SUB 7
-		t211(rdi) = t211(rdi) MOD t210(rsi)
-		t212(rsi) = mov n(r9)
-		t212(rsi) = t212(rsi) SUB 8
-		t213(rdi) = t213(rdi) MOD t212(rsi)
-		t214(rsi) = mov n(r9)
-		t214(rsi) = t214(rsi) SUB 9
-		t215(rdi) = t215(rdi) MOD t214(rsi)
-		t216(rsi) = mov n(r9)
-		t216(rsi) = t216(rsi) SUB 10
-		t217(rdi) = t217(rdi) MOD t216(rsi)
-		t218(rsi) = mov n(r9)
-		t218(rsi) = t218(rsi) SUB 11
-		t219(rdi) = t219(rdi) MOD t218(rsi)
-		t220(rsi) = mov n(r9)
-		t220(rsi) = t220(rsi) SUB 12
-		t221(r8) = mov t219(rdi)
-		t221(r8) = t221(r8) MOD t220(rsi)
-		t222(rdi) = mov n(r9)
-		t222(rdi) = t222(rdi) SUB 13
-		t223(rsi) = mov t221(r8)
-		t223(rsi) = t223(rsi) MOD t222(rdi)
-		t224(r8) = mov n(r9)
-		t224(r8) = t224(r8) SUB 14
-		t225(rdi) = mov t223(rsi)
-		t225(rdi) = t225(rdi) MOD t224(r8)
-		t226(rsi) = mov n(r9)
-		t226(rsi) = t226(rsi) SUB 15
-		t227(r8) = mov t225(rdi)
-		t227(r8) = t227(r8) MOD t226(rsi)
-		t228(rdi) = mov n(r9)
-		t228(rdi) = t228(rdi) SUB 16
-		t229(rsi) = mov t227(r8)
-		t229(rsi) = t229(rsi) MOD t228(rdi)
-		t230(rdi) = mov n(r9)
-		t230(rdi) = t230(rdi) SUB 17
-		t231(rsi) = t231(rsi) MOD t230(rdi)
-		t232(rdi) = mov n(r9)
-		t232(rdi) = t232(rdi) SUB 18
-		t233(rsi) = t233(rsi) MOD t232(rdi)
-		t234(rdi) = mov n(r9)
-		t234(rdi) = t234(rdi) SUB 19
-		t235(rsi) = t235(rsi) MOD t234(rdi)
-		t236(rdi) = mov n(r9)
-		t236(rdi) = t236(rdi) SUB 20
-		t237(rsi) = t237(rsi) MOD t236(rdi)
-		ret t237(rsi)
-	p_1_block_exit
-}
 __global_init {
 	__global_init_1_block_exit
 }
-f n(null) {
-	f_0_block_enter
-		n(rsi) = mov t0(rdi)
-		t239(rdi) = mov n(rsi)
-		call h return value = t238(rax)
-		t3(rsi) = mov t238(rax)
-		ret t3(rsi)
-		jump f_1_block_exit
-	f_2_inline_enter
-		t239(rdi) = mov n(rsi)
-		call h return value = t238(rax)
-		t3(rsi) = mov t238(rax)
-		ret t3(rsi)
-		jump f_1_block_exit
-	f_3_inline_exit
-		ret t3(rsi)
-	f_1_block_exit
-}
-g n(null) {
-	g_0_block_enter
-		n(rsi) = mov t4(rdi)
-		t242(rdi) = mov n(rsi)
-		call p return value = t241(rax)
-		t7(rsi) = mov t241(rax)
-		ret t7(rsi)
-		jump g_1_block_exit
-	g_2_inline_enter
-		t242(rdi) = mov n(rsi)
-		call p return value = t241(rax)
-		t7(rsi) = mov t241(rax)
-		ret t7(rsi)
-		jump g_1_block_exit
-	g_3_inline_exit
-		ret t7(rsi)
-	g_1_block_exit
-}
-h n(null) {
-	h_0_block_enter
-		n(r9) = mov t8(rdi)
-		t244(rsi) = mov n(r9)
-		t244(rsi) = t244(rsi) SUB 1
-		t245(rdi) = mov n(r9)
-		t245(rdi) = t245(rdi) MOD t244(rsi)
-		t246(rsi) = mov n(r9)
-		t246(rsi) = t246(rsi) SUB 2
-		t247(rdi) = t247(rdi) MOD t246(rsi)
-		t248(rsi) = mov n(r9)
-		t248(rsi) = t248(rsi) SUB 3
-		t249(r8) = mov t247(rdi)
-		t249(r8) = t249(r8) MOD t248(rsi)
-		t250(rdi) = mov n(r9)
-		t250(rdi) = t250(rdi) SUB 4
-		t251(rsi) = mov t249(r8)
-		t251(rsi) = t251(rsi) MOD t250(rdi)
-		t252(rdi) = mov n(r9)
-		t252(rdi) = t252(rdi) SUB 5
-		t253(rsi) = t253(rsi) MOD t252(rdi)
-		t254(rdi) = mov n(r9)
-		t254(rdi) = t254(rdi) SUB 6
-		t255(rsi) = t255(rsi) MOD t254(rdi)
-		t256(rdi) = mov n(r9)
-		t256(rdi) = t256(rdi) SUB 7
-		t257(rsi) = t257(rsi) MOD t256(rdi)
-		t258(rdi) = mov n(r9)
-		t258(rdi) = t258(rdi) SUB 8
-		t259(rsi) = t259(rsi) MOD t258(rdi)
-		t260(r8) = mov n(r9)
-		t260(r8) = t260(r8) SUB 9
-		t261(rdi) = mov t259(rsi)
-		t261(rdi) = t261(rdi) MOD t260(r8)
-		t262(rsi) = mov n(r9)
-		t262(rsi) = t262(rsi) SUB 10
-		t263(r8) = mov t261(rdi)
-		t263(r8) = t263(r8) MOD t262(rsi)
-		t264(rdi) = mov n(r9)
-		t264(rdi) = t264(rdi) SUB 11
-		t265(rsi) = mov t263(r8)
-		t265(rsi) = t265(rsi) MOD t264(rdi)
-		t266(rdi) = mov n(r9)
-		t266(rdi) = t266(rdi) SUB 12
-		t267(rsi) = t267(rsi) MOD t266(rdi)
-		t268(rdi) = mov n(r9)
-		t268(rdi) = t268(rdi) SUB 13
-		t269(rsi) = t269(rsi) MOD t268(rdi)
-		t270(rdi) = mov n(r9)
-		t270(rdi) = t270(rdi) SUB 14
-		t271(rsi) = t271(rsi) MOD t270(rdi)
-		t272(rdi) = mov n(r9)
-		t272(rdi) = t272(rdi) SUB 15
-		t273(rsi) = t273(rsi) MOD t272(rdi)
-		t274(rdi) = mov n(r9)
-		t274(rdi) = t274(rdi) SUB 16
-		t275(r8) = mov t273(rsi)
-		t275(r8) = t275(r8) MOD t274(rdi)
-		t276(rsi) = mov n(r9)
-		t276(rsi) = t276(rsi) SUB 17
-		t277(rdi) = mov t275(r8)
-		t277(rdi) = t277(rdi) MOD t276(rsi)
-		t278(rsi) = mov n(r9)
-		t278(rsi) = t278(rsi) SUB 18
-		t279(r8) = mov t277(rdi)
-		t279(r8) = t279(r8) MOD t278(rsi)
-		t280(rdi) = mov n(r9)
-		t280(rdi) = t280(rdi) SUB 19
-		t281(rsi) = mov t279(r8)
-		t281(rsi) = t281(rsi) MOD t280(rdi)
-		t282(rdi) = mov n(r9)
-		t282(rdi) = t282(rdi) SUB 20
-		t283(rsi) = t283(rsi) MOD t282(rdi)
-		ret t11(rsi)
-		jump h_1_block_exit
-	h_2_inline_enter
-		t244(rsi) = mov n(r9)
-		t244(rsi) = t244(rsi) SUB 1
-		t245(rdi) = mov n(r9)
-		t245(rdi) = t245(rdi) MOD t244(rsi)
-		t246(rsi) = mov n(r9)
-		t246(rsi) = t246(rsi) SUB 2
-		t247(rdi) = t247(rdi) MOD t246(rsi)
-		t248(rsi) = mov n(r9)
-		t248(rsi) = t248(rsi) SUB 3
-		t249(r8) = mov t247(rdi)
-		t249(r8) = t249(r8) MOD t248(rsi)
-		t250(rdi) = mov n(r9)
-		t250(rdi) = t250(rdi) SUB 4
-		t251(rsi) = mov t249(r8)
-		t251(rsi) = t251(rsi) MOD t250(rdi)
-		t252(rdi) = mov n(r9)
-		t252(rdi) = t252(rdi) SUB 5
-		t253(rsi) = t253(rsi) MOD t252(rdi)
-		t254(rdi) = mov n(r9)
-		t254(rdi) = t254(rdi) SUB 6
-		t255(rsi) = t255(rsi) MOD t254(rdi)
-		t256(rdi) = mov n(r9)
-		t256(rdi) = t256(rdi) SUB 7
-		t257(rsi) = t257(rsi) MOD t256(rdi)
-		t258(rdi) = mov n(r9)
-		t258(rdi) = t258(rdi) SUB 8
-		t259(rsi) = t259(rsi) MOD t258(rdi)
-		t260(r8) = mov n(r9)
-		t260(r8) = t260(r8) SUB 9
-		t261(rdi) = mov t259(rsi)
-		t261(rdi) = t261(rdi) MOD t260(r8)
-		t262(rsi) = mov n(r9)
-		t262(rsi) = t262(rsi) SUB 10
-		t263(r8) = mov t261(rdi)
-		t263(r8) = t263(r8) MOD t262(rsi)
-		t264(rdi) = mov n(r9)
-		t264(rdi) = t264(rdi) SUB 11
-		t265(rsi) = mov t263(r8)
-		t265(rsi) = t265(rsi) MOD t264(rdi)
-		t266(rdi) = mov n(r9)
-		t266(rdi) = t266(rdi) SUB 12
-		t267(rsi) = t267(rsi) MOD t266(rdi)
-		t268(rdi) = mov n(r9)
-		t268(rdi) = t268(rdi) SUB 13
-		t269(rsi) = t269(rsi) MOD t268(rdi)
-		t270(rdi) = mov n(r9)
-		t270(rdi) = t270(rdi) SUB 14
-		t271(rsi) = t271(rsi) MOD t270(rdi)
-		t272(rdi) = mov n(r9)
-		t272(rdi) = t272(rdi) SUB 15
-		t273(rsi) = t273(rsi) MOD t272(rdi)
-		t274(rdi) = mov n(r9)
-		t274(rdi) = t274(rdi) SUB 16
-		t275(r8) = mov t273(rsi)
-		t275(r8) = t275(r8) MOD t274(rdi)
-		t276(rsi) = mov n(r9)
-		t276(rsi) = t276(rsi) SUB 17
-		t277(rdi) = mov t275(r8)
-		t277(rdi) = t277(rdi) MOD t276(rsi)
-		t278(rsi) = mov n(r9)
-		t278(rsi) = t278(rsi) SUB 18
-		t279(r8) = mov t277(rdi)
-		t279(r8) = t279(r8) MOD t278(rsi)
-		t280(rdi) = mov n(r9)
-		t280(rdi) = t280(rdi) SUB 19
-		t281(rsi) = mov t279(r8)
-		t281(rsi) = t281(rsi) MOD t280(rdi)
-		t282(rdi) = mov n(r9)
-		t282(rdi) = t282(rdi) SUB 20
-		t283(rsi) = t283(rsi) MOD t282(rdi)
-		ret t11(rsi)
-		jump h_1_block_exit
-	h_3_inline_exit
-		ret t11(rsi)
-	h_1_block_exit
-}
 main {
 	main_0_block_enter
-		T(rsi) = mov 5
-		ans(rbx) = mov 0
-		i(r12) = mov 0
-		t184(rdi) = mov ans(rbx)
-		call println_Int return value = t183(rax)
-		i(r12) = mov 1
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		call getString return value = t0(rax)
+		Address (A(@A) + 0) = mov t0(rax)
+		call getString return value = t2(rax)
+		Address (B(@B) + 0) = mov t2(rax)
+		t5(rdi) = mov Address (B(@B) + 0)
+		call __string_parseInt return value = t4(rax)
+		Address (N(@N) + 0) = mov t4(rax)
+		t8(rdi) = mov Address (A(@A) + 0)
+		call __string_length return value = t7(rax)
+		t9(rbx) = mov t7(rax)
+		cmp t9(rbx) Address (N(@N) + 0)
+		CJump LE main_1_if_true
+		t12(rbx) = mov Address (N(@N) + 0)
+		DEC t12(rbx)
+		t14(rdi) = mov Address (A(@A) + 0)
+		t15(rsi) = t15(rsi) XOR t15(rsi)
+		t16(rdx) = mov t12(rbx)
+		call __string_substring return value = t13(rax)
+		A(r13) = mov t13(rax)
+		t85(rdi) = mov A(r13)
+		call __string_length return value = t84(rax)
+		len(r12) = mov t84(rax)
+		cmp 1 len(r12)
+		CJump EQ main_6_if_true
+		t88(rbx) = mov len(r12)
+		t88(rbx) = t88(rbx) DIV 2
+		t89(r8) = mov mid(rbx)
+		DEC t89(r8)
+		t91(rdi) = mov A(r13)
+		t92(rsi) = t92(rsi) XOR t92(rsi)
+		t93(rdx) = mov t89(r8)
+		call __string_substring return value = t90(rax)
+		t96(rdi) = mov t90(rax)
+		call calc return value = t95(rax)
+		L(r8) = mov t95(rax)
+		DEC t98(r12)
+		t100(rdi) = mov A(r13)
+		t101(rsi) = mov mid(rbx)
+		t102(rdx) = mov t98(r12)
+		call __string_substring return value = t99(rax)
+		t105(rdi) = mov t99(rax)
+		call calc return value = t104(rax)
+		R(r12) = mov t104(rax)
+		t108(rdi) = mov L(r8)
+		t109(rsi) = mov R(r12)
+		call __string_LE return value = t107(rax)
+		t110(rbx) = mov t107(rax)
+		cmp t110(rbx) 1
+		CJump EQ main_9_if_true
+		t116(rdi) = mov L(r8)
+		t117(rsi) = mov R(r12)
+		call __string_EQ return value = t115(rax)
+		t118(rbx) = mov t115(rax)
+		cmp t118(rbx) 1
+		CJump EQ main_11_if_true
+		t137(rdi) = mov L(r8)
+		t138(rsi) = mov R(r12)
+		call __string_GR return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		cmp t139(rsi) 1
+		CJump EQ main_16_if_true
+		t144(rdi) = mov __const_string_2
+		call println return value = null
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_174_loop_exit
-		t184(rdi) = mov ans(rbx)
-		call println_Int return value = t183(rax)
-		i(r12) = mov 1
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		jump main_4_block_exit
+	main_1_if_true
+		t11(rdi) = mov __const_string_0
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_175_loop_condition
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		jump main_4_block_exit
+	main_3_if_exit
+		t12(rbx) = mov Address (N(@N) + 0)
+		DEC t12(rbx)
+		t14(rdi) = mov Address (A(@A) + 0)
+		t15(rsi) = t15(rsi) XOR t15(rsi)
+		t16(rdx) = mov t12(rbx)
+		call __string_substring return value = t13(rax)
+		A(r13) = mov t13(rax)
+		t85(rdi) = mov A(r13)
+		call __string_length return value = t84(rax)
+		len(r12) = mov t84(rax)
+		cmp 1 len(r12)
+		CJump EQ main_6_if_true
+		t88(rbx) = mov len(r12)
+		t88(rbx) = t88(rbx) DIV 2
+		t89(r8) = mov mid(rbx)
+		DEC t89(r8)
+		t91(rdi) = mov A(r13)
+		t92(rsi) = t92(rsi) XOR t92(rsi)
+		t93(rdx) = mov t89(r8)
+		call __string_substring return value = t90(rax)
+		t96(rdi) = mov t90(rax)
+		call calc return value = t95(rax)
+		L(r8) = mov t95(rax)
+		DEC t98(r12)
+		t100(rdi) = mov A(r13)
+		t101(rsi) = mov mid(rbx)
+		t102(rdx) = mov t98(r12)
+		call __string_substring return value = t99(rax)
+		t105(rdi) = mov t99(rax)
+		call calc return value = t104(rax)
+		R(r12) = mov t104(rax)
+		t108(rdi) = mov L(r8)
+		t109(rsi) = mov R(r12)
+		call __string_LE return value = t107(rax)
+		t110(rbx) = mov t107(rax)
+		cmp t110(rbx) 1
+		CJump EQ main_9_if_true
+		t116(rdi) = mov L(r8)
+		t117(rsi) = mov R(r12)
+		call __string_EQ return value = t115(rax)
+		t118(rbx) = mov t115(rax)
+		cmp t118(rbx) 1
+		CJump EQ main_11_if_true
+		t137(rdi) = mov L(r8)
+		t138(rsi) = mov R(r12)
+		call __string_GR return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		cmp t139(rsi) 1
+		CJump EQ main_16_if_true
+		t144(rdi) = mov __const_string_2
+		call println return value = null
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_176_loop_body
-		n(rsi) = mov 100
-		t285(rdi) = mov n(rsi)
-		call g return value = t284(rax)
-		t190(rsi) = mov t284(rax)
-		t191(rbx) = mov i(r12)
-		t191(rbx) = t191(rbx) MOD 3000000
-		cmp t191(rbx) 0
-		CJump EQ main_177_if_true
-		INC i(r12)
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		jump main_4_block_exit
+	main_5_inline_enter
+		t85(rdi) = mov A(r13)
+		call __string_length return value = t84(rax)
+		len(r12) = mov t84(rax)
+		cmp 1 len(r12)
+		CJump EQ main_6_if_true
+		t88(rbx) = mov len(r12)
+		t88(rbx) = t88(rbx) DIV 2
+		t89(r8) = mov mid(rbx)
+		DEC t89(r8)
+		t91(rdi) = mov A(r13)
+		t92(rsi) = t92(rsi) XOR t92(rsi)
+		t93(rdx) = mov t89(r8)
+		call __string_substring return value = t90(rax)
+		t96(rdi) = mov t90(rax)
+		call calc return value = t95(rax)
+		L(r8) = mov t95(rax)
+		DEC t98(r12)
+		t100(rdi) = mov A(r13)
+		t101(rsi) = mov mid(rbx)
+		t102(rdx) = mov t98(r12)
+		call __string_substring return value = t99(rax)
+		t105(rdi) = mov t99(rax)
+		call calc return value = t104(rax)
+		R(r12) = mov t104(rax)
+		t108(rdi) = mov L(r8)
+		t109(rsi) = mov R(r12)
+		call __string_LE return value = t107(rax)
+		t110(rbx) = mov t107(rax)
+		cmp t110(rbx) 1
+		CJump EQ main_9_if_true
+		t116(rdi) = mov L(r8)
+		t117(rsi) = mov R(r12)
+		call __string_EQ return value = t115(rax)
+		t118(rbx) = mov t115(rax)
+		cmp t118(rbx) 1
+		CJump EQ main_11_if_true
+		t137(rdi) = mov L(r8)
+		t138(rsi) = mov R(r12)
+		call __string_GR return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		cmp t139(rsi) 1
+		CJump EQ main_16_if_true
+		t144(rdi) = mov __const_string_2
+		call println return value = null
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_183_inline_enter
-		t285(rdi) = mov n(rsi)
-		call g return value = t284(rax)
-		t190(rsi) = mov t284(rax)
-		t191(rbx) = mov i(r12)
-		t191(rbx) = t191(rbx) MOD 3000000
-		cmp t191(rbx) 0
-		CJump EQ main_177_if_true
-		INC i(r12)
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		jump main_4_block_exit
+	main_6_if_true
+		t20(r9) = mov A(r13)
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_184_inline_exit
-		t191(rbx) = mov i(r12)
-		t191(rbx) = t191(rbx) MOD 3000000
-		cmp t191(rbx) 0
-		CJump EQ main_177_if_true
-		INC i(r12)
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		jump main_4_block_exit
+	main_8_if_exit
+		t88(rbx) = mov len(r12)
+		t88(rbx) = t88(rbx) DIV 2
+		t89(r8) = mov mid(rbx)
+		DEC t89(r8)
+		t91(rdi) = mov A(r13)
+		t92(rsi) = t92(rsi) XOR t92(rsi)
+		t93(rdx) = mov t89(r8)
+		call __string_substring return value = t90(rax)
+		t96(rdi) = mov t90(rax)
+		call calc return value = t95(rax)
+		L(r8) = mov t95(rax)
+		DEC t98(r12)
+		t100(rdi) = mov A(r13)
+		t101(rsi) = mov mid(rbx)
+		t102(rdx) = mov t98(r12)
+		call __string_substring return value = t99(rax)
+		t105(rdi) = mov t99(rax)
+		call calc return value = t104(rax)
+		R(r12) = mov t104(rax)
+		t108(rdi) = mov L(r8)
+		t109(rsi) = mov R(r12)
+		call __string_LE return value = t107(rax)
+		t110(rbx) = mov t107(rax)
+		cmp t110(rbx) 1
+		CJump EQ main_9_if_true
+		t116(rdi) = mov L(r8)
+		t117(rsi) = mov R(r12)
+		call __string_EQ return value = t115(rax)
+		t118(rbx) = mov t115(rax)
+		cmp t118(rbx) 1
+		CJump EQ main_11_if_true
+		t137(rdi) = mov L(r8)
+		t138(rsi) = mov R(r12)
+		call __string_GR return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		cmp t139(rsi) 1
+		CJump EQ main_16_if_true
+		t144(rdi) = mov __const_string_2
+		call println return value = null
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_177_if_true
-		t194(rdi) = mov tt(rsi)
-		call println_Int return value = t193(rax)
-		INC i(r12)
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		jump main_4_block_exit
+	main_9_if_true
+		t112(rdi) = mov L(r8)
+		t113(rsi) = mov R(r12)
+		call __string_connection return value = t111(rax)
+		t20(r9) = mov t111(rax)
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_180_loop_increment
-		INC i(r12)
-		cmp i(r12) 30000000
-		CJump LEEQ main_176_loop_body
+		jump main_4_block_exit
+	main_10_if_false
+		t116(rdi) = mov L(r8)
+		t117(rsi) = mov R(r12)
+		call __string_EQ return value = t115(rax)
+		t118(rbx) = mov t115(rax)
+		cmp t118(rbx) 1
+		CJump EQ main_11_if_true
+		t137(rdi) = mov L(r8)
+		t138(rsi) = mov R(r12)
+		call __string_GR return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		cmp t139(rsi) 1
+		CJump EQ main_16_if_true
+		t144(rdi) = mov __const_string_2
+		call println return value = null
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-		jump main_182_block_exit
-	main_181_loop_exit
+		jump main_4_block_exit
+	main_11_if_true
+		t120(rdi) = mov L(r8)
+		t121(rsi) = t121(rsi) XOR t121(rsi)
+		call __string_ord return value = t119(rax)
+		l(rbx) = mov t119(rax)
+		t124(rdi) = mov R(r12)
+		t125(rsi) = t125(rsi) XOR t125(rsi)
+		call __string_ord return value = t123(rax)
+		r(rsi) = mov t123(rax)
+		cmp l(rbx) r(rsi)
+		CJump LE main_12_if_true
+		t133(rdi) = mov R(r12)
+		t134(rsi) = mov L(r8)
+		call __string_connection return value = t132(rax)
+		t20(r9) = mov t132(rax)
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
 		ret 0
-	main_182_block_exit
+		jump main_4_block_exit
+	main_12_if_true
+		t129(rdi) = mov L(r8)
+		t130(rsi) = mov R(r12)
+		call __string_connection return value = t128(rax)
+		t20(r9) = mov t128(rax)
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
+		ret 0
+		jump main_4_block_exit
+	main_14_if_exit
+		t133(rdi) = mov R(r12)
+		t134(rsi) = mov L(r8)
+		call __string_connection return value = t132(rax)
+		t20(r9) = mov t132(rax)
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
+		ret 0
+		jump main_4_block_exit
+	main_15_if_false
+		t137(rdi) = mov L(r8)
+		t138(rsi) = mov R(r12)
+		call __string_GR return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		cmp t139(rsi) 1
+		CJump EQ main_16_if_true
+		t144(rdi) = mov __const_string_2
+		call println return value = null
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
+		ret 0
+		jump main_4_block_exit
+	main_16_if_true
+		t141(rdi) = mov R(r12)
+		t142(rsi) = mov L(r8)
+		call __string_connection return value = t140(rax)
+		t20(r9) = mov t140(rax)
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
+		ret 0
+		jump main_4_block_exit
+	main_20_if_exit
+		t144(rdi) = mov __const_string_2
+		call println return value = null
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
+		ret 0
+		jump main_4_block_exit
+	main_21_inline_exit
+		Address (C(@C) + 0) = mov t20(r9)
+		t21(rdi) = mov Address (C(@C) + 0)
+		call println return value = null
+		ret 0
+	main_4_block_exit
+}
+calc A(r13) {
+	calc_0_block_enter
+		A(r13) = mov t22(rdi)
+		t24(rdi) = mov A(r13)
+		call __string_length return value = t23(rax)
+		len(r12) = mov t23(rax)
+		cmp 1 len(r12)
+		CJump EQ calc_1_if_true
+		t27(rbx) = mov len(r12)
+		t27(rbx) = t27(rbx) DIV 2
+		t28(r8) = mov mid(rbx)
+		DEC t28(r8)
+		t30(rdi) = mov A(r13)
+		t31(rsi) = t31(rsi) XOR t31(rsi)
+		t32(rdx) = mov t28(r8)
+		call __string_substring return value = t29(rax)
+		t35(rdi) = mov t29(rax)
+		call calc return value = t34(rax)
+		L(r8) = mov t34(rax)
+		DEC t37(r12)
+		t39(rdi) = mov A(r13)
+		t40(rsi) = mov mid(rbx)
+		t41(rdx) = mov t37(r12)
+		call __string_substring return value = t38(rax)
+		t44(rdi) = mov t38(rax)
+		call calc return value = t43(rax)
+		R(r12) = mov t43(rax)
+		t47(rdi) = mov L(r8)
+		t48(rsi) = mov R(r12)
+		call __string_LE return value = t46(rax)
+		t49(rsi) = mov t46(rax)
+		cmp t49(rsi) 1
+		CJump EQ calc_4_if_true
+		t55(rdi) = mov L(r8)
+		t56(rsi) = mov R(r12)
+		call __string_EQ return value = t54(rax)
+		t57(rsi) = mov t54(rax)
+		cmp t57(rsi) 1
+		CJump EQ calc_6_if_true
+		t76(rdi) = mov L(r8)
+		t77(rsi) = mov R(r12)
+		call __string_GR return value = t75(rax)
+		t78(rsi) = mov t75(rax)
+		cmp t78(rsi) 1
+		CJump EQ calc_11_if_true
+		t83(rdi) = mov __const_string_1
+		call println return value = null
+		jump calc_16_block_exit
+	calc_1_if_true
+		ret A(r13)
+		jump calc_16_block_exit
+	calc_3_if_exit
+		t27(rbx) = mov len(r12)
+		t27(rbx) = t27(rbx) DIV 2
+		t28(r8) = mov mid(rbx)
+		DEC t28(r8)
+		t30(rdi) = mov A(r13)
+		t31(rsi) = t31(rsi) XOR t31(rsi)
+		t32(rdx) = mov t28(r8)
+		call __string_substring return value = t29(rax)
+		t35(rdi) = mov t29(rax)
+		call calc return value = t34(rax)
+		L(r8) = mov t34(rax)
+		DEC t37(r12)
+		t39(rdi) = mov A(r13)
+		t40(rsi) = mov mid(rbx)
+		t41(rdx) = mov t37(r12)
+		call __string_substring return value = t38(rax)
+		t44(rdi) = mov t38(rax)
+		call calc return value = t43(rax)
+		R(r12) = mov t43(rax)
+		t47(rdi) = mov L(r8)
+		t48(rsi) = mov R(r12)
+		call __string_LE return value = t46(rax)
+		t49(rsi) = mov t46(rax)
+		cmp t49(rsi) 1
+		CJump EQ calc_4_if_true
+		t55(rdi) = mov L(r8)
+		t56(rsi) = mov R(r12)
+		call __string_EQ return value = t54(rax)
+		t57(rsi) = mov t54(rax)
+		cmp t57(rsi) 1
+		CJump EQ calc_6_if_true
+		t76(rdi) = mov L(r8)
+		t77(rsi) = mov R(r12)
+		call __string_GR return value = t75(rax)
+		t78(rsi) = mov t75(rax)
+		cmp t78(rsi) 1
+		CJump EQ calc_11_if_true
+		t83(rdi) = mov __const_string_1
+		call println return value = null
+		jump calc_16_block_exit
+	calc_4_if_true
+		t51(rdi) = mov L(r8)
+		t52(rsi) = mov R(r12)
+		call __string_connection return value = t50(rax)
+		t53(rsi) = mov t50(rax)
+		ret t53(rsi)
+		jump calc_16_block_exit
+	calc_5_if_false
+		t55(rdi) = mov L(r8)
+		t56(rsi) = mov R(r12)
+		call __string_EQ return value = t54(rax)
+		t57(rsi) = mov t54(rax)
+		cmp t57(rsi) 1
+		CJump EQ calc_6_if_true
+		t76(rdi) = mov L(r8)
+		t77(rsi) = mov R(r12)
+		call __string_GR return value = t75(rax)
+		t78(rsi) = mov t75(rax)
+		cmp t78(rsi) 1
+		CJump EQ calc_11_if_true
+		t83(rdi) = mov __const_string_1
+		call println return value = null
+		jump calc_16_block_exit
+	calc_6_if_true
+		t59(rdi) = mov L(r8)
+		t60(rsi) = t60(rsi) XOR t60(rsi)
+		call __string_ord return value = t58(rax)
+		l(rsi) = mov t58(rax)
+		t63(rdi) = mov R(r12)
+		t64(rsi) = t64(rsi) XOR t64(rsi)
+		call __string_ord return value = t62(rax)
+		r(rbx) = mov t62(rax)
+		cmp l(rsi) r(rbx)
+		CJump LE calc_7_if_true
+		t72(rdi) = mov R(r12)
+		t73(rsi) = mov L(r8)
+		call __string_connection return value = t71(rax)
+		t74(rsi) = mov t71(rax)
+		ret t74(rsi)
+		jump calc_16_block_exit
+	calc_7_if_true
+		t68(rdi) = mov L(r8)
+		t69(rsi) = mov R(r12)
+		call __string_connection return value = t67(rax)
+		t70(rsi) = mov t67(rax)
+		ret t70(rsi)
+		jump calc_16_block_exit
+	calc_9_if_exit
+		t72(rdi) = mov R(r12)
+		t73(rsi) = mov L(r8)
+		call __string_connection return value = t71(rax)
+		t74(rsi) = mov t71(rax)
+		ret t74(rsi)
+		jump calc_16_block_exit
+	calc_10_if_false
+		t76(rdi) = mov L(r8)
+		t77(rsi) = mov R(r12)
+		call __string_GR return value = t75(rax)
+		t78(rsi) = mov t75(rax)
+		cmp t78(rsi) 1
+		CJump EQ calc_11_if_true
+		t83(rdi) = mov __const_string_1
+		call println return value = null
+		jump calc_16_block_exit
+	calc_11_if_true
+		t80(rdi) = mov R(r12)
+		t81(rsi) = mov L(r8)
+		call __string_connection return value = t79(rax)
+		t82(rsi) = mov t79(rax)
+		ret t82(rsi)
+		jump calc_16_block_exit
+	calc_15_if_exit
+		t83(rdi) = mov __const_string_1
+		call println return value = null
+	calc_16_block_exit
 }

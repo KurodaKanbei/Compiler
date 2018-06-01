@@ -1,9 +1,6 @@
-global p
 global __global_init
-global f
-global g
-global h
 global main
+global calc
 global print_Int
 global println_Int
 global print
@@ -25,626 +22,959 @@ global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .text
-p:
-    push                  rbp
-     mov                  rbp,                  rsp
-p_0_block_enter:
-     mov                   r9,                  rdi
-     mov                  rsi,                   r9
-     sub                  rsi,                    1
-     mov                  rdi,                   r9
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    2
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    3
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    4
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    5
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    6
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    7
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    8
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    9
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   10
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   11
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   12
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   13
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                   r8,                   r9
-     sub                   r8,                   14
-     mov                  rdi,                  rsi
-     mov                  eax,                  edi
-     mov                  ecx,                  r8d
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   15
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   16
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   17
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   18
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   19
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   20
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rax,                  rsi
-p_1_block_exit:
-     pop                  rbp
-     ret
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
 __global_init_1_block_exit:
      pop                  rbp
      ret
-f:
-    push                  rbp
-     mov                  rbp,                  rsp
-f_0_block_enter:
-     mov                  rsi,                  rdi
-     mov                  rdi,                  rsi
-    call                    h
-     mov                  rsi,                  rax
-     mov                  rax,                  rsi
-     jmp       f_1_block_exit
-f_2_inline_enter:
-     mov                  rdi,                  rsi
-    call                    h
-     mov                  rsi,                  rax
-     mov                  rax,                  rsi
-     jmp       f_1_block_exit
-f_3_inline_exit:
-     mov                  rax,                  rsi
-f_1_block_exit:
-     pop                  rbp
-     ret
-g:
-    push                  rbp
-     mov                  rbp,                  rsp
-g_0_block_enter:
-     mov                  rsi,                  rdi
-     mov                  rdi,                  rsi
-    call                    p
-     mov                  rsi,                  rax
-     mov                  rax,                  rsi
-     jmp       g_1_block_exit
-g_2_inline_enter:
-     mov                  rdi,                  rsi
-    call                    p
-     mov                  rsi,                  rax
-     mov                  rax,                  rsi
-     jmp       g_1_block_exit
-g_3_inline_exit:
-     mov                  rax,                  rsi
-g_1_block_exit:
-     pop                  rbp
-     ret
-h:
-    push                  rbp
-     mov                  rbp,                  rsp
-h_0_block_enter:
-     mov                   r9,                  rdi
-     mov                  rsi,                   r9
-     sub                  rsi,                    1
-     mov                  rdi,                   r9
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    2
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    3
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    4
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    5
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    6
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    7
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                   r8,                   r9
-     sub                   r8,                    9
-     mov                  rdi,                  rsi
-     mov                  eax,                  edi
-     mov                  ecx,                  r8d
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   10
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   11
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   12
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   13
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   14
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   15
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   16
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   17
-     mov                  rdi,                   r8
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   18
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   19
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   20
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rax,                  rsi
-     jmp       h_1_block_exit
-h_2_inline_enter:
-     mov                  rsi,                   r9
-     sub                  rsi,                    1
-     mov                  rdi,                   r9
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    2
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                    3
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    4
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    5
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    6
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    7
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                   r8,                   r9
-     sub                   r8,                    9
-     mov                  rdi,                  rsi
-     mov                  eax,                  edi
-     mov                  ecx,                  r8d
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   10
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   11
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   12
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   13
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   14
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   15
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   16
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   17
-     mov                  rdi,                   r8
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   18
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   19
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   20
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rax,                  rsi
-     jmp       h_1_block_exit
-h_3_inline_exit:
-     mov                  rax,                  rsi
-h_1_block_exit:
-     pop                  rbp
-     ret
 main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
+     sub                  rsp,                   80
     push                  r12
+    push                  r13
     push                  rbx
 main_0_block_enter:
-     mov                  rsi,                    5
-     mov                  rbx,                    0
-     mov                  r12,                    0
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  r12,                    1
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
-     mov                  rax,                    0
-     jmp  main_182_block_exit
-main_174_loop_exit:
-     mov                  rdi,                  rbx
-    call          println_Int
-     mov                  r12,                    1
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
-     mov                  rax,                    0
-     jmp  main_182_block_exit
-main_175_loop_condition:
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
-     mov                  rax,                    0
-     jmp  main_182_block_exit
-main_176_loop_body:
-     mov                  rsi,                  100
-     mov                  rdi,                  rsi
-    call                    g
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call            getString
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov       qword [@A + 0],                  rax
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call            getString
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov       qword [@B + 0],                  rax
+     mov                  rdi,       qword [@B + 0]
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call    __string_parseInt
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov       qword [@N + 0],                  rax
+     mov                  rdi,       qword [@A + 0]
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call      __string_length
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  rbx,                  rax
+     cmp                  rbx,       qword [@N + 0]
+      jl       main_1_if_true
+     mov                  rbx,       qword [@N + 0]
+     sub                  rbx,                    1
+     mov                  rdi,       qword [@A + 0]
+     xor                  rsi,                  rsi
+     mov                  rdx,                  rbx
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  r13,                  rax
+     mov                  rdi,                  r13
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call      __string_length
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  r12,                  rax
+     mov                  rax,                    1
+     cmp                  rax,                  r12
+      je       main_6_if_true
+     mov                  rbx,                  r12
+     mov                  rax,                  rbx
+     mov                  rcx,                    2
+     cdq
+    idiv                  ecx
+     mov                  rbx,                  rax
+     mov                   r8,                  rbx
+     sub                   r8,                    1
+     mov                  rdi,                  r13
+     xor                  rsi,                  rsi
+     mov                  rdx,                   r8
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  rdi,                  rax
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call                 calc
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                   r8,                  rax
+     sub                  r12,                    1
+     mov                  rdi,                  r13
+     mov                  rsi,                  rbx
+     mov                  rdx,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call   __string_substring
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rdi,                  rax
+    push                   r8
+    push                   r9
+    push                  rsi
+    call                 calc
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  r12,                  rax
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_LE
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je       main_9_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_EQ
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je      main_11_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+     sub                  rsp,                    8
+    call          __string_GR
+     add                  rsp,                    8
+     pop                   r9
+     pop                   r8
      mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      main_16_if_true
+     mov                  rdi,     __const_string_2
+    push                   r9
+    call              println
+     pop                   r9
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_1_if_true:
+     mov                  rdi,     __const_string_0
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_3_if_exit:
+     mov                  rbx,       qword [@N + 0]
+     sub                  rbx,                    1
+     mov                  rdi,       qword [@A + 0]
+     xor                  rsi,                  rsi
+     mov                  rdx,                  rbx
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  r13,                  rax
+     mov                  rdi,                  r13
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call      __string_length
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  r12,                  rax
+     mov                  rax,                    1
+     cmp                  rax,                  r12
+      je       main_6_if_true
      mov                  rbx,                  r12
      mov                  rax,                  rbx
-     mov                  rcx,              3000000
+     mov                  rcx,                    2
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     cmp                  rbx,                    0
-      je     main_177_if_true
-     add                  r12,                    1
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
-     mov                  rax,                    0
-     jmp  main_182_block_exit
-main_183_inline_enter:
-     mov                  rdi,                  rsi
-    call                    g
+     mov                  rbx,                  rax
+     mov                   r8,                  rbx
+     sub                   r8,                    1
+     mov                  rdi,                  r13
+     xor                  rsi,                  rsi
+     mov                  rdx,                   r8
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  rdi,                  rax
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call                 calc
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                   r8,                  rax
+     sub                  r12,                    1
+     mov                  rdi,                  r13
+     mov                  rsi,                  rbx
+     mov                  rdx,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call   __string_substring
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rdi,                  rax
+    push                   r8
+    push                   r9
+    push                  rsi
+    call                 calc
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  r12,                  rax
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_LE
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je       main_9_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_EQ
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je      main_11_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+     sub                  rsp,                    8
+    call          __string_GR
+     add                  rsp,                    8
+     pop                   r9
+     pop                   r8
      mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      main_16_if_true
+     mov                  rdi,     __const_string_2
+    push                   r9
+    call              println
+     pop                   r9
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_5_inline_enter:
+     mov                  rdi,                  r13
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call      __string_length
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  r12,                  rax
+     mov                  rax,                    1
+     cmp                  rax,                  r12
+      je       main_6_if_true
      mov                  rbx,                  r12
      mov                  rax,                  rbx
-     mov                  rcx,              3000000
+     mov                  rcx,                    2
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     cmp                  rbx,                    0
-      je     main_177_if_true
-     add                  r12,                    1
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
+     mov                  rbx,                  rax
+     mov                   r8,                  rbx
+     sub                   r8,                    1
+     mov                  rdi,                  r13
+     xor                  rsi,                  rsi
+     mov                  rdx,                   r8
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  rdi,                  rax
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call                 calc
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                   r8,                  rax
+     sub                  r12,                    1
+     mov                  rdi,                  r13
+     mov                  rsi,                  rbx
+     mov                  rdx,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call   __string_substring
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rdi,                  rax
+    push                   r8
+    push                   r9
+    push                  rsi
+    call                 calc
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  r12,                  rax
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_LE
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je       main_9_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_EQ
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je      main_11_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+     sub                  rsp,                    8
+    call          __string_GR
+     add                  rsp,                    8
+     pop                   r9
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      main_16_if_true
+     mov                  rdi,     __const_string_2
+    push                   r9
+    call              println
+     pop                   r9
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
      mov                  rax,                    0
-     jmp  main_182_block_exit
-main_184_inline_exit:
+     jmp    main_4_block_exit
+main_6_if_true:
+     mov                   r9,                  r13
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_8_if_exit:
      mov                  rbx,                  r12
      mov                  rax,                  rbx
-     mov                  rcx,              3000000
+     mov                  rcx,                    2
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     cmp                  rbx,                    0
-      je     main_177_if_true
-     add                  r12,                    1
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
+     mov                  rbx,                  rax
+     mov                   r8,                  rbx
+     sub                   r8,                    1
+     mov                  rdi,                  r13
+     xor                  rsi,                  rsi
+     mov                  rdx,                   r8
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                  rdi,                  rax
+    push                   r9
+    push                  rsi
+     sub                  rsp,                    8
+    call                 calc
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r9
+     mov                   r8,                  rax
+     sub                  r12,                    1
+     mov                  rdi,                  r13
+     mov                  rsi,                  rbx
+     mov                  rdx,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call   __string_substring
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rdi,                  rax
+    push                   r8
+    push                   r9
+    push                  rsi
+    call                 calc
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  r12,                  rax
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_LE
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je       main_9_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_EQ
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je      main_11_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+     sub                  rsp,                    8
+    call          __string_GR
+     add                  rsp,                    8
+     pop                   r9
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      main_16_if_true
+     mov                  rdi,     __const_string_2
+    push                   r9
+    call              println
+     pop                   r9
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
      mov                  rax,                    0
-     jmp  main_182_block_exit
-main_177_if_true:
-     mov                  rdi,                  rsi
-    call          println_Int
-     add                  r12,                    1
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
+     jmp    main_4_block_exit
+main_9_if_true:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                   r9,                  rax
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
      mov                  rax,                    0
-     jmp  main_182_block_exit
-main_180_loop_increment:
-     add                  r12,                    1
-     cmp                  r12,             30000000
-     jle   main_176_loop_body
+     jmp    main_4_block_exit
+main_10_if_false:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+    push                  rsi
+    call          __string_EQ
+     pop                  rsi
+     pop                   r9
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rbx,                    1
+      je      main_11_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+     sub                  rsp,                    8
+    call          __string_GR
+     add                  rsp,                    8
+     pop                   r9
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      main_16_if_true
+     mov                  rdi,     __const_string_2
+    push                   r9
+    call              println
+     pop                   r9
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
      mov                  rax,                    0
-     jmp  main_182_block_exit
-main_181_loop_exit:
+     jmp    main_4_block_exit
+main_11_if_true:
+     mov                  rdi,                   r8
+     xor                  rsi,                  rsi
+    push                   r8
+    push                  rsi
+     sub                  rsp,                    8
+    call         __string_ord
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r8
+     mov                  rbx,                  rax
+     mov                  rdi,                  r12
+     xor                  rsi,                  rsi
+    push                   r8
+    call         __string_ord
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rbx,                  rsi
+      jl      main_12_if_true
+     mov                  rdi,                  r12
+     mov                  rsi,                   r8
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                   r9,                  rax
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
      mov                  rax,                    0
-main_182_block_exit:
+     jmp    main_4_block_exit
+main_12_if_true:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                   r9,                  rax
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_14_if_exit:
+     mov                  rdi,                  r12
+     mov                  rsi,                   r8
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                   r9,                  rax
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_15_if_false:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    push                   r9
+     sub                  rsp,                    8
+    call          __string_GR
+     add                  rsp,                    8
+     pop                   r9
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      main_16_if_true
+     mov                  rdi,     __const_string_2
+    push                   r9
+    call              println
+     pop                   r9
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_16_if_true:
+     mov                  rdi,                  r12
+     mov                  rsi,                   r8
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                   r9,                  rax
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_20_if_exit:
+     mov                  rdi,     __const_string_2
+    push                   r9
+    call              println
+     pop                   r9
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp    main_4_block_exit
+main_21_inline_exit:
+     mov       qword [@C + 0],                   r9
+     mov                  rdi,       qword [@C + 0]
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+main_4_block_exit:
      pop                  rbx
+     pop                  r13
      pop                  r12
+     add                  rsp,                   80
+     pop                  rbp
+     ret
+calc:
+    push                  rbp
+     mov                  rbp,                  rsp
+     sub                  rsp,                   16
+    push                  r12
+    push                  r13
+    push                  rbx
+calc_0_block_enter:
+     mov                  r13,                  rdi
+     mov                  rdi,                  r13
+    push                  rsi
+    call      __string_length
+     pop                  rsi
+     mov                  r12,                  rax
+     mov                  rax,                    1
+     cmp                  rax,                  r12
+      je       calc_1_if_true
+     mov                  rbx,                  r12
+     mov                  rax,                  rbx
+     mov                  rcx,                    2
+     cdq
+    idiv                  ecx
+     mov                  rbx,                  rax
+     mov                   r8,                  rbx
+     sub                   r8,                    1
+     mov                  rdi,                  r13
+     xor                  rsi,                  rsi
+     mov                  rdx,                   r8
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call                 calc
+     add                  rsp,                    8
+     mov                   r8,                  rax
+     sub                  r12,                    1
+     mov                  rdi,                  r13
+     mov                  rsi,                  rbx
+     mov                  rdx,                  r12
+    push                   r8
+    call   __string_substring
+     pop                   r8
+     mov                  rdi,                  rax
+    push                   r8
+    call                 calc
+     pop                   r8
+     mov                  r12,                  rax
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_LE
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je       calc_4_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_EQ
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je       calc_6_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_GR
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      calc_11_if_true
+     mov                  rdi,     __const_string_1
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     jmp   calc_16_block_exit
+calc_1_if_true:
+     mov                  rax,                  r13
+     jmp   calc_16_block_exit
+calc_3_if_exit:
+     mov                  rbx,                  r12
+     mov                  rax,                  rbx
+     mov                  rcx,                    2
+     cdq
+    idiv                  ecx
+     mov                  rbx,                  rax
+     mov                   r8,                  rbx
+     sub                   r8,                    1
+     mov                  rdi,                  r13
+     xor                  rsi,                  rsi
+     mov                  rdx,                   r8
+     sub                  rsp,                    8
+    call   __string_substring
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call                 calc
+     add                  rsp,                    8
+     mov                   r8,                  rax
+     sub                  r12,                    1
+     mov                  rdi,                  r13
+     mov                  rsi,                  rbx
+     mov                  rdx,                  r12
+    push                   r8
+    call   __string_substring
+     pop                   r8
+     mov                  rdi,                  rax
+    push                   r8
+    call                 calc
+     pop                   r8
+     mov                  r12,                  rax
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_LE
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je       calc_4_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_EQ
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je       calc_6_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_GR
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      calc_11_if_true
+     mov                  rdi,     __const_string_1
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     jmp   calc_16_block_exit
+calc_4_if_true:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rax,                  rsi
+     jmp   calc_16_block_exit
+calc_5_if_false:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_EQ
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je       calc_6_if_true
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_GR
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      calc_11_if_true
+     mov                  rdi,     __const_string_1
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     jmp   calc_16_block_exit
+calc_6_if_true:
+     mov                  rdi,                   r8
+     xor                  rsi,                  rsi
+    push                   r8
+    call         __string_ord
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  r12
+     xor                  rsi,                  rsi
+    push                   r8
+    push                  rsi
+     sub                  rsp,                    8
+    call         __string_ord
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r8
+     mov                  rbx,                  rax
+     cmp                  rsi,                  rbx
+      jl       calc_7_if_true
+     mov                  rdi,                  r12
+     mov                  rsi,                   r8
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rax,                  rsi
+     jmp   calc_16_block_exit
+calc_7_if_true:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rax,                  rsi
+     jmp   calc_16_block_exit
+calc_9_if_exit:
+     mov                  rdi,                  r12
+     mov                  rsi,                   r8
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rax,                  rsi
+     jmp   calc_16_block_exit
+calc_10_if_false:
+     mov                  rdi,                   r8
+     mov                  rsi,                  r12
+    push                   r8
+    call          __string_GR
+     pop                   r8
+     mov                  rsi,                  rax
+     cmp                  rsi,                    1
+      je      calc_11_if_true
+     mov                  rdi,     __const_string_1
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     jmp   calc_16_block_exit
+calc_11_if_true:
+     mov                  rdi,                  r12
+     mov                  rsi,                   r8
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rax,                  rsi
+     jmp   calc_16_block_exit
+calc_15_if_exit:
+     mov                  rdi,     __const_string_1
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+calc_16_block_exit:
+     pop                  rbx
+     pop                  r13
+     pop                  r12
+     add                  rsp,                   16
      pop                  rbp
      ret
 SECTION .data
+      dq                   13
+__const_string_0:
+	db 108, 101, 110, 103, 116, 104,  32, 101, 114, 114, 111, 114,  33,   0
+      dq                   11
+__const_string_1:
+	db  78, 101, 118, 101, 114,  32,  69, 118, 101, 114,  33,   0
+      dq                   11
+__const_string_2:
+	db  78, 101, 118, 101, 114,  32,  69, 118, 101, 114,  33,   0
 SECTION .bss
+@A:
+    resq                    1
+@B:
+    resq                    1
+@C:
+    resq                    1
+@N:
+    resq                    1
 SECTION .data
 __println_int_format:
       db         "%ld", 10, 0

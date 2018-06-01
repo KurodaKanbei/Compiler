@@ -53,14 +53,14 @@ public class FoolishConditionMonitor {
                                 JumpInstruction jumpInstruction2 = (JumpInstruction) instructionList.get(4);
                                 if (jumpInstruction1.getTarget() == falseLabel && jumpInstruction2.getTarget() == falseLabel) {
                                     functionIR.getBlockList().remove(k + 1);
-                                    block1.getInstructionList().clear();
+                                    functionIR.getBlockList().get(k).getInstructionList().clear();
                                     if (unaryInstruction.getUnaryOp() == UnaryInstruction.UnaryOp.INC) {
-                                        block1.getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
+                                        functionIR.getBlockList().get(k).getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
                                     }
                                     if (unaryInstruction.getUnaryOp() == UnaryInstruction.UnaryOp.DEC) {
-                                        block2.getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.SUB, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
+                                        functionIR.getBlockList().get(k).getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.SUB, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
                                     }
-                                    block1.addInstruction(new JumpInstruction(block3.getLabelInstruction()));
+                                    functionIR.getBlockList().get(k).addInstruction(new JumpInstruction(block3.getLabelInstruction()));
                                 }
                             }
                         }
