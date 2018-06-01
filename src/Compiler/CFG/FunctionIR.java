@@ -296,9 +296,6 @@ public class FunctionIR {
         if (registerStringMap.containsKey(virtualRegister)) {
             registerManager.getUsedRegister().add(registerStringMap.get(virtualRegister));
         }
-        if (beMemorized) {
-            registerManager.getUsedRegister().add("rdi");
-        }
     }
 
     public boolean onlyContainsNaiveFunctionCall() {

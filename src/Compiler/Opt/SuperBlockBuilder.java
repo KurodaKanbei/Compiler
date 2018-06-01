@@ -10,12 +10,12 @@ import java.util.List;
 
 public class SuperBlockBuilder {
     public static void buildSuperBlock(FunctionIR functionIR) {
-        for (int round = 0; round < 10; round++) {
+        for (int round = 0; round < 8; round++) {
             for (Block block : functionIR.getBlockList()) {
                 List<Instruction> instructionList = block.getInstructionList();
                 if (!instructionList.isEmpty() && instructionList.get(instructionList.size() - 1) instanceof JumpInstruction) {
                     LabelInstruction targetLabelInstruction = ((JumpInstruction) instructionList.get(instructionList.size() - 1)).getTarget();
-                    if (targetLabelInstruction != functionIR.getExitBlock() && targetLabelInstruction.getBlock().getInstructionList().size() < 100) {
+                    if (targetLabelInstruction != functionIR.getExitBlock() && targetLabelInstruction.getBlock().getInstructionList().size() < 80) {
                         instructionList.remove(instructionList.size() - 1);
                         for (Instruction instruction : targetLabelInstruction.getBlock().getInstructionList()) {
                             block.getInstructionList().add(instruction);

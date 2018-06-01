@@ -11,18 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoolishConditionMonitor {
-    /*layout
-     block1
-        cmp f1(rbx) 1
-		CJump EQ main_169_if_true
-		jump main_171_if_exit
-	 block2 main_169_if_true
-		INC ans(r14)
-		jump main_171_if_exit
 
-	 block3 main_171_if_exit
-     */
-    public static void stupidConditionRemove(FunctionIR functionIR) {
+    public static void stupidConditionRemove(FunctionIR functionIR)  {
         if (functionIR.getBeMemorized()) return;
         for (int k = 0; k + 2 < functionIR.getBlockList().size(); k++) {
             Block block1 = functionIR.getBlockList().get(k);
@@ -53,14 +43,14 @@ public class FoolishConditionMonitor {
                                 JumpInstruction jumpInstruction2 = (JumpInstruction) instructionList.get(4);
                                 if (jumpInstruction1.getTarget() == falseLabel && jumpInstruction2.getTarget() == falseLabel) {
                                     functionIR.getBlockList().remove(k + 1);
-                                    functionIR.getBlockList().get(k).getInstructionList().clear();
+                                    block1.getInstructionList().clear();
                                     if (unaryInstruction.getUnaryOp() == UnaryInstruction.UnaryOp.INC) {
-                                        functionIR.getBlockList().get(k).getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
+                                        block1.getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
                                     }
                                     if (unaryInstruction.getUnaryOp() == UnaryInstruction.UnaryOp.DEC) {
-                                        functionIR.getBlockList().get(k).getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.SUB, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
+                                        block1.getInstructionList().add(new BinaryInstruction(BinaryInstruction.BinaryOp.SUB, unaryInstruction.getTarget(), compareInstruction.getLeftOperand()));
                                     }
-                                    functionIR.getBlockList().get(k).addInstruction(new JumpInstruction(block3.getLabelInstruction()));
+                                    block1.addInstruction(new JumpInstruction(block3.getLabelInstruction()));
                                 }
                             }
                         }
