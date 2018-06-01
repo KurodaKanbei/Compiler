@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/allocated.ir" beforeDir="false" afterPath="$PROJECT_DIR$/allocated.ir" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program.nasm" beforeDir="false" afterPath="$PROJECT_DIR$/program.nasm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program_backup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program_backup.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw.ir" beforeDir="false" afterPath="$PROJECT_DIR$/raw.ir" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" afterDir="false" />
     </list>
@@ -18,110 +22,123 @@
     <favorites_list name="Compiler" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MemoryLabel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/MemoryLabel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VirtualRegister.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BinaryInstruction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/program.nasm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NaiveRegisterAllocator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImmediateHunter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="64" column="132" selection-start-line="64" selection-start-column="132" selection-end-line="64" selection-end-column="132" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Translator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BuiltinFunction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/BuiltinFunction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SuperBlockBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Optimize.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/Optimize.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.8519961">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="program.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/program.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" selection-start-line="9" selection-end-line="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/program.nasm">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-78">
+                  <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="allocated.ir" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/allocated.ir">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="270">
+                  <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="semantic.bash" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/semantic.bash">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="program_backup.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/program_backup.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3503">
+                  <caret line="242" selection-start-line="242" selection-end-line="242" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="NaiveRegisterAllocator.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1170">
+                  <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ImmediateHunter.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-192">
+                  <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SuperBlockBuilder.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Optimize.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/Optimize.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="495">
+                  <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DeadLoopRazor.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/DeadLoopRazor.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="416">
+                  <caret line="56" selection-start-line="56" selection-end-line="56" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="program.nasm" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/program.nasm">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -221,15 +238,15 @@
         <option value="$PROJECT_DIR$/raw_backup.ir" />
         <option value="$PROJECT_DIR$/allocated_backup.ir" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" />
-        <option value="$PROJECT_DIR$/program_backup.txt" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/RegisterManager.java" />
         <option value="$PROJECT_DIR$/program.nasm" />
-        <option value="$PROJECT_DIR$/program.txt" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java" />
+        <option value="$PROJECT_DIR$/program.txt" />
+        <option value="$PROJECT_DIR$/program_backup.txt" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java" />
       </list>
     </option>
   </component>
@@ -552,7 +569,7 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50646204" side_tool="true" weight="0.35034484" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.32917705" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49353796" visible="true" weight="0.35034484" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49353796" weight="0.35034484" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49676898" weight="0.37655172" />
       <window_info id="Capture Tool" order="6" />
@@ -616,13 +633,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression/UnaryExpression/UnaryPlusExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/AST/Expression/IdentifierExpression.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -712,16 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/DeadLoopRazor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -901,13 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/allocated.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="100" column="28" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/PhysicalOperand/PhysicalOperand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -919,20 +912,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-612">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/program_backup.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="423" selection-start-line="423" selection-end-line="423" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/program.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1010,30 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/program.nasm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="64" column="132" selection-start-line="64" selection-start-column="132" selection-end-line="64" selection-end-column="132" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -1061,10 +1016,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/DeadLoopRazor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program_backup.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3503">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/semantic.bash">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program.nasm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-78">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allocated.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/Optimize.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="495">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-192">
+          <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

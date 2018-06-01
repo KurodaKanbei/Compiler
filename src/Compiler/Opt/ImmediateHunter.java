@@ -18,7 +18,7 @@ public class ImmediateHunter {
                 if (instruction instanceof MoveInstruction) {
                     Operand target = ((MoveInstruction) instruction).getTarget();
                     Operand source = ((MoveInstruction) instruction).getSource();
-                    if (target instanceof VirtualRegister || source instanceof ImmediateOperand && ((ImmediateOperand) source).getValue() == 0) {
+                    if (target instanceof VirtualRegister && source instanceof ImmediateOperand && ((ImmediateOperand) source).getValue() == 0) {
                         block.getInstructionList().remove(i);
                         block.getInstructionList().add(i, new BinaryInstruction(BinaryInstruction.BinaryOp.XOR, target, target));
                         continue;

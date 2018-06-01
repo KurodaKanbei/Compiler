@@ -1,7 +1,5 @@
-global add
 global __global_init
 global main
-global dp
 global print_Int
 global println_Int
 global print
@@ -23,27 +21,9 @@ global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .text
-add:
-    push                  rbp
-     mov                  rbp,                  rsp
-add_0_block_enter:
-     add                  rdi,                  rsi
-     mov                  rsi,                  rdi
-     mov                  rax,                  rsi
-     mov                  rcx,                  233
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rax,                  rsi
-     jmp     add_1_block_exit
-add_1_block_exit:
-     pop                  rbp
-     ret
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
-__global_init_0_block_enter:
-     jmp __global_init_1_block_exit
 __global_init_1_block_exit:
      pop                  rbp
      ret
@@ -52,182 +32,21 @@ main:
      mov                  rbp,                  rsp
     call        __global_init
 main_0_block_enter:
-     mov                  rdi,                    1
-    call                   dp
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-    call             toString
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-    call              println
-     mov                  rdi,                    2
-    call                   dp
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-    call             toString
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-    call              println
-     ;push rdi
-     ;push rsi
-     ;push rax
-     ;push rbx
-     ;push rcx
-     ;push rdx
-     ;push r8
-     ;push r9
-     ;push r10
-     ;push r11
-     ;push r12
-     ;push r13
-     ;push r14
-     ;push r15
-     ;mov rdi,  qword [@dp_int + 16]
-     ;call println_Int
-     ;pop r15
-     ;pop r14
-     ;pop r13
-     ;pop r12
-     ;pop r11
-     ;pop r10
-     ;pop r9
-     ;pop r8
-     ;pop rdx
-     ;pop rcx
-     ;pop rbx
-     ;pop rax
-     ;pop rsi
-     ;pop rdi
-     mov                  rdi,                    3
-    call                   dp
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-    call             toString
-     mov                  rsi,                  rax
-     mov                  rdi,                  rsi
-    call              println
-     mov                  rax,                    0
-     jmp    main_1_block_exit
-main_1_block_exit:
-     pop                  rbp
-     ret
-dp:
-    push                  rbp
-     mov                  rbp,                  rsp
-     sub                  rsp,                   16
-    push                  r12
-    push                  r13
-    push                  rbx
-dp_0_block_enter:
-     mov                  r13,                   r9
-     sal                  r13,                    3
-     mov                  r12,              @dp_int
-     add                  r12,                  r13
-     sar                  r13,                    3
-     cmp                   r9,                    0
-     jge      dp_1_dp_success
-     jmp        dp_4_dp_start
-dp_1_dp_success:
-     cmp                   r9,                  200
-      jl       dp_2_dp_escape
-     jmp        dp_4_dp_start
-dp_2_dp_escape:
-     cmp      qword [r12 + 0],                    0
-      je        dp_4_dp_start
-     jmp       dp_3_dp_return
-dp_3_dp_return:
-     mov                  rax,      qword [r12 + 0]
-     jmp     dp_19_block_exit
-dp_4_dp_start:
-     mov                   r9,                  rdi
-     cmp                   r9,                    1
-     mov                  rsi,                    0
-   setle                  sil
-     cmp                  rsi,                    1
-      je         dp_5_if_true
-     jmp        dp_6_if_false
-dp_5_if_true:
-     mov                  rsi,                   36
+     xor                  rsi,                  rsi
+     cmp                  rsi,                   10
+      je       main_1_if_true
      mov                  rax,                  rsi
-     jmp     dp_19_block_exit
-dp_6_if_false:
-     jmp         dp_7_if_exit
-dp_7_if_exit:
-     mov                  rbx,                    0
-     mov                   r8,                    2
-     jmp  dp_8_loop_condition
-dp_8_loop_condition:
-     cmp                   r8,                   r9
-     mov                  rsi,                    0
-   setle                  sil
-     cmp                  rsi,                    1
-      je       dp_9_loop_body
-     jmp      dp_14_loop_exit
-dp_9_loop_body:
-     mov                  rsi,                   r9
-     xor                  rsi,                   r8
-     cmp                  rsi,                   r9
-     mov                  rsi,                    0
-    setl                  sil
-     cmp                  rsi,                    1
-      je        dp_10_if_true
-     jmp       dp_11_if_false
-dp_10_if_true:
-     mov                  rsi,                   r9
-     xor                  rsi,                   r8
-     mov                  rdi,                  rsi
-    push                   r9
-    push                   r8
-     sub                  rsp,                    8
-    call                   dp
-     add                  rsp,                    8
-     pop                   r8
-     pop                   r9
-     mov                  rsi,                  rax
-     mov                  rdi,                  rbx
-    push                   r9
-    push                   r8
-     sub                  rsp,                    8
-    call                  add
-     add                  rsp,                    8
-     pop                   r8
-     pop                   r9
-     mov                  rsi,                  rax
-     mov                  rbx,                  rsi
-     jmp        dp_12_if_exit
-dp_11_if_false:
-     jmp        dp_12_if_exit
-dp_12_if_exit:
-     jmp dp_13_loop_increment
-dp_13_loop_increment:
-     mov                  rsi,                   r8
-     add                   r8,                    1
-     jmp  dp_8_loop_condition
-dp_14_loop_exit:
-     mov                  rax,                  rbx
-     jmp        dp_15_dp_save
-dp_15_dp_save:
-     cmp                  r13,                    0
-     jge    dp_16_dp_positive
-     jmp        dp_18_dp_fail
-dp_16_dp_positive:
-     cmp                  r13,                  200
-      jl      dp_17_dp_update
-     jmp        dp_18_dp_fail
-dp_17_dp_update:
-     mov      qword [r12 + 0],                  rax
-dp_18_dp_fail:
-     jmp     dp_19_block_exit
-dp_19_block_exit:
-     pop                  rbx
-     pop                  r13
-     pop                  r12
-     add                  rsp,                   16
+     jmp    main_4_block_exit
+main_1_if_true:
+     xor                  rsi,                  rsi
+     mov                  rax,                  rsi
+     jmp    main_4_block_exit
+main_3_if_exit:
+     mov                  rax,                  rsi
+main_4_block_exit:
      pop                  rbp
      ret
 SECTION .data
-@dp_int:
-	dq	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,0
 SECTION .bss
 SECTION .data
 __println_int_format:

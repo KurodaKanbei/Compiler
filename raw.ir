@@ -5,100 +5,21 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		n(null) = mov 32
-		t1(rdi) = mov n(null)
-		call fibo return value = t0(rax)
-		t2(null) = mov t0(rax)
-		t4(rdi) = mov t2(null)
-		call toString return value = t3(rax)
-		t5(null) = mov t3(rax)
-		t6(rdi) = mov t5(null)
-		call println return value = null
-		i(null) = mov 0
-		jump main_1_loop_condition
-	main_1_loop_condition
-		cmp i(null) 100
-		set LEEQ t7(null)
-		cmp t7(null) 1
-		CJump EQ main_2_loop_body
-		jump main_4_loop_exit
-	main_2_loop_body
-		t9(rdi) = mov 30
-		call fibo return value = t8(rax)
-		t10(null) = mov t8(rax)
-		t12(rdi) = mov t10(null)
-		call toString return value = t11(rax)
-		t13(null) = mov t11(rax)
-		t14(rdi) = mov t13(null)
-		call println return value = null
-		jump main_3_loop_increment
-	main_3_loop_increment
-		INC i(null)
-		jump main_1_loop_condition
-	main_4_loop_exit
-		ret 0
-		jump main_5_block_exit
-	main_5_block_exit
-}
-fibo x(rdi) {
-	fibo_0_block_enter
-		t27(null) = mov x(rdi)
-		t27(null) = t27(null) SHL 3
-		t28(null) = mov t26(@fibo_int)
-		t28(null) = t28(null) ADD t27(null)
-		t27(null) = t27(null) SHR 3
-		cmp x(rdi) 0
-		CJump GREQ fibo_1_fibo_success
-		jump fibo_4_fibo_start
-	fibo_1_fibo_success
-		cmp x(rdi) 200
-		CJump LE fibo_2_fibo_escape
-		jump fibo_4_fibo_start
-	fibo_2_fibo_escape
-		cmp Address (t28(null) + 0) 0
-		CJump EQ fibo_4_fibo_start
-		jump fibo_3_fibo_return
-	fibo_3_fibo_return
-		ret Address (t28(null) + 0)
-		jump fibo_12_block_exit
-	fibo_4_fibo_start
-		x(rdi) = mov t15(rdi)
-		cmp x(rdi) 2
-		set LE t16(null)
-		cmp t16(null) 1
-		CJump EQ fibo_5_if_true
-		jump fibo_6_if_false
-	fibo_5_if_true
-		ret x(rdi)
-		jump fibo_12_block_exit
-	fibo_6_if_false
-		jump fibo_7_if_exit
-	fibo_7_if_exit
-		t17(null) = mov x(rdi)
-		t17(null) = t17(null) SUB 1
-		t19(rdi) = mov t17(null)
-		call fibo return value = t18(rax)
-		t20(null) = mov t18(rax)
-		t21(null) = mov x(rdi)
-		t21(null) = t21(null) SUB 2
-		t23(rdi) = mov t21(null)
-		call fibo return value = t22(rax)
-		t24(null) = mov t22(rax)
-		t25(null) = mov t20(null)
-		t25(null) = t25(null) ADD t24(null)
-		ret t25(null)
-		jump fibo_8_fibo_save
-	fibo_8_fibo_save
-		cmp t27(null) 0
-		CJump GREQ fibo_9_fibo_positive
-		jump fibo_11_fibo_fail
-	fibo_9_fibo_positive
-		cmp t27(null) 200
-		CJump LE fibo_10_fibo_update
-		jump fibo_11_fibo_fail
-	fibo_10_fibo_update
-		Address (t28(null) + 0) = mov t29(rax)
-	fibo_11_fibo_fail
-		jump fibo_12_block_exit
-	fibo_12_block_exit
+		x(null) = mov 10
+		y(null) = mov x(null)
+		cmp x(null) 10
+		set EQ t0(null)
+		cmp t0(null) 1
+		CJump EQ main_1_if_true
+		jump main_2_if_false
+	main_1_if_true
+		x(null) = mov 20
+		y(null) = mov x(null)
+		jump main_3_if_exit
+	main_2_if_false
+		jump main_3_if_exit
+	main_3_if_exit
+		ret y(null)
+		jump main_4_block_exit
+	main_4_block_exit
 }
