@@ -1,87 +1,87 @@
 p n(null) {
 	p_0_block_enter
-		n(null) = mov t203(rdi)
+		n(null) = mov t197(rdi)
+		t198(null) = mov n(null)
+		t198(null) = t198(null) SUB 1
+		t199(null) = mov n(null)
+		t199(null) = t199(null) MOD t198(null)
+		t200(null) = mov n(null)
+		t200(null) = t200(null) SUB 2
+		t201(null) = mov t199(null)
+		t201(null) = t201(null) MOD t200(null)
+		t202(null) = mov n(null)
+		t202(null) = t202(null) SUB 3
+		t203(null) = mov t201(null)
+		t203(null) = t203(null) MOD t202(null)
 		t204(null) = mov n(null)
-		t204(null) = t204(null) SUB 1
-		t205(null) = mov n(null)
+		t204(null) = t204(null) SUB 4
+		t205(null) = mov t203(null)
 		t205(null) = t205(null) MOD t204(null)
 		t206(null) = mov n(null)
-		t206(null) = t206(null) SUB 2
+		t206(null) = t206(null) SUB 5
 		t207(null) = mov t205(null)
 		t207(null) = t207(null) MOD t206(null)
 		t208(null) = mov n(null)
-		t208(null) = t208(null) SUB 3
+		t208(null) = t208(null) SUB 6
 		t209(null) = mov t207(null)
 		t209(null) = t209(null) MOD t208(null)
 		t210(null) = mov n(null)
-		t210(null) = t210(null) SUB 4
+		t210(null) = t210(null) SUB 7
 		t211(null) = mov t209(null)
 		t211(null) = t211(null) MOD t210(null)
 		t212(null) = mov n(null)
-		t212(null) = t212(null) SUB 5
+		t212(null) = t212(null) SUB 8
 		t213(null) = mov t211(null)
 		t213(null) = t213(null) MOD t212(null)
 		t214(null) = mov n(null)
-		t214(null) = t214(null) SUB 6
+		t214(null) = t214(null) SUB 9
 		t215(null) = mov t213(null)
 		t215(null) = t215(null) MOD t214(null)
 		t216(null) = mov n(null)
-		t216(null) = t216(null) SUB 7
+		t216(null) = t216(null) SUB 10
 		t217(null) = mov t215(null)
 		t217(null) = t217(null) MOD t216(null)
 		t218(null) = mov n(null)
-		t218(null) = t218(null) SUB 8
+		t218(null) = t218(null) SUB 11
 		t219(null) = mov t217(null)
 		t219(null) = t219(null) MOD t218(null)
 		t220(null) = mov n(null)
-		t220(null) = t220(null) SUB 9
+		t220(null) = t220(null) SUB 12
 		t221(null) = mov t219(null)
 		t221(null) = t221(null) MOD t220(null)
 		t222(null) = mov n(null)
-		t222(null) = t222(null) SUB 10
+		t222(null) = t222(null) SUB 13
 		t223(null) = mov t221(null)
 		t223(null) = t223(null) MOD t222(null)
 		t224(null) = mov n(null)
-		t224(null) = t224(null) SUB 11
+		t224(null) = t224(null) SUB 14
 		t225(null) = mov t223(null)
 		t225(null) = t225(null) MOD t224(null)
 		t226(null) = mov n(null)
-		t226(null) = t226(null) SUB 12
+		t226(null) = t226(null) SUB 15
 		t227(null) = mov t225(null)
 		t227(null) = t227(null) MOD t226(null)
 		t228(null) = mov n(null)
-		t228(null) = t228(null) SUB 13
+		t228(null) = t228(null) SUB 16
 		t229(null) = mov t227(null)
 		t229(null) = t229(null) MOD t228(null)
 		t230(null) = mov n(null)
-		t230(null) = t230(null) SUB 14
+		t230(null) = t230(null) SUB 17
 		t231(null) = mov t229(null)
 		t231(null) = t231(null) MOD t230(null)
 		t232(null) = mov n(null)
-		t232(null) = t232(null) SUB 15
+		t232(null) = t232(null) SUB 18
 		t233(null) = mov t231(null)
 		t233(null) = t233(null) MOD t232(null)
 		t234(null) = mov n(null)
-		t234(null) = t234(null) SUB 16
+		t234(null) = t234(null) SUB 19
 		t235(null) = mov t233(null)
 		t235(null) = t235(null) MOD t234(null)
 		t236(null) = mov n(null)
-		t236(null) = t236(null) SUB 17
+		t236(null) = t236(null) SUB 20
 		t237(null) = mov t235(null)
 		t237(null) = t237(null) MOD t236(null)
-		t238(null) = mov n(null)
-		t238(null) = t238(null) SUB 18
-		t239(null) = mov t237(null)
-		t239(null) = t239(null) MOD t238(null)
-		t240(null) = mov n(null)
-		t240(null) = t240(null) SUB 19
-		t241(null) = mov t239(null)
-		t241(null) = t241(null) MOD t240(null)
-		t242(null) = mov n(null)
-		t242(null) = t242(null) SUB 20
-		t243(null) = mov t241(null)
-		t243(null) = t243(null) MOD t242(null)
-		ret t243(null)
+		ret t237(null)
 		jump p_1_block_exit
 	p_1_block_exit
 }
@@ -151,7 +151,7 @@ main {
 		set LE t12(null)
 		cmp t12(null) 1
 		CJump EQ main_2_loop_body
-		jump main_192_loop_exit
+		jump main_174_loop_exit
 	main_2_loop_body
 		j(null) = mov 0
 		jump main_3_loop_condition
@@ -160,7 +160,7 @@ main {
 		set LE t13(null)
 		cmp t13(null) 1
 		CJump EQ main_4_loop_body
-		jump main_190_loop_exit
+		jump main_172_loop_exit
 	main_4_loop_body
 		k(null) = mov 0
 		jump main_5_loop_condition
@@ -169,7 +169,7 @@ main {
 		set LE t14(null)
 		cmp t14(null) 1
 		CJump EQ main_6_loop_body
-		jump main_188_loop_exit
+		jump main_170_loop_exit
 	main_6_loop_body
 		cmp i(null) 0
 		set GR t20(null)
@@ -945,122 +945,62 @@ main {
 		jump main_168_logical_exit
 	main_168_logical_exit
 		f6(null) = mov t155(null)
-		cmp f1(null) 1
-		CJump EQ main_169_if_true
-		jump main_170_if_false
-	main_169_if_true
-		t183(null) = mov ans(null)
-		INC ans(null)
-		jump main_171_if_exit
-	main_170_if_false
-		jump main_171_if_exit
-	main_171_if_exit
-		cmp f2(null) 1
-		CJump EQ main_172_if_true
-		jump main_173_if_false
-	main_172_if_true
-		t184(null) = mov ans(null)
-		INC ans(null)
-		jump main_174_if_exit
-	main_173_if_false
-		jump main_174_if_exit
-	main_174_if_exit
-		cmp f3(null) 1
-		CJump EQ main_175_if_true
-		jump main_176_if_false
-	main_175_if_true
-		t185(null) = mov ans(null)
-		INC ans(null)
-		jump main_177_if_exit
-	main_176_if_false
-		jump main_177_if_exit
-	main_177_if_exit
-		cmp f4(null) 1
-		CJump EQ main_178_if_true
-		jump main_179_if_false
-	main_178_if_true
-		t186(null) = mov ans(null)
-		INC ans(null)
-		jump main_180_if_exit
-	main_179_if_false
-		jump main_180_if_exit
-	main_180_if_exit
-		cmp f5(null) 1
-		CJump EQ main_181_if_true
-		jump main_182_if_false
-	main_181_if_true
-		t187(null) = mov ans(null)
-		INC ans(null)
-		jump main_183_if_exit
-	main_182_if_false
-		jump main_183_if_exit
-	main_183_if_exit
-		cmp f6(null) 1
-		CJump EQ main_184_if_true
-		jump main_185_if_false
-	main_184_if_true
-		t188(null) = mov ans(null)
-		INC ans(null)
-		jump main_186_if_exit
-	main_185_if_false
-		jump main_186_if_exit
-	main_186_if_exit
-		jump main_187_loop_increment
-	main_187_loop_increment
+		jump main_169_loop_increment
+	main_169_loop_increment
 		INC k(null)
 		jump main_5_loop_condition
-	main_188_loop_exit
-		jump main_189_loop_increment
-	main_189_loop_increment
+	main_170_loop_exit
+		jump main_171_loop_increment
+	main_171_loop_increment
 		INC j(null)
 		jump main_3_loop_condition
-	main_190_loop_exit
-		jump main_191_loop_increment
-	main_191_loop_increment
+	main_172_loop_exit
+		jump main_173_loop_increment
+	main_173_loop_increment
 		INC i(null)
 		jump main_1_loop_condition
-	main_192_loop_exit
-		t190(rdi) = mov ans(null)
-		call toString return value = t189(rax)
-		t191(null) = mov t189(rax)
-		t192(rdi) = mov t191(null)
+	main_174_loop_exit
+		t184(rdi) = mov ans(null)
+		call toString return value = t183(rax)
+		t185(null) = mov t183(rax)
+		t186(rdi) = mov t185(null)
 		call println return value = null
 		i(null) = mov 1
-		jump main_193_loop_condition
-	main_193_loop_condition
+		jump main_175_loop_condition
+	main_175_loop_condition
 		cmp i(null) 30000000
-		set LEEQ t193(null)
-		cmp t193(null) 1
-		CJump EQ main_194_loop_body
-		jump main_199_loop_exit
-	main_194_loop_body
-		t195(rdi) = mov 100
-		call f return value = t194(rax)
-		t196(null) = mov t194(rax)
-		tt(null) = mov t196(null)
-		t197(null) = mov i(null)
-		t197(null) = t197(null) MOD 3000000
-		cmp t197(null) 0
-		set EQ t198(null)
-		cmp t198(null) 1
-		CJump EQ main_195_if_true
-		jump main_196_if_false
-	main_195_if_true
-		t200(rdi) = mov tt(null)
-		call toString return value = t199(rax)
-		t201(null) = mov t199(rax)
-		t202(rdi) = mov t201(null)
+		set LEEQ t187(null)
+		cmp t187(null) 1
+		CJump EQ main_176_loop_body
+		jump main_181_loop_exit
+	main_176_loop_body
+		t189(rdi) = mov 100
+		call f return value = t188(rax)
+		t190(null) = mov t188(rax)
+		tt(null) = mov t190(null)
+		t191(null) = mov i(null)
+		t191(null) = t191(null) MOD 3000000
+		cmp t191(null) 0
+		set EQ t192(null)
+		cmp t192(null) 1
+		CJump EQ main_177_if_true
+		jump main_178_if_false
+	main_177_if_true
+		t194(rdi) = mov tt(null)
+		call toString return value = t193(rax)
+		t195(null) = mov t193(rax)
+		t196(rdi) = mov t195(null)
 		call println return value = null
-		jump main_197_if_exit
-	main_196_if_false
-		jump main_197_if_exit
-	main_197_if_exit
-		jump main_198_loop_increment
-	main_198_loop_increment
+		jump main_179_if_exit
+	main_178_if_false
+		jump main_179_if_exit
+	main_179_if_exit
+		jump main_180_loop_increment
+	main_180_loop_increment
 		INC i(null)
-		jump main_193_loop_condition
-	main_199_loop_exit
+		jump main_175_loop_condition
+	main_181_loop_exit
 		ret 0
-		jump main_200_block_exit
-	main_200_block_exit
+		jump main_182_block_exit
+	main_182_block_exit
 }

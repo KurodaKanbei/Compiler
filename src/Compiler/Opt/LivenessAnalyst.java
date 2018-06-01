@@ -141,8 +141,15 @@ public class LivenessAnalyst {
         if (inMemory(x) || inMemory(y) || x == y) {
             return;
         }
+        addEdge(x, y);
+        addEdge(y, x);
+    }
+
+    private static void addEdge(VirtualRegister x, VirtualRegister y) {
+        if (!edge.containsKey(x)) {
+            edge.put(x, new HashSet<>());
+        }
         edge.get(x).add(y);
-        edge.get(y).add(x);
     }
 
     private static void addMoveEdge(VirtualRegister target, VirtualRegister source) {
