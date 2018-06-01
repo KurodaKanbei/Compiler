@@ -20,8 +20,8 @@ public class Optimize {
                 ++round;
                 if (round == 100) break;
             }
-            //ImmediateHunter.huntImmediate(functionIR);
-            //FoolishConditionMonitor.stupidConditionRemove(functionIR);
+            ImmediateHunter.huntImmediate(functionIR);
+            FoolishConditionMonitor.stupidConditionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             BinaryInstructionRazor.uselessMoveInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
