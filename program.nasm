@@ -68,6 +68,48 @@ p_0_block_enter:
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
      sub                  rsi,                    6
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                    7
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                    8
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                    9
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   10
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   11
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   12
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -75,7 +117,7 @@ p_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                    7
+     sub                  rdi,                   13
      mov                  rsi,                   r8
      mov                  eax,                  esi
      mov                  ecx,                  edi
@@ -83,7 +125,7 @@ p_0_block_enter:
     idiv                  ecx
      mov                  rsi,                  rdx
      mov                   r8,                   r9
-     sub                   r8,                    8
+     sub                   r8,                   14
      mov                  rdi,                  rsi
      mov                  eax,                  edi
      mov                  ecx,                  r8d
@@ -91,7 +133,7 @@ p_0_block_enter:
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                    9
+     sub                  rsi,                   15
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -99,50 +141,8 @@ p_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   10
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   11
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   12
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   13
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   14
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   15
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
      sub                  rdi,                   16
+     mov                  rsi,                   r8
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -150,22 +150,20 @@ p_0_block_enter:
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
      sub                  rdi,                   17
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
+     mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
     idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   18
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   18
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
      cdq
     idiv                  ecx
-     mov                   r8,                  rdx
+     mov                  rsi,                  rdx
      mov                  rdi,                   r9
      sub                  rdi,                   19
-     mov                  rsi,                   r8
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -294,24 +292,16 @@ h_0_block_enter:
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    9
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   10
-     mov                  rdi,                   r8
+     mov                   r8,                   r9
+     sub                   r8,                    9
+     mov                  rdi,                  rsi
      mov                  eax,                  edi
-     mov                  ecx,                  esi
+     mov                  ecx,                  r8d
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   11
+     sub                  rsi,                   10
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -319,8 +309,15 @@ h_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   12
+     sub                  rdi,                   11
      mov                  rsi,                   r8
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   12
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -328,6 +325,27 @@ h_0_block_enter:
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
      sub                  rdi,                   13
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   14
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   15
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   16
      mov                   r8,                  rsi
      mov                  eax,                  r8d
      mov                  ecx,                  edi
@@ -335,7 +353,7 @@ h_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   14
+     sub                  rsi,                   17
      mov                  rdi,                   r8
      mov                  eax,                  edi
      mov                  ecx,                  esi
@@ -343,7 +361,7 @@ h_0_block_enter:
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   15
+     sub                  rsi,                   18
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -351,7 +369,7 @@ h_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   16
+     sub                  rdi,                   19
      mov                  rsi,                   r8
      mov                  eax,                  esi
      mov                  ecx,                  edi
@@ -359,33 +377,9 @@ h_0_block_enter:
     idiv                  ecx
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   17
+     sub                  rdi,                   20
      mov                  eax,                  esi
      mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   18
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   19
-     mov                  rdi,                   r8
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                   r8,                   r9
-     sub                   r8,                   20
-     mov                  rsi,                  rdi
-     mov                  eax,                  esi
-     mov                  ecx,                  r8d
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
@@ -451,24 +445,16 @@ h_2_inline_enter:
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    9
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   10
-     mov                  rdi,                   r8
+     mov                   r8,                   r9
+     sub                   r8,                    9
+     mov                  rdi,                  rsi
      mov                  eax,                  edi
-     mov                  ecx,                  esi
+     mov                  ecx,                  r8d
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   11
+     sub                  rsi,                   10
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -476,8 +462,15 @@ h_2_inline_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   12
+     sub                  rdi,                   11
      mov                  rsi,                   r8
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   12
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -485,6 +478,27 @@ h_2_inline_enter:
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
      sub                  rdi,                   13
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   14
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   15
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   16
      mov                   r8,                  rsi
      mov                  eax,                  r8d
      mov                  ecx,                  edi
@@ -492,7 +506,7 @@ h_2_inline_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   14
+     sub                  rsi,                   17
      mov                  rdi,                   r8
      mov                  eax,                  edi
      mov                  ecx,                  esi
@@ -500,7 +514,7 @@ h_2_inline_enter:
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   15
+     sub                  rsi,                   18
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -508,7 +522,7 @@ h_2_inline_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   16
+     sub                  rdi,                   19
      mov                  rsi,                   r8
      mov                  eax,                  esi
      mov                  ecx,                  edi
@@ -516,33 +530,9 @@ h_2_inline_enter:
     idiv                  ecx
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   17
+     sub                  rdi,                   20
      mov                  eax,                  esi
      mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   18
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   19
-     mov                  rdi,                   r8
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                   r8,                   r9
-     sub                   r8,                   20
-     mov                  rsi,                  rdi
-     mov                  eax,                  esi
-     mov                  ecx,                  r8d
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
@@ -561,8 +551,8 @@ main:
     push                  rbx
 main_0_block_enter:
      mov                  rsi,                    5
-     xor                  rbx,                  rbx
-     xor                  r12,                  r12
+     mov                  rbx,                    0
+     mov                  r12,                    0
      mov                  rdi,                  rbx
     call          println_Int
      mov                  r12,                    1

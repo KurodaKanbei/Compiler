@@ -20,6 +20,8 @@ public class Optimize {
                 ++round;
                 if (round == 100) break;
             }
+            //ImmediateHunter.huntImmediate(functionIR);
+            //FoolishConditionMonitor.stupidConditionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             BinaryInstructionRazor.uselessMoveInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
@@ -28,8 +30,6 @@ public class Optimize {
             NaiveRegisterAllocator.naiveAllocate(LivenessAnalyst.getEdge(), LivenessAnalyst.getCount(), functionIR);
             RedundantBlockDictator.redundantBlockRemove(functionIR);
             StupidMoveKiller.uselessMoveRemove(functionIR);
-            ImmediateHunter.huntImmediate(functionIR);
-            FoolishConditionMonitor.stupidConditionRemove(functionIR);
             BlocksTyrant.emptyBlockRemove(functionIR);
             SuperBlockBuilder.buildSuperBlock(functionIR);
             SuperBlockBuilder.uselessJumpRemove(functionIR);
