@@ -50,10 +50,20 @@ public class BinaryInstructionRazor {
                         MoveInstruction moveInstruction1 = (MoveInstruction) block.getInstructionList().get(i);
                         MoveInstruction moveInstruction2 = (MoveInstruction) block.getInstructionList().get(i + 1);
                         if (moveInstruction1.getTarget() == moveInstruction2.getSource() && moveInstruction1.getTarget() instanceof VirtualRegister
-                                && !moveInstruction2.getLiveOut().contains((VirtualRegister) moveInstruction1.getTarget())) {
+                                && !moveInstruction2.getLiveOut().contains(moveInstruction1.getTarget())) {
                             moveInstruction1.setTarget(moveInstruction2.getTarget());
                             block.getInstructionList().remove(i + 1);
                             --i;
+                            continue;
+                        }
+                    }
+                    if (block.getInstructionList().get(i) instanceof MoveInstruction
+                            && block.getInstructionList().get(i + 1) instanceof MoveInstruction) {
+                        MoveInstruction moveInstruction1 = (MoveInstruction) block.getInstructionList().get(i);
+                        MoveInstruction moveInstruction2 = (MoveInstruction) block.getInstructionList().get(i + 1);
+                        if (moveInstruction1.getTarget() == moveInstruction2.getSource()
+                                && moveInstruction1.getSource() == moveInstruction2.getTarget()) {
+                            block.getInstructionList().remove(i--);
                         }
                     }
                 }

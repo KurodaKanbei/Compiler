@@ -60,12 +60,9 @@ public class NaiveRegisterAllocator {
             }
         }
         allocateOrder = functionIR.isLeaf() ? leafOrder : normalOrder;
-<<<<<<< HEAD
         /*virtualRegisterList.sort((lhs, rhs) -> {
-=======
         //if (functionIR.getBeMemorized()) allocateOrder = limitedOrder;
         virtualRegisterList.sort((lhs, rhs) -> {
->>>>>>> parent of 5047d74... 搞错了一点东西
             int leftValue = countMap.get(lhs);
             int rightValue = countMap.get(rhs);
             return Integer.compare(leftValue, rightValue);

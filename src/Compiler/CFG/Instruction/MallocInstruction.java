@@ -18,24 +18,6 @@ public class MallocInstruction extends Instruction {
     public MallocInstruction(VirtualRegister target, Operand mallocSize) {
         this.target = target;
         this.mallocSize = mallocSize;
-<<<<<<< HEAD
-        buildSet();
-    }
-
-    public VirtualRegister getTarget() {
-        return target;
-    }
-
-    public Operand getMallocSize() {
-        return mallocSize;
-    }
-
-    @Override
-    public void buildSet() {
-        killSet = new HashSet<>();
-        useSet = new HashSet<>();
-=======
->>>>>>> parent of 5047d74... 搞错了一点东西
         killSet.add(target);
         if (mallocSize instanceof  VirtualRegister) {
             useSet.add((VirtualRegister) mallocSize);
@@ -52,6 +34,7 @@ public class MallocInstruction extends Instruction {
     public Operand getMallocSize() {
         return mallocSize;
     }
+
 
     @Override
     public boolean hasGlobalImpact() {
