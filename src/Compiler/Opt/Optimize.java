@@ -28,10 +28,11 @@ public class Optimize {
             NaiveRegisterAllocator.naiveAllocate(LivenessAnalyst.getEdge(), LivenessAnalyst.getCount(), functionIR);
             RedundantBlockDictator.redundantBlockRemove(functionIR);
             StupidMoveKiller.uselessMoveRemove(functionIR);
+            ImmediateHunter.huntImmediate(functionIR);
+            FoolishConditionMonitor.stupidConditionRemove(functionIR);
             BlocksTyrant.emptyBlockRemove(functionIR);
             SuperBlockBuilder.buildSuperBlock(functionIR);
             SuperBlockBuilder.uselessJumpRemove(functionIR);
-            ImmediateHunter.huntImmediate(functionIR);
         }
     }
 }
