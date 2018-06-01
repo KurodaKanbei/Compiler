@@ -7410,7 +7410,102 @@ main {
 		t147(rsi) = t147(rsi) MOD 199
 		cmp t147(rsi) 0
 		set EQ t148(rsi)
-		jump main_135_logical_exit
+		cmp t128(rsi) 1
+		CJump EQ main_136_logical_true
+		t150(rsi) = mov i(r15)
+		t150(rsi) = t150(rsi) MUL j(r10)
+		t151(rsi) = t151(rsi) MUL k(r11)
+		cmp t151(rsi) 0
+		set GR t152(rsi)
+		cmp t152(rsi) 1
+		CJump NEQ main_139_logical_false
+		t153(rsi) = mov k(r11)
+		t153(rsi) = t153(rsi) MOD 199
+		cmp t153(rsi) 0
+		set EQ t154(rsi)
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_71_logical_false
 		cmp k(r11) 0
 		set GR t84(rsi)
@@ -7668,7 +7763,102 @@ main {
 		t147(rsi) = t147(rsi) MOD 199
 		cmp t147(rsi) 0
 		set EQ t148(rsi)
-		jump main_135_logical_exit
+		cmp t128(rsi) 1
+		CJump EQ main_136_logical_true
+		t150(rsi) = mov i(r15)
+		t150(rsi) = t150(rsi) MUL j(r10)
+		t151(rsi) = t151(rsi) MUL k(r11)
+		cmp t151(rsi) 0
+		set GR t152(rsi)
+		cmp t152(rsi) 1
+		CJump NEQ main_139_logical_false
+		t153(rsi) = mov k(r11)
+		t153(rsi) = t153(rsi) MOD 199
+		cmp t153(rsi) 0
+		set EQ t154(rsi)
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_73_logical_false
 		t83(rsi) = mov 0
 		cmp t73(rsi) 1
@@ -7794,7 +7984,102 @@ main {
 		t147(rsi) = t147(rsi) MOD 199
 		cmp t147(rsi) 0
 		set EQ t148(rsi)
-		jump main_135_logical_exit
+		cmp t128(rsi) 1
+		CJump EQ main_136_logical_true
+		t150(rsi) = mov i(r15)
+		t150(rsi) = t150(rsi) MUL j(r10)
+		t151(rsi) = t151(rsi) MUL k(r11)
+		cmp t151(rsi) 0
+		set GR t152(rsi)
+		cmp t152(rsi) 1
+		CJump NEQ main_139_logical_false
+		t153(rsi) = mov k(r11)
+		t153(rsi) = t153(rsi) MOD 199
+		cmp t153(rsi) 0
+		set EQ t154(rsi)
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_75_logical_exit
 		cmp t73(rsi) 1
 		CJump EQ main_76_logical_true
@@ -7921,7 +8206,100 @@ main {
 		set EQ t148(rsi)
 		cmp t128(rsi) 1
 		CJump EQ main_136_logical_true
-		jump main_137_logical_false
+		t150(rsi) = mov i(r15)
+		t150(rsi) = t150(rsi) MUL j(r10)
+		t151(rsi) = t151(rsi) MUL k(r11)
+		cmp t151(rsi) 0
+		set GR t152(rsi)
+		cmp t152(rsi) 1
+		CJump NEQ main_139_logical_false
+		t153(rsi) = mov k(r11)
+		t153(rsi) = t153(rsi) MOD 199
+		cmp t153(rsi) 0
+		set EQ t154(rsi)
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_76_logical_true
 		t72(rsi) = mov 1
 		cmp t72(rsi) 1
@@ -8047,7 +8425,89 @@ main {
 		t153(rsi) = t153(rsi) MOD 199
 		cmp t153(rsi) 0
 		set EQ t154(rsi)
-		jump main_141_logical_exit
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_77_logical_false
 		t88(rsi) = mov i(r15)
 		t88(rsi) = t88(rsi) ADD j(r10)
@@ -8179,7 +8639,93 @@ main {
 		set GR t152(rsi)
 		cmp t152(rsi) 1
 		CJump NEQ main_139_logical_false
-		jump main_138_logical_true
+		t153(rsi) = mov k(r11)
+		t153(rsi) = t153(rsi) MOD 199
+		cmp t153(rsi) 0
+		set EQ t154(rsi)
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_78_logical_true
 		t91(rsi) = mov k(r11)
 		t91(rsi) = t91(rsi) MOD 199
@@ -8308,7 +8854,89 @@ main {
 		t153(rsi) = t153(rsi) MOD 199
 		cmp t153(rsi) 0
 		set EQ t154(rsi)
-		jump main_141_logical_exit
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_79_logical_false
 		t87(rsi) = mov 0
 		cmp t72(rsi) 1
@@ -8434,7 +9062,89 @@ main {
 		t153(rsi) = t153(rsi) MOD 199
 		cmp t153(rsi) 0
 		set EQ t154(rsi)
-		jump main_141_logical_exit
+		f5(r13) = mov t127(rsi)
+		cmp i(r15) 0
+		set GR t160(rsi)
+		cmp t160(rsi) 1
+		CJump NEQ main_143_logical_false
+		t161(rsi) = mov i(r15)
+		t161(rsi) = t161(rsi) MOD 199
+		cmp t161(rsi) 0
+		set EQ t162(rsi)
+		cmp t159(rsi) 1
+		CJump EQ main_145_logical_true
+		cmp j(r10) 0
+		set GR t164(rsi)
+		cmp t164(rsi) 1
+		CJump NEQ main_148_logical_false
+		t165(rsi) = mov j(r10)
+		t165(rsi) = t165(rsi) MOD 199
+		cmp t165(rsi) 0
+		set EQ t166(rsi)
+		cmp t158(rsi) 1
+		CJump EQ main_151_logical_true
+		cmp k(r11) 0
+		set GR t168(rsi)
+		cmp t168(rsi) 1
+		CJump NEQ main_154_logical_false
+		t169(rsi) = mov k(r11)
+		t169(rsi) = t169(rsi) MOD 199
+		cmp t169(rsi) 0
+		set EQ t170(rsi)
+		cmp t157(rsi) 1
+		CJump EQ main_157_logical_true
+		t172(rsi) = mov i(r15)
+		t172(rsi) = t172(rsi) ADD j(r10)
+		t173(rsi) = t173(rsi) ADD k(r11)
+		cmp t173(rsi) 0
+		set GR t174(rsi)
+		cmp t174(rsi) 1
+		CJump NEQ main_160_logical_false
+		t175(rsi) = mov k(r11)
+		t175(rsi) = t175(rsi) MOD 199
+		cmp t175(rsi) 0
+		set EQ t176(rsi)
+		cmp t156(rsi) 1
+		CJump EQ main_163_logical_true
+		t178(rsi) = mov i(r15)
+		t178(rsi) = t178(rsi) MUL j(r10)
+		t179(rsi) = t179(rsi) MUL k(r11)
+		cmp t179(rsi) 0
+		set GR t180(rsi)
+		cmp t180(rsi) 1
+		CJump NEQ main_166_logical_false
+		t181(rsi) = mov k(r11)
+		t181(rsi) = t181(rsi) MOD 199
+		cmp t181(rsi) 0
+		set EQ t182(rsi)
+		cmp f1(r8) 1
+		CJump EQ main_169_if_true
+		cmp f2(r12) 1
+		CJump EQ main_172_if_true
+		cmp f3(rdi) 1
+		CJump EQ main_175_if_true
+		cmp f4(rbx) 1
+		CJump EQ main_178_if_true
+		cmp f5(r13) 1
+		CJump EQ main_181_if_true
+		cmp f6(rsi) 1
+		CJump EQ main_184_if_true
+		INC k(r11)
+		cmp k(r11) T(r9)
+		CJump LE main_6_loop_body
+		INC j(r10)
+		cmp j(r10) T(r9)
+		CJump LE main_4_loop_body
+		INC i(r15)
+		cmp i(r15) T(r9)
+		CJump LE main_2_loop_body
+		t190(rdi) = mov ans(r14)
+		call println_Int return value = t189(rax)
+		i(r15) = mov 1
+		cmp i(r15) 30000000
+		CJump LEEQ main_194_loop_body
+		ret 0
+		jump main_200_block_exit
 	main_81_logical_exit
 		cmp t72(rsi) 1
 		CJump EQ main_82_logical_true
