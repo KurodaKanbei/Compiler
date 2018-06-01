@@ -2,6 +2,7 @@
   <dictionary name="resolution">
     <words>
       <w>extern</w>
+      <w>fibo</w>
       <w>idiv</w>
       <w>imul</w>
       <w>liveness</w>

@@ -1,10 +1,12 @@
 package Compiler.Opt;
 
+import Compiler.CFG.FunctionIR;
 import Compiler.CFG.ProgramIR;
 
 public class Optimize {
+
     public static void optimize() {
-        ProgramIR.getFunctionMap().values().forEach(functionIR -> {
+        for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
             NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             DeadLoopRazor.deadForStatementBlocksRemove(functionIR);
@@ -29,6 +31,6 @@ public class Optimize {
             BlocksTyrant.emptyBlockRemove(functionIR);
             SuperBlockBuilder.buildSuperBlock(functionIR);
             SuperBlockBuilder.uselessJumpRemove(functionIR);
-        });
+        }
     }
 }

@@ -25,6 +25,11 @@ public class NaiveRegisterAllocator {
         add("r14"); add("r15");
     }};
 
+    /*private static final List<String> limitedOrder = new ArrayList<>() {{
+        add("rsi"); add("rbx"); add("r12");
+        add("r8"); add("r13"); add("r9"); add("r14");
+        add("r10"); add("r15"); add("r11");
+    }};*/
     /*class ComparableVirtualRegister extends VirtualRegister implements Comparable<VirtualRegister>{
 
         public ComparableVirtualRegister(String name) {
@@ -43,7 +48,7 @@ public class NaiveRegisterAllocator {
         conflictEdgeMap = edge;
         countMap = count;
         List<VirtualRegister> virtualRegisterList = new ArrayList<>();
-        List<VirtualRegister> allocateRegisterList = new ArrayList<>();
+        //List<VirtualRegister> allocateRegisterList = new ArrayList<>();
         criticalRegisterList = new ArrayList<>();
         for (VirtualRegister virtualRegister : count.keySet()) {
             if (!functionIR.getRegisterIntegerMap().containsKey(virtualRegister)) {
@@ -55,6 +60,7 @@ public class NaiveRegisterAllocator {
             }
         }
         allocateOrder = functionIR.isLeaf() ? leafOrder : normalOrder;
+        //if (functionIR.getBeMemorized()) allocateOrder = limitedOrder;
         virtualRegisterList.sort((lhs, rhs) -> {
             int leftValue = countMap.get(lhs);
             int rightValue = countMap.get(rhs);
@@ -63,7 +69,6 @@ public class NaiveRegisterAllocator {
         /*for (VirtualRegister virtualRegister : virtualRegisterList) {
             System.out.println(virtualRegister.toString() + " " + countMap.get(virtualRegister));
         }*/
-        //System.out.println(virtualRegisterList.size());
         virtualRegisterStringMap = new HashMap<>();
         for (VirtualRegister virtualRegister : criticalRegisterList) {
             tryColor(virtualRegister, virtualRegister.getSystemRegister());

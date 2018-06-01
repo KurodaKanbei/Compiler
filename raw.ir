@@ -5,74 +5,100 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		t1(rdi) = mov 100
-		call fib return value = t0(rax)
+		n(null) = mov 32
+		t1(rdi) = mov n(null)
+		call fibo return value = t0(rax)
 		t2(null) = mov t0(rax)
 		t4(rdi) = mov t2(null)
 		call toString return value = t3(rax)
 		t5(null) = mov t3(rax)
 		t6(rdi) = mov t5(null)
 		call println return value = null
-		jump main_1_block_exit
-	main_1_block_exit
+		i(null) = mov 0
+		jump main_1_loop_condition
+	main_1_loop_condition
+		cmp i(null) 100
+		set LEEQ t7(null)
+		cmp t7(null) 1
+		CJump EQ main_2_loop_body
+		jump main_4_loop_exit
+	main_2_loop_body
+		t9(rdi) = mov 30
+		call fibo return value = t8(rax)
+		t10(null) = mov t8(rax)
+		t12(rdi) = mov t10(null)
+		call toString return value = t11(rax)
+		t13(null) = mov t11(rax)
+		t14(rdi) = mov t13(null)
+		call println return value = null
+		jump main_3_loop_increment
+	main_3_loop_increment
+		INC i(null)
+		jump main_1_loop_condition
+	main_4_loop_exit
+		ret 0
+		jump main_5_block_exit
+	main_5_block_exit
 }
-fib x(null) {
-	fib_0_block_enter
-		Address (t18(@fib_backup) + 0) = mov x(null)
-		t20(null) = mov x(null)
-		t20(null) = t20(null) SHL 3
-		t21(null) = mov t19(@fib_int)
-		t21(null) = t21(null) ADD t20(null)
-		cmp x(null) 0
-		CJump GREQ fib_1_fib_success
-		jump fib_4_fib_start
-	fib_1_fib_success
-		cmp x(null) 200
-		CJump LE fib_2_fib_escape
-		jump fib_4_fib_start
-	fib_2_fib_escape
-		cmp Address (t21(null) + 0) 0
-		CJump EQ fib_4_fib_start
-		jump fib_3_fib_return
-	fib_3_fib_return
-		ret Address (t21(null) + 0)
-		jump fib_8_block_exit
-	fib_4_fib_start
-		x(null) = mov t7(rdi)
-		cmp x(null) 2
-		set LEEQ t8(null)
-		cmp t8(null) 1
-		CJump EQ fib_5_if_true
-		jump fib_6_if_false
-	fib_5_if_true
-		ret 1
-		jump fib_8_block_exit
-	fib_6_if_false
-		jump fib_7_if_exit
-	fib_7_if_exit
-		t9(null) = mov x(null)
-		t9(null) = t9(null) SUB 1
-		t11(rdi) = mov t9(null)
-		call fib return value = t10(rax)
-		t12(null) = mov t10(rax)
-		t13(null) = mov x(null)
-		t13(null) = t13(null) SUB 2
-		t15(rdi) = mov t13(null)
-		call fib return value = t14(rax)
-		t16(null) = mov t14(rax)
-		t17(null) = mov t12(null)
-		t17(null) = t17(null) ADD t16(null)
-		ret t17(null)
-		jump fib_8_block_exit
-	fib_8_block_exit
-		cmp Address (t18(@fib_backup) + 0) 0
-		CJump GREQ fib_9_fib_positive
-		jump fib_11_fib_fail
-	fib_9_fib_positive
-		cmp Address (t18(@fib_backup) + 0) 200
-		CJump LE fib_10_fib_update
-		jump fib_11_fib_fail
-	fib_10_fib_update
-		Address (t21(null) + 0) = mov t22(rax)
-	fib_11_fib_fail
+fibo x(rdi) {
+	fibo_0_block_enter
+		t27(null) = mov x(rdi)
+		t27(null) = t27(null) SHL 3
+		t28(null) = mov t26(@fibo_int)
+		t28(null) = t28(null) ADD t27(null)
+		t27(null) = t27(null) SHR 3
+		cmp x(rdi) 0
+		CJump GREQ fibo_1_fibo_success
+		jump fibo_4_fibo_start
+	fibo_1_fibo_success
+		cmp x(rdi) 200
+		CJump LE fibo_2_fibo_escape
+		jump fibo_4_fibo_start
+	fibo_2_fibo_escape
+		cmp Address (t28(null) + 0) 0
+		CJump EQ fibo_4_fibo_start
+		jump fibo_3_fibo_return
+	fibo_3_fibo_return
+		ret Address (t28(null) + 0)
+		jump fibo_12_block_exit
+	fibo_4_fibo_start
+		x(rdi) = mov t15(rdi)
+		cmp x(rdi) 2
+		set LE t16(null)
+		cmp t16(null) 1
+		CJump EQ fibo_5_if_true
+		jump fibo_6_if_false
+	fibo_5_if_true
+		ret x(rdi)
+		jump fibo_12_block_exit
+	fibo_6_if_false
+		jump fibo_7_if_exit
+	fibo_7_if_exit
+		t17(null) = mov x(rdi)
+		t17(null) = t17(null) SUB 1
+		t19(rdi) = mov t17(null)
+		call fibo return value = t18(rax)
+		t20(null) = mov t18(rax)
+		t21(null) = mov x(rdi)
+		t21(null) = t21(null) SUB 2
+		t23(rdi) = mov t21(null)
+		call fibo return value = t22(rax)
+		t24(null) = mov t22(rax)
+		t25(null) = mov t20(null)
+		t25(null) = t25(null) ADD t24(null)
+		ret t25(null)
+		jump fibo_8_fibo_save
+	fibo_8_fibo_save
+		cmp t27(null) 0
+		CJump GREQ fibo_9_fibo_positive
+		jump fibo_11_fibo_fail
+	fibo_9_fibo_positive
+		cmp t27(null) 200
+		CJump LE fibo_10_fibo_update
+		jump fibo_11_fibo_fail
+	fibo_10_fibo_update
+		Address (t28(null) + 0) = mov t29(rax)
+	fibo_11_fibo_fail
+		jump fibo_12_block_exit
+	fibo_12_block_exit
 }

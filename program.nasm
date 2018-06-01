@@ -1,6 +1,6 @@
 global __global_init
 global main
-global fib
+global fibo
 global print_Int
 global println_Int
 global print
@@ -33,138 +33,196 @@ main:
      mov                  rbp,                  rsp
     call        __global_init
 main_0_block_enter:
-     mov                  rdi,                  100
-    call                  fib
+     mov                  rdi,                   32
+    call                 fibo
      mov                  rdi,                  rax
     call          println_Int
-main_1_block_exit:
+     mov                  rsi,                    0
+     cmp                  rsi,                  100
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
+main_1_loop_condition:
+     cmp                  rsi,                  100
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
+main_2_loop_body:
+     mov                  rdi,                   30
+    push                  rsi
+     sub                  rsp,                    8
+    call                 fibo
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
+     sub                  rsp,                    8
+    call          println_Int
+     add                  rsp,                    8
+     pop                  rsi
+     add                  rsi,                    1
+     cmp                  rsi,                  100
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
+main_3_loop_increment:
+     add                  rsi,                    1
+     cmp                  rsi,                  100
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
+main_4_loop_exit:
+     mov                  rax,                    0
+main_5_block_exit:
      pop                  rbp
      ret
-fib:
+fibo:
     push                  rbp
      mov                  rbp,                  rsp
      sub                  rsp,                   24
     push                  r12
     push                  rbx
-fib_0_block_enter:
-     mov qword [@fib_backup + 0],                   r8
-     mov                  rsi,                   r8
-     sal                  rsi,                    3
-     mov                  r12,             @fib_int
-     add                  r12,                  rsi
+fibo_0_block_enter:
+     mov                   r8,                  rdi
+     sal                   r8,                    3
+     mov                  r12,            @fibo_int
+     add                  r12,                   r8
+     sar                   r8,                    3
+     cmp                  rdi,                    0
+     jge  fibo_1_fibo_success
+     cmp                  rdi,                    2
+      jl       fibo_5_if_true
+     mov                  rsi,                  rdi
+     sub                  rsi,                    1
+     mov                  rdi,                  rsi
+    push                   r8
+    call                 fibo
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rbx,                  rdi
+     sub                  rbx,                    2
+     mov                  rdi,                  rbx
+    push                   r8
+    push                  rsi
+     sub                  rsp,                    8
+    call                 fibo
+     add                  rsp,                    8
+     pop                  rsi
+     pop                   r8
+     mov                  rbx,                  rax
+     add                  rsi,                  rbx
+     mov                  rax,                  rsi
      cmp                   r8,                    0
-     jge    fib_1_fib_success
-     mov                   r8,                  rdi
-     cmp                   r8,                    2
-     jle        fib_5_if_true
-     mov                  rsi,                   r8
+     jge fibo_9_fibo_positive
+     jmp   fibo_12_block_exit
+fibo_1_fibo_success:
+     cmp                  rdi,                  200
+      jl   fibo_2_fibo_escape
+     cmp                  rdi,                    2
+      jl       fibo_5_if_true
+     mov                  rsi,                  rdi
      sub                  rsi,                    1
      mov                  rdi,                  rsi
     push                   r8
-    call                  fib
+    call                 fibo
      pop                   r8
-     mov                  rbx,                  rax
-     mov                  rsi,                   r8
-     sub                  rsi,                    2
-     mov                  rdi,                  rsi
-     sub                  rsp,                    8
-    call                  fib
-     add                  rsp,                    8
      mov                  rsi,                  rax
-     add                  rbx,                  rsi
-     mov                  rax,                  rbx
-     jmp     fib_8_block_exit
-fib_1_fib_success:
-     cmp                   r8,                  200
-      jl     fib_2_fib_escape
-     mov                   r8,                  rdi
-     cmp                   r8,                    2
-     jle        fib_5_if_true
-     mov                  rsi,                   r8
-     sub                  rsi,                    1
-     mov                  rdi,                  rsi
+     mov                  rbx,                  rdi
+     sub                  rbx,                    2
+     mov                  rdi,                  rbx
     push                   r8
-    call                  fib
+    push                  rsi
+     sub                  rsp,                    8
+    call                 fibo
+     add                  rsp,                    8
+     pop                  rsi
      pop                   r8
      mov                  rbx,                  rax
-     mov                  rsi,                   r8
-     sub                  rsi,                    2
-     mov                  rdi,                  rsi
-     sub                  rsp,                    8
-    call                  fib
-     add                  rsp,                    8
-     mov                  rsi,                  rax
-     add                  rbx,                  rsi
-     mov                  rax,                  rbx
-     jmp     fib_8_block_exit
-fib_2_fib_escape:
+     add                  rsi,                  rbx
+     mov                  rax,                  rsi
+     cmp                   r8,                    0
+     jge fibo_9_fibo_positive
+     jmp   fibo_12_block_exit
+fibo_2_fibo_escape:
      cmp      qword [r12 + 0],                    0
-      je      fib_4_fib_start
+      je    fibo_4_fibo_start
      mov                  rax,      qword [r12 + 0]
-     jmp     fib_8_block_exit
-fib_3_fib_return:
+     jmp   fibo_12_block_exit
+fibo_3_fibo_return:
      mov                  rax,      qword [r12 + 0]
-     jmp     fib_8_block_exit
-fib_4_fib_start:
-     mov                   r8,                  rdi
-     cmp                   r8,                    2
-     jle        fib_5_if_true
-     mov                  rsi,                   r8
+     jmp   fibo_12_block_exit
+fibo_4_fibo_start:
+     cmp                  rdi,                    2
+      jl       fibo_5_if_true
+     mov                  rsi,                  rdi
      sub                  rsi,                    1
      mov                  rdi,                  rsi
     push                   r8
-    call                  fib
+    call                 fibo
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rbx,                  rdi
+     sub                  rbx,                    2
+     mov                  rdi,                  rbx
+    push                   r8
+    push                  rsi
+     sub                  rsp,                    8
+    call                 fibo
+     add                  rsp,                    8
+     pop                  rsi
      pop                   r8
      mov                  rbx,                  rax
-     mov                  rsi,                   r8
-     sub                  rsi,                    2
-     mov                  rdi,                  rsi
-     sub                  rsp,                    8
-    call                  fib
-     add                  rsp,                    8
-     mov                  rsi,                  rax
-     add                  rbx,                  rsi
-     mov                  rax,                  rbx
-     jmp     fib_8_block_exit
-fib_5_if_true:
-     mov                  rax,                    1
-     jmp     fib_8_block_exit
-fib_7_if_exit:
-     mov                  rsi,                   r8
+     add                  rsi,                  rbx
+     mov                  rax,                  rsi
+     cmp                   r8,                    0
+     jge fibo_9_fibo_positive
+     jmp   fibo_12_block_exit
+fibo_5_if_true:
+     mov                  rax,                  rdi
+     jmp   fibo_12_block_exit
+fibo_7_if_exit:
+     mov                  rsi,                  rdi
      sub                  rsi,                    1
      mov                  rdi,                  rsi
     push                   r8
-    call                  fib
+    call                 fibo
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rbx,                  rdi
+     sub                  rbx,                    2
+     mov                  rdi,                  rbx
+    push                   r8
+    push                  rsi
+     sub                  rsp,                    8
+    call                 fibo
+     add                  rsp,                    8
+     pop                  rsi
      pop                   r8
      mov                  rbx,                  rax
-     mov                  rsi,                   r8
-     sub                  rsi,                    2
-     mov                  rdi,                  rsi
-     sub                  rsp,                    8
-    call                  fib
-     add                  rsp,                    8
-     mov                  rsi,                  rax
-     add                  rbx,                  rsi
-     mov                  rax,                  rbx
-fib_8_block_exit:
-     cmp qword [@fib_backup + 0],                    0
-     jge   fib_9_fib_positive
-fib_9_fib_positive:
-     cmp qword [@fib_backup + 0],                  200
-      jl    fib_10_fib_update
-fib_10_fib_update:
+     add                  rsi,                  rbx
+     mov                  rax,                  rsi
+     cmp                   r8,                    0
+     jge fibo_9_fibo_positive
+     jmp   fibo_12_block_exit
+fibo_8_fibo_save:
+     cmp                   r8,                    0
+     jge fibo_9_fibo_positive
+     jmp   fibo_12_block_exit
+fibo_9_fibo_positive:
+     cmp                   r8,                  200
+      jl  fibo_10_fibo_update
+     jmp   fibo_12_block_exit
+fibo_10_fibo_update:
      mov      qword [r12 + 0],                  rax
-fib_11_fib_fail:
+fibo_12_block_exit:
      pop                  rbx
      pop                  r12
      add                  rsp,                   24
      pop                  rbp
      ret
 SECTION .data
-@fib_backup:
-	 dq 0
-@fib_int:
-	dq	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,0
+@fibo_int:
+	dq           0,           1,           1,           2,           3,           5,           8,          13,          21,          34,          55,          89,         144,         233,         377,         610,         987,        1597,        2584,        4181,        6765,       10946,       17711,       28657,       46368,       75025,      121393,      196418,      317811,      514229,      832040,     1346269,     2178309,     3524578,     5702887,     9227465,    14930352,    24157817,    39088169,    63245986,   102334155,   165580141,   267914296,   433494437,   701408733,  1134903170,  1836311903, -1323752223,   512559680,  -811192543,  -298632863, -1109825406, -1408458269,  1776683621,   368225352,  2144908973, -1781832971,   363076002, -1418756969, -1055680967,  1820529360,   764848393, -1709589543,  -944741150,  1640636603,   695895453, -1958435240, -1262539787,  1073992269,  -188547518,   885444751,   696897233,  1582341984, -2015728079,  -433386095,  1845853122,  1412467027, -1036647147,   375819880,  -660827267,  -285007387,  -945834654, -1230842041,  2118290601,   887448560, -1289228135,  -401779575, -1691007710, -2092787285,   511172301, -1581614984, -1070442683,  1642909629,   572466946, -2079590721, -1507123775,   708252800,  -798870975,   -90618175,  -889489150,  -980107325, -1869596475,  1445263496,  -424332979,  1020930517,   596597538,  1617528055, -2080841703,  -463313648,  1750811945,  1287498297, -1256657054,    30841243, -1225815811, -1194974568,  1874176917,   679202349, -1741588030, -1062385681,  1490993585,   428607904,  1919601489, -1946757903,   -27156414, -1973914317, -2001070731,   319982248, -1681088483, -1361106235,  1252772578,  -108333657,  1144438921,  1036105264, -2114423111, -1078317847,  1102226338,    23908491,  1126134829,  1150043320, -2018789147,  -868745827,  1407432322,   538686495,  1946118817, -1810161984,   135956833, -1674205151, -1538248318,  1082513827,  -455734491,   626779336,   171044845,   797824181,   968869026,  1766693207, -1559405063,   207288144, -1352116919, -1144828775,  1798021602,   653192827, -1843752867, -1190560040,  1260654389,    70094349,  1330748738,  1400843087, -1563375471,  -162532384, -1725907855, -1888440239,   680619202, -1207821037,  -527201835, -1735022872,  2032742589,   297719717, -1964504990, -1666785273,   663677033, -1003108240,  -339431207, -1342539447, -1681970654,  1270457195,  -411513459,   858943736,   447430277,  1306374013,  1753804290, -1234788993,   519015297,  -715773696,  -196758399,  -912532095, -1109290494, -2021822589,  1163854213,  -857968376,   305885837,    0
 SECTION .bss
 SECTION .data
 __println_int_format:
