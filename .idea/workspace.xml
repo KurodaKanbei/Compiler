@@ -2,31 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa3f8b2d-34af-4741-827a-82b64840e303" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Compiler/Opt/RegisterMerger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/allocated.ir" beforeDir="false" afterPath="$PROJECT_DIR$/allocated.ir" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program.nasm" beforeDir="false" afterPath="$PROJECT_DIR$/program.nasm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raw.ir" beforeDir="false" afterPath="$PROJECT_DIR$/raw.ir" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MallocInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MallocInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/AddressOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/AddressOperand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateOperand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/MemoryLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/MemoryLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/SSA/SSAConstructor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/SSA/SSADestructor.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -45,7 +24,7 @@
       <file leaf-file-name="FunctionIR.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
+            <state relative-caret-position="310">
               <caret line="297" column="8" selection-start-line="297" selection-start-column="8" selection-end-line="297" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -54,11 +33,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="NaiveRegisterAllocator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="914">
+              <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="program.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/program.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="1214">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
             </state>
           </provider>
         </entry>
@@ -75,41 +63,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Block.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Block.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="56" column="3" selection-start-line="56" selection-start-column="3" selection-end-line="56" selection-end-column="3" />
-              <folding>
-                <element signature="e#1553#1554#0" expanded="true" />
-                <element signature="e#1582#1583#0" expanded="true" />
-                <element signature="e#1630#1631#0" expanded="true" />
-                <element signature="e#1660#1661#0" expanded="true" />
-                <element signature="e#1707#1708#0" expanded="true" />
-                <element signature="e#1736#1737#0" expanded="true" />
-                <element signature="e#1784#1785#0" expanded="true" />
-                <element signature="e#1814#1815#0" expanded="true" />
-                <element signature="e#1855#1856#0" expanded="true" />
-                <element signature="e#1888#1889#0" expanded="true" />
-                <element signature="e#1930#1931#0" expanded="true" />
-                <element signature="e#1964#1965#0" expanded="true" />
-                <element signature="e#1998#1999#0" expanded="true" />
-                <element signature="e#2028#2029#0" expanded="true" />
-                <element signature="e#2406#2407#0" expanded="true" />
-                <element signature="e#2456#2457#0" expanded="true" />
-                <element signature="e#3149#3150#0" expanded="true" />
-                <element signature="e#3187#3188#0" expanded="true" />
-                <element signature="e#3230#3231#0" expanded="true" />
-                <element signature="e#3267#3268#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="VirtualRegister.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
+            <state relative-caret-position="836">
               <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
             </state>
           </provider>
@@ -118,17 +75,17 @@
       <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/program.nasm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3317">
-              <caret line="401" lean-forward="true" selection-start-line="401" selection-end-line="401" />
+            <state relative-caret-position="2579">
+              <caret line="2144" lean-forward="true" selection-end-line="2144" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="allocated.ir" pinned="false" current-in-tab="true">
+      <file leaf-file-name="allocated.ir" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/allocated.ir">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1784">
-              <caret line="137" selection-start-line="137" selection-end-line="137" />
+            <state relative-caret-position="2055">
+              <caret line="1607" selection-start-line="1607" selection-end-line="1607" />
             </state>
           </provider>
         </entry>
@@ -255,7 +212,6 @@
         <option value="$PROJECT_DIR$/src/Compiler/Opt/FoolishConditionMonitor.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" />
@@ -276,6 +232,7 @@
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Block.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/RegisterMerger.java" />
         <option value="$PROJECT_DIR$/program.txt" />
+        <option value="$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java" />
       </list>
     </option>
   </component>
@@ -590,12 +547,12 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50807756" side_tool="true" weight="0.35034484" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.32917705" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49192247" visible="true" weight="0.35034484" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49192247" visible="true" weight="0.35034484" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49676898" weight="0.37655172" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4924138" visible="true" weight="0.17043619" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4924138" visible="true" weight="0.17043619" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" sideWeight="0.49410376" weight="0.49793103" />
       <window_info id="Structure" order="1" sideWeight="0.5075862" side_tool="true" weight="0.1292407" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24969098" />
@@ -981,23 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="297" column="8" selection-start-line="297" selection-start-column="8" selection-end-line="297" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Block.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -1065,31 +1005,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/allocated.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2055">
+          <caret line="1607" selection-start-line="1607" selection-end-line="1607" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program.nasm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2579">
+          <caret line="2144" lean-forward="true" selection-end-line="2144" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="836">
           <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/program.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="1214">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/program.nasm">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3317">
-          <caret line="401" lean-forward="true" selection-start-line="401" selection-end-line="401" />
+        <state relative-caret-position="310">
+          <caret line="297" column="8" selection-start-line="297" selection-start-column="8" selection-end-line="297" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/allocated.ir">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/NaiveRegisterAllocator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1784">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        <state relative-caret-position="914">
+          <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
         </state>
       </provider>
     </entry>

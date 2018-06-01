@@ -61,11 +61,11 @@ public class NaiveRegisterAllocator {
             }
         }
         allocateOrder = functionIR.isLeaf() ? leafOrder : normalOrder;
-        virtualRegisterList.sort((lhs, rhs) -> {
+        /*virtualRegisterList.sort((lhs, rhs) -> {
             int leftValue = countMap.get(lhs);
             int rightValue = countMap.get(rhs);
             return Integer.compare(leftValue, rightValue);
-        });
+        });*/
         /*for (VirtualRegister virtualRegister : virtualRegisterList) {
             System.out.println(virtualRegister.toString() + " " + countMap.get(virtualRegister));
         }*/

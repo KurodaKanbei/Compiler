@@ -1,137 +1,1607 @@
 __global_init {
 	__global_init_1_block_exit
 }
+shift_l x(rdi) n(rsi) {
+	shift_l_0_block_enter
+		t99(r8) = mov x(rdi)
+		t99(r8) = t99(r8) SHL n(rsi)
+		hi(rdi) = mov 32767
+		lo(rsi) = mov 65535
+		t109(rdi) = t109(rdi) SHL 16
+		t110(rsi) = t110(rsi) OR t109(rdi)
+		t104(rdi) = mov t99(r8)
+		t104(rdi) = t104(rdi) AND t103(rsi)
+		ret t104(rdi)
+		jump shift_l_1_block_exit
+	shift_l_2_inline_enter
+		t109(rdi) = t109(rdi) SHL 16
+		t110(rsi) = t110(rsi) OR t109(rdi)
+		t104(rdi) = mov t99(r8)
+		t104(rdi) = t104(rdi) AND t103(rsi)
+		ret t104(rdi)
+		jump shift_l_1_block_exit
+	shift_l_3_inline_exit
+		t104(rdi) = mov t99(r8)
+		t104(rdi) = t104(rdi) AND t103(rsi)
+		ret t104(rdi)
+	shift_l_1_block_exit
+}
+hilo hi(rdi) lo(rsi) {
+	hilo_0_block_enter
+		t107(rdi) = t107(rdi) SHL 16
+		t108(rsi) = t108(rsi) OR t107(rdi)
+		ret t108(rsi)
+	hilo_1_block_exit
+}
+shift_r x(rdi) n(r8) {
+	shift_r_0_block_enter
+		n(r8) = mov t1(rsi)
+		hi(rsi) = mov 32767
+		lo(r10) = mov 65536
+		t111(r9) = mov hi(rsi)
+		t111(r9) = t111(r9) SHL 16
+		t112(rsi) = mov lo(r10)
+		t112(rsi) = t112(rsi) OR t111(r9)
+		t6(rsi) = t6(rsi) SHR n(r8)
+		t7(rsi) = t7(rsi) SHL 2
+		INC t8(rsi)
+		t9(rdi) = t9(rdi) SHR n(r8)
+		t10(r8) = mov t8(rsi)
+		t10(r8) = t10(r8) AND t9(rdi)
+		hi(rsi) = mov 32767
+		lo(r10) = mov 65535
+		t113(rsi) = t113(rsi) SHL 16
+		t114(rdi) = mov lo(r10)
+		t114(rdi) = t114(rdi) OR t113(rsi)
+		t14(rsi) = mov t114(rdi)
+		t15(rdi) = mov t10(r8)
+		t15(rdi) = t15(rdi) AND t14(rsi)
+		ret t15(rdi)
+		jump shift_r_1_block_exit
+	shift_r_2_inline_enter
+		t111(r9) = mov hi(rsi)
+		t111(r9) = t111(r9) SHL 16
+		t112(rsi) = mov lo(r10)
+		t112(rsi) = t112(rsi) OR t111(r9)
+		t6(rsi) = t6(rsi) SHR n(r8)
+		t7(rsi) = t7(rsi) SHL 2
+		INC t8(rsi)
+		t9(rdi) = t9(rdi) SHR n(r8)
+		t10(r8) = mov t8(rsi)
+		t10(r8) = t10(r8) AND t9(rdi)
+		hi(rsi) = mov 32767
+		lo(r10) = mov 65535
+		t113(rsi) = t113(rsi) SHL 16
+		t114(rdi) = mov lo(r10)
+		t114(rdi) = t114(rdi) OR t113(rsi)
+		t14(rsi) = mov t114(rdi)
+		t15(rdi) = mov t10(r8)
+		t15(rdi) = t15(rdi) AND t14(rsi)
+		ret t15(rdi)
+		jump shift_r_1_block_exit
+	shift_r_3_inline_exit
+		t6(rsi) = t6(rsi) SHR n(r8)
+		t7(rsi) = t7(rsi) SHL 2
+		INC t8(rsi)
+		t9(rdi) = t9(rdi) SHR n(r8)
+		t10(r8) = mov t8(rsi)
+		t10(r8) = t10(r8) AND t9(rdi)
+		hi(rsi) = mov 32767
+		lo(r10) = mov 65535
+		t113(rsi) = t113(rsi) SHL 16
+		t114(rdi) = mov lo(r10)
+		t114(rdi) = t114(rdi) OR t113(rsi)
+		t14(rsi) = mov t114(rdi)
+		t15(rdi) = mov t10(r8)
+		t15(rdi) = t15(rdi) AND t14(rsi)
+		ret t15(rdi)
+		jump shift_r_1_block_exit
+	shift_r_4_inline_enter
+		t113(rsi) = t113(rsi) SHL 16
+		t114(rdi) = mov lo(r10)
+		t114(rdi) = t114(rdi) OR t113(rsi)
+		t14(rsi) = mov t114(rdi)
+		t15(rdi) = mov t10(r8)
+		t15(rdi) = t15(rdi) AND t14(rsi)
+		ret t15(rdi)
+		jump shift_r_1_block_exit
+	shift_r_5_inline_exit
+		t15(rdi) = mov t10(r8)
+		t15(rdi) = t15(rdi) AND t14(rsi)
+		ret t15(rdi)
+	shift_r_1_block_exit
+}
+xorshift seed(rbx) num(r8) {
+	xorshift_0_block_enter
+		seed(rbx) = mov t16(rdi)
+		num(r8) = mov t17(rsi)
+		t18(rsi) = mov seed(rbx)
+		INC t18(rsi)
+		x(r9) = mov t18(rsi)
+		i(rbx) = mov 0
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_1_loop_condition
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_2_loop_body
+		x(rsi) = mov x(r9)
+		n(rdi) = mov 13
+		t115(r12) = mov x(rsi)
+		t115(r12) = t115(r12) SHL n(rdi)
+		t117(rdi) = mov 32767
+		t118(rsi) = mov 65535
+		call hilo return value = t116(rax)
+		t119(rsi) = mov t116(rax)
+		t120(rdi) = mov t115(r12)
+		t120(rdi) = t120(rdi) AND t119(rsi)
+		t24(rsi) = mov t120(rdi)
+		x(r9) = x(r9) XOR t24(rsi)
+		x(r12) = mov x(r9)
+		n(r13) = mov 17
+		t122(rdi) = mov 32767
+		t123(rsi) = mov 65536
+		call hilo return value = t121(rax)
+		t125(rsi) = mov t121(rax)
+		t125(rsi) = t125(rsi) SHR n(r13)
+		t126(rsi) = t126(rsi) SHL 2
+		INC t127(rsi)
+		t128(rdi) = mov x(r12)
+		t128(rdi) = t128(rdi) SHR n(r13)
+		t129(r12) = mov t127(rsi)
+		t129(r12) = t129(r12) AND t128(rdi)
+		t131(rdi) = mov 32767
+		t132(rsi) = mov 65535
+		call hilo return value = t130(rax)
+		t133(rsi) = mov t130(rax)
+		t134(rdi) = mov t129(r12)
+		t134(rdi) = t134(rdi) AND t133(rsi)
+		t29(rsi) = mov t134(rdi)
+		x(r9) = x(r9) XOR t29(rsi)
+		x(rsi) = mov x(r9)
+		n(rdi) = mov 5
+		t135(r12) = mov x(rsi)
+		t135(r12) = t135(r12) SHL n(rdi)
+		t137(rdi) = mov 32767
+		t138(rsi) = mov 65535
+		call hilo return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		t140(rdi) = mov t135(r12)
+		t140(rdi) = t140(rdi) AND t139(rsi)
+		t34(rsi) = mov t140(rdi)
+		x(r9) = x(r9) XOR t34(rsi)
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_6_inline_enter
+		t115(r12) = mov x(rsi)
+		t115(r12) = t115(r12) SHL n(rdi)
+		t117(rdi) = mov 32767
+		t118(rsi) = mov 65535
+		call hilo return value = t116(rax)
+		t119(rsi) = mov t116(rax)
+		t120(rdi) = mov t115(r12)
+		t120(rdi) = t120(rdi) AND t119(rsi)
+		t24(rsi) = mov t120(rdi)
+		x(r9) = x(r9) XOR t24(rsi)
+		x(r12) = mov x(r9)
+		n(r13) = mov 17
+		t122(rdi) = mov 32767
+		t123(rsi) = mov 65536
+		call hilo return value = t121(rax)
+		t125(rsi) = mov t121(rax)
+		t125(rsi) = t125(rsi) SHR n(r13)
+		t126(rsi) = t126(rsi) SHL 2
+		INC t127(rsi)
+		t128(rdi) = mov x(r12)
+		t128(rdi) = t128(rdi) SHR n(r13)
+		t129(r12) = mov t127(rsi)
+		t129(r12) = t129(r12) AND t128(rdi)
+		t131(rdi) = mov 32767
+		t132(rsi) = mov 65535
+		call hilo return value = t130(rax)
+		t133(rsi) = mov t130(rax)
+		t134(rdi) = mov t129(r12)
+		t134(rdi) = t134(rdi) AND t133(rsi)
+		t29(rsi) = mov t134(rdi)
+		x(r9) = x(r9) XOR t29(rsi)
+		x(rsi) = mov x(r9)
+		n(rdi) = mov 5
+		t135(r12) = mov x(rsi)
+		t135(r12) = t135(r12) SHL n(rdi)
+		t137(rdi) = mov 32767
+		t138(rsi) = mov 65535
+		call hilo return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		t140(rdi) = mov t135(r12)
+		t140(rdi) = t140(rdi) AND t139(rsi)
+		t34(rsi) = mov t140(rdi)
+		x(r9) = x(r9) XOR t34(rsi)
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_7_inline_exit
+		x(r9) = x(r9) XOR t24(rsi)
+		x(r12) = mov x(r9)
+		n(r13) = mov 17
+		t122(rdi) = mov 32767
+		t123(rsi) = mov 65536
+		call hilo return value = t121(rax)
+		t125(rsi) = mov t121(rax)
+		t125(rsi) = t125(rsi) SHR n(r13)
+		t126(rsi) = t126(rsi) SHL 2
+		INC t127(rsi)
+		t128(rdi) = mov x(r12)
+		t128(rdi) = t128(rdi) SHR n(r13)
+		t129(r12) = mov t127(rsi)
+		t129(r12) = t129(r12) AND t128(rdi)
+		t131(rdi) = mov 32767
+		t132(rsi) = mov 65535
+		call hilo return value = t130(rax)
+		t133(rsi) = mov t130(rax)
+		t134(rdi) = mov t129(r12)
+		t134(rdi) = t134(rdi) AND t133(rsi)
+		t29(rsi) = mov t134(rdi)
+		x(r9) = x(r9) XOR t29(rsi)
+		x(rsi) = mov x(r9)
+		n(rdi) = mov 5
+		t135(r12) = mov x(rsi)
+		t135(r12) = t135(r12) SHL n(rdi)
+		t137(rdi) = mov 32767
+		t138(rsi) = mov 65535
+		call hilo return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		t140(rdi) = mov t135(r12)
+		t140(rdi) = t140(rdi) AND t139(rsi)
+		t34(rsi) = mov t140(rdi)
+		x(r9) = x(r9) XOR t34(rsi)
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_8_inline_enter
+		t122(rdi) = mov 32767
+		t123(rsi) = mov 65536
+		call hilo return value = t121(rax)
+		t125(rsi) = mov t121(rax)
+		t125(rsi) = t125(rsi) SHR n(r13)
+		t126(rsi) = t126(rsi) SHL 2
+		INC t127(rsi)
+		t128(rdi) = mov x(r12)
+		t128(rdi) = t128(rdi) SHR n(r13)
+		t129(r12) = mov t127(rsi)
+		t129(r12) = t129(r12) AND t128(rdi)
+		t131(rdi) = mov 32767
+		t132(rsi) = mov 65535
+		call hilo return value = t130(rax)
+		t133(rsi) = mov t130(rax)
+		t134(rdi) = mov t129(r12)
+		t134(rdi) = t134(rdi) AND t133(rsi)
+		t29(rsi) = mov t134(rdi)
+		x(r9) = x(r9) XOR t29(rsi)
+		x(rsi) = mov x(r9)
+		n(rdi) = mov 5
+		t135(r12) = mov x(rsi)
+		t135(r12) = t135(r12) SHL n(rdi)
+		t137(rdi) = mov 32767
+		t138(rsi) = mov 65535
+		call hilo return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		t140(rdi) = mov t135(r12)
+		t140(rdi) = t140(rdi) AND t139(rsi)
+		t34(rsi) = mov t140(rdi)
+		x(r9) = x(r9) XOR t34(rsi)
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_9_inline_exit
+		x(r9) = x(r9) XOR t29(rsi)
+		x(rsi) = mov x(r9)
+		n(rdi) = mov 5
+		t135(r12) = mov x(rsi)
+		t135(r12) = t135(r12) SHL n(rdi)
+		t137(rdi) = mov 32767
+		t138(rsi) = mov 65535
+		call hilo return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		t140(rdi) = mov t135(r12)
+		t140(rdi) = t140(rdi) AND t139(rsi)
+		t34(rsi) = mov t140(rdi)
+		x(r9) = x(r9) XOR t34(rsi)
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_10_inline_enter
+		t135(r12) = mov x(rsi)
+		t135(r12) = t135(r12) SHL n(rdi)
+		t137(rdi) = mov 32767
+		t138(rsi) = mov 65535
+		call hilo return value = t136(rax)
+		t139(rsi) = mov t136(rax)
+		t140(rdi) = mov t135(r12)
+		t140(rdi) = t140(rdi) AND t139(rsi)
+		t34(rsi) = mov t140(rdi)
+		x(r9) = x(r9) XOR t34(rsi)
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_11_inline_exit
+		x(r9) = x(r9) XOR t34(rsi)
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_3_loop_increment
+		INC i(rbx)
+		t19(rsi) = mov num(r8)
+		t19(rsi) = t19(rsi) MUL 10
+		cmp i(rbx) t19(rsi)
+		CJump LE xorshift_2_loop_body
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+		jump xorshift_5_block_exit
+	xorshift_4_loop_exit
+		t37(rsi) = mov x(r9)
+		t37(rsi) = t37(rsi) XOR 123456789
+		ret t37(rsi)
+	xorshift_5_block_exit
+}
 main {
 	main_0_block_enter
-		a0(null) = mov 0
-		a1(null) = mov 0
-		a2(r8) = mov 0
-		sum(null) = mov 0
-		call getInt return value = t0(rax)
-		n(r14) = mov t0(rax)
-		i(null) = mov 0
-		cmp i(null) n(r14)
-		CJump LE main_2_loop_body
-		t41(rdi) = mov sum(null)
-		call println_Int return value = t40(rax)
+		call getInt return value = t38(rax)
+		n(r9) = mov t38(rax)
+		t41(rbx) = mov n(r9)
+		INC t41(rbx)
+		t41(rbx) = t41(rbx) SHL 3
+		malloc t40(rdi) t41(rbx)
+		Address (t40(rdi) + 0) = mov n(r9)
+		t40(rdi) = t40(rdi) ADD 8
+		t42(r12) = mov t40(rdi)
+		t43(rsi) = mov t40(rdi)
+		t41(rbx) = t41(rbx) SUB 8
+		t43(rsi) = t43(rsi) ADD t41(rbx)
+		cmp t42(r12) t43(rsi)
+		CJump LE main_2_malloc_body
+		f(r8) = mov t40(rdi)
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
 		ret 0
-		jump main_8_block_exit
-	main_1_loop_condition
-		cmp i(null) n(r14)
-		CJump LE main_2_loop_body
-		t41(rdi) = mov sum(null)
-		call println_Int return value = t40(rax)
+		jump main_52_block_exit
+	main_1_malloc_condition
+		cmp t42(r12) t43(rsi)
+		CJump LE main_2_malloc_body
+		f(r8) = mov t40(rdi)
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
 		ret 0
-		jump main_8_block_exit
-	main_2_loop_body
-		t3(rsi) = mov a0(null)
-		INC t3(rsi)
-		a0(null) = mov t3(rsi)
-		t4(rsi) = mov a1(null)
-		INC t4(rsi)
-		a1(null) = mov t4(rsi)
-		t5(rsi) = mov a2(r8)
-		INC t5(rsi)
-		a2(r8) = mov t5(rsi)
-		t6(rsi) = mov a0(null)
-		INC t6(rsi)
-		a3(r13) = mov t6(rsi)
-		t7(rsi) = mov a1(null)
-		INC t7(rsi)
-		a4(null) = mov t7(rsi)
-		t8(rsi) = mov a2(r8)
-		INC t8(rsi)
-		a5(r10) = mov t8(rsi)
-		t9(rsi) = mov a0(null)
-		INC t9(rsi)
-		a6(rbx) = mov t9(rsi)
-		t10(rsi) = mov a1(null)
-		INC t10(rsi)
-		a7(r15) = mov t10(rsi)
-		t11(rsi) = mov a2(r8)
-		INC t11(rsi)
-		a8(r9) = mov t11(rsi)
-		t12(rsi) = mov a0(null)
-		INC t12(rsi)
-		a9(r12) = mov t12(rsi)
-		a10(rdi) = mov a1(null)
-		b0(r11) = mov a0(null)
-		b1(rsi) = mov a1(null)
-		b4(null) = mov a4(null)
-		t14(null) = mov i(null)
-		t14(null) = t14(null) MOD 10000000
-		cmp t14(null) 0
-		CJump EQ main_3_if_true
-		t39(rsi) = mov i(null)
-		INC t39(rsi)
-		i(null) = mov t39(rsi)
-		cmp i(null) n(r14)
-		CJump LE main_2_loop_body
-		t41(rdi) = mov sum(null)
-		call println_Int return value = t40(rax)
+		jump main_52_block_exit
+	main_2_malloc_body
+		t44(rbx) = mov Address (t42(r12) + 0)
+		malloc t44(rbx) t45(null)
+		Address (t44(rbx) + 0) = mov n(r9)
+		t44(rbx) = t44(rbx) ADD 8
+		Address (t42(r12) + 0) = mov t44(rbx)
+		t42(r12) = t42(r12) ADD 8
+		cmp t42(r12) t43(rsi)
+		CJump LE main_2_malloc_body
+		f(r8) = mov t40(rdi)
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
 		ret 0
-		jump main_8_block_exit
-	main_3_if_true
-		t16(null) = mov sum(null)
-		t16(null) = t16(null) ADD a0(null)
-		t17(null) = mov t16(null)
-		t17(null) = t17(null) ADD a1(null)
-		t18(null) = mov t17(null)
-		t18(null) = t18(null) ADD a2(r8)
-		t19(null) = mov t18(null)
-		t19(null) = t19(null) ADD a3(r13)
-		t20(null) = mov t19(null)
-		t20(null) = t20(null) ADD a4(null)
-		t21(null) = mov t20(null)
-		t21(null) = t21(null) ADD a5(r10)
-		t22(null) = mov t21(null)
-		t22(null) = t22(null) ADD a6(rbx)
-		t23(null) = mov t22(null)
-		t23(null) = t23(null) ADD a7(r15)
-		t24(null) = mov t23(null)
-		t24(null) = t24(null) ADD a8(r9)
-		t25(null) = mov t24(null)
-		t25(null) = t25(null) ADD a9(r12)
-		t26(null) = mov t25(null)
-		t26(null) = t26(null) ADD a10(rdi)
-		t27(null) = mov t26(null)
-		t27(null) = t27(null) ADD b0(r11)
-		t28(r11) = mov t27(null)
-		t28(r11) = t28(r11) ADD b1(rsi)
-		t29(rsi) = mov t28(r11)
-		t29(rsi) = t29(rsi) ADD b2(r8)
-		t30(rsi) = t30(rsi) ADD b3(r13)
-		t31(rsi) = t31(rsi) ADD b4(null)
-		t32(rsi) = t32(rsi) ADD b5(r10)
-		t33(rsi) = t33(rsi) ADD b6(rbx)
-		t34(rsi) = t34(rsi) ADD b7(r15)
-		t35(rsi) = t35(rsi) ADD b8(r9)
-		t36(rsi) = t36(rsi) ADD b9(r12)
-		t37(rsi) = t37(rsi) ADD b10(rdi)
-		t38(rsi) = t38(rsi) AND 2147450879
-		sum(null) = mov t38(rsi)
-		t39(rsi) = mov i(null)
-		INC t39(rsi)
-		i(null) = mov t39(rsi)
-		cmp i(null) n(r14)
-		CJump LE main_2_loop_body
-		t41(rdi) = mov sum(null)
-		call println_Int return value = t40(rax)
+		jump main_52_block_exit
+	main_3_malloc_exit
+		f(r8) = mov t40(rdi)
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
 		ret 0
-		jump main_8_block_exit
-	main_6_loop_increment
-		t39(rsi) = mov i(null)
-		INC t39(rsi)
-		i(null) = mov t39(rsi)
-		cmp i(null) n(r14)
-		CJump LE main_2_loop_body
-		t41(rdi) = mov sum(null)
-		call println_Int return value = t40(rax)
+		jump main_52_block_exit
+	main_4_loop_condition
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
 		ret 0
-		jump main_8_block_exit
-	main_7_loop_exit
-		t41(rdi) = mov sum(null)
-		call println_Int return value = t40(rax)
+		jump main_52_block_exit
+	main_5_loop_body
+		j(r15) = mov 0
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
 		ret 0
-	main_8_block_exit
+		jump main_52_block_exit
+	main_6_loop_condition
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_7_loop_body
+		k(r14) = mov 0
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_8_loop_condition
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_9_loop_body
+		cmp i(r10) 0
+		set GR t51(rsi)
+		cmp t51(rsi) 1
+		CJump NEQ main_11_logical_false
+		cmp j(r15) 0
+		set GR t52(rsi)
+		cmp t50(rsi) 1
+		CJump NEQ main_14_logical_false
+		cmp k(r14) 0
+		set GR t53(rsi)
+		cmp t49(rsi) 1
+		CJump EQ main_16_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_10_logical_true
+		cmp j(r15) 0
+		set GR t52(rsi)
+		cmp t50(rsi) 1
+		CJump NEQ main_14_logical_false
+		cmp k(r14) 0
+		set GR t53(rsi)
+		cmp t49(rsi) 1
+		CJump EQ main_16_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_11_logical_false
+		t50(rsi) = mov 0
+		cmp t50(rsi) 1
+		CJump NEQ main_14_logical_false
+		cmp k(r14) 0
+		set GR t53(rsi)
+		cmp t49(rsi) 1
+		CJump EQ main_16_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_12_logical_exit
+		cmp t50(rsi) 1
+		CJump NEQ main_14_logical_false
+		cmp k(r14) 0
+		set GR t53(rsi)
+		cmp t49(rsi) 1
+		CJump EQ main_16_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_13_logical_true
+		cmp k(r14) 0
+		set GR t53(rsi)
+		cmp t49(rsi) 1
+		CJump EQ main_16_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_14_logical_false
+		t49(rsi) = mov 0
+		cmp t49(rsi) 1
+		CJump EQ main_16_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_15_logical_exit
+		cmp t49(rsi) 1
+		CJump EQ main_16_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_16_if_true
+		t56(rbx) = mov i(r10)
+		t56(rbx) = t56(rbx) MOD j(r15)
+		t57(rsi) = mov j(r15)
+		t57(rsi) = t57(rsi) MOD k(r14)
+		cmp t56(rbx) t57(rsi)
+		set NEQ t58(rsi)
+		cmp t58(rsi) 1
+		CJump NEQ main_18_logical_false
+		t59(rsi) = mov j(r15)
+		t59(rsi) = t59(rsi) MOD k(r14)
+		t60(rbx) = mov k(r14)
+		t60(rbx) = t60(rbx) MOD i(r10)
+		cmp t59(rsi) t60(rbx)
+		set NEQ t61(rsi)
+		cmp t55(rsi) 1
+		CJump NEQ main_21_logical_false
+		t62(rbx) = mov i(r10)
+		t62(rbx) = t62(rbx) MOD j(r15)
+		t63(rsi) = mov k(r14)
+		t63(rsi) = t63(rsi) MOD i(r10)
+		cmp t62(rbx) t63(rsi)
+		set NEQ t64(rsi)
+		cmp t54(rsi) 1
+		CJump EQ main_23_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_17_logical_true
+		t59(rsi) = mov j(r15)
+		t59(rsi) = t59(rsi) MOD k(r14)
+		t60(rbx) = mov k(r14)
+		t60(rbx) = t60(rbx) MOD i(r10)
+		cmp t59(rsi) t60(rbx)
+		set NEQ t61(rsi)
+		cmp t55(rsi) 1
+		CJump NEQ main_21_logical_false
+		t62(rbx) = mov i(r10)
+		t62(rbx) = t62(rbx) MOD j(r15)
+		t63(rsi) = mov k(r14)
+		t63(rsi) = t63(rsi) MOD i(r10)
+		cmp t62(rbx) t63(rsi)
+		set NEQ t64(rsi)
+		cmp t54(rsi) 1
+		CJump EQ main_23_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_18_logical_false
+		t55(rsi) = mov 0
+		cmp t55(rsi) 1
+		CJump NEQ main_21_logical_false
+		t62(rbx) = mov i(r10)
+		t62(rbx) = t62(rbx) MOD j(r15)
+		t63(rsi) = mov k(r14)
+		t63(rsi) = t63(rsi) MOD i(r10)
+		cmp t62(rbx) t63(rsi)
+		set NEQ t64(rsi)
+		cmp t54(rsi) 1
+		CJump EQ main_23_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_19_logical_exit
+		cmp t55(rsi) 1
+		CJump NEQ main_21_logical_false
+		t62(rbx) = mov i(r10)
+		t62(rbx) = t62(rbx) MOD j(r15)
+		t63(rsi) = mov k(r14)
+		t63(rsi) = t63(rsi) MOD i(r10)
+		cmp t62(rbx) t63(rsi)
+		set NEQ t64(rsi)
+		cmp t54(rsi) 1
+		CJump EQ main_23_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_20_logical_true
+		t62(rbx) = mov i(r10)
+		t62(rbx) = t62(rbx) MOD j(r15)
+		t63(rsi) = mov k(r14)
+		t63(rsi) = t63(rsi) MOD i(r10)
+		cmp t62(rbx) t63(rsi)
+		set NEQ t64(rsi)
+		cmp t54(rsi) 1
+		CJump EQ main_23_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_21_logical_false
+		t54(rsi) = mov 0
+		cmp t54(rsi) 1
+		CJump EQ main_23_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_22_logical_exit
+		cmp t54(rsi) 1
+		CJump EQ main_23_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_23_if_true
+		t65(rbx) = mov i(r10)
+		t65(rbx) = t65(rbx) SHL 3
+		t66(rsi) = mov f(r8)
+		t66(rsi) = t66(rsi) ADD t65(rbx)
+		t67(rbx) = mov j(r15)
+		t67(rbx) = t67(rbx) SHL 3
+		t68(r13) = mov Address (t66(rsi) + 0)
+		t68(r13) = t68(r13) ADD t67(rbx)
+		t69(rsi) = mov i(r10)
+		t69(rsi) = t69(rsi) AND j(r15)
+		t70(rsi) = t70(rsi) AND k(r14)
+		t71(rbx) = mov i(r10)
+		t71(rbx) = t71(rbx) ADD j(r15)
+		t72(rbx) = t72(rbx) ADD k(r14)
+		INC t141(rsi)
+		x(rdi) = mov t141(rsi)
+		i(r12) = mov 0
+		t142(rsi) = mov num(rbx)
+		t142(rsi) = t142(rsi) MUL 10
+		cmp i(r12) t142(rsi)
+		CJump LE main_55_loop_body
+		t160(rsi) = mov x(rdi)
+		t160(rsi) = t160(rsi) XOR 123456789
+		Address (t68(r13) + 0) = mov t76(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_53_inline_enter
+		INC t141(rsi)
+		x(rdi) = mov t141(rsi)
+		i(r12) = mov 0
+		t142(rsi) = mov num(rbx)
+		t142(rsi) = t142(rsi) MUL 10
+		cmp i(r12) t142(rsi)
+		CJump LE main_55_loop_body
+		t160(rsi) = mov x(rdi)
+		t160(rsi) = t160(rsi) XOR 123456789
+		Address (t68(r13) + 0) = mov t76(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_54_loop_condition
+		t142(rsi) = mov num(rbx)
+		t142(rsi) = t142(rsi) MUL 10
+		cmp i(r12) t142(rsi)
+		CJump LE main_55_loop_body
+		t160(rsi) = mov x(rdi)
+		t160(rsi) = t160(rsi) XOR 123456789
+		Address (t68(r13) + 0) = mov t76(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_55_loop_body
+		t146(rsi) = mov 13
+		call shift_l return value = t144(rax)
+		t147(rsi) = mov t144(rax)
+		x(rdi) = x(rdi) XOR t147(rsi)
+		t151(rsi) = mov 17
+		call shift_r return value = t149(rax)
+		t152(rsi) = mov t149(rax)
+		x(rdi) = x(rdi) XOR t152(rsi)
+		t156(rsi) = mov 5
+		call shift_l return value = t154(rax)
+		t157(rsi) = mov t154(rax)
+		x(rdi) = x(rdi) XOR t157(rsi)
+		INC i(r12)
+		t142(rsi) = mov num(rbx)
+		t142(rsi) = t142(rsi) MUL 10
+		cmp i(r12) t142(rsi)
+		CJump LE main_55_loop_body
+		t160(rsi) = mov x(rdi)
+		t160(rsi) = t160(rsi) XOR 123456789
+		Address (t68(r13) + 0) = mov t76(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_56_loop_increment
+		INC i(r12)
+		t142(rsi) = mov num(rbx)
+		t142(rsi) = t142(rsi) MUL 10
+		cmp i(r12) t142(rsi)
+		CJump LE main_55_loop_body
+		t160(rsi) = mov x(rdi)
+		t160(rsi) = t160(rsi) XOR 123456789
+		Address (t68(r13) + 0) = mov t76(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_57_loop_exit
+		t160(rsi) = mov x(rdi)
+		t160(rsi) = t160(rsi) XOR 123456789
+		Address (t68(r13) + 0) = mov t76(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_58_inline_exit
+		Address (t68(r13) + 0) = mov t76(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_28_loop_increment
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_9_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_30_loop_increment
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_7_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_32_loop_increment
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_5_loop_body
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_33_loop_exit
+		sum(rbx) = mov 0
+		i(r10) = mov 0
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_34_loop_condition
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_35_loop_body
+		j(r15) = mov 0
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_36_loop_condition
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_37_loop_body
+		k(r14) = mov 0
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_38_loop_condition
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_39_loop_body
+		cmp i(r10) j(r15)
+		set GREQ t81(rsi)
+		cmp t81(rsi) 1
+		CJump NEQ main_41_logical_false
+		cmp j(r15) k(r14)
+		set GREQ t82(rsi)
+		cmp t80(rsi) 1
+		CJump EQ main_43_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_40_logical_true
+		cmp j(r15) k(r14)
+		set GREQ t82(rsi)
+		cmp t80(rsi) 1
+		CJump EQ main_43_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_41_logical_false
+		t80(rsi) = mov 0
+		cmp t80(rsi) 1
+		CJump EQ main_43_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_42_logical_exit
+		cmp t80(rsi) 1
+		CJump EQ main_43_if_true
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_43_if_true
+		t83(rsi) = mov i(r10)
+		t83(rsi) = t83(rsi) SHL 3
+		t84(rdi) = mov f(r8)
+		t84(rdi) = t84(rdi) ADD t83(rsi)
+		t85(rsi) = mov j(r15)
+		t85(rsi) = t85(rsi) SHL 3
+		t86(rdi) = mov Address (t84(rdi) + 0)
+		t86(rdi) = t86(rdi) ADD t85(rsi)
+		t87(rsi) = mov sum(rbx)
+		t87(rsi) = t87(rsi) ADD Address (t86(rdi) + 0)
+		t88(rsi) = t88(rsi) AND 1073741823
+		sum(rbx) = mov t88(rsi)
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_46_loop_increment
+		INC k(r14)
+		cmp k(r14) n(r9)
+		CJump LE main_39_loop_body
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_48_loop_increment
+		INC j(r15)
+		cmp j(r15) n(r9)
+		CJump LE main_37_loop_body
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_50_loop_increment
+		INC i(r10)
+		cmp i(r10) n(r9)
+		CJump LE main_35_loop_body
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+		jump main_52_block_exit
+	main_51_loop_exit
+		t90(rdi) = mov sum(rbx)
+		call toString return value = t89(rax)
+		t91(rsi) = mov t89(rax)
+		t93(rdi) = mov __const_string_0
+		call __string_connection return value = t92(rax)
+		t96(rdi) = mov t92(rax)
+		call println return value = null
+		ret 0
+	main_52_block_exit
 }
