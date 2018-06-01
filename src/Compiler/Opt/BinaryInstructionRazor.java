@@ -54,10 +54,9 @@ public class BinaryInstructionRazor {
                             moveInstruction1.setTarget(moveInstruction2.getTarget());
                             block.getInstructionList().remove(i + 1);
                             --i;
-                            continue;
                         }
                     }
-                    if (block.getInstructionList().get(i) instanceof MoveInstruction
+                    /*if (block.getInstructionList().get(i) instanceof MoveInstruction
                             && block.getInstructionList().get(i + 1) instanceof MoveInstruction) {
                         MoveInstruction moveInstruction1 = (MoveInstruction) block.getInstructionList().get(i);
                         MoveInstruction moveInstruction2 = (MoveInstruction) block.getInstructionList().get(i + 1);
@@ -65,7 +64,7 @@ public class BinaryInstructionRazor {
                                 && moveInstruction1.getSource() == moveInstruction2.getTarget()) {
                             block.getInstructionList().remove(i--);
                         }
-                    }
+                    }*/
                 }
             }
         );
