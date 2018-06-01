@@ -40,17 +40,16 @@ p_0_block_enter:
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
      sub                  rsi,                    2
-     mov                   r8,                  rdi
-     mov                  eax,                  r8d
+     mov                  eax,                  edi
      mov                  ecx,                  esi
      cdq
     idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                    3
-     mov                  rsi,                   r8
+     mov                  rdi,                  rdx
+     mov                   r8,                   r9
+     sub                   r8,                    3
+     mov                  rsi,                  rdi
      mov                  eax,                  esi
-     mov                  ecx,                  edi
+     mov                  ecx,                  r8d
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
@@ -80,6 +79,27 @@ p_0_block_enter:
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
      sub                  rdi,                    7
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                    8
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                    9
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   10
      mov                   r8,                  rsi
      mov                  eax,                  r8d
      mov                  ecx,                  edi
@@ -87,7 +107,7 @@ p_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                    8
+     sub                  rsi,                   11
      mov                  rdi,                   r8
      mov                  eax,                  edi
      mov                  ecx,                  esi
@@ -95,93 +115,71 @@ p_0_block_enter:
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                    9
+     sub                  rsi,                   12
      mov                  eax,                  edi
      mov                  ecx,                  esi
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   10
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   11
+     sub                  rsi,                   13
      mov                  eax,                  edi
      mov                  ecx,                  esi
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                   r8,                   r9
-     sub                   r8,                   12
+     sub                   r8,                   14
      mov                  rsi,                  rdi
      mov                  eax,                  esi
      mov                  ecx,                  r8d
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   13
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
+     mov                   r8,                   r9
+     sub                   r8,                   15
+     mov                  rdi,                  rsi
+     mov                  eax,                  edi
+     mov                  ecx,                  r8d
      cdq
     idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   14
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   15
-     mov                   r8,                  rsi
-     mov                  eax,                  r8d
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
+     mov                  rdi,                  rdx
      mov                  rsi,                   r9
      sub                  rsi,                   16
-     mov                  eax,                  r8d
+     mov                  eax,                  edi
      mov                  ecx,                  esi
      cdq
     idiv                  ecx
-     mov                   r8,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   17
-     mov                  rsi,                   r8
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   17
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
      cdq
     idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   18
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   18
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
      cdq
     idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   19
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   19
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
      cdq
     idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   20
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   20
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
      cdq
     idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rax,                  rsi
+     mov                  rdi,                  rdx
+     mov                  rax,                  rdi
 p_1_block_exit:
      pop                  rbp
      ret
@@ -238,24 +236,16 @@ h:
      mov                  rbp,                  rsp
 h_0_block_enter:
      mov                   r9,                  rdi
-     mov                  rsi,                   r9
-     sub                  rsi,                    1
-     mov                   r8,                   r9
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                    2
-     mov                  rsi,                   r8
+     sub                  rdi,                    1
+     mov                  rsi,                   r9
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                    3
+     sub                  rdi,                    2
      mov                   r8,                  rsi
      mov                  eax,                  r8d
      mov                  ecx,                  edi
@@ -263,7 +253,7 @@ h_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                    4
+     sub                  rsi,                    3
      mov                  rdi,                   r8
      mov                  eax,                  edi
      mov                  ecx,                  esi
@@ -271,7 +261,7 @@ h_0_block_enter:
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                    5
+     sub                  rsi,                    4
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -279,8 +269,15 @@ h_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                    6
+     sub                  rdi,                    5
      mov                  rsi,                   r8
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                    6
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -302,13 +299,6 @@ h_0_block_enter:
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
      sub                  rdi,                    9
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   10
      mov                   r8,                  rsi
      mov                  eax,                  r8d
      mov                  ecx,                  edi
@@ -316,15 +306,22 @@ h_0_block_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   11
+     sub                  rsi,                   10
      mov                  eax,                  r8d
      mov                  ecx,                  esi
      cdq
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   12
+     sub                  rdi,                   11
      mov                  rsi,                   r8
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   12
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -344,18 +341,18 @@ h_0_block_enter:
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   15
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
      mov                   r8,                   r9
-     sub                   r8,                   16
+     sub                   r8,                   15
      mov                  rdi,                  rsi
      mov                  eax,                  edi
      mov                  ecx,                  r8d
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   16
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
@@ -373,42 +370,34 @@ h_0_block_enter:
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   19
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
      mov                   r8,                   r9
-     sub                   r8,                   20
+     sub                   r8,                   19
      mov                  rsi,                  rdi
      mov                  eax,                  esi
      mov                  ecx,                  r8d
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   20
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
      mov                  rax,                  rsi
      jmp       h_1_block_exit
 h_2_inline_enter:
-     mov                  rsi,                   r9
-     sub                  rsi,                    1
-     mov                   r8,                   r9
-     mov                  eax,                  r8d
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                    2
-     mov                  rsi,                   r8
+     sub                  rdi,                    1
+     mov                  rsi,                   r9
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                    3
+     sub                  rdi,                    2
      mov                   r8,                  rsi
      mov                  eax,                  r8d
      mov                  ecx,                  edi
@@ -416,7 +405,7 @@ h_2_inline_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                    4
+     sub                  rsi,                    3
      mov                  rdi,                   r8
      mov                  eax,                  edi
      mov                  ecx,                  esi
@@ -424,7 +413,7 @@ h_2_inline_enter:
     idiv                  ecx
      mov                  rdi,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                    5
+     sub                  rsi,                    4
      mov                   r8,                  rdi
      mov                  eax,                  r8d
      mov                  ecx,                  esi
@@ -432,8 +421,15 @@ h_2_inline_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                    6
+     sub                  rdi,                    5
      mov                  rsi,                   r8
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                    6
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -455,13 +451,6 @@ h_2_inline_enter:
      mov                  rsi,                  rdx
      mov                  rdi,                   r9
      sub                  rdi,                    9
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   10
      mov                   r8,                  rsi
      mov                  eax,                  r8d
      mov                  ecx,                  edi
@@ -469,15 +458,22 @@ h_2_inline_enter:
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rsi,                   r9
-     sub                  rsi,                   11
+     sub                  rsi,                   10
      mov                  eax,                  r8d
      mov                  ecx,                  esi
      cdq
     idiv                  ecx
      mov                   r8,                  rdx
      mov                  rdi,                   r9
-     sub                  rdi,                   12
+     sub                  rdi,                   11
      mov                  rsi,                   r8
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   12
      mov                  eax,                  esi
      mov                  ecx,                  edi
      cdq
@@ -497,18 +493,18 @@ h_2_inline_enter:
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
-     mov                  rdi,                   r9
-     sub                  rdi,                   15
-     mov                  eax,                  esi
-     mov                  ecx,                  edi
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
      mov                   r8,                   r9
-     sub                   r8,                   16
+     sub                   r8,                   15
      mov                  rdi,                  rsi
      mov                  eax,                  edi
      mov                  ecx,                  r8d
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rdx
+     mov                  rsi,                   r9
+     sub                  rsi,                   16
+     mov                  eax,                  edi
+     mov                  ecx,                  esi
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
@@ -526,18 +522,18 @@ h_2_inline_enter:
      cdq
     idiv                  ecx
      mov                  rdi,                  rdx
-     mov                  rsi,                   r9
-     sub                  rsi,                   19
-     mov                  eax,                  edi
-     mov                  ecx,                  esi
-     cdq
-    idiv                  ecx
-     mov                  rdi,                  rdx
      mov                   r8,                   r9
-     sub                   r8,                   20
+     sub                   r8,                   19
      mov                  rsi,                  rdi
      mov                  eax,                  esi
      mov                  ecx,                  r8d
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rdi,                   r9
+     sub                  rdi,                   20
+     mov                  eax,                  esi
+     mov                  ecx,                  edi
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
@@ -737,7 +733,7 @@ main_6_loop_body:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -822,7 +818,7 @@ main_6_loop_body:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -925,7 +921,7 @@ main_7_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1010,7 +1006,7 @@ main_7_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1114,7 +1110,7 @@ main_8_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1199,7 +1195,7 @@ main_8_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1302,7 +1298,7 @@ main_9_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1387,7 +1383,7 @@ main_9_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1477,7 +1473,7 @@ main_10_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1562,7 +1558,7 @@ main_10_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1679,7 +1675,7 @@ main_11_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1764,7 +1760,7 @@ main_11_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1867,7 +1863,7 @@ main_12_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -1952,7 +1948,7 @@ main_12_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2056,7 +2052,7 @@ main_13_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2141,7 +2137,7 @@ main_13_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2244,7 +2240,7 @@ main_15_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2329,7 +2325,7 @@ main_15_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2419,7 +2415,7 @@ main_16_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2504,7 +2500,7 @@ main_16_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2624,7 +2620,7 @@ main_17_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2709,7 +2705,7 @@ main_17_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2815,7 +2811,7 @@ main_18_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -2900,7 +2896,7 @@ main_18_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3007,7 +3003,7 @@ main_19_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3092,7 +3088,7 @@ main_19_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3198,7 +3194,7 @@ main_21_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3283,7 +3279,7 @@ main_21_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3373,7 +3369,7 @@ main_22_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3458,7 +3454,7 @@ main_22_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3581,7 +3577,7 @@ main_23_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3666,7 +3662,7 @@ main_23_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3772,7 +3768,7 @@ main_24_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3857,7 +3853,7 @@ main_24_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -3964,7 +3960,7 @@ main_25_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4049,7 +4045,7 @@ main_25_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4155,7 +4151,7 @@ main_27_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4240,7 +4236,7 @@ main_27_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4325,7 +4321,7 @@ main_27_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4334,7 +4330,7 @@ main_27_logical_exit:
      jmp main_88_logical_true
 main_28_logical_true:
      mov                  rsi,                    1
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4419,7 +4415,7 @@ main_28_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4504,7 +4500,7 @@ main_28_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4540,7 +4536,7 @@ main_29_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4625,7 +4621,7 @@ main_29_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4710,7 +4706,7 @@ main_29_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4736,7 +4732,7 @@ main_30_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4821,7 +4817,7 @@ main_30_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4906,7 +4902,7 @@ main_30_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -4926,7 +4922,7 @@ main_30_logical_true:
      jmp main_92_logical_false
 main_31_logical_false:
      mov                  rsi,                    0
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5011,7 +5007,7 @@ main_31_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5096,7 +5092,7 @@ main_31_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5115,7 +5111,7 @@ main_31_logical_false:
       je main_91_logical_true
      jmp main_92_logical_false
 main_33_logical_exit:
-     mov                  rdi,                  rsi
+     mov                   r8,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5200,7 +5196,7 @@ main_33_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5285,7 +5281,7 @@ main_33_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5388,7 +5384,7 @@ main_34_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5473,7 +5469,7 @@ main_34_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5577,7 +5573,7 @@ main_35_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5662,7 +5658,7 @@ main_35_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5765,7 +5761,7 @@ main_36_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5850,7 +5846,7 @@ main_36_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -5940,7 +5936,7 @@ main_37_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6025,7 +6021,7 @@ main_37_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6142,7 +6138,7 @@ main_38_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6227,7 +6223,7 @@ main_38_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6330,7 +6326,7 @@ main_39_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6415,7 +6411,7 @@ main_39_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6519,7 +6515,7 @@ main_40_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6604,7 +6600,7 @@ main_40_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6707,7 +6703,7 @@ main_42_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6792,7 +6788,7 @@ main_42_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6882,7 +6878,7 @@ main_43_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -6967,7 +6963,7 @@ main_43_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7087,7 +7083,7 @@ main_44_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7172,7 +7168,7 @@ main_44_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7278,7 +7274,7 @@ main_45_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7363,7 +7359,7 @@ main_45_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7470,7 +7466,7 @@ main_46_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7555,7 +7551,7 @@ main_46_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7661,7 +7657,7 @@ main_48_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7746,7 +7742,7 @@ main_48_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7836,7 +7832,7 @@ main_49_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -7921,7 +7917,7 @@ main_49_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8044,7 +8040,7 @@ main_50_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8129,7 +8125,7 @@ main_50_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8235,7 +8231,7 @@ main_51_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8320,7 +8316,7 @@ main_51_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8427,7 +8423,7 @@ main_52_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8512,7 +8508,7 @@ main_52_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8618,7 +8614,7 @@ main_54_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8703,7 +8699,7 @@ main_54_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8788,7 +8784,7 @@ main_54_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8797,7 +8793,7 @@ main_54_logical_exit:
      jmp main_115_logical_true
 main_55_logical_true:
      mov                  rsi,                    1
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8882,7 +8878,7 @@ main_55_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -8967,7 +8963,7 @@ main_55_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9003,7 +8999,7 @@ main_56_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9088,7 +9084,7 @@ main_56_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9173,7 +9169,7 @@ main_56_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9199,7 +9195,7 @@ main_57_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9284,7 +9280,7 @@ main_57_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9369,7 +9365,7 @@ main_57_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9389,7 +9385,7 @@ main_57_logical_true:
      jmp main_119_logical_false
 main_58_logical_false:
      mov                  rsi,                    0
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9474,7 +9470,7 @@ main_58_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9559,7 +9555,7 @@ main_58_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9578,7 +9574,7 @@ main_58_logical_false:
       je main_118_logical_true
      jmp main_119_logical_false
 main_60_logical_exit:
-     mov                  rbx,                  rsi
+     mov                  r12,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9663,7 +9659,7 @@ main_60_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9748,7 +9744,7 @@ main_60_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9851,7 +9847,7 @@ main_61_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -9936,7 +9932,7 @@ main_61_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10040,7 +10036,7 @@ main_62_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10125,7 +10121,7 @@ main_62_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10228,7 +10224,7 @@ main_63_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10313,7 +10309,7 @@ main_63_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10403,7 +10399,7 @@ main_64_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10488,7 +10484,7 @@ main_64_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10605,7 +10601,7 @@ main_65_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10690,7 +10686,7 @@ main_65_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10793,7 +10789,7 @@ main_66_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10878,7 +10874,7 @@ main_66_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -10982,7 +10978,7 @@ main_67_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11067,7 +11063,7 @@ main_67_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11170,7 +11166,7 @@ main_69_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11255,7 +11251,7 @@ main_69_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11345,7 +11341,7 @@ main_70_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11430,7 +11426,7 @@ main_70_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11550,7 +11546,7 @@ main_71_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11635,7 +11631,7 @@ main_71_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11741,7 +11737,7 @@ main_72_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11826,7 +11822,7 @@ main_72_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -11933,7 +11929,7 @@ main_73_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12018,7 +12014,7 @@ main_73_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12124,7 +12120,7 @@ main_75_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12209,7 +12205,7 @@ main_75_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12299,7 +12295,7 @@ main_76_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12384,7 +12380,7 @@ main_76_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12507,7 +12503,7 @@ main_77_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12592,7 +12588,7 @@ main_77_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12698,7 +12694,7 @@ main_78_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12783,7 +12779,7 @@ main_78_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12890,7 +12886,7 @@ main_79_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -12975,7 +12971,7 @@ main_79_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13081,7 +13077,7 @@ main_81_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13166,7 +13162,7 @@ main_81_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13251,7 +13247,7 @@ main_81_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13336,15 +13332,15 @@ main_81_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -13368,7 +13364,7 @@ main_81_logical_exit:
      jmp  main_200_block_exit
 main_82_logical_true:
      mov                  rsi,                    1
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13453,7 +13449,7 @@ main_82_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13538,7 +13534,7 @@ main_82_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13623,15 +13619,15 @@ main_82_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -13671,7 +13667,7 @@ main_83_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13756,7 +13752,7 @@ main_83_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13841,7 +13837,7 @@ main_83_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -13926,15 +13922,15 @@ main_83_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -13966,7 +13962,7 @@ main_84_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14051,7 +14047,7 @@ main_84_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14136,7 +14132,7 @@ main_84_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14221,15 +14217,15 @@ main_84_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -14253,7 +14249,7 @@ main_84_logical_true:
      jmp  main_200_block_exit
 main_85_logical_false:
      mov                  rsi,                    0
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14338,7 +14334,7 @@ main_85_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14423,7 +14419,7 @@ main_85_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14508,15 +14504,15 @@ main_85_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -14539,7 +14535,7 @@ main_85_logical_false:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_87_logical_exit:
-     mov                  r12,                  rsi
+     mov                  rdi,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14624,7 +14620,7 @@ main_87_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14709,7 +14705,7 @@ main_87_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14794,15 +14790,15 @@ main_87_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -14904,7 +14900,7 @@ main_88_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -14989,7 +14985,7 @@ main_88_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -15074,15 +15070,15 @@ main_88_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -15176,7 +15172,7 @@ main_89_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -15261,7 +15257,7 @@ main_89_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -15346,15 +15342,15 @@ main_89_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -15447,7 +15443,7 @@ main_90_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -15532,7 +15528,7 @@ main_90_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -15617,15 +15613,15 @@ main_90_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -15703,7 +15699,7 @@ main_91_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -15788,7 +15784,7 @@ main_91_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -15873,15 +15869,15 @@ main_91_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -15972,7 +15968,7 @@ main_92_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16057,7 +16053,7 @@ main_92_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16142,15 +16138,15 @@ main_92_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -16236,7 +16232,7 @@ main_93_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16321,7 +16317,7 @@ main_93_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16406,15 +16402,15 @@ main_93_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -16492,7 +16488,7 @@ main_94_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16577,7 +16573,7 @@ main_94_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16662,15 +16658,15 @@ main_94_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -16747,7 +16743,7 @@ main_96_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16832,7 +16828,7 @@ main_96_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -16917,15 +16913,15 @@ main_96_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -16987,7 +16983,7 @@ main_97_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17072,7 +17068,7 @@ main_97_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17157,15 +17153,15 @@ main_97_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -17240,7 +17236,7 @@ main_98_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17325,7 +17321,7 @@ main_98_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17410,15 +17406,15 @@ main_98_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -17488,7 +17484,7 @@ main_99_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17573,7 +17569,7 @@ main_99_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17658,15 +17654,15 @@ main_99_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -17728,7 +17724,7 @@ main_100_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17813,7 +17809,7 @@ main_100_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -17898,15 +17894,15 @@ main_100_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -17967,7 +17963,7 @@ main_102_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18052,7 +18048,7 @@ main_102_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18137,15 +18133,15 @@ main_102_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -18188,7 +18184,7 @@ main_103_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18273,7 +18269,7 @@ main_103_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18358,15 +18354,15 @@ main_103_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -18425,7 +18421,7 @@ main_104_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18510,7 +18506,7 @@ main_104_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18595,15 +18591,15 @@ main_104_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -18654,7 +18650,7 @@ main_105_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18739,7 +18735,7 @@ main_105_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18824,15 +18820,15 @@ main_105_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -18875,7 +18871,7 @@ main_106_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -18960,7 +18956,7 @@ main_106_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19045,15 +19041,15 @@ main_106_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -19095,7 +19091,7 @@ main_108_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19180,7 +19176,7 @@ main_108_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19265,15 +19261,15 @@ main_108_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -19297,7 +19293,7 @@ main_108_logical_exit:
      jmp  main_200_block_exit
 main_109_logical_true:
      mov                  rsi,                    1
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19382,7 +19378,7 @@ main_109_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19467,15 +19463,15 @@ main_109_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -19515,7 +19511,7 @@ main_110_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19600,7 +19596,7 @@ main_110_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19685,15 +19681,15 @@ main_110_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -19725,7 +19721,7 @@ main_111_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19810,7 +19806,7 @@ main_111_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -19895,15 +19891,15 @@ main_111_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -19927,7 +19923,7 @@ main_111_logical_true:
      jmp  main_200_block_exit
 main_112_logical_false:
      mov                  rsi,                    0
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -20012,7 +20008,7 @@ main_112_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -20097,15 +20093,15 @@ main_112_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -20128,7 +20124,7 @@ main_112_logical_false:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_114_logical_exit:
-     mov                  r13,                  rsi
+     mov                  rbx,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -20213,7 +20209,7 @@ main_114_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -20298,15 +20294,15 @@ main_114_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -20408,7 +20404,7 @@ main_115_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -20493,15 +20489,15 @@ main_115_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -20595,7 +20591,7 @@ main_116_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -20680,15 +20676,15 @@ main_116_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -20781,7 +20777,7 @@ main_117_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -20866,15 +20862,15 @@ main_117_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -20952,7 +20948,7 @@ main_118_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -21037,15 +21033,15 @@ main_118_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -21136,7 +21132,7 @@ main_119_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -21221,15 +21217,15 @@ main_119_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -21315,7 +21311,7 @@ main_120_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -21400,15 +21396,15 @@ main_120_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -21486,7 +21482,7 @@ main_121_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -21571,15 +21567,15 @@ main_121_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -21656,7 +21652,7 @@ main_123_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -21741,15 +21737,15 @@ main_123_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -21811,7 +21807,7 @@ main_124_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -21896,15 +21892,15 @@ main_124_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -21979,7 +21975,7 @@ main_125_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -22064,15 +22060,15 @@ main_125_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -22142,7 +22138,7 @@ main_126_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -22227,15 +22223,15 @@ main_126_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -22297,7 +22293,7 @@ main_127_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -22382,15 +22378,15 @@ main_127_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -22451,7 +22447,7 @@ main_129_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -22536,15 +22532,15 @@ main_129_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -22587,7 +22583,7 @@ main_130_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -22672,15 +22668,15 @@ main_130_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -22739,7 +22735,7 @@ main_131_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -22824,15 +22820,15 @@ main_131_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -22883,7 +22879,7 @@ main_132_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -22968,15 +22964,15 @@ main_132_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23019,7 +23015,7 @@ main_133_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -23104,15 +23100,15 @@ main_133_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23154,7 +23150,7 @@ main_135_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -23239,15 +23235,15 @@ main_135_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23271,7 +23267,7 @@ main_135_logical_exit:
      jmp  main_200_block_exit
 main_136_logical_true:
      mov                  rsi,                    1
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -23356,15 +23352,15 @@ main_136_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23404,7 +23400,7 @@ main_137_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -23489,15 +23485,15 @@ main_137_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23529,7 +23525,7 @@ main_138_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -23614,15 +23610,15 @@ main_138_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23646,7 +23642,7 @@ main_138_logical_true:
      jmp  main_200_block_exit
 main_139_logical_false:
      mov                  rsi,                    0
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -23731,15 +23727,15 @@ main_139_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23762,7 +23758,7 @@ main_139_logical_false:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_141_logical_exit:
-     mov                   r8,                  rsi
+     mov                  r13,                  rsi
      cmp                  r15,                    0
      mov                  rsi,                    0
     setg                  sil
@@ -23847,15 +23843,15 @@ main_141_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -23957,15 +23953,15 @@ main_142_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24059,15 +24055,15 @@ main_143_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24160,15 +24156,15 @@ main_144_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24246,15 +24242,15 @@ main_145_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24345,15 +24341,15 @@ main_146_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24439,15 +24435,15 @@ main_147_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24525,15 +24521,15 @@ main_148_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24610,15 +24606,15 @@ main_150_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24680,15 +24676,15 @@ main_151_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24763,15 +24759,15 @@ main_152_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24841,15 +24837,15 @@ main_153_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24911,15 +24907,15 @@ main_154_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -24980,15 +24976,15 @@ main_156_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25031,15 +25027,15 @@ main_157_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25098,15 +25094,15 @@ main_158_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25157,15 +25153,15 @@ main_159_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25208,15 +25204,15 @@ main_160_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25258,15 +25254,15 @@ main_162_logical_exit:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25290,15 +25286,15 @@ main_162_logical_exit:
      jmp  main_200_block_exit
 main_163_logical_true:
      mov                  rsi,                    1
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25338,15 +25334,15 @@ main_164_logical_false:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25378,15 +25374,15 @@ main_165_logical_true:
      cmp                  rsi,                    0
      mov                  rsi,                    0
     sete                  sil
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25410,15 +25406,15 @@ main_165_logical_true:
      jmp  main_200_block_exit
 main_166_logical_false:
      mov                  rsi,                    0
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25441,15 +25437,15 @@ main_166_logical_false:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_168_logical_exit:
-     cmp                  rdi,                    1
-      je     main_169_if_true
-     cmp                  rbx,                    1
-      je     main_172_if_true
-     cmp                  r12,                    1
-      je     main_175_if_true
-     cmp                  r13,                    1
-      je     main_178_if_true
      cmp                   r8,                    1
+      je     main_169_if_true
+     cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
+      je     main_175_if_true
+     cmp                  rbx,                    1
+      je     main_178_if_true
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25473,13 +25469,13 @@ main_168_logical_exit:
      jmp  main_200_block_exit
 main_169_if_true:
      add                  r14,                    1
-     cmp                  rbx,                    1
-      je     main_172_if_true
      cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
       je     main_175_if_true
-     cmp                  r13,                    1
+     cmp                  rbx,                    1
       je     main_178_if_true
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25502,13 +25498,13 @@ main_169_if_true:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_171_if_exit:
-     cmp                  rbx,                    1
-      je     main_172_if_true
      cmp                  r12,                    1
+      je     main_172_if_true
+     cmp                  rdi,                    1
       je     main_175_if_true
-     cmp                  r13,                    1
+     cmp                  rbx,                    1
       je     main_178_if_true
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25532,11 +25528,11 @@ main_171_if_exit:
      jmp  main_200_block_exit
 main_172_if_true:
      add                  r14,                    1
-     cmp                  r12,                    1
+     cmp                  rdi,                    1
       je     main_175_if_true
-     cmp                  r13,                    1
+     cmp                  rbx,                    1
       je     main_178_if_true
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25559,11 +25555,11 @@ main_172_if_true:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_174_if_exit:
-     cmp                  r12,                    1
+     cmp                  rdi,                    1
       je     main_175_if_true
-     cmp                  r13,                    1
+     cmp                  rbx,                    1
       je     main_178_if_true
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25587,9 +25583,9 @@ main_174_if_exit:
      jmp  main_200_block_exit
 main_175_if_true:
      add                  r14,                    1
-     cmp                  r13,                    1
+     cmp                  rbx,                    1
       je     main_178_if_true
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25612,9 +25608,9 @@ main_175_if_true:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_177_if_exit:
-     cmp                  r13,                    1
+     cmp                  rbx,                    1
       je     main_178_if_true
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25638,7 +25634,7 @@ main_177_if_exit:
      jmp  main_200_block_exit
 main_178_if_true:
      add                  r14,                    1
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
@@ -25661,7 +25657,7 @@ main_178_if_true:
      mov                  rax,                    0
      jmp  main_200_block_exit
 main_180_if_exit:
-     cmp                   r8,                    1
+     cmp                  r13,                    1
       je     main_181_if_true
      cmp                  rsi,                    1
       je     main_184_if_true
