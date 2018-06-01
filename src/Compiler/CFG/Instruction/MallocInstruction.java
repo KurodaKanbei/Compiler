@@ -19,6 +19,7 @@ public class MallocInstruction extends Instruction {
     public MallocInstruction(VirtualRegister target, Operand mallocSize) {
         this.target = target;
         this.mallocSize = mallocSize;
+        buildSet();
     }
 
     public VirtualRegister getTarget() {
