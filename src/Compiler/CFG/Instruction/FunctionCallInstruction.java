@@ -10,6 +10,7 @@ import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class FunctionCallInstruction extends Instruction {
@@ -21,6 +22,25 @@ public class FunctionCallInstruction extends Instruction {
         this.functionType = functionType;
         this.returnValue = returnValue;
         this.operandList = operandList;
+        buildSet();
+    }
+
+    public FunctionType getFunctionType() {
+        return functionType;
+    }
+
+    public List<Operand> getOperandList() {
+        return operandList;
+    }
+
+    public void convertFunctionType(FunctionType functionType) {
+        this.functionType = functionType;
+    }
+
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
         if (returnValue != null) {
             killSet.add(returnValue);
         }
@@ -34,16 +54,18 @@ public class FunctionCallInstruction extends Instruction {
         }
     }
 
-    public FunctionType getFunctionType() {
-        return functionType;
-    }
-
-    public List<Operand> getOperandList() {
-        return operandList;
-    }
-
-    public void convertFunctionType(FunctionType functionType) {
-        this.functionType = functionType;
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        if (returnValue != null) {
+            returnValue = (VirtualRegister) returnValue.replaceVirtualRegister(older, newer);
+        }
+        for (int i = 0; i < operandList.size(); i++) {
+            Operand operand = operandList.get(i);
+            operand = operand.replaceVirtualRegister(older, newer);
+            operandList.remove(i);
+            operandList.add(i, operand);
+        }
+        buildSet();
     }
 
     @Override

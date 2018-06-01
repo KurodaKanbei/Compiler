@@ -9,6 +9,7 @@ import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class MallocInstruction extends Instruction {
@@ -18,6 +19,20 @@ public class MallocInstruction extends Instruction {
     public MallocInstruction(VirtualRegister target, Operand mallocSize) {
         this.target = target;
         this.mallocSize = mallocSize;
+    }
+
+    public VirtualRegister getTarget() {
+        return target;
+    }
+
+    public Operand getMallocSize() {
+        return mallocSize;
+    }
+
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
         killSet.add(target);
         if (mallocSize instanceof  VirtualRegister) {
             useSet.add((VirtualRegister) mallocSize);
@@ -27,12 +42,11 @@ public class MallocInstruction extends Instruction {
         }
     }
 
-    public VirtualRegister getTarget() {
-        return target;
-    }
-
-    public Operand getMallocSize() {
-        return mallocSize;
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = (VirtualRegister) target.replaceVirtualRegister(older, newer);
+        mallocSize =  mallocSize.replaceVirtualRegister(older, newer);
+        buildSet();
     }
 
     @Override

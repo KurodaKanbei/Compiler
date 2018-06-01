@@ -2,6 +2,7 @@ package Compiler.CFG.Instruction;
 
 import Compiler.AST.Statement.Statement;
 import Compiler.CFG.Block;
+import Compiler.CFG.Operand.VirtualRegister;
 
 public class LabelInstruction extends Instruction {
     private String name;
@@ -40,6 +41,16 @@ public class LabelInstruction extends Instruction {
 
     public LabelInstruction() {
         super();
+    }
+
+    @Override
+    public void buildSet() {
+
+    }
+
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+
     }
 
     @Override

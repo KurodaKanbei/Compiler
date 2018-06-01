@@ -6,17 +6,31 @@ import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
+import java.util.HashSet;
+
 public class ReturnInstruction extends Instruction {
     private Operand returnValue;
 
     public ReturnInstruction(Operand returnValue) {
         this.returnValue = returnValue;
+        buildSet();
+    }
+
+    @Override
+    public void buildSet() {
+        useSet = new HashSet<>();
         if (returnValue instanceof VirtualRegister) {
             useSet.add((VirtualRegister) returnValue);
         }
         if (returnValue instanceof AddressOperand) {
             useSet.add(((AddressOperand) returnValue).getBase());
         }
+    }
+
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        returnValue = returnValue.replaceVirtualRegister(older, newer);
+        buildSet();
     }
 
     public Operand getReturnValue() {

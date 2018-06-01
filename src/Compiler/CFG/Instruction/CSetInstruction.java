@@ -7,6 +7,7 @@ import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class CSetInstruction extends Instruction {
@@ -37,7 +38,7 @@ public class CSetInstruction extends Instruction {
             throw new InternalError("target of compare set instruction is expected to be virtual register");
         }
         this.target = (VirtualRegister) target;
-        killSet.add(this.target);
+        buildSet();
     }
 
     public ProgramIR.ConditionOp getConditionOp() {
@@ -54,6 +55,19 @@ public class CSetInstruction extends Instruction {
 
     public void setTarget(VirtualRegister target) {
         this.target = target;
+    }
+
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
+        killSet.add(target);
+    }
+
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = (VirtualRegister) target.replaceVirtualRegister(older, newer);
+        buildSet();
     }
 
     @Override

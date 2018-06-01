@@ -94,4 +94,10 @@ public class VirtualRegister extends Operand {
             return new PhysicalAddressOperand("rbp", -getOffset() * 8);
         }
     }
+
+    @Override
+    public Operand replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        if (this == older) return newer;
+        return this;
+    }
 }

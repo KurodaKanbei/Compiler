@@ -19,10 +19,11 @@ public class MoveInstruction extends Instruction {
         }
         this.target = target;
         this.source = source;
-        build();
+        buildSet();
     }
 
-    private void build() {
+    @Override
+    public void buildSet() {
         killSet = new HashSet<>();
         useSet = new HashSet<>();
         if (target instanceof VirtualRegister) {
@@ -37,6 +38,13 @@ public class MoveInstruction extends Instruction {
         if (source instanceof AddressOperand) {
             useSet.add(((AddressOperand) source).getBase());
         }
+    }
+
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = target.replaceVirtualRegister(older, newer);
+        source = source.replaceVirtualRegister(older, newer);
+        buildSet();
     }
 
     @Override
@@ -58,7 +66,7 @@ public class MoveInstruction extends Instruction {
 
     public void setTarget(Operand target) {
         this.target = target;
-        build();
+        buildSet();
     }
 
     public Operand getSource() {

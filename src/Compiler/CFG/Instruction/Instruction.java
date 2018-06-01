@@ -16,6 +16,7 @@ public abstract class Instruction {
         liveOut = new HashSet<>();
     }
 
+
     public Set<VirtualRegister> getUseSet() {
         return useSet;
     }
@@ -60,4 +61,8 @@ public abstract class Instruction {
     public abstract String getAssembly();
 
     public abstract boolean hasGlobalImpact();
+
+    public abstract void buildSet();
+
+    public abstract void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer);
 }

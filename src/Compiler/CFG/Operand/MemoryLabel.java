@@ -17,6 +17,11 @@ public class MemoryLabel extends Operand {
     }
 
     @Override
+    public Operand replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        return this;
+    }
+
+    @Override
     public void init() {
 
     }

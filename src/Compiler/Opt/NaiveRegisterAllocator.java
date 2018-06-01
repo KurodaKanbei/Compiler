@@ -30,6 +30,7 @@ public class NaiveRegisterAllocator {
         add("r8"); add("r13"); add("r9"); add("r14");
         add("r10"); add("r15"); add("r11");
     }};*/
+
     /*class ComparableVirtualRegister extends VirtualRegister implements Comparable<VirtualRegister>{
 
         public ComparableVirtualRegister(String name) {
@@ -60,7 +61,6 @@ public class NaiveRegisterAllocator {
             }
         }
         allocateOrder = functionIR.isLeaf() ? leafOrder : normalOrder;
-        //if (functionIR.getBeMemorized()) allocateOrder = limitedOrder;
         virtualRegisterList.sort((lhs, rhs) -> {
             int leftValue = countMap.get(lhs);
             int rightValue = countMap.get(rhs);

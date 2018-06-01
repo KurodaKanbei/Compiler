@@ -3,6 +3,8 @@ package Compiler.CFG.Instruction;
 import Compiler.CFG.Operand.*;
 import Compiler.Trans.Translator;
 
+import java.util.HashSet;
+
 public class UnaryInstruction extends Instruction {
     public enum UnaryOp {
         INC, DEC, REV, NEG
@@ -25,6 +27,13 @@ public class UnaryInstruction extends Instruction {
         }
         this.unaryOp = unaryOp;
         this.target = target;
+
+    }
+
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
         if (target instanceof VirtualRegister) {
             killSet.add((VirtualRegister) target);
             useSet.add((VirtualRegister) target);
@@ -32,6 +41,12 @@ public class UnaryInstruction extends Instruction {
         if (target instanceof AddressOperand) {
             useSet.add(((AddressOperand) target).getBase());
         }
+    }
+
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = target.replaceVirtualRegister(older, newer);
+        buildSet();
     }
 
     @Override
