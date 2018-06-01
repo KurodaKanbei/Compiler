@@ -8,8 +8,6 @@ import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
-import java.util.HashSet;
-
 public class CompareInstruction extends Instruction {
     private Operand leftOperand, rightOperand;
 
@@ -27,13 +25,6 @@ public class CompareInstruction extends Instruction {
         if (leftOperand instanceof AddressOperand && rightOperand instanceof AddressOperand) {
             throw new InternalError("compare instruction can't handle tow memory address");
         }
-        buildSet();
-    }
-
-    @Override
-    public void buildSet() {
-        killSet = new HashSet<>();
-        useSet = new HashSet<>();
         if (leftOperand instanceof VirtualRegister) {
             useSet.add((VirtualRegister) leftOperand);
         }
@@ -46,13 +37,6 @@ public class CompareInstruction extends Instruction {
         if (rightOperand instanceof AddressOperand) {
             useSet.add(((AddressOperand) rightOperand).getBase());
         }
-    }
-
-    @Override
-    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
-        leftOperand = leftOperand.replaceVirtualRegister(older, newer);
-        rightOperand = rightOperand.replaceVirtualRegister(older, newer);
-        buildSet();
     }
 
     @Override

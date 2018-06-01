@@ -1,6 +1,5 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.Translator;
 
 public class JumpInstruction extends Instruction {
@@ -21,16 +20,6 @@ public class JumpInstruction extends Instruction {
     @Override
     public boolean hasGlobalImpact() {
         return false;
-    }
-
-    @Override
-    public void buildSet() {
-
-    }
-
-    @Override
-    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
-
     }
 
     @Override

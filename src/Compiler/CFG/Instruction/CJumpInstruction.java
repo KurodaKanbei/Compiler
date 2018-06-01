@@ -1,10 +1,7 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.ProgramIR;
 import Compiler.Trans.Translator;
-
-import java.util.HashSet;
 
 public class CJumpInstruction extends Instruction {
     private ProgramIR.ConditionOp conditionOp;
@@ -29,17 +26,6 @@ public class CJumpInstruction extends Instruction {
 
     public void setConditionOp(ProgramIR.ConditionOp conditionOp) {
         this.conditionOp = conditionOp;
-    }
-
-    @Override
-    public void buildSet() {
-        killSet = new HashSet<>();
-        useSet = new HashSet<>();
-    }
-
-    @Override
-    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
-
     }
 
     @Override

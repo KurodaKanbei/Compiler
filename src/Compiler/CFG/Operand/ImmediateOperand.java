@@ -15,11 +15,6 @@ public class ImmediateOperand extends Operand {
     }
 
     @Override
-    public Operand replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
-        return this;
-    }
-
-    @Override
     public void init() {
 
     }
