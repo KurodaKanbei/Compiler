@@ -35,6 +35,7 @@ public class BinaryInstruction extends Instruction {
         put("r14", "r14d");
         put("r15", "r15d");
     }};
+
     private BinaryOp binaryOp;
     private Operand target, source;
 

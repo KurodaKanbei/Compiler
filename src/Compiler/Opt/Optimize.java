@@ -31,6 +31,7 @@ public class Optimize {
             BlocksTyrant.emptyBlockRemove(functionIR);
             SuperBlockBuilder.buildSuperBlock(functionIR);
             SuperBlockBuilder.uselessJumpRemove(functionIR);
+            ImmediateHunter.huntImmediate(functionIR);
         }
     }
 }

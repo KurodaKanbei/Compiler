@@ -33,11 +33,11 @@ main:
      mov                  rbp,                  rsp
     call        __global_init
 main_0_block_enter:
-     mov                  rdi,                   32
+     xor                  rdi,                  rdi
     call                 fibo
-     mov                  rdi,                  rax
+     xor                  rdi,                  rdi
     call          println_Int
-     mov                  rsi,                    0
+     xor                  rsi,                  rsi
      cmp                  rsi,                  100
      jle     main_2_loop_body
      mov                  rax,                    0
@@ -48,13 +48,13 @@ main_1_loop_condition:
      mov                  rax,                    0
      jmp    main_5_block_exit
 main_2_loop_body:
-     mov                  rdi,                   30
+     xor                  rdi,                  rdi
     push                  rsi
      sub                  rsp,                    8
     call                 fibo
      add                  rsp,                    8
      pop                  rsi
-     mov                  rdi,                  rax
+     xor                  rdi,                  rdi
     push                  rsi
      sub                  rsp,                    8
     call          println_Int
@@ -79,39 +79,39 @@ main_5_block_exit:
 fibo:
     push                  rbp
      mov                  rbp,                  rsp
-     sub                  rsp,                   24
+     sub                  rsp,                    8
     push                  r12
     push                  rbx
 fibo_0_block_enter:
-     mov                   r8,                  rdi
+     xor                   r8,                   r8
      sal                   r8,                    3
-     mov                  r12,            @fibo_int
+     xor                  r12,                  r12
      add                  r12,                   r8
      sar                   r8,                    3
      cmp                  rdi,                    0
      jge  fibo_1_fibo_success
      cmp                  rdi,                    2
       jl       fibo_5_if_true
-     mov                  rsi,                  rdi
+     xor                  rsi,                  rsi
      sub                  rsi,                    1
-     mov                  rdi,                  rsi
+     xor                  rdi,                  rdi
+    push                  rdi
     push                   r8
-    call                 fibo
-     pop                   r8
-     mov                  rsi,                  rax
-     mov                  rbx,                  rdi
-     sub                  rbx,                    2
-     mov                  rdi,                  rbx
-    push                   r8
-    push                  rsi
      sub                  rsp,                    8
     call                 fibo
      add                  rsp,                    8
-     pop                  rsi
      pop                   r8
-     mov                  rbx,                  rax
-     add                  rsi,                  rbx
-     mov                  rax,                  rsi
+     pop                  rdi
+     xor                  rbx,                  rbx
+     xor                  rsi,                  rsi
+     sub                  rsi,                    2
+     xor                  rdi,                  rdi
+    push                   r8
+    call                 fibo
+     pop                   r8
+     xor                  rsi,                  rsi
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
      cmp                   r8,                    0
      jge fibo_9_fibo_positive
      jmp   fibo_12_block_exit
@@ -120,26 +120,26 @@ fibo_1_fibo_success:
       jl   fibo_2_fibo_escape
      cmp                  rdi,                    2
       jl       fibo_5_if_true
-     mov                  rsi,                  rdi
+     xor                  rsi,                  rsi
      sub                  rsi,                    1
-     mov                  rdi,                  rsi
+     xor                  rdi,                  rdi
+    push                  rdi
     push                   r8
-    call                 fibo
-     pop                   r8
-     mov                  rsi,                  rax
-     mov                  rbx,                  rdi
-     sub                  rbx,                    2
-     mov                  rdi,                  rbx
-    push                   r8
-    push                  rsi
      sub                  rsp,                    8
     call                 fibo
      add                  rsp,                    8
-     pop                  rsi
      pop                   r8
-     mov                  rbx,                  rax
-     add                  rsi,                  rbx
-     mov                  rax,                  rsi
+     pop                  rdi
+     xor                  rbx,                  rbx
+     xor                  rsi,                  rsi
+     sub                  rsi,                    2
+     xor                  rdi,                  rdi
+    push                   r8
+    call                 fibo
+     pop                   r8
+     xor                  rsi,                  rsi
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
      cmp                   r8,                    0
      jge fibo_9_fibo_positive
      jmp   fibo_12_block_exit
@@ -154,26 +154,26 @@ fibo_3_fibo_return:
 fibo_4_fibo_start:
      cmp                  rdi,                    2
       jl       fibo_5_if_true
-     mov                  rsi,                  rdi
+     xor                  rsi,                  rsi
      sub                  rsi,                    1
-     mov                  rdi,                  rsi
+     xor                  rdi,                  rdi
+    push                  rdi
     push                   r8
-    call                 fibo
-     pop                   r8
-     mov                  rsi,                  rax
-     mov                  rbx,                  rdi
-     sub                  rbx,                    2
-     mov                  rdi,                  rbx
-    push                   r8
-    push                  rsi
      sub                  rsp,                    8
     call                 fibo
      add                  rsp,                    8
-     pop                  rsi
      pop                   r8
-     mov                  rbx,                  rax
-     add                  rsi,                  rbx
-     mov                  rax,                  rsi
+     pop                  rdi
+     xor                  rbx,                  rbx
+     xor                  rsi,                  rsi
+     sub                  rsi,                    2
+     xor                  rdi,                  rdi
+    push                   r8
+    call                 fibo
+     pop                   r8
+     xor                  rsi,                  rsi
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
      cmp                   r8,                    0
      jge fibo_9_fibo_positive
      jmp   fibo_12_block_exit
@@ -181,26 +181,26 @@ fibo_5_if_true:
      mov                  rax,                  rdi
      jmp   fibo_12_block_exit
 fibo_7_if_exit:
-     mov                  rsi,                  rdi
+     xor                  rsi,                  rsi
      sub                  rsi,                    1
-     mov                  rdi,                  rsi
+     xor                  rdi,                  rdi
+    push                  rdi
     push                   r8
-    call                 fibo
-     pop                   r8
-     mov                  rsi,                  rax
-     mov                  rbx,                  rdi
-     sub                  rbx,                    2
-     mov                  rdi,                  rbx
-    push                   r8
-    push                  rsi
      sub                  rsp,                    8
     call                 fibo
      add                  rsp,                    8
-     pop                  rsi
      pop                   r8
-     mov                  rbx,                  rax
-     add                  rsi,                  rbx
-     mov                  rax,                  rsi
+     pop                  rdi
+     xor                  rbx,                  rbx
+     xor                  rsi,                  rsi
+     sub                  rsi,                    2
+     xor                  rdi,                  rdi
+    push                   r8
+    call                 fibo
+     pop                   r8
+     xor                  rsi,                  rsi
+     add                  rbx,                  rsi
+     mov                  rax,                  rbx
      cmp                   r8,                    0
      jge fibo_9_fibo_positive
      jmp   fibo_12_block_exit
@@ -217,7 +217,7 @@ fibo_10_fibo_update:
 fibo_12_block_exit:
      pop                  rbx
      pop                  r12
-     add                  rsp,                   24
+     add                  rsp,                    8
      pop                  rbp
      ret
 SECTION .data

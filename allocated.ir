@@ -3,11 +3,11 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		t1(rdi) = mov 32
+		t1(rdi) = t1(rdi) XOR t1(rdi)
 		call fibo return value = t0(rax)
-		t4(rdi) = mov t0(rax)
+		t4(rdi) = t4(rdi) XOR t4(rdi)
 		call println_Int return value = t3(rax)
-		i(rsi) = mov 0
+		i(rsi) = i(rsi) XOR i(rsi)
 		cmp i(rsi) 100
 		CJump LEEQ main_2_loop_body
 		ret 0
@@ -18,9 +18,9 @@ main {
 		ret 0
 		jump main_5_block_exit
 	main_2_loop_body
-		t9(rdi) = mov 30
+		t9(rdi) = t9(rdi) XOR t9(rdi)
 		call fibo return value = t8(rax)
-		t12(rdi) = mov t8(rax)
+		t12(rdi) = t12(rdi) XOR t12(rdi)
 		call println_Int return value = t11(rax)
 		INC i(rsi)
 		cmp i(rsi) 100
@@ -39,49 +39,47 @@ main {
 }
 fibo x(rdi) {
 	fibo_0_block_enter
-		t27(r8) = mov x(rdi)
+		t27(r8) = t27(r8) XOR t27(r8)
 		t27(r8) = t27(r8) SHL 3
-		t28(r12) = mov t26(@fibo_int)
+		t28(r12) = t28(r12) XOR t28(r12)
 		t28(r12) = t28(r12) ADD t27(r8)
 		t27(r8) = t27(r8) SHR 3
 		cmp x(rdi) 0
 		CJump GREQ fibo_1_fibo_success
-		x(rdi) = mov t15(rdi)
 		cmp x(rdi) 2
 		CJump LE fibo_5_if_true
-		t17(rsi) = mov x(rdi)
-		t17(rsi) = t17(rsi) SUB 1
-		t19(rdi) = mov t17(rsi)
+		t17(rsi) = t17(rsi) XOR t17(rsi)
+		DEC t17(rsi)
+		t19(rdi) = t19(rdi) XOR t19(rdi)
 		call fibo return value = t18(rax)
-		t20(rsi) = mov t18(rax)
-		t21(rbx) = mov x(rdi)
-		t21(rbx) = t21(rbx) SUB 2
-		t23(rdi) = mov t21(rbx)
+		t20(rbx) = t20(rbx) XOR t20(rbx)
+		t21(rsi) = t21(rsi) XOR t21(rsi)
+		t21(rsi) = t21(rsi) SUB 2
+		t23(rdi) = t23(rdi) XOR t23(rdi)
 		call fibo return value = t22(rax)
-		t24(rbx) = mov t22(rax)
-		t25(rsi) = t25(rsi) ADD t24(rbx)
-		ret t25(rsi)
+		t24(rsi) = t24(rsi) XOR t24(rsi)
+		t25(rbx) = t25(rbx) ADD t24(rsi)
+		ret t25(rbx)
 		cmp t27(r8) 0
 		CJump GREQ fibo_9_fibo_positive
 		jump fibo_12_block_exit
 	fibo_1_fibo_success
 		cmp x(rdi) 200
 		CJump LE fibo_2_fibo_escape
-		x(rdi) = mov t15(rdi)
 		cmp x(rdi) 2
 		CJump LE fibo_5_if_true
-		t17(rsi) = mov x(rdi)
-		t17(rsi) = t17(rsi) SUB 1
-		t19(rdi) = mov t17(rsi)
+		t17(rsi) = t17(rsi) XOR t17(rsi)
+		DEC t17(rsi)
+		t19(rdi) = t19(rdi) XOR t19(rdi)
 		call fibo return value = t18(rax)
-		t20(rsi) = mov t18(rax)
-		t21(rbx) = mov x(rdi)
-		t21(rbx) = t21(rbx) SUB 2
-		t23(rdi) = mov t21(rbx)
+		t20(rbx) = t20(rbx) XOR t20(rbx)
+		t21(rsi) = t21(rsi) XOR t21(rsi)
+		t21(rsi) = t21(rsi) SUB 2
+		t23(rdi) = t23(rdi) XOR t23(rdi)
 		call fibo return value = t22(rax)
-		t24(rbx) = mov t22(rax)
-		t25(rsi) = t25(rsi) ADD t24(rbx)
-		ret t25(rsi)
+		t24(rsi) = t24(rsi) XOR t24(rsi)
+		t25(rbx) = t25(rbx) ADD t24(rsi)
+		ret t25(rbx)
 		cmp t27(r8) 0
 		CJump GREQ fibo_9_fibo_positive
 		jump fibo_12_block_exit
@@ -94,21 +92,20 @@ fibo x(rdi) {
 		ret Address (t28(r12) + 0)
 		jump fibo_12_block_exit
 	fibo_4_fibo_start
-		x(rdi) = mov t15(rdi)
 		cmp x(rdi) 2
 		CJump LE fibo_5_if_true
-		t17(rsi) = mov x(rdi)
-		t17(rsi) = t17(rsi) SUB 1
-		t19(rdi) = mov t17(rsi)
+		t17(rsi) = t17(rsi) XOR t17(rsi)
+		DEC t17(rsi)
+		t19(rdi) = t19(rdi) XOR t19(rdi)
 		call fibo return value = t18(rax)
-		t20(rsi) = mov t18(rax)
-		t21(rbx) = mov x(rdi)
-		t21(rbx) = t21(rbx) SUB 2
-		t23(rdi) = mov t21(rbx)
+		t20(rbx) = t20(rbx) XOR t20(rbx)
+		t21(rsi) = t21(rsi) XOR t21(rsi)
+		t21(rsi) = t21(rsi) SUB 2
+		t23(rdi) = t23(rdi) XOR t23(rdi)
 		call fibo return value = t22(rax)
-		t24(rbx) = mov t22(rax)
-		t25(rsi) = t25(rsi) ADD t24(rbx)
-		ret t25(rsi)
+		t24(rsi) = t24(rsi) XOR t24(rsi)
+		t25(rbx) = t25(rbx) ADD t24(rsi)
+		ret t25(rbx)
 		cmp t27(r8) 0
 		CJump GREQ fibo_9_fibo_positive
 		jump fibo_12_block_exit
@@ -116,18 +113,18 @@ fibo x(rdi) {
 		ret x(rdi)
 		jump fibo_12_block_exit
 	fibo_7_if_exit
-		t17(rsi) = mov x(rdi)
-		t17(rsi) = t17(rsi) SUB 1
-		t19(rdi) = mov t17(rsi)
+		t17(rsi) = t17(rsi) XOR t17(rsi)
+		DEC t17(rsi)
+		t19(rdi) = t19(rdi) XOR t19(rdi)
 		call fibo return value = t18(rax)
-		t20(rsi) = mov t18(rax)
-		t21(rbx) = mov x(rdi)
-		t21(rbx) = t21(rbx) SUB 2
-		t23(rdi) = mov t21(rbx)
+		t20(rbx) = t20(rbx) XOR t20(rbx)
+		t21(rsi) = t21(rsi) XOR t21(rsi)
+		t21(rsi) = t21(rsi) SUB 2
+		t23(rdi) = t23(rdi) XOR t23(rdi)
 		call fibo return value = t22(rax)
-		t24(rbx) = mov t22(rax)
-		t25(rsi) = t25(rsi) ADD t24(rbx)
-		ret t25(rsi)
+		t24(rsi) = t24(rsi) XOR t24(rsi)
+		t25(rbx) = t25(rbx) ADD t24(rsi)
+		ret t25(rbx)
 		cmp t27(r8) 0
 		CJump GREQ fibo_9_fibo_positive
 		jump fibo_12_block_exit
