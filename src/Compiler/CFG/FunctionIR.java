@@ -153,6 +153,7 @@ public class FunctionIR {
         if (functionType.getParameterList().size() != 1) return false;
         if (functionType.getParameterList().get(0).getType() != IntType.getInstance()) return false;
         if (functionType.getReturnType() != IntType.getInstance()) return false;
+        if (!onlyContainsNaiveFunctionCall(instructionList)) return false;
         for (Instruction instruction : instructionList) {
             if (instruction.hasGlobalImpact()) return false;
         }
@@ -298,15 +299,14 @@ public class FunctionIR {
         }
     }
 
-    public boolean onlyContainsNaiveFunctionCall() {
-        for (Block block : blockList) {
-            for (Instruction instruction : block.getInstructionList()) {
-                if (instruction instanceof FunctionCallInstruction) {
-                    FunctionType functionType = ((FunctionCallInstruction) instruction).getFunctionType();
-                    if (functionType == this.functionType || functionType.isBuiltin()) continue;
-                    if (functionType.getOriginName() == null) continue;
-                    if (!functionType.getFunctionIR().isLeaf()) return false;
-                }
+    public boolean onlyContainsNaiveFunctionCall(List<Instruction> instructionList) {
+        for (Instruction instruction : instructionList) {
+            if (instruction instanceof FunctionCallInstruction) {
+                FunctionType functionType = ((FunctionCallInstruction) instruction).getFunctionType();
+                if (functionType == this.functionType || functionType.isBuiltin()) continue;
+                if (functionType.getOriginName() == null) continue;
+                if (functionType != this.functionType) return false;
+                //if (!functionType.getFunctionIR().isLeaf()) return false;
             }
         }
         return true;
