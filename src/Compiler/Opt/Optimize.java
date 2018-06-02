@@ -7,6 +7,7 @@ public class Optimize {
 
     public static void optimize() {
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
+            UnnecessarySetMurder.unnecessarySetRemove(functionIR);
             NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             DeadLoopRazor.deadForStatementBlocksRemove(functionIR);

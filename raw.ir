@@ -1,25 +1,606 @@
 __global_init {
 	__global_init_0_block_enter
+		Address (h(@h) + 0) = mov 99
+		Address (i(@i) + 0) = mov 100
+		Address (j(@j) + 0) = mov 101
+		Address (k(@k) + 0) = mov 102
+		Address (total(@total) + 0) = mov 0
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
 main {
 	main_0_block_enter
-		b(null) = mov 0
-		cmp b(null) 0
-		set NEQ t0(null)
-		d(null) = mov t0(null)
-		cmp d(null) 1
-		CJump EQ main_1_if_true
-		jump main_2_if_false
-	main_1_if_true
-		c(null) = mov 10
-		jump main_3_if_exit
-	main_2_if_false
-		c(null) = mov 20
-		jump main_3_if_exit
-	main_3_if_exit
-		ret c(null)
-		jump main_4_block_exit
-	main_4_block_exit
+		Address (N(@N) + 0) = mov 17
+		a(null) = mov 1
+		jump main_1_loop_condition
+	main_1_loop_condition
+		cmp a(null) Address (N(@N) + 0)
+		set LEEQ t0(null)
+		cmp t0(null) 1
+		CJump EQ main_2_loop_body
+		jump main_147_loop_exit
+	main_2_loop_body
+		b(null) = mov 1
+		jump main_3_loop_condition
+	main_3_loop_condition
+		cmp b(null) Address (N(@N) + 0)
+		set LEEQ t1(null)
+		cmp t1(null) 1
+		CJump EQ main_4_loop_body
+		jump main_145_loop_exit
+	main_4_loop_body
+		c(null) = mov 1
+		jump main_5_loop_condition
+	main_5_loop_condition
+		cmp c(null) Address (N(@N) + 0)
+		set LEEQ t2(null)
+		cmp t2(null) 1
+		CJump EQ main_6_loop_body
+		jump main_143_loop_exit
+	main_6_loop_body
+		d(null) = mov 1
+		jump main_7_loop_condition
+	main_7_loop_condition
+		cmp d(null) Address (N(@N) + 0)
+		set LEEQ t3(null)
+		cmp t3(null) 1
+		CJump EQ main_8_loop_body
+		jump main_141_loop_exit
+	main_8_loop_body
+		e(null) = mov 1
+		jump main_9_loop_condition
+	main_9_loop_condition
+		cmp e(null) Address (N(@N) + 0)
+		set LEEQ t4(null)
+		cmp t4(null) 1
+		CJump EQ main_10_loop_body
+		jump main_139_loop_exit
+	main_10_loop_body
+		f(null) = mov 1
+		jump main_11_loop_condition
+	main_11_loop_condition
+		cmp f(null) Address (N(@N) + 0)
+		set LEEQ t5(null)
+		cmp t5(null) 1
+		CJump EQ main_12_loop_body
+		jump main_137_loop_exit
+	main_12_loop_body
+		cmp a(null) b(null)
+		set NEQ t46(null)
+		cmp t46(null) 1
+		CJump NEQ main_14_logical_false
+		jump main_13_logical_true
+	main_13_logical_true
+		cmp a(null) c(null)
+		set NEQ t47(null)
+		t45(null) = mov t47(null)
+		jump main_15_logical_exit
+	main_14_logical_false
+		t45(null) = mov 0
+		jump main_15_logical_exit
+	main_15_logical_exit
+		cmp t45(null) 1
+		CJump NEQ main_17_logical_false
+		jump main_16_logical_true
+	main_16_logical_true
+		cmp a(null) d(null)
+		set NEQ t48(null)
+		t44(null) = mov t48(null)
+		jump main_18_logical_exit
+	main_17_logical_false
+		t44(null) = mov 0
+		jump main_18_logical_exit
+	main_18_logical_exit
+		cmp t44(null) 1
+		CJump NEQ main_20_logical_false
+		jump main_19_logical_true
+	main_19_logical_true
+		cmp a(null) e(null)
+		set NEQ t49(null)
+		t43(null) = mov t49(null)
+		jump main_21_logical_exit
+	main_20_logical_false
+		t43(null) = mov 0
+		jump main_21_logical_exit
+	main_21_logical_exit
+		cmp t43(null) 1
+		CJump NEQ main_23_logical_false
+		jump main_22_logical_true
+	main_22_logical_true
+		cmp a(null) f(null)
+		set NEQ t50(null)
+		t42(null) = mov t50(null)
+		jump main_24_logical_exit
+	main_23_logical_false
+		t42(null) = mov 0
+		jump main_24_logical_exit
+	main_24_logical_exit
+		cmp t42(null) 1
+		CJump NEQ main_26_logical_false
+		jump main_25_logical_true
+	main_25_logical_true
+		cmp a(null) Address (h(@h) + 0)
+		set NEQ t51(null)
+		t41(null) = mov t51(null)
+		jump main_27_logical_exit
+	main_26_logical_false
+		t41(null) = mov 0
+		jump main_27_logical_exit
+	main_27_logical_exit
+		cmp t41(null) 1
+		CJump NEQ main_29_logical_false
+		jump main_28_logical_true
+	main_28_logical_true
+		cmp a(null) Address (i(@i) + 0)
+		set NEQ t52(null)
+		t40(null) = mov t52(null)
+		jump main_30_logical_exit
+	main_29_logical_false
+		t40(null) = mov 0
+		jump main_30_logical_exit
+	main_30_logical_exit
+		cmp t40(null) 1
+		CJump NEQ main_32_logical_false
+		jump main_31_logical_true
+	main_31_logical_true
+		cmp a(null) Address (j(@j) + 0)
+		set NEQ t53(null)
+		t39(null) = mov t53(null)
+		jump main_33_logical_exit
+	main_32_logical_false
+		t39(null) = mov 0
+		jump main_33_logical_exit
+	main_33_logical_exit
+		cmp t39(null) 1
+		CJump NEQ main_35_logical_false
+		jump main_34_logical_true
+	main_34_logical_true
+		cmp a(null) Address (k(@k) + 0)
+		set NEQ t54(null)
+		t38(null) = mov t54(null)
+		jump main_36_logical_exit
+	main_35_logical_false
+		t38(null) = mov 0
+		jump main_36_logical_exit
+	main_36_logical_exit
+		cmp t38(null) 1
+		CJump NEQ main_38_logical_false
+		jump main_37_logical_true
+	main_37_logical_true
+		cmp b(null) c(null)
+		set NEQ t55(null)
+		t37(null) = mov t55(null)
+		jump main_39_logical_exit
+	main_38_logical_false
+		t37(null) = mov 0
+		jump main_39_logical_exit
+	main_39_logical_exit
+		cmp t37(null) 1
+		CJump NEQ main_41_logical_false
+		jump main_40_logical_true
+	main_40_logical_true
+		cmp b(null) d(null)
+		set NEQ t56(null)
+		t36(null) = mov t56(null)
+		jump main_42_logical_exit
+	main_41_logical_false
+		t36(null) = mov 0
+		jump main_42_logical_exit
+	main_42_logical_exit
+		cmp t36(null) 1
+		CJump NEQ main_44_logical_false
+		jump main_43_logical_true
+	main_43_logical_true
+		cmp b(null) e(null)
+		set NEQ t57(null)
+		t35(null) = mov t57(null)
+		jump main_45_logical_exit
+	main_44_logical_false
+		t35(null) = mov 0
+		jump main_45_logical_exit
+	main_45_logical_exit
+		cmp t35(null) 1
+		CJump NEQ main_47_logical_false
+		jump main_46_logical_true
+	main_46_logical_true
+		cmp b(null) f(null)
+		set NEQ t58(null)
+		t34(null) = mov t58(null)
+		jump main_48_logical_exit
+	main_47_logical_false
+		t34(null) = mov 0
+		jump main_48_logical_exit
+	main_48_logical_exit
+		cmp t34(null) 1
+		CJump NEQ main_50_logical_false
+		jump main_49_logical_true
+	main_49_logical_true
+		cmp b(null) Address (h(@h) + 0)
+		set NEQ t59(null)
+		t33(null) = mov t59(null)
+		jump main_51_logical_exit
+	main_50_logical_false
+		t33(null) = mov 0
+		jump main_51_logical_exit
+	main_51_logical_exit
+		cmp t33(null) 1
+		CJump NEQ main_53_logical_false
+		jump main_52_logical_true
+	main_52_logical_true
+		cmp b(null) Address (i(@i) + 0)
+		set NEQ t60(null)
+		t32(null) = mov t60(null)
+		jump main_54_logical_exit
+	main_53_logical_false
+		t32(null) = mov 0
+		jump main_54_logical_exit
+	main_54_logical_exit
+		cmp t32(null) 1
+		CJump NEQ main_56_logical_false
+		jump main_55_logical_true
+	main_55_logical_true
+		cmp b(null) Address (j(@j) + 0)
+		set NEQ t61(null)
+		t31(null) = mov t61(null)
+		jump main_57_logical_exit
+	main_56_logical_false
+		t31(null) = mov 0
+		jump main_57_logical_exit
+	main_57_logical_exit
+		cmp t31(null) 1
+		CJump NEQ main_59_logical_false
+		jump main_58_logical_true
+	main_58_logical_true
+		cmp b(null) Address (k(@k) + 0)
+		set NEQ t62(null)
+		t30(null) = mov t62(null)
+		jump main_60_logical_exit
+	main_59_logical_false
+		t30(null) = mov 0
+		jump main_60_logical_exit
+	main_60_logical_exit
+		cmp t30(null) 1
+		CJump NEQ main_62_logical_false
+		jump main_61_logical_true
+	main_61_logical_true
+		cmp c(null) d(null)
+		set NEQ t63(null)
+		t29(null) = mov t63(null)
+		jump main_63_logical_exit
+	main_62_logical_false
+		t29(null) = mov 0
+		jump main_63_logical_exit
+	main_63_logical_exit
+		cmp t29(null) 1
+		CJump NEQ main_65_logical_false
+		jump main_64_logical_true
+	main_64_logical_true
+		cmp c(null) e(null)
+		set NEQ t64(null)
+		t28(null) = mov t64(null)
+		jump main_66_logical_exit
+	main_65_logical_false
+		t28(null) = mov 0
+		jump main_66_logical_exit
+	main_66_logical_exit
+		cmp t28(null) 1
+		CJump NEQ main_68_logical_false
+		jump main_67_logical_true
+	main_67_logical_true
+		cmp c(null) f(null)
+		set NEQ t65(null)
+		t27(null) = mov t65(null)
+		jump main_69_logical_exit
+	main_68_logical_false
+		t27(null) = mov 0
+		jump main_69_logical_exit
+	main_69_logical_exit
+		cmp t27(null) 1
+		CJump NEQ main_71_logical_false
+		jump main_70_logical_true
+	main_70_logical_true
+		cmp c(null) Address (h(@h) + 0)
+		set NEQ t66(null)
+		t26(null) = mov t66(null)
+		jump main_72_logical_exit
+	main_71_logical_false
+		t26(null) = mov 0
+		jump main_72_logical_exit
+	main_72_logical_exit
+		cmp t26(null) 1
+		CJump NEQ main_74_logical_false
+		jump main_73_logical_true
+	main_73_logical_true
+		cmp c(null) Address (i(@i) + 0)
+		set NEQ t67(null)
+		t25(null) = mov t67(null)
+		jump main_75_logical_exit
+	main_74_logical_false
+		t25(null) = mov 0
+		jump main_75_logical_exit
+	main_75_logical_exit
+		cmp t25(null) 1
+		CJump NEQ main_77_logical_false
+		jump main_76_logical_true
+	main_76_logical_true
+		cmp c(null) Address (j(@j) + 0)
+		set NEQ t68(null)
+		t24(null) = mov t68(null)
+		jump main_78_logical_exit
+	main_77_logical_false
+		t24(null) = mov 0
+		jump main_78_logical_exit
+	main_78_logical_exit
+		cmp t24(null) 1
+		CJump NEQ main_80_logical_false
+		jump main_79_logical_true
+	main_79_logical_true
+		cmp c(null) Address (k(@k) + 0)
+		set NEQ t69(null)
+		t23(null) = mov t69(null)
+		jump main_81_logical_exit
+	main_80_logical_false
+		t23(null) = mov 0
+		jump main_81_logical_exit
+	main_81_logical_exit
+		cmp t23(null) 1
+		CJump NEQ main_83_logical_false
+		jump main_82_logical_true
+	main_82_logical_true
+		cmp d(null) e(null)
+		set NEQ t70(null)
+		t22(null) = mov t70(null)
+		jump main_84_logical_exit
+	main_83_logical_false
+		t22(null) = mov 0
+		jump main_84_logical_exit
+	main_84_logical_exit
+		cmp t22(null) 1
+		CJump NEQ main_86_logical_false
+		jump main_85_logical_true
+	main_85_logical_true
+		cmp d(null) f(null)
+		set NEQ t71(null)
+		t21(null) = mov t71(null)
+		jump main_87_logical_exit
+	main_86_logical_false
+		t21(null) = mov 0
+		jump main_87_logical_exit
+	main_87_logical_exit
+		cmp t21(null) 1
+		CJump NEQ main_89_logical_false
+		jump main_88_logical_true
+	main_88_logical_true
+		cmp d(null) Address (h(@h) + 0)
+		set NEQ t72(null)
+		t20(null) = mov t72(null)
+		jump main_90_logical_exit
+	main_89_logical_false
+		t20(null) = mov 0
+		jump main_90_logical_exit
+	main_90_logical_exit
+		cmp t20(null) 1
+		CJump NEQ main_92_logical_false
+		jump main_91_logical_true
+	main_91_logical_true
+		cmp d(null) Address (i(@i) + 0)
+		set NEQ t73(null)
+		t19(null) = mov t73(null)
+		jump main_93_logical_exit
+	main_92_logical_false
+		t19(null) = mov 0
+		jump main_93_logical_exit
+	main_93_logical_exit
+		cmp t19(null) 1
+		CJump NEQ main_95_logical_false
+		jump main_94_logical_true
+	main_94_logical_true
+		cmp d(null) Address (j(@j) + 0)
+		set NEQ t74(null)
+		t18(null) = mov t74(null)
+		jump main_96_logical_exit
+	main_95_logical_false
+		t18(null) = mov 0
+		jump main_96_logical_exit
+	main_96_logical_exit
+		cmp t18(null) 1
+		CJump NEQ main_98_logical_false
+		jump main_97_logical_true
+	main_97_logical_true
+		cmp d(null) Address (k(@k) + 0)
+		set NEQ t75(null)
+		t17(null) = mov t75(null)
+		jump main_99_logical_exit
+	main_98_logical_false
+		t17(null) = mov 0
+		jump main_99_logical_exit
+	main_99_logical_exit
+		cmp t17(null) 1
+		CJump NEQ main_101_logical_false
+		jump main_100_logical_true
+	main_100_logical_true
+		cmp e(null) f(null)
+		set NEQ t76(null)
+		t16(null) = mov t76(null)
+		jump main_102_logical_exit
+	main_101_logical_false
+		t16(null) = mov 0
+		jump main_102_logical_exit
+	main_102_logical_exit
+		cmp t16(null) 1
+		CJump NEQ main_104_logical_false
+		jump main_103_logical_true
+	main_103_logical_true
+		cmp e(null) Address (h(@h) + 0)
+		set NEQ t77(null)
+		t15(null) = mov t77(null)
+		jump main_105_logical_exit
+	main_104_logical_false
+		t15(null) = mov 0
+		jump main_105_logical_exit
+	main_105_logical_exit
+		cmp t15(null) 1
+		CJump NEQ main_107_logical_false
+		jump main_106_logical_true
+	main_106_logical_true
+		cmp e(null) Address (i(@i) + 0)
+		set NEQ t78(null)
+		t14(null) = mov t78(null)
+		jump main_108_logical_exit
+	main_107_logical_false
+		t14(null) = mov 0
+		jump main_108_logical_exit
+	main_108_logical_exit
+		cmp t14(null) 1
+		CJump NEQ main_110_logical_false
+		jump main_109_logical_true
+	main_109_logical_true
+		cmp e(null) Address (j(@j) + 0)
+		set NEQ t79(null)
+		t13(null) = mov t79(null)
+		jump main_111_logical_exit
+	main_110_logical_false
+		t13(null) = mov 0
+		jump main_111_logical_exit
+	main_111_logical_exit
+		cmp t13(null) 1
+		CJump NEQ main_113_logical_false
+		jump main_112_logical_true
+	main_112_logical_true
+		cmp e(null) Address (k(@k) + 0)
+		set NEQ t80(null)
+		t12(null) = mov t80(null)
+		jump main_114_logical_exit
+	main_113_logical_false
+		t12(null) = mov 0
+		jump main_114_logical_exit
+	main_114_logical_exit
+		cmp t12(null) 1
+		CJump NEQ main_116_logical_false
+		jump main_115_logical_true
+	main_115_logical_true
+		cmp f(null) Address (h(@h) + 0)
+		set NEQ t81(null)
+		t11(null) = mov t81(null)
+		jump main_117_logical_exit
+	main_116_logical_false
+		t11(null) = mov 0
+		jump main_117_logical_exit
+	main_117_logical_exit
+		cmp t11(null) 1
+		CJump NEQ main_119_logical_false
+		jump main_118_logical_true
+	main_118_logical_true
+		cmp f(null) Address (i(@i) + 0)
+		set NEQ t82(null)
+		t10(null) = mov t82(null)
+		jump main_120_logical_exit
+	main_119_logical_false
+		t10(null) = mov 0
+		jump main_120_logical_exit
+	main_120_logical_exit
+		cmp t10(null) 1
+		CJump NEQ main_122_logical_false
+		jump main_121_logical_true
+	main_121_logical_true
+		cmp f(null) Address (j(@j) + 0)
+		set NEQ t83(null)
+		t9(null) = mov t83(null)
+		jump main_123_logical_exit
+	main_122_logical_false
+		t9(null) = mov 0
+		jump main_123_logical_exit
+	main_123_logical_exit
+		cmp t9(null) 1
+		CJump NEQ main_125_logical_false
+		jump main_124_logical_true
+	main_124_logical_true
+		cmp f(null) Address (k(@k) + 0)
+		set NEQ t84(null)
+		t8(null) = mov t84(null)
+		jump main_126_logical_exit
+	main_125_logical_false
+		t8(null) = mov 0
+		jump main_126_logical_exit
+	main_126_logical_exit
+		cmp t8(null) 1
+		CJump NEQ main_128_logical_false
+		jump main_127_logical_true
+	main_127_logical_true
+		t86(null) = mov Address (i(@i) + 0)
+		cmp t86(null) Address (j(@j) + 0)
+		set NEQ t85(null)
+		t7(null) = mov t85(null)
+		jump main_129_logical_exit
+	main_128_logical_false
+		t7(null) = mov 0
+		jump main_129_logical_exit
+	main_129_logical_exit
+		cmp t7(null) 1
+		CJump NEQ main_131_logical_false
+		jump main_130_logical_true
+	main_130_logical_true
+		t88(null) = mov Address (h(@h) + 0)
+		cmp t88(null) Address (k(@k) + 0)
+		set NEQ t87(null)
+		t6(null) = mov t87(null)
+		jump main_132_logical_exit
+	main_131_logical_false
+		t6(null) = mov 0
+		jump main_132_logical_exit
+	main_132_logical_exit
+		cmp t6(null) 1
+		CJump EQ main_133_if_true
+		jump main_134_if_false
+	main_133_if_true
+		t89(null) = mov Address (total(@total) + 0)
+		INC Address (total(@total) + 0)
+		jump main_135_if_exit
+	main_134_if_false
+		jump main_135_if_exit
+	main_135_if_exit
+		jump main_136_loop_increment
+	main_136_loop_increment
+		t90(null) = mov f(null)
+		INC f(null)
+		jump main_11_loop_condition
+	main_137_loop_exit
+		jump main_138_loop_increment
+	main_138_loop_increment
+		t91(null) = mov e(null)
+		INC e(null)
+		jump main_9_loop_condition
+	main_139_loop_exit
+		jump main_140_loop_increment
+	main_140_loop_increment
+		t92(null) = mov d(null)
+		INC d(null)
+		jump main_7_loop_condition
+	main_141_loop_exit
+		jump main_142_loop_increment
+	main_142_loop_increment
+		t93(null) = mov c(null)
+		INC c(null)
+		jump main_5_loop_condition
+	main_143_loop_exit
+		jump main_144_loop_increment
+	main_144_loop_increment
+		t94(null) = mov b(null)
+		INC b(null)
+		jump main_3_loop_condition
+	main_145_loop_exit
+		jump main_146_loop_increment
+	main_146_loop_increment
+		t95(null) = mov a(null)
+		INC a(null)
+		jump main_1_loop_condition
+	main_147_loop_exit
+		t97(rdi) = mov Address (total(@total) + 0)
+		call toString return value = t96(rax)
+		t98(null) = mov t96(rax)
+		t99(rdi) = mov t98(null)
+		call println return value = null
+		ret 0
+		jump main_148_block_exit
+	main_148_block_exit
 }

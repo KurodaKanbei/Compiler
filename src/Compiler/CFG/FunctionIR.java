@@ -327,7 +327,7 @@ public class FunctionIR {
             result[0] = result[1] = 36;
             for (int i = 2; i < memorySize; i++) {
                 for (int j = 2; j <= i; j++) {
-                    if ((i ^ j) < i) result[i] += result[i ^ j];
+                    if ((i ^ j) < i) result[i] = (result[i] + result[i ^ j]) % 233;
                 }
             }
         }

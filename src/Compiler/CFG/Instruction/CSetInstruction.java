@@ -7,6 +7,7 @@ import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class CSetInstruction extends Instruction {
@@ -53,7 +54,9 @@ public class CSetInstruction extends Instruction {
     }
 
     public void setTarget(VirtualRegister target) {
+        killSet = new HashSet<>();
         this.target = target;
+        killSet.add(this.target);
     }
 
     @Override
