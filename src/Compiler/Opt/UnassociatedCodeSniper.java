@@ -113,7 +113,8 @@ public class UnassociatedCodeSniper {
                 }
             }
         }
-        if (thisInstruction instanceof JumpInstruction || thisInstruction instanceof CJumpInstruction) {
+        if (thisInstruction instanceof JumpInstruction || thisInstruction instanceof CJumpInstruction || thisInstruction instanceof LabelInstruction) {
+            criticalOperandIn.get(thisInstruction).addAll(criticalOperandOut.get(thisInstruction));
 
         }
         return false;

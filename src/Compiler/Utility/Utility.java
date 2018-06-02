@@ -22,4 +22,19 @@ public class Utility {
         return length;
     }
 
+    public static String getMessage(String string, int row) {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < string.length(); i++) {
+            str.append(string.charAt(i));
+            if (string.charAt(i) == '\n') {
+                --row;
+                if (row == 0) {
+                    return str.toString();
+                } else {
+                    str = new StringBuilder();
+                }
+            }
+        }
+        return "";
+    }
 }

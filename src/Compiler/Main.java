@@ -11,6 +11,7 @@ import Compiler.FrontEnd.Parser.MxstarParser;
 import Compiler.Opt.Optimize;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Error.CompilationError;
+import Compiler.Utility.Utility;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -68,8 +69,8 @@ public class Main {
     private static void translate() throws IOException {
         String assembly = Translator.getAssembly();
         System.out.println(assembly);
-        //System.err.println(assembly);
-        File file = new File("program.asm");
+        System.err.println(Utility.getMessage(assembly, 2122));
+        File file = new File("program.nasm");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         byte[] bytes = assembly.getBytes();
         fileOutputStream.write(bytes);

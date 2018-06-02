@@ -1,6 +1,5 @@
 package Compiler.Opt;
 
-import Compiler.AST.Expression.BinaryExpression.BinaryLogicalOrExpression;
 import Compiler.CFG.Block;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.CJumpInstruction;
