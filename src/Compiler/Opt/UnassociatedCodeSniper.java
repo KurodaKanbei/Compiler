@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class UnAssociatedCodeSniper {
+public class UnassociatedCodeSniper {
     private static Set<Instruction> usefulInstruction;
     private static Map<Instruction, Set<VirtualRegister>> criticalOperandIn, criticalOperandOut;
 
