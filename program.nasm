@@ -77,6 +77,18 @@ move:
     push                  rbp
      mov                  rbp,                  rsp
      sub                  rsp,                   16
+move_0_block_enter:
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl     move_2_loop_body
+     mov                  rdi,     qword [@now + 0]
+     sal                  rdi,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rdi
+     mov                  rax,     qword [@now + 0]
+     mov      qword [rsi + 0],                  rax
+     add     qword [@now + 0],                    1
+     jmp    move_5_block_exit
 move_1_loop_condition:
      cmp                  rdi,     qword [@now + 0]
       jl     move_2_loop_body
@@ -94,6 +106,9 @@ move_2_loop_body:
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                   r8
      sub      qword [rsi + 0],                    1
+     mov                  rsi,                  rdi
+     add                  rsi,                    1
+     mov                  rdi,                  rsi
      cmp                  rdi,     qword [@now + 0]
       jl     move_2_loop_body
      mov                  rdi,     qword [@now + 0]
@@ -132,6 +147,12 @@ pd:
     push                  rbp
      mov                  rbp,                  rsp
      sub                  rsp,                    8
+pd_0_block_enter:
+     mov                   r8,                  rdi
+     cmp       qword [@h + 0],                   r8
+     jle       pd_2_loop_body
+     mov                  rax,                    0
+     jmp      pd_8_block_exit
 pd_1_loop_condition:
      cmp       qword [@h + 0],                   r8
      jle       pd_2_loop_body
@@ -174,83 +195,13 @@ swap:
      mov                  rbp,                  rsp
      sub                  rsp,                    8
 swap_0_block_enter:
-     mov                   r8,                  rdi
-     mov                   r9,                  rsi
-     mov                  rdi,                   r8
-     sal                  rdi,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rdi
-     mov                  rdi,      qword [rsi + 0]
-     mov                  rsi,                   r8
-     sal                  rsi,                    3
-     mov                  r10,       qword [@a + 0]
-     add                  r10,                  rsi
-     mov                  rsi,                   r9
-     sal                  rsi,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  rsi
-     mov                  rax,       qword [r8 + 0]
-     mov      qword [r10 + 0],                  rax
+     mov                   r9,                  rdi
      mov                   r8,                   r9
-     sal                   r8,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                   r8
-     mov      qword [rsi + 0],                  rdi
-swap_1_block_exit:
-     add                  rsp,                    8
-     pop                  rbp
-     ret
-merge:
-    push                  rbp
-     mov                  rbp,                  rsp
-     sub                  rsp,                   16
-merge_1_loop_condition:
-     cmp                  rsi,     qword [@now + 0]
-      jl    merge_2_loop_body
-     cmp                  rsi,     qword [@now + 0]
-      jl   merge_16_loop_body
-     jmp  merge_22_block_exit
-merge_2_loop_body:
-     mov                  rdi,                  rsi
-     sal                  rdi,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  rdi
-     cmp       qword [r8 + 0],                    0
-      je merge_4_loop_condition
-     cmp                  rsi,     qword [@now + 0]
-      jl    merge_2_loop_body
-     cmp                  rsi,     qword [@now + 0]
-      jl   merge_16_loop_body
-     jmp  merge_22_block_exit
-merge_4_loop_condition:
-     cmp                  rsi,     qword [@now + 0]
-      jl    merge_5_loop_body
-     cmp                  rsi,     qword [@now + 0]
-      jl    merge_2_loop_body
-     cmp                  rsi,     qword [@now + 0]
-      jl   merge_16_loop_body
-     jmp  merge_22_block_exit
-merge_5_loop_body:
-     mov                   r8,                  rsi
      sal                   r8,                    3
      mov                  rdi,       qword [@a + 0]
      add                  rdi,                   r8
-     cmp      qword [rdi + 0],                    0
-     jne merge_23_inline_enter
-     cmp                  rsi,     qword [@now + 0]
-      jl    merge_5_loop_body
-     cmp                  rsi,     qword [@now + 0]
-      jl    merge_2_loop_body
-     cmp                  rsi,     qword [@now + 0]
-      jl   merge_16_loop_body
-     jmp  merge_22_block_exit
-merge_23_inline_enter:
-     mov                  rdi,                  rsi
-     sal                  rdi,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  rdi
-     mov                  rdi,       qword [r8 + 0]
-     mov                   r8,                  rsi
+     mov                  rdi,      qword [rdi + 0]
+     mov                   r8,                   r9
      sal                   r8,                    3
      mov                   r9,       qword [@a + 0]
      add                   r9,                   r8
@@ -260,32 +211,188 @@ merge_23_inline_enter:
      add                   r8,                  r10
      mov                  rax,       qword [r8 + 0]
      mov       qword [r9 + 0],                  rax
-     mov                   r8,                  rsi
-     sal                   r8,                    3
-     mov                   r9,       qword [@a + 0]
-     add                   r9,                   r8
-     mov       qword [r9 + 0],                  rdi
-     cmp                  rsi,     qword [@now + 0]
+     sal                  rsi,                    3
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  rsi
+     mov       qword [r8 + 0],                  rdi
+swap_1_block_exit:
+     add                  rsp,                    8
+     pop                  rbp
+     ret
+merge:
+    push                  rbp
+     mov                  rbp,                  rsp
+     sub                  rsp,                   16
+merge_0_block_enter:
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
       jl    merge_2_loop_body
-     cmp                  rsi,     qword [@now + 0]
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_1_loop_condition:
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_2_loop_body:
+     mov                  rsi,                  r11
+     sal                  rsi,                    3
+     mov                  rdi,       qword [@a + 0]
+     add                  rdi,                  rsi
+     cmp      qword [rdi + 0],                    0
+      je      merge_3_if_true
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_3_if_true:
+     mov                  rsi,                  r11
+     add                  rsi,                    1
+     mov                  rdi,                  rsi
+     cmp                  rdi,     qword [@now + 0]
+      jl    merge_5_loop_body
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_4_loop_condition:
+     cmp                  rdi,     qword [@now + 0]
+      jl    merge_5_loop_body
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_5_loop_body:
+     mov                   r8,                  rdi
+     sal                   r8,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                   r8
+     cmp      qword [rsi + 0],                    0
+     jne      merge_6_if_true
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl    merge_5_loop_body
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_6_if_true:
+     mov                  r10,                  r11
+     mov                  rsi,                  r10
+     sal                  rsi,                    3
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  rsi
+     mov                   r9,       qword [r8 + 0]
+     mov                   r8,                  r10
+     sal                   r8,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                   r8
+     mov                   r8,                  rdi
+     sal                   r8,                    3
+     mov                  r10,       qword [@a + 0]
+     add                  r10,                   r8
+     mov                  rax,      qword [r10 + 0]
+     mov      qword [rsi + 0],                  rax
+     sal                  rdi,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rdi
+     mov      qword [rsi + 0],                   r9
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_23_inline_enter:
+     mov                  rsi,                  r10
+     sal                  rsi,                    3
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  rsi
+     mov                   r9,       qword [r8 + 0]
+     mov                   r8,                  r10
+     sal                   r8,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                   r8
+     mov                   r8,                  rdi
+     sal                   r8,                    3
+     mov                  r10,       qword [@a + 0]
+     add                  r10,                   r8
+     mov                  rax,      qword [r10 + 0]
+     mov      qword [rsi + 0],                  rax
+     sal                  rdi,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rdi
+     mov      qword [rsi + 0],                   r9
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_9_loop_increment:
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl    merge_5_loop_body
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_13_loop_increment:
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl    merge_2_loop_body
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
+     jmp  merge_22_block_exit
+merge_14_loop_exit:
+     mov                  r11,                    0
+     cmp                  r11,     qword [@now + 0]
       jl   merge_16_loop_body
      jmp  merge_22_block_exit
 merge_15_loop_condition:
-     cmp                  rsi,     qword [@now + 0]
+     cmp                  r11,     qword [@now + 0]
       jl   merge_16_loop_body
      jmp  merge_22_block_exit
 merge_16_loop_body:
-     mov                  rdi,                  rsi
-     sal                  rdi,                    3
-     mov                   r8,       qword [@a + 0]
-     add                   r8,                  rdi
-     cmp       qword [r8 + 0],                    0
+     mov                  rsi,                  r11
+     sal                  rsi,                    3
+     mov                  rdi,       qword [@a + 0]
+     add                  rdi,                  rsi
+     cmp      qword [rdi + 0],                    0
       je     merge_17_if_true
-     cmp                  rsi,     qword [@now + 0]
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
       jl   merge_16_loop_body
      jmp  merge_22_block_exit
 merge_17_if_true:
-     mov     qword [@now + 0],                  rsi
+     mov     qword [@now + 0],                  r11
+     jmp  merge_22_block_exit
+merge_20_loop_increment:
+     add                  r11,                    1
+     cmp                  r11,     qword [@now + 0]
+      jl   merge_16_loop_body
 merge_22_block_exit:
      add                  rsp,                   16
      pop                  rbp
@@ -294,47 +401,52 @@ show:
     push                  rbp
      mov                  rbp,                  rsp
      sub                  rsp,                   16
+    push                  r12
     push                  rbx
-show_1_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+show_0_block_enter:
+     mov                  r12,                    0
+     cmp                  r12,     qword [@now + 0]
       jl     show_2_loop_body
      mov                  rdi,     __const_string_1
-     sub                  rsp,                    8
     call              println
-     add                  rsp,                    8
+     jmp    show_5_block_exit
+show_1_loop_condition:
+     cmp                  r12,     qword [@now + 0]
+      jl     show_2_loop_body
+     mov                  rdi,     __const_string_1
+    call              println
      jmp    show_5_block_exit
 show_2_loop_body:
-     mov                  rdi,                  rbx
-     sal                  rdi,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rdi
-     mov                  rdi,      qword [rsi + 0]
-     sub                  rsp,                    8
+     mov                  rsi,                  r12
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
     call             toString
-     add                  rsp,                    8
      mov                  rdi,                  rax
      mov                  rsi,     __const_string_0
-     sub                  rsp,                    8
     call  __string_connection
-     add                  rsp,                    8
      mov                  rdi,                  rax
-     sub                  rsp,                    8
     call                print
-     add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     add                  r12,                    1
+     cmp                  r12,     qword [@now + 0]
       jl     show_2_loop_body
      mov                  rdi,     __const_string_1
-     sub                  rsp,                    8
     call              println
-     add                  rsp,                    8
+     jmp    show_5_block_exit
+show_3_loop_increment:
+     add                  r12,                    1
+     cmp                  r12,     qword [@now + 0]
+      jl     show_2_loop_body
+     mov                  rdi,     __const_string_1
+    call              println
      jmp    show_5_block_exit
 show_4_loop_exit:
      mov                  rdi,     __const_string_1
-     sub                  rsp,                    8
     call              println
-     add                  rsp,                    8
 show_5_block_exit:
      pop                  rbx
+     pop                  r12
      add                  rsp,                   16
      pop                  rbp
      ret
@@ -344,66 +456,80 @@ main:
     call        __global_init
      sub                  rsp,                   72
     push                  r12
+    push                  r14
+    push                  r13
     push                  rbx
 main_0_block_enter:
+     mov                   r9,                    0
+     mov                  r13,                    0
+     mov                  r12,                    0
      mov       qword [@n + 0],                  210
      mov       qword [@h + 0],                    0
-     mov                  rbx,                  100
-     add                  rbx,                    1
-     sal                  rbx,                    3
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
     push                  rsi
-     mov                  rdi,                  rbx
+    push                   r9
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
     call               malloc
+     add                  rsp,                    8
+     pop                   r9
      pop                  rsi
-     mov                  rbx,                  rax
-     mov      qword [rbx + 0],                  100
-     add                  rbx,                    8
-     mov       qword [@a + 0],                  rbx
-     mov                  rbx,       qword [@M + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov       qword [@a + 0],                  rsi
+     mov                  rsi,       qword [@M + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@A + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
-     mov       qword [@Q + 0],                  rbx
-     mov                  rbx,       qword [@M + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rax
+     mov       qword [@Q + 0],                  rsi
+     mov                  rsi,       qword [@M + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@A + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov       qword [@R + 0],                  rbx
-     cmp       qword [@h + 0],                  rsi
+     mov                  rsi,                  rdx
+     mov       qword [@R + 0],                  rsi
+     mov                  rdi,       qword [@n + 0]
+     cmp       qword [@h + 0],                  rdi
      jle    main_17_loop_body
+     mov                  rsi,                    0
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je       main_1_if_true
      mov                  rdi,     __const_string_3
-    push                  rsi
+    push                   r9
     call              println
-     pop                  rsi
+     pop                   r9
+     mov                  rsi,              3654898
      mov    qword [@seed + 0],                  rsi
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -412,30 +538,33 @@ main_0_block_enter:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -446,17 +575,23 @@ main_0_block_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -481,37 +616,41 @@ main_0_block_enter:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_16_loop_condition:
-     cmp       qword [@h + 0],                  rsi
+     cmp       qword [@h + 0],                  rdi
      jle    main_17_loop_body
+     mov                  rsi,                    0
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je       main_1_if_true
      mov                  rdi,     __const_string_3
-    push                  rsi
+    push                   r9
     call              println
-     pop                  rsi
+     pop                   r9
+     mov                  rsi,              3654898
      mov    qword [@seed + 0],                  rsi
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -520,30 +659,33 @@ main_16_loop_condition:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -554,17 +696,23 @@ main_16_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -589,49 +737,54 @@ main_16_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_17_loop_body:
-     mov                  rdi,       qword [@h + 0]
-     add                  rdi,                    1
+     mov                  rsi,       qword [@h + 0]
+     add                  rsi,                    1
      mov                  rbx,       qword [@h + 0]
-    imul                  rbx,                  rdi
-     mov                  rax,                  rbx
+    imul                  rbx,                  rsi
+     mov                  rsi,                  rbx
+     mov                  rax,                  rsi
      mov                  rcx,                    2
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
-     cmp                  rsi,                  rbx
-      je  main_23_inline_exit
+     mov                  rsi,                  rax
+     cmp                  rdi,                  rsi
+      je      main_18_if_true
      add       qword [@h + 0],                    1
-     cmp       qword [@h + 0],                  rsi
+     cmp       qword [@h + 0],                  rdi
      jle    main_17_loop_body
+     mov                  rsi,                    0
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je       main_1_if_true
      mov                  rdi,     __const_string_3
-    push                  rsi
+    push                   r9
     call              println
-     pop                  rsi
+     pop                   r9
+     mov                  rsi,              3654898
      mov    qword [@seed + 0],                  rsi
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -640,30 +793,33 @@ main_17_loop_body:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -674,17 +830,142 @@ main_17_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_18_if_true:
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je       main_1_if_true
+     mov                  rdi,     __const_string_3
+    push                   r9
+    call              println
+     pop                   r9
+     mov                  rsi,              3654898
+     mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rax
+     mov                  rdi,       qword [@R + 0]
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
+     sub                  rsi,                  rdi
+     cmp                  rsi,                    0
+     jge      main_27_if_true
+     add                  rsi,       qword [@M + 0]
+     mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,                   10
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov     qword [@now + 0],                  rsi
+     mov                  rdi,     qword [@now + 0]
+    push                   r9
+    call          println_Int
+     pop                   r9
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -710,37 +991,41 @@ main_17_loop_body:
      jmp   main_14_block_exit
 main_21_loop_increment:
      add       qword [@h + 0],                    1
-     cmp       qword [@h + 0],                  rsi
+     cmp       qword [@h + 0],                  rdi
      jle    main_17_loop_body
+     mov                  rsi,                    0
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je       main_1_if_true
      mov                  rdi,     __const_string_3
-    push                  rsi
+    push                   r9
     call              println
-     pop                  rsi
+     pop                   r9
+     mov                  rsi,              3654898
      mov    qword [@seed + 0],                  rsi
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -749,30 +1034,33 @@ main_21_loop_increment:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -783,17 +1071,142 @@ main_21_loop_increment:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_22_loop_exit:
+     mov                  rsi,                    0
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je       main_1_if_true
+     mov                  rdi,     __const_string_3
+    push                   r9
+    call              println
+     pop                   r9
+     mov                  rsi,              3654898
+     mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rax
+     mov                  rdi,       qword [@R + 0]
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
+     sub                  rsi,                  rdi
+     cmp                  rsi,                    0
+     jge      main_27_if_true
+     add                  rsi,       qword [@M + 0]
+     mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,                   10
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov     qword [@now + 0],                  rsi
+     mov                  rdi,     qword [@now + 0]
+    push                   r9
+    call          println_Int
+     pop                   r9
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -822,31 +1235,34 @@ main_23_inline_exit:
      cmp                  rsi,                    1
       je       main_1_if_true
      mov                  rdi,     __const_string_3
-    push                  rsi
+    push                   r9
     call              println
-     pop                  rsi
+     pop                   r9
+     mov                  rsi,              3654898
      mov    qword [@seed + 0],                  rsi
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -855,30 +1271,33 @@ main_23_inline_exit:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -889,17 +1308,23 @@ main_23_inline_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -932,31 +1357,34 @@ main_1_if_true:
      jmp   main_14_block_exit
 main_3_if_exit:
      mov                  rdi,     __const_string_3
-    push                  rsi
+    push                   r9
     call              println
-     pop                  rsi
+     pop                   r9
+     mov                  rsi,              3654898
      mov    qword [@seed + 0],                  rsi
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -965,30 +1393,33 @@ main_3_if_exit:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -999,17 +1430,23 @@ main_3_if_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1035,27 +1472,29 @@ main_3_if_exit:
      jmp   main_14_block_exit
 main_24_inline_enter:
      mov    qword [@seed + 0],                  rsi
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -1064,30 +1503,33 @@ main_24_inline_enter:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1098,17 +1540,23 @@ main_24_inline_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1133,27 +1581,29 @@ main_24_inline_enter:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_26_inline_enter:
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rdx
-     mov                  rsi,       qword [@A + 0]
-    imul                  rsi,                  rbx
-     mov                  rbx,    qword [@seed + 0]
-     mov                  rax,                  rbx
+     mov                  rsi,                  rdx
+     mov                  rbx,       qword [@A + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
+     mov                  rsi,                  rax
      mov                  rdi,       qword [@R + 0]
-    imul                  rdi,                  rbx
+    imul                  rdi,                  rsi
+     mov                  rsi,                  rbx
      sub                  rsi,                  rdi
      cmp                  rsi,                    0
      jge      main_27_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -1162,30 +1612,33 @@ main_26_inline_enter:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1196,17 +1649,23 @@ main_26_inline_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1232,6 +1691,7 @@ main_26_inline_enter:
      jmp   main_14_block_exit
 main_27_if_true:
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -1240,30 +1700,33 @@ main_27_if_true:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1274,17 +1737,23 @@ main_27_if_true:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1311,6 +1780,7 @@ main_27_if_true:
 main_28_if_false:
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -1319,30 +1789,33 @@ main_28_if_false:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1353,17 +1826,110 @@ main_28_if_false:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_29_if_exit:
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,                   10
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov     qword [@now + 0],                  rsi
+     mov                  rdi,     qword [@now + 0]
+    push                   r9
+    call          println_Int
+     pop                   r9
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1396,30 +1962,33 @@ main_30_inline_exit:
      add                  rsi,                    1
      mov     qword [@now + 0],                  rsi
      mov                  rdi,     qword [@now + 0]
-     sub                  rsp,                    8
+    push                   r9
     call          println_Int
-     add                  rsp,                    8
+     pop                   r9
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1430,17 +1999,23 @@ main_30_inline_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1467,25 +2042,28 @@ main_30_inline_exit:
 main_4_loop_condition:
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1496,17 +2074,146 @@ main_4_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_5_loop_body:
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rdi,       qword [@a + 0]
+     add                  rdi,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                   r8,       qword [@A + 0]
+    imul                   r8,                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rax
+     mov                  rbx,       qword [@R + 0]
+    imul                  rbx,                  rsi
+     mov                  rsi,                   r8
+     sub                  rsi,                  rbx
+     cmp                  rsi,                    0
+     jge      main_32_if_true
+     add                  rsi,       qword [@M + 0]
+     mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,                   10
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov      qword [rdi + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1553,6 +2260,7 @@ main_31_inline_enter:
      jge      main_32_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -1560,35 +2268,44 @@ main_31_inline_enter:
      mov                  rsi,                  rdx
      add                  rsi,                    1
      mov      qword [rdi + 0],                  rsi
-     mov                  rbx,                  r12
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1599,17 +2316,23 @@ main_31_inline_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1635,6 +2358,7 @@ main_31_inline_enter:
      jmp   main_14_block_exit
 main_32_if_true:
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -1642,35 +2366,44 @@ main_32_if_true:
      mov                  rsi,                  rdx
      add                  rsi,                    1
      mov      qword [rdi + 0],                  rsi
-     mov                  rbx,                  r12
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1681,17 +2414,23 @@ main_32_if_true:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1718,6 +2457,7 @@ main_32_if_true:
 main_33_if_false:
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
@@ -1725,35 +2465,44 @@ main_33_if_false:
      mov                  rsi,                  rdx
      add                  rsi,                    1
      mov      qword [rdi + 0],                  rsi
-     mov                  rbx,                  r12
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1764,17 +2513,120 @@ main_33_if_false:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_34_if_exit:
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,                   10
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov      qword [rdi + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1806,35 +2658,44 @@ main_35_inline_exit:
      mov                  rsi,                  rdx
      add                  rsi,                    1
      mov      qword [rdi + 0],                  rsi
-     mov                  rbx,                  r12
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1845,17 +2706,23 @@ main_35_inline_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1880,35 +2747,44 @@ main_35_inline_exit:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_6_loop_condition:
-     mov                  rbx,                  r12
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -1919,17 +2795,145 @@ main_6_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_7_loop_body:
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                   r8,       qword [@a + 0]
+     add                   r8,                  rsi
+     mov                  rbx,    qword [@seed + 0]
+     mov                  rax,                  rbx
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rbx,                  rdx
+     mov                  rsi,       qword [@A + 0]
+    imul                  rsi,                  rbx
+     mov                  rdi,    qword [@seed + 0]
+     mov                  rax,                  rdi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rax
+     mov                  rbx,       qword [@R + 0]
+    imul                  rbx,                  rdi
+     sub                  rsi,                  rbx
+     cmp                  rsi,                    0
+     jge      main_37_if_true
+     add                  rsi,       qword [@M + 0]
+     mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,                   10
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov       qword [r8 + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -1954,65 +2958,73 @@ main_6_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_36_inline_enter:
-     mov                  rsi,    qword [@seed + 0]
-     mov                  rax,                  rsi
-     mov                  rcx,       qword [@Q + 0]
-     cdq
-    idiv                  ecx
-     mov                  rsi,                  rdx
-     mov                  rdi,       qword [@A + 0]
-    imul                  rdi,                  rsi
      mov                  rbx,    qword [@seed + 0]
      mov                  rax,                  rbx
      mov                  rcx,       qword [@Q + 0]
      cdq
     idiv                  ecx
-     mov                  rbx,                  rax
-     mov                  rsi,       qword [@R + 0]
+     mov                  rbx,                  rdx
+     mov                  rsi,       qword [@A + 0]
     imul                  rsi,                  rbx
-     mov                  rbx,                  rdi
-     sub                  rbx,                  rsi
-     mov                  rsi,                  rbx
+     mov                  rdi,    qword [@seed + 0]
+     mov                  rax,                  rdi
+     mov                  rcx,       qword [@Q + 0]
+     cdq
+    idiv                  ecx
+     mov                  rdi,                  rax
+     mov                  rbx,       qword [@R + 0]
+    imul                  rbx,                  rdi
+     sub                  rsi,                  rbx
      cmp                  rsi,                    0
      jge      main_37_if_true
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
      add                  rsi,                    1
-     mov      qword [r12 + 0],                  rsi
-     mov                  rbx,                  r12
+     mov       qword [r8 + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2023,17 +3035,23 @@ main_36_inline_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2059,42 +3077,52 @@ main_36_inline_enter:
      jmp   main_14_block_exit
 main_37_if_true:
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
      add                  rsi,                    1
-     mov      qword [r12 + 0],                  rsi
-     mov                  rbx,                  r12
+     mov       qword [r8 + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2105,17 +3133,23 @@ main_37_if_true:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2142,42 +3176,52 @@ main_37_if_true:
 main_38_if_false:
      add                  rsi,       qword [@M + 0]
      mov    qword [@seed + 0],                  rsi
+     mov                  rsi,    qword [@seed + 0]
      mov                  rax,                  rsi
      mov                  rcx,                   10
      cdq
     idiv                  ecx
      mov                  rsi,                  rdx
      add                  rsi,                    1
-     mov      qword [r12 + 0],                  rsi
-     mov                  rbx,                  r12
+     mov       qword [r8 + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2188,17 +3232,120 @@ main_38_if_false:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_39_if_exit:
+     mov                  rsi,    qword [@seed + 0]
+     mov                  rax,                  rsi
+     mov                  rcx,                   10
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     add                  rsi,                    1
+     mov       qword [r8 + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2229,36 +3376,45 @@ main_40_inline_exit:
     idiv                  ecx
      mov                  rsi,                  rdx
      add                  rsi,                    1
-     mov      qword [r12 + 0],                  rsi
-     mov                  rbx,                  r12
+     mov       qword [r8 + 0],                  rsi
+     mov                  rsi,                   r9
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,      qword [rbx + 0]
+     add                  rsi,                  r13
+     cmp                  rsi,       qword [@n + 0]
+      jg     main_7_loop_body
+     mov                  rbx,                   r9
      sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
      add                  rsi,                  rbx
-     mov                  rsi,      qword [rsi + 0]
-     add                  rsi,                  r12
-     cmp                  rsi,       qword [@n + 0]
-      jg main_36_inline_enter
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_31_inline_enter
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2269,17 +3425,180 @@ main_40_inline_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_8_loop_exit:
+     mov                  rbx,                   r9
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     add                  r13,      qword [rsi + 0]
+     add                   r9,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_9_loop_increment:
+     add                   r9,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r9,                  rsi
+      jl     main_5_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rsi,       qword [@n + 0]
+     sub                  rsi,                  r13
+     mov      qword [rbx + 0],                  rsi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2310,17 +3629,20 @@ main_10_loop_exit:
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rsi,       qword [@n + 0]
-     sub                  rsi,                  r12
+     sub                  rsi,                  r13
      mov      qword [rbx + 0],                  rsi
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2331,17 +3653,86 @@ main_10_loop_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_41_inline_enter:
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2366,15 +3757,17 @@ main_10_loop_exit:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_42_loop_condition:
-     cmp                  r12,     qword [@now + 0]
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2385,17 +3778,23 @@ main_42_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2420,32 +3819,35 @@ main_42_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_43_loop_body:
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rbx,       qword [@a + 0]
-     add                  rbx,                  rsi
-     mov                  rdi,      qword [rbx + 0]
-     sub                  rsp,                    8
+     mov                  rbx,                   r8
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     mov                  rdi,      qword [rsi + 0]
+    push                   r8
     call             toString
-     add                  rsp,                    8
+     pop                   r8
      mov                  rdi,                  rax
      mov                  rsi,     __const_string_8
-     sub                  rsp,                    8
+    push                   r8
     call  __string_connection
-     add                  rsp,                    8
+     pop                   r8
      mov                  rdi,                  rax
-     sub                  rsp,                    8
+    push                   r8
     call                print
-     add                  rsp,                    8
-     cmp                  r12,     qword [@now + 0]
+     pop                   r8
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
       jl    main_43_loop_body
      mov                  rdi,     __const_string_9
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2456,17 +3858,86 @@ main_43_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_44_loop_increment:
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
+      jl    main_43_loop_body
+     mov                  rdi,     __const_string_9
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2495,9 +3966,11 @@ main_45_loop_exit:
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2508,17 +3981,79 @@ main_45_loop_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_47_inline_enter:
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2543,9 +4078,10 @@ main_45_loop_exit:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_48_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2556,17 +4092,23 @@ main_48_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2591,15 +4133,17 @@ main_48_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_49_loop_body:
-     mov                  rsi,                  rbx
-     sal                  rsi,                    3
-     mov                  rdi,       qword [@a + 0]
-     add                  rdi,                  rsi
-     cmp      qword [rdi + 0],                    0
-      je main_51_loop_condition
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rbx,                  rdi
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     cmp      qword [rsi + 0],                    0
+      je      main_50_if_true
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2610,17 +4154,84 @@ main_49_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_50_if_true:
+     mov                  rsi,                  rdi
+     add                  rsi,                    1
+     mov                   r8,                  rsi
+     cmp                   r8,     qword [@now + 0]
+      jl    main_52_loop_body
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2645,11 +4256,13 @@ main_49_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_51_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+     cmp                   r8,     qword [@now + 0]
       jl    main_52_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2660,17 +4273,23 @@ main_51_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2695,17 +4314,20 @@ main_51_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_52_loop_body:
-     mov                  rdi,                  rbx
-     sal                  rdi,                    3
+     mov                  rbx,                   r8
+     sal                  rbx,                    3
      mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rdi
+     add                  rsi,                  rbx
      cmp      qword [rsi + 0],                    0
      jne      main_53_if_true
-     cmp                  rbx,     qword [@now + 0]
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
       jl    main_52_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2716,17 +4338,23 @@ main_52_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2751,14 +4379,15 @@ main_52_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_53_if_true:
-     mov                  rdi,                  rbx
-     mov                  rsi,                  rbx
-     sub                  rsp,                    8
+     mov                  rsi,                   r8
+    push                  rdi
     call                 swap
-     add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     pop                  rdi
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl    main_49_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2769,17 +4398,191 @@ main_53_if_true:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_56_loop_increment:
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
+      jl    main_52_loop_body
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_60_loop_increment:
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_49_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_61_loop_exit:
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2804,7 +4607,7 @@ main_53_if_true:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_62_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2815,17 +4618,23 @@ main_62_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2850,13 +4659,14 @@ main_62_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_63_loop_body:
-     mov                  rdi,                  rbx
-     sal                  rdi,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rdi
-     cmp      qword [rsi + 0],                    0
+     mov                  rsi,                  rdi
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     cmp      qword [rbx + 0],                    0
       je      main_64_if_true
-     cmp                  rbx,     qword [@now + 0]
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl    main_63_loop_body
      mov                  rsi,                  100
      add                  rsi,                    1
@@ -2867,17 +4677,23 @@ main_63_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2902,7 +4718,7 @@ main_63_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_64_if_true:
-     mov     qword [@now + 0],                  rbx
+     mov     qword [@now + 0],                  rdi
      mov                  rsi,                  100
      add                  rsi,                    1
      sal                  rsi,                    3
@@ -2912,17 +4728,76 @@ main_64_if_true:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_67_loop_increment:
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl    main_63_loop_body
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2956,17 +4831,84 @@ main_70_inline_enter:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_71_if_true:
+     mov                  rsi,                    0
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_73_if_exit:
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -2991,14 +4933,17 @@ main_70_inline_enter:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_74_loop_condition:
-     cmp                  r12,     qword [@now + 0]
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3023,24 +4968,97 @@ main_74_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_75_loop_body:
-     mov                  rsi,                  r12
+     mov                  rsi,                  r13
      sal                  rsi,                    3
-     mov                  rdi,                  r12
+     mov                  rbx,                   r9
+     add                  rbx,                  rsi
+     mov                  rsi,                  r13
+     sal                  rsi,                    3
+     mov                  rdi,       qword [@a + 0]
      add                  rdi,                  rsi
-     mov                  rbx,                  r12
-     sal                  rbx,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rbx
-     mov                  rax,      qword [rsi + 0]
-     mov      qword [rdi + 0],                  rax
-     cmp                  r12,     qword [@now + 0]
+     mov                  rax,      qword [rdi + 0]
+     mov      qword [rbx + 0],                  rax
+     add                  r13,                    1
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_76_loop_increment:
+     add                  r13,                    1
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_77_loop_exit:
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3067,10 +5085,50 @@ main_75_loop_body:
 main_78_loop_condition:
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_79_loop_body:
+     mov                  rsi,                  rbx
+     add                  rsi,                    1
+     mov                  r13,                  rsi
+     cmp                  r13,     qword [@now + 0]
+      jl    main_81_loop_body
+     add                  rbx,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3095,14 +5153,17 @@ main_78_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_80_loop_condition:
-     cmp                  r12,     qword [@now + 0]
+     cmp                  r13,     qword [@now + 0]
       jl    main_81_loop_body
+     add                  rbx,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3127,25 +5188,29 @@ main_80_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_81_loop_body:
-     mov                  rbx,                  r12
-     sal                  rbx,                    3
-     mov                  rsi,                  r12
-     add                  rsi,                  rbx
-     mov                  rdi,                  r12
-     sal                  rdi,                    3
-     mov                  rbx,                  r12
-     add                  rbx,                  rdi
-     mov                  rsi,      qword [rsi + 0]
-     cmp                  rsi,      qword [rbx + 0]
+     mov                  rsi,                  rbx
+     sal                  rsi,                    3
+     mov                  rdi,                   r9
+     add                  rdi,                  rsi
+     mov                  rsi,                  r13
+     sal                  rsi,                    3
+     mov                   r8,                   r9
+     add                   r8,                  rsi
+     mov                  rsi,      qword [rdi + 0]
+     cmp                  rsi,       qword [r8 + 0]
       jg      main_82_if_true
-     cmp                  r12,     qword [@now + 0]
+     add                  r13,                    1
+     cmp                  r13,     qword [@now + 0]
       jl    main_81_loop_body
+     add                  rbx,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3170,34 +5235,135 @@ main_81_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_82_if_true:
-     mov                  rbx,                  r12
-     sal                  rbx,                    3
-     mov                  rsi,                  r12
-     add                  rsi,                  rbx
-     mov                   r8,      qword [rsi + 0]
-     mov                  rbx,                  r12
-     sal                  rbx,                    3
-     mov                  rsi,                  r12
-     add                  rsi,                  rbx
-     mov                  rdi,                  r12
+     mov                  rdi,                  rbx
      sal                  rdi,                    3
-     mov                  rbx,                  r12
-     add                  rbx,                  rdi
-     mov                  rax,      qword [rbx + 0]
-     mov      qword [rsi + 0],                  rax
-     mov                  rbx,                  r12
-     sal                  rbx,                    3
-     mov                  rsi,                  r12
-     add                  rsi,                  rbx
-     mov      qword [rsi + 0],                   r8
-     cmp                  r12,     qword [@now + 0]
+     mov                  rsi,                   r9
+     add                  rsi,                  rdi
+     mov                  rdi,      qword [rsi + 0]
+     mov                  rsi,                  rbx
+     sal                  rsi,                    3
+     mov                   r8,                   r9
+     add                   r8,                  rsi
+     mov                  r14,                  r13
+     sal                  r14,                    3
+     mov                  rsi,                   r9
+     add                  rsi,                  r14
+     mov                  rax,      qword [rsi + 0]
+     mov       qword [r8 + 0],                  rax
+     mov                   r8,                  r13
+     sal                   r8,                    3
+     mov                  rsi,                   r9
+     add                  rsi,                   r8
+     mov      qword [rsi + 0],                  rdi
+     add                  r13,                    1
+     cmp                  r13,     qword [@now + 0]
       jl    main_81_loop_body
+     add                  rbx,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_85_loop_increment:
+     add                  r13,                    1
+     cmp                  r13,     qword [@now + 0]
+      jl    main_81_loop_body
+     add                  rbx,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_87_loop_increment:
+     add                  rbx,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_88_loop_exit:
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3222,8 +5388,9 @@ main_82_if_true:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_89_loop_condition:
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3248,16 +5415,96 @@ main_89_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_90_loop_body:
-     mov                  rsi,                  r12
-     sal                  rsi,                    3
-     mov                  rbx,                  r12
-     add                  rbx,                  rsi
-     mov                  rsi,                  r12
-     add                  rsi,                    1
-     cmp      qword [rbx + 0],                  rsi
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     mov                  rdi,                  rbx
+     sal                  rdi,                    3
+     mov                  rsi,                   r9
+     add                  rsi,                  rdi
+     mov                  rdi,                  rbx
+     add                  rdi,                    1
+     cmp      qword [rsi + 0],                  rdi
+     jne      main_91_if_true
+     add                  rbx,                    1
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_91_if_true:
+     mov                  rsi,                    0
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_94_loop_increment:
+     add                  rbx,                    1
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_95_loop_exit:
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3325,20 +5572,24 @@ main_12_loop_body:
      sub                  rsp,                    8
     call              println
      add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rsi,                    0
+     cmp                  rsi,     qword [@now + 0]
       jl    main_99_loop_body
-     mov                  rbx,     qword [@now + 0]
-     sal                  rbx,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rbx
+     mov                  rsi,     qword [@now + 0]
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
      mov                  rax,     qword [@now + 0]
-     mov      qword [rsi + 0],                  rax
+     mov      qword [rbx + 0],                  rax
      add     qword [@now + 0],                    1
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3353,17 +5604,96 @@ main_12_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_97_inline_enter:
+     mov                  rsi,                    0
+     cmp                  rsi,     qword [@now + 0]
+      jl    main_99_loop_body
+     mov                  rsi,     qword [@now + 0]
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     mov                  rax,     qword [@now + 0]
+     mov      qword [rbx + 0],                  rax
+     add     qword [@now + 0],                    1
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_105_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_119_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3388,20 +5718,23 @@ main_12_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_98_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+     cmp                  rsi,     qword [@now + 0]
       jl    main_99_loop_body
-     mov                  rbx,     qword [@now + 0]
-     sal                  rbx,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rbx
+     mov                  rsi,     qword [@now + 0]
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
      mov                  rax,     qword [@now + 0]
-     mov      qword [rsi + 0],                  rax
+     mov      qword [rbx + 0],                  rax
      add     qword [@now + 0],                    1
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3416,17 +5749,23 @@ main_98_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3451,25 +5790,29 @@ main_98_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_99_loop_body:
-     mov                  rdi,                  rbx
+     mov                  rdi,                  rsi
      sal                  rdi,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rdi
-     sub      qword [rsi + 0],                    1
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rdi
+     sub      qword [rbx + 0],                    1
+     add                  rsi,                    1
+     cmp                  rsi,     qword [@now + 0]
       jl    main_99_loop_body
-     mov                  rbx,     qword [@now + 0]
-     sal                  rbx,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rbx
+     mov                  rsi,     qword [@now + 0]
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
      mov                  rax,     qword [@now + 0]
-     mov      qword [rsi + 0],                  rax
+     mov      qword [rbx + 0],                  rax
      add     qword [@now + 0],                    1
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3484,17 +5827,23 @@ main_99_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3519,18 +5868,21 @@ main_99_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_101_loop_exit:
-     mov                  rbx,     qword [@now + 0]
-     sal                  rbx,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rbx
+     mov                  rsi,     qword [@now + 0]
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
      mov                  rax,     qword [@now + 0]
-     mov      qword [rsi + 0],                  rax
+     mov      qword [rbx + 0],                  rax
      add     qword [@now + 0],                    1
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3545,17 +5897,86 @@ main_101_loop_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_103_inline_enter:
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_105_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_119_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3580,11 +6001,13 @@ main_101_loop_exit:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_104_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3599,17 +6022,23 @@ main_104_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3634,17 +6063,20 @@ main_104_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_105_loop_body:
-     mov                  rsi,                  rbx
-     sal                  rsi,                    3
-     mov                  rdi,       qword [@a + 0]
-     add                  rdi,                  rsi
-     cmp      qword [rdi + 0],                    0
-      je main_107_loop_condition
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rbx,                  rdi
+     sal                  rbx,                    3
+     mov                  rsi,       qword [@a + 0]
+     add                  rsi,                  rbx
+     cmp      qword [rsi + 0],                    0
+      je     main_106_if_true
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3659,17 +6091,91 @@ main_105_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_106_if_true:
+     mov                  rsi,                  rdi
+     add                  rsi,                    1
+     mov                   r8,                  rsi
+     cmp                   r8,     qword [@now + 0]
+      jl   main_108_loop_body
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_105_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_119_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3694,13 +6200,16 @@ main_105_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_107_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+     cmp                   r8,     qword [@now + 0]
       jl   main_108_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3715,17 +6224,23 @@ main_107_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3750,19 +6265,23 @@ main_107_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_108_loop_body:
-     mov                  rdi,                  rbx
-     sal                  rdi,                    3
-     mov                  rsi,       qword [@a + 0]
-     add                  rsi,                  rdi
-     cmp      qword [rsi + 0],                    0
+     mov                  rsi,                   r8
+     sal                  rsi,                    3
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     cmp      qword [rbx + 0],                    0
      jne     main_109_if_true
-     cmp                  rbx,     qword [@now + 0]
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
       jl   main_108_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3777,17 +6296,23 @@ main_108_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3812,16 +6337,18 @@ main_108_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_109_if_true:
-     mov                  rdi,                  rbx
-     mov                  rsi,                  rbx
-     sub                  rsp,                    8
+     mov                  rsi,                   r8
+    push                  rdi
     call                 swap
-     add                  rsp,                    8
-     cmp                  rbx,     qword [@now + 0]
+     pop                  rdi
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl   main_105_loop_body
-     cmp                  rbx,     qword [@now + 0]
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3836,17 +6363,212 @@ main_109_if_true:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_112_loop_increment:
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
+      jl   main_108_loop_body
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_105_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_119_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_116_loop_increment:
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_105_loop_body
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_119_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_117_loop_exit:
+     mov                  rdi,                    0
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_119_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3871,9 +6593,10 @@ main_109_if_true:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_118_loop_condition:
-     cmp                  rbx,     qword [@now + 0]
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3888,17 +6611,23 @@ main_118_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3923,15 +6652,17 @@ main_118_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_119_loop_body:
-     mov                  rsi,                  rbx
+     mov                  rsi,                  rdi
      sal                  rsi,                    3
-     mov                  rdi,       qword [@a + 0]
-     add                  rdi,                  rsi
-     cmp      qword [rdi + 0],                    0
+     mov                  rbx,       qword [@a + 0]
+     add                  rbx,                  rsi
+     cmp      qword [rbx + 0],                    0
       je     main_120_if_true
-     cmp                  rbx,     qword [@now + 0]
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
       jl   main_119_loop_body
-     cmp                  r12,     qword [@now + 0]
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3946,17 +6677,23 @@ main_119_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -3981,8 +6718,9 @@ main_119_loop_body:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_120_if_true:
-     mov     qword [@now + 0],                  rbx
-     cmp                  r12,     qword [@now + 0]
+     mov     qword [@now + 0],                  rdi
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -3997,17 +6735,140 @@ main_120_if_true:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_123_loop_increment:
+     add                  rdi,                    1
+     cmp                  rdi,     qword [@now + 0]
+      jl   main_119_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_126_inline_enter:
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -4032,7 +6893,7 @@ main_120_if_true:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_127_loop_condition:
-     cmp                  r12,     qword [@now + 0]
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -4047,17 +6908,23 @@ main_127_loop_condition:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -4082,24 +6949,25 @@ main_127_loop_condition:
      mov                  rax,                    0
      jmp   main_14_block_exit
 main_128_loop_body:
-     mov                  rsi,                  r12
+     mov                  rsi,                   r8
      sal                  rsi,                    3
      mov                  rbx,       qword [@a + 0]
      add                  rbx,                  rsi
      mov                  rdi,      qword [rbx + 0]
-     sub                  rsp,                    8
+    push                   r8
     call             toString
-     add                  rsp,                    8
+     pop                   r8
      mov                  rdi,                  rax
      mov                  rsi,    __const_string_10
-     sub                  rsp,                    8
+    push                   r8
     call  __string_connection
-     add                  rsp,                    8
+     pop                   r8
      mov                  rdi,                  rax
-     sub                  rsp,                    8
+    push                   r8
     call                print
-     add                  rsp,                    8
-     cmp                  r12,     qword [@now + 0]
+     pop                   r8
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
       jl   main_128_loop_body
      mov                  rdi,    __const_string_11
      sub                  rsp,                    8
@@ -4114,17 +6982,80 @@ main_128_loop_body:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
+     xor                  rsi,                    1
+     cmp                  rsi,                    1
+      je    main_12_loop_body
+     mov                  rdi,                  r12
+     sub                  rsp,                    8
+    call             toString
+     add                  rsp,                    8
+     mov                  rsi,                  rax
+     mov                  rdi,     __const_string_6
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     mov                  rsi,     __const_string_7
+     sub                  rsp,                    8
+    call  __string_connection
+     add                  rsp,                    8
+     mov                  rdi,                  rax
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rax,                    0
+     jmp   main_14_block_exit
+main_129_loop_increment:
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
+      jl   main_128_loop_body
+     mov                  rdi,    __const_string_11
+     sub                  rsp,                    8
+    call              println
+     add                  rsp,                    8
+     mov                  rsi,                  100
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
+     mov                  rsi,     qword [@now + 0]
+     cmp                  rsi,       qword [@h + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
+      jl    main_75_loop_body
+     mov                  rbx,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
+      jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -4162,17 +7093,23 @@ main_130_loop_exit:
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                   r9,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
-     jne  main_96_inline_exit
-     cmp                  r12,     qword [@now + 0]
+     jne      main_71_if_true
+     mov                  r13,                    0
+     cmp                  r13,     qword [@now + 0]
       jl    main_75_loop_body
+     mov                  rbx,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  r12,                  rsi
-      jl main_80_loop_condition
-     cmp                  r12,     qword [@now + 0]
+     cmp                  rbx,                  rsi
+      jl    main_79_loop_body
+     mov                  rbx,                    0
+     cmp                  rbx,     qword [@now + 0]
       jl    main_90_loop_body
+     mov                  rsi,                    1
      xor                  rsi,                    1
      cmp                  rsi,                    1
       je    main_12_loop_body
@@ -4218,6 +7155,8 @@ main_13_loop_exit:
      mov                  rax,                    0
 main_14_block_exit:
      pop                  rbx
+     pop                  r13
+     pop                  r14
      pop                  r12
      add                  rsp,                   72
      pop                  rbp
@@ -4236,165 +7175,276 @@ win:
     push                  rbp
      mov                  rbp,                  rsp
      sub                  rsp,                   24
+    push                  rbx
 win_0_block_enter:
      mov                  rsi,                  100
      add                  rsi,                    1
      sal                  rsi,                    3
     push                  rsi
-    push                   r8
      mov                  rdi,                  rsi
      sub                  rsp,                    8
     call               malloc
      add                  rsp,                    8
-     pop                   r8
      pop                  rsi
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                  100
+     add                  rsi,                    8
+     mov                  r11,                  rsi
      mov                  rsi,     qword [@now + 0]
      cmp                  rsi,       qword [@h + 0]
      jne        win_1_if_true
-     cmp                   r8,     qword [@now + 0]
+     mov                  rsi,                    0
+     cmp                  rsi,     qword [@now + 0]
       jl      win_5_loop_body
+     mov                   r8,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  rdi,                  rsi
-      jl win_10_loop_condition
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_1_if_true:
      mov                  rax,                    0
      jmp    win_26_block_exit
-win_4_loop_condition:
-     cmp                   r8,     qword [@now + 0]
+win_3_if_exit:
+     mov                  rsi,                    0
+     cmp                  rsi,     qword [@now + 0]
       jl      win_5_loop_body
+     mov                   r8,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  rdi,                  rsi
-      jl win_10_loop_condition
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
+win_4_loop_condition:
+     cmp                  rsi,     qword [@now + 0]
+      jl      win_5_loop_body
+     mov                   r8,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_5_loop_body:
-     mov                  rdi,                   r8
+     mov                  rdi,                  rsi
      sal                  rdi,                    3
-     mov                  rsi,                   r8
-     add                  rsi,                  rdi
-     mov                   r9,                   r8
+     mov                   r8,                  r11
+     add                   r8,                  rdi
+     mov                   r9,                  rsi
      sal                   r9,                    3
      mov                  rdi,       qword [@a + 0]
      add                  rdi,                   r9
      mov                  rax,      qword [rdi + 0]
-     mov      qword [rsi + 0],                  rax
-     cmp                   r8,     qword [@now + 0]
+     mov       qword [r8 + 0],                  rax
+     add                  rsi,                    1
+     cmp                  rsi,     qword [@now + 0]
       jl      win_5_loop_body
+     mov                   r8,                    0
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  rdi,                  rsi
-      jl win_10_loop_condition
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
+win_6_loop_increment:
+     add                  rsi,                    1
+     cmp                  rsi,     qword [@now + 0]
+      jl      win_5_loop_body
+     mov                   r8,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
+win_7_loop_exit:
+     mov                   r8,                    0
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_8_loop_condition:
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  rdi,                  rsi
-      jl win_10_loop_condition
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
+win_9_loop_body:
+     mov                  rsi,                   r8
+     add                  rsi,                    1
+     cmp                  rsi,     qword [@now + 0]
+      jl     win_11_loop_body
+     add                   r8,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_10_loop_condition:
-     cmp                   r8,     qword [@now + 0]
+     cmp                  rsi,     qword [@now + 0]
       jl     win_11_loop_body
+     add                   r8,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  rdi,                  rsi
-      jl win_10_loop_condition
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_11_loop_body:
-     mov                   r9,                  rdi
-     sal                   r9,                    3
-     mov                  rsi,                   r8
-     add                  rsi,                   r9
-     mov                   r9,                   r8
-     sal                   r9,                    3
-     mov                  r10,                   r8
-     add                  r10,                   r9
-     mov                  rsi,      qword [rsi + 0]
-     cmp                  rsi,      qword [r10 + 0]
+     mov                  rdi,                   r8
+     sal                  rdi,                    3
+     mov                  r10,                  r11
+     add                  r10,                  rdi
+     mov                  rdi,                  rsi
+     sal                  rdi,                    3
+     mov                   r9,                  r11
+     add                   r9,                  rdi
+     mov                  rdi,      qword [r10 + 0]
+     cmp                  rdi,       qword [r9 + 0]
       jg       win_12_if_true
-     cmp                   r8,     qword [@now + 0]
+     add                  rsi,                    1
+     cmp                  rsi,     qword [@now + 0]
       jl     win_11_loop_body
+     add                   r8,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  rdi,                  rsi
-      jl win_10_loop_condition
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_12_if_true:
-     mov                  rsi,                  rdi
-     sal                  rsi,                    3
      mov                   r9,                   r8
-     add                   r9,                  rsi
-     mov                   r9,       qword [r9 + 0]
-     mov                  rsi,                  rdi
-     sal                  rsi,                    3
-     mov                  r10,                   r8
-     add                  r10,                  rsi
-     mov                  rsi,                   r8
-     sal                  rsi,                    3
-     mov                  r11,                   r8
-     add                  r11,                  rsi
-     mov                  rax,      qword [r11 + 0]
+     sal                   r9,                    3
+     mov                  rdi,                  r11
+     add                  rdi,                   r9
+     mov                  rbx,      qword [rdi + 0]
+     mov                  rdi,                   r8
+     sal                  rdi,                    3
+     mov                  r10,                  r11
+     add                  r10,                  rdi
+     mov                  rdi,                  rsi
+     sal                  rdi,                    3
+     mov                   r9,                  r11
+     add                   r9,                  rdi
+     mov                  rax,       qword [r9 + 0]
      mov      qword [r10 + 0],                  rax
-     mov                  r10,                   r8
-     sal                  r10,                    3
-     mov                  rsi,                   r8
-     add                  rsi,                  r10
-     mov      qword [rsi + 0],                   r9
-     cmp                   r8,     qword [@now + 0]
+     mov                  rdi,                  rsi
+     sal                  rdi,                    3
+     mov                   r9,                  r11
+     add                   r9,                  rdi
+     mov       qword [r9 + 0],                  rbx
+     add                  rsi,                    1
+     cmp                  rsi,     qword [@now + 0]
       jl     win_11_loop_body
+     add                   r8,                    1
      mov                  rsi,     qword [@now + 0]
      sub                  rsi,                    1
-     cmp                  rdi,                  rsi
-      jl win_10_loop_condition
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
+win_15_loop_increment:
+     add                  rsi,                    1
+     cmp                  rsi,     qword [@now + 0]
+      jl     win_11_loop_body
+     add                   r8,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
+win_17_loop_increment:
+     add                   r8,                    1
+     mov                  rsi,     qword [@now + 0]
+     sub                  rsi,                    1
+     cmp                   r8,                  rsi
+      jl      win_9_loop_body
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
+win_18_loop_exit:
+     mov                   r8,                    0
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_19_loop_condition:
-     cmp                  rdi,     qword [@now + 0]
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_20_loop_body:
-     mov                   r9,                  rdi
-     sal                   r9,                    3
      mov                  rsi,                   r8
-     add                  rsi,                   r9
-     mov                   r9,                  rdi
-     add                   r9,                    1
-     cmp      qword [rsi + 0],                   r9
+     sal                  rsi,                    3
+     mov                  rdi,                  r11
+     add                  rdi,                  rsi
+     mov                  rsi,                   r8
+     add                  rsi,                    1
+     cmp      qword [rdi + 0],                  rsi
      jne       win_21_if_true
-     cmp                  rdi,     qword [@now + 0]
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
       jl     win_20_loop_body
      mov                  rax,                    1
      jmp    win_26_block_exit
 win_21_if_true:
      mov                  rax,                    0
      jmp    win_26_block_exit
+win_24_loop_increment:
+     add                   r8,                    1
+     cmp                   r8,     qword [@now + 0]
+      jl     win_20_loop_body
+     mov                  rax,                    1
+     jmp    win_26_block_exit
 win_25_loop_exit:
      mov                  rax,                    1
 win_26_block_exit:
+     pop                  rbx
      add                  rsp,                   24
      pop                  rbp
      ret
