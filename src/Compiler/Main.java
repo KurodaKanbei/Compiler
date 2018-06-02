@@ -68,6 +68,7 @@ public class Main {
     private static void translate() throws IOException {
         String assembly = Translator.getAssembly();
         System.out.println(assembly);
+        System.err.println(assembly);
         File file = new File("program.nasm");
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         byte[] bytes = assembly.getBytes();
