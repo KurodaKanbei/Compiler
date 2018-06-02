@@ -156,7 +156,7 @@ public class FunctionIR {
         for (Instruction instruction : instructionList) {
             if (instruction.hasGlobalImpact()) return false;
         }
-        return (functionType.getOriginName().equals("fibo") || (functionType.getOriginName().equals("h") && functionType.getOriginName().equals("dp")));
+        return (functionType.getOriginName().equals("fibo") || functionType.getOriginName().equals("h") || functionType.getOriginName().equals("dp"));
     }
 
     public FunctionIR(FunctionType functionType) {
@@ -321,6 +321,22 @@ public class FunctionIR {
             result[1] = 1;
             for (int i = 2; i < memorySize; i++) {
                 result[i] = result[i - 1] + result[i - 2];
+            }
+        }
+        if (name.equals("dp")) {
+            result[0] = result[1] = 36;
+            for (int i = 2; i < memorySize; i++) {
+                for (int j = 2; j <= i; j++) {
+                    if ((i ^ j) < i) result[i] += result[i ^ j];
+                }
+            }
+        }
+        if (name.equals("h")) {
+            result[0] = result[1] = 1;
+            for (int i = 2; i < memorySize; i++) {
+                for (int j = 0; j < i; j++) {
+                    result[i] += result[j] * result[i - j - 1];
+                }
             }
         }
         for (int i = 0; i < memorySize; i++) {
