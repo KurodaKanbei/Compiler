@@ -53,9 +53,46 @@ public class BinaryLogicalOrExpression extends Expression {
         falseLabel = new LabelInstruction("logical_false");
         exitLabel = new LabelInstruction("logical_exit");
         operand = RegisterManager.getTemporaryRegister();
-        leftExpression.generateInstruction(instructionList);
+        if (leftExpression instanceof BinaryLogicalOrExpression) {
+            ((BinaryLogicalOrExpression) leftExpression).generateInstructionWithExit(instructionList, trueLabel, null);
+        } else if (leftExpression instanceof BinaryLogicalAndExpression) {
+            ((BinaryLogicalAndExpression) leftExpression).generateInstructionWithExit(instructionList, trueLabel, null);
+        } else {
+            leftExpression.generateInstruction(instructionList);
+        }
         instructionList.add(new CompareInstruction(leftExpression.getOperand(), new ImmediateOperand(1)));
         instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, trueLabel));
+        instructionList.add(new JumpInstruction(falseLabel));
+
+        instructionList.add(trueLabel);
+        instructionList.add(new MoveInstruction(operand, new ImmediateOperand(1)));
+        instructionList.add(new JumpInstruction(exitLabel));
+
+        instructionList.add(falseLabel);
+        rightExpression.generateInstruction(instructionList);
+        instructionList.add(new MoveInstruction(operand, rightExpression.getOperand()));
+        instructionList.add(new JumpInstruction(exitLabel));
+
+        instructionList.add(exitLabel);
+    }
+
+    public void generateInstructionWithExit(List<Instruction> instructionList, LabelInstruction trueExit, LabelInstruction falseExit) {
+        LabelInstruction trueLabel, falseLabel, exitLabel;
+        trueLabel = new LabelInstruction("logical_true");
+        falseLabel = new LabelInstruction("logical_false");
+        exitLabel = new LabelInstruction("logical_exit");
+        LabelInstruction realTrueExit;
+        realTrueExit = trueExit != null ? trueExit : trueLabel;
+        operand = RegisterManager.getTemporaryRegister();
+        if (leftExpression instanceof BinaryLogicalOrExpression) {
+            ((BinaryLogicalOrExpression) leftExpression).generateInstructionWithExit(instructionList, realTrueExit, null);
+        } else if (leftExpression instanceof BinaryLogicalAndExpression) {
+            ((BinaryLogicalAndExpression) leftExpression).generateInstructionWithExit(instructionList, realTrueExit, null);
+        } else {
+            leftExpression.generateInstruction(instructionList);
+        }
+        instructionList.add(new CompareInstruction(leftExpression.getOperand(), new ImmediateOperand(1)));
+        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, realTrueExit));
         instructionList.add(new JumpInstruction(falseLabel));
 
         instructionList.add(trueLabel);
