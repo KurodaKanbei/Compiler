@@ -17,6 +17,7 @@ public class UselessCodeSniper {
     private static Map<Instruction, Set<VirtualRegister>> criticalOperandIn, criticalOperandOut;
 
     public static void uselessCodeCatch(FunctionIR functionIR) {
+        //System.out.println(functionIR.getFunctionType().getIRName());
         if (functionIR.getBeMemorized()) return;
         usefulInstruction = new HashSet<>();
         criticalOperandIn = new HashMap<>();
@@ -77,11 +78,11 @@ public class UselessCodeSniper {
             for (int i = 0; i < block.getInstructionList().size(); i++) {
                 Instruction instruction = block.getInstructionList().get(i);
                 if (!usefulInstruction.contains(instruction) && !(instruction instanceof JumpInstruction)) {
+                    if (instruction instanceof LabelInstruction) System.out.println("what are you talking about");
                     block.getInstructionList().remove(i--);
                 }
             }
         }
-
     }
 
     private static boolean isCritical(Operand operand) {
@@ -95,9 +96,11 @@ public class UselessCodeSniper {
     }
 
     private static boolean resolve(Instruction thisInstruction, Instruction nextInstruction, boolean isLoopCondition) {
+        //System.out.println(thisInstruction);
         int originalInSize = criticalOperandIn.get(thisInstruction).size();
         int originalOutSize = criticalOperandOut.get(thisInstruction).size();
         int usefulInstructionSize = usefulInstruction.size();
+        //System.out.println(originalInSize + " " + originalOutSize + " " + usefulInstructionSize);
         if (thisInstruction instanceof JumpInstruction) {
             Instruction target = ((JumpInstruction) thisInstruction).getTarget();
             criticalOperandOut.get(thisInstruction).addAll(criticalOperandIn.get(target));
@@ -111,7 +114,7 @@ public class UselessCodeSniper {
             criticalOperandOut.get(thisInstruction).addAll(criticalOperandIn.get(((CJumpInstruction) thisInstruction).getTarget()));
         }
         if (thisInstruction instanceof LabelInstruction) {
-            criticalOperandOut.get(thisInstruction).addAll(criticalOperandOut.get(thisInstruction));
+            criticalOperandIn.get(thisInstruction).addAll(criticalOperandOut.get(thisInstruction));
             for (Instruction instruction : ((LabelInstruction) thisInstruction).getBlock().getInstructionList()) {
                 if (usefulInstruction.contains(instruction)) {
                     usefulInstruction.add(thisInstruction);
@@ -153,9 +156,9 @@ public class UselessCodeSniper {
                 }
             }
         }
+        //System.out.println(criticalOperandIn.get(thisInstruction).size() + " " + criticalOperandOut.get(thisInstruction).size() + " " + usefulInstruction.size());
         if (criticalOperandIn.get(thisInstruction).size() != originalInSize) return true;
         if (criticalOperandOut.get(thisInstruction).size() != originalOutSize) return true;
-        if (usefulInstruction.size() != usefulInstructionSize) return true;
-        return false;
+        return usefulInstruction.size() != usefulInstructionSize;
     }
 }

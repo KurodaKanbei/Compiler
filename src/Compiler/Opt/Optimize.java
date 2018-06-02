@@ -10,9 +10,9 @@ public class Optimize {
             NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             DeadLoopRazor.deadForStatementBlocksRemove(functionIR);
-            //LivenessAnalyst.analysis(functionIR);
-            //UselessCodeSniper.uselessCodeCatch(functionIR);
             LoopConditionManager.loopConditionImprove(functionIR);
+            LivenessAnalyst.analysis(functionIR);
+            UselessCodeSniper.uselessCodeCatch(functionIR);
             LivenessAnalyst.analysis(functionIR);
             OutputConverter.convertOutput(functionIR);
             LivenessAnalyst.analysis(functionIR);
