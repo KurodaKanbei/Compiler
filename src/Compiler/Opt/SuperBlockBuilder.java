@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SuperBlockBuilder {
     public static void buildSuperBlock(FunctionIR functionIR) {
-        for (int round = 0; round < 8; round++) {
+        for (int round = 0; round < 10; round++) {
             for (Block block : functionIR.getBlockList()) {
                 List<Instruction> instructionList = block.getInstructionList();
                 if (!instructionList.isEmpty() && instructionList.get(instructionList.size() - 1) instanceof JumpInstruction) {

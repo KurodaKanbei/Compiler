@@ -20,8 +20,8 @@ public class Optimize {
                 ++round;
                 if (round == 100) break;
             }
-            //ImmediateHunter.huntImmediate(functionIR);
-            //FoolishConditionMonitor.stupidConditionRemove(functionIR);
+            ImmediateHunter.huntImmediate(functionIR);
+            FoolishConditionMonitor.stupidConditionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             BinaryInstructionRazor.uselessMoveInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
@@ -31,8 +31,8 @@ public class Optimize {
             RedundantBlockDictator.redundantBlockRemove(functionIR);
             StupidMoveKiller.uselessMoveRemove(functionIR);
             BlocksTyrant.emptyBlockRemove(functionIR);
-            //SuperBlockBuilder.buildSuperBlock(functionIR);
-            //SuperBlockBuilder.uselessJumpRemove(functionIR);
+            SuperBlockBuilder.buildSuperBlock(functionIR);
+            SuperBlockBuilder.uselessJumpRemove(functionIR);
         }
     }
 }

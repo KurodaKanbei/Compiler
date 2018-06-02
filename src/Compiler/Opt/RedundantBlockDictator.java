@@ -1,7 +1,9 @@
 package Compiler.Opt;
 
+import Compiler.AST.Expression.BinaryExpression.BinaryLogicalOrExpression;
 import Compiler.CFG.Block;
 import Compiler.CFG.FunctionIR;
+import Compiler.CFG.Instruction.CJumpInstruction;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.JumpInstruction;
 
@@ -17,6 +19,10 @@ public class RedundantBlockDictator {
             for (Instruction instruction : block.getInstructionList()) {
                 if (instruction instanceof JumpInstruction) {
                     Block target = ((JumpInstruction) instruction).getTarget().getBlock();
+                    update(target);
+                }
+                if (instruction instanceof CJumpInstruction) {
+                    Block target =  ((CJumpInstruction) instruction).getTarget().getBlock();
                     update(target);
                 }
             }

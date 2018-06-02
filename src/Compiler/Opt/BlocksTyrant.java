@@ -16,7 +16,7 @@ public class BlocksTyrant {
         while (hasImproved) {
             hasImproved = false;
             Map<LabelInstruction, LabelInstruction> linkMap = new HashMap<>();
-            for (int i = 0; i + 1 < functionIR.getBlockList().size(); i++) {
+            for (int i = 0; i < functionIR.getBlockList().size(); i++) {
                 Block block = functionIR.getBlockList().get(i);
                 if (block.getInstructionList().size() == 1 && block.getInstructionList().get(0) instanceof JumpInstruction) {
                     LabelInstruction targetLabelInstruction = ((JumpInstruction) block.getInstructionList().get(0)).getTarget();
