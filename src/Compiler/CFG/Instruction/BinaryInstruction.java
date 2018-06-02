@@ -148,7 +148,7 @@ public class BinaryInstruction extends Instruction {
             return str.toString();
         }
         if (operator.equals("MUL")) {
-            if (physicalSource instanceof PhysicalRegister) {
+            if (physicalTarget instanceof PhysicalRegister) {
                 str.append(Translator.getInstruction("imul", targetName, sourceName));
             } else {
                 str.append(Translator.getInstruction("mov", "rax", targetName));

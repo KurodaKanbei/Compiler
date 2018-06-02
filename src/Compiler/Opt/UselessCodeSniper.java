@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class UnassociatedCodeSniper {
+public class UselessCodeSniper {
     private static Set<Instruction> usefulInstruction;
     private static Map<Instruction, Set<VirtualRegister>> criticalOperandIn, criticalOperandOut;
 
@@ -69,7 +69,7 @@ public class UnassociatedCodeSniper {
                     Instruction nextInstruction = (i + 1 < block.getInstructionList().size()) ? block.getInstructionList().get(i + 1) : null;
                     hasImprove |= resolve(thisInstruction, nextInstruction, labelName.equals("loop_condition"));
                 }
-                Instruction nextInstruction = block.getInstructionList().isEmpty() ? null : block.getInstructionList().get(9);
+                Instruction nextInstruction = block.getInstructionList().isEmpty() ? null : block.getInstructionList().get(0);
                 hasImprove |= resolve(block.getLabelInstruction(), nextInstruction, labelName.equals("loop_condition"));
             }
         }
@@ -95,15 +95,20 @@ public class UnassociatedCodeSniper {
     }
 
     private static boolean resolve(Instruction thisInstruction, Instruction nextInstruction, boolean isLoopCondition) {
-        int inScale = criticalOperandIn.get(thisInstruction).size();
-        int outScale = criticalOperandOut.get(nextInstruction).size();
-        int usefulScale = usefulInstruction.size();
+        int originalInSize = criticalOperandIn.get(thisInstruction).size();
+        int originalOutSize = criticalOperandOut.get(thisInstruction).size();
+        int usefulInstructionSize = usefulInstruction.size();
         if (thisInstruction instanceof JumpInstruction) {
             Instruction target = ((JumpInstruction) thisInstruction).getTarget();
             criticalOperandOut.get(thisInstruction).addAll(criticalOperandIn.get(target));
         }
         if (!(thisInstruction instanceof JumpInstruction)) {
-            criticalOperandOut.get(thisInstruction).addAll(criticalOperandIn.get(nextInstruction));
+            if (nextInstruction != null) {
+                criticalOperandOut.get(thisInstruction).addAll(criticalOperandIn.get(nextInstruction));
+            }
+        }
+        if (thisInstruction instanceof CJumpInstruction) {
+            criticalOperandOut.get(thisInstruction).addAll(criticalOperandIn.get(((CJumpInstruction) thisInstruction).getTarget()));
         }
         if (thisInstruction instanceof LabelInstruction) {
             criticalOperandOut.get(thisInstruction).addAll(criticalOperandOut.get(thisInstruction));
@@ -113,10 +118,44 @@ public class UnassociatedCodeSniper {
                 }
             }
         }
-        if (thisInstruction instanceof JumpInstruction || thisInstruction instanceof CJumpInstruction || thisInstruction instanceof LabelInstruction) {
+        if (thisInstruction instanceof JumpInstruction || thisInstruction instanceof CJumpInstruction) {
             criticalOperandIn.get(thisInstruction).addAll(criticalOperandOut.get(thisInstruction));
-
+            if (thisInstruction instanceof JumpInstruction
+                    && usefulInstruction.contains(((JumpInstruction) thisInstruction).getTarget())
+                    && !isLoopCondition) {
+                usefulInstruction.add(thisInstruction);
+            }
+            if (thisInstruction instanceof CJumpInstruction
+                    && usefulInstruction.contains(((CJumpInstruction) thisInstruction).getTarget())) {
+                usefulInstruction.add(thisInstruction);
+            }
         }
+        if (thisInstruction instanceof CompareInstruction) {
+            criticalOperandIn.get(thisInstruction).addAll(criticalOperandOut.get(thisInstruction));
+            if (usefulInstruction.contains(nextInstruction)) {
+                usefulInstruction.add(thisInstruction);
+                issue(thisInstruction);
+            }
+        }
+        if (thisInstruction instanceof MallocInstruction
+                || thisInstruction instanceof BinaryInstruction
+                || thisInstruction instanceof CSetInstruction
+                || thisInstruction instanceof FunctionCallInstruction
+                || thisInstruction instanceof MoveInstruction
+                || thisInstruction instanceof ReturnInstruction
+                || thisInstruction instanceof UnaryInstruction) {
+            for (VirtualRegister virtualRegister : criticalOperandOut.get(thisInstruction)) {
+                if (thisInstruction.getKillSet().contains(virtualRegister)) {
+                    usefulInstruction.add(thisInstruction);
+                    issue(thisInstruction);
+                } else {
+                    criticalOperandIn.get(thisInstruction).add(virtualRegister);
+                }
+            }
+        }
+        if (criticalOperandIn.get(thisInstruction).size() != originalInSize) return true;
+        if (criticalOperandOut.get(thisInstruction).size() != originalOutSize) return true;
+        if (usefulInstruction.size() != usefulInstructionSize) return true;
         return false;
     }
 }
