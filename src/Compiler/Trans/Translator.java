@@ -3,6 +3,7 @@ package Compiler.Trans;
 import Compiler.AST.ProgramAST;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.ProgramIR;
+import Compiler.Utility.Utility;
 
 import java.util.Arrays;
 import java.util.List;
@@ -138,24 +139,12 @@ public class Translator {
         return str.toString();
     }
 
-    private static int getLength(String string) {
-        int n = string.length();
-        int ret = 0;
-        for (int i = 0; i < n; i++) {
-            if (string.charAt(i) == '\\') {
-                ++i;
-            }
-            ++ret;
-        }
-        return ret;
-    }
-
     private static String getDefinedDataSection() {
         StringBuilder str = new StringBuilder();
         str.append("SECTION .data\n");
         for (int i = 0; i < ProgramIR.getConstStringList().size(); i++) {
             String s = ProgramIR.getConstStringList().get(i);
-            str.append(getInstruction("dq", String.valueOf((getLength(s)))));
+            str.append(getInstruction("dq", String.valueOf((Utility.getLength(s)))));
             str.append("__const_string_").append(String.valueOf(i)).append(":\n").append("\tdb");
             int n = s.length();
             for (int j = 0; j < n; j++) {

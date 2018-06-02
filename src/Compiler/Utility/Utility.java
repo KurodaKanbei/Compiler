@@ -13,7 +13,7 @@ public class Utility {
     public static int getLength(String str) {
         int length = 0;
         for (int i = 0; i < str.length(); length++) {
-            if (str.charAt(i) != '\\') {
+            if (str.charAt(i) == '\\') {
                 i = i + 2;
             } else {
                 i = i + 1;
