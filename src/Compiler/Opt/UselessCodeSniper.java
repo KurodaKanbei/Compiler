@@ -78,7 +78,7 @@ public class UselessCodeSniper {
             for (int i = 0; i < block.getInstructionList().size(); i++) {
                 Instruction instruction = block.getInstructionList().get(i);
                 if (!usefulInstruction.contains(instruction) && !(instruction instanceof JumpInstruction)) {
-                    if (instruction instanceof LabelInstruction) System.out.println("what are you talking about");
+                    //if (instruction instanceof LabelInstruction) System.out.println("what are you talking about");
                     block.getInstructionList().remove(i--);
                 }
             }
