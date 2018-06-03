@@ -28,7 +28,8 @@ p:
     push                  rbp
      mov                  rbp,                  rsp
 p_0_block_enter:
-     mov                  rax,                  rdi
+     mov                  rsi,                  rdi
+     mov                  rax,                  rsi
 p_1_block_exit:
      pop                  rbp
      ret

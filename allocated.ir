@@ -1,6 +1,7 @@
 p n(rsi) {
 	p_0_block_enter
-		ret t15(rdi)
+		n(rsi) = mov t15(rdi)
+		ret n(rsi)
 	p_1_block_exit
 }
 __global_init {
