@@ -1,62 +1,1237 @@
-p n(rsi) {
-	p_0_block_enter
-		n(rsi) = mov t15(rdi)
-		ret n(rsi)
-	p_1_block_exit
-}
 __global_init {
 	__global_init_1_block_exit
 }
-f n(null) {
-	f_0_block_enter
-		n(rsi) = mov t0(rdi)
-		ret t3(rsi)
-		jump f_1_block_exit
-	f_3_inline_exit
-		ret t3(rsi)
-	f_1_block_exit
-}
-g n(null) {
-	g_0_block_enter
-		n(rsi) = mov t4(rdi)
-		t17(rdi) = mov n(rsi)
-		call p return value = t16(rax)
-		t18(rsi) = mov t16(rax)
-		ret t7(rsi)
-		jump g_1_block_exit
-	g_2_inline_enter
-		t17(rdi) = mov n(rsi)
-		call p return value = t16(rax)
-		t18(rsi) = mov t16(rax)
-		ret t7(rsi)
-		jump g_1_block_exit
-	g_3_inline_exit
-		ret t7(rsi)
-	g_1_block_exit
-}
 main {
 	main_0_block_enter
-		n(rsi) = mov 10
-		t20(rdi) = mov n(rsi)
-		call f return value = t19(rax)
+		call getString return value = t0(rax)
+		t3(rdi) = mov t0(rax)
+		call __string_parseInt return value = t2(rax)
+		Address (n(@n) + 0) = mov t2(rax)
+		t6(rsi) = mov Address (n(@n) + 0)
+		INC t6(rsi)
+		t6(rsi) = t6(rsi) SHL 3
+		malloc t5(rsi) t6(rsi)
+		Address (t5(rsi) + 0) = mov Address (n(@n) + 0)
+		t5(rsi) = t5(rsi) ADD 8
+		Address (a(@a) + 0) = mov t5(rsi)
+		i(rbx) = mov 0
+		t9(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t8(rax)
+		t10(rsi) = mov t8(rax)
+		cmp i(rbx) t10(rsi)
+		CJump LE main_2_loop_body
+		t128(rsi) = mov Address (n(@n) + 0)
+		DEC t128(rsi)
+		t129(rsi) = t129(rsi) DIV 2
+		i(rdi) = mov t129(rsi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
 		t21(rsi) = mov t19(rax)
-		t12(rdi) = mov t21(rsi)
-		call toString return value = t11(rax)
-		t14(rdi) = mov t11(rax)
-		call println return value = null
-		jump main_1_block_exit
-	main_2_inline_enter
-		t20(rdi) = mov n(rsi)
-		call f return value = t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_1_loop_condition
+		t9(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t8(rax)
+		t10(rsi) = mov t8(rax)
+		cmp i(rbx) t10(rsi)
+		CJump LE main_2_loop_body
+		t128(rsi) = mov Address (n(@n) + 0)
+		DEC t128(rsi)
+		t129(rsi) = t129(rsi) DIV 2
+		i(rdi) = mov t129(rsi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
 		t21(rsi) = mov t19(rax)
-		t12(rdi) = mov t21(rsi)
-		call toString return value = t11(rax)
-		t14(rdi) = mov t11(rax)
-		call println return value = null
-		jump main_1_block_exit
-	main_3_inline_exit
-		call toString return value = t11(rax)
-		t14(rdi) = mov t11(rax)
-		call println return value = null
-	main_1_block_exit
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_2_loop_body
+		t12(rsi) = mov i(rbx)
+		t12(rsi) = t12(rsi) SHL 3
+		t13(rdi) = mov Address (a(@a) + 0)
+		t13(rdi) = t13(rdi) ADD t12(rsi)
+		Address (t13(rdi) + 0) = mov i(rbx)
+		INC i(rbx)
+		t9(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t8(rax)
+		t10(rsi) = mov t8(rax)
+		cmp i(rbx) t10(rsi)
+		CJump LE main_2_loop_body
+		t128(rsi) = mov Address (n(@n) + 0)
+		DEC t128(rsi)
+		t129(rsi) = t129(rsi) DIV 2
+		i(rdi) = mov t129(rsi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_3_loop_increment
+		INC i(rbx)
+		t9(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t8(rax)
+		t10(rsi) = mov t8(rax)
+		cmp i(rbx) t10(rsi)
+		CJump LE main_2_loop_body
+		t128(rsi) = mov Address (n(@n) + 0)
+		DEC t128(rsi)
+		t129(rsi) = t129(rsi) DIV 2
+		i(rdi) = mov t129(rsi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_10_inline_enter
+		t128(rsi) = mov Address (n(@n) + 0)
+		DEC t128(rsi)
+		t129(rsi) = t129(rsi) DIV 2
+		i(rdi) = mov t129(rsi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_11_loop_condition
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_12_loop_body
+		t131(rsi) = mov i(rdi)
+		t131(rsi) = t131(rsi) SHL 1
+		j(r12) = mov t131(rsi)
+		t133(rsi) = mov i(rdi)
+		t133(rsi) = t133(rsi) SHL 1
+		INC t134(rsi)
+		cmp t134(rsi) Address (n(@n) + 0)
+		set LE t135(rsi)
+		cmp t135(rsi) 1
+		CJump NEQ main_14_logical_false
+		t136(rsi) = mov i(rdi)
+		t136(rsi) = t136(rsi) SHL 1
+		INC t137(rsi)
+		t138(rsi) = t138(rsi) SHL 3
+		t139(r8) = mov Address (a(@a) + 0)
+		t139(r8) = t139(r8) ADD t138(rsi)
+		t140(rsi) = mov i(rdi)
+		t140(rsi) = t140(rsi) SHL 1
+		t141(rsi) = t141(rsi) SHL 3
+		t142(rbx) = mov Address (a(@a) + 0)
+		t142(rbx) = t142(rbx) ADD t141(rsi)
+		t144(rsi) = mov Address (t139(r8) + 0)
+		cmp t144(rsi) Address (t142(rbx) + 0)
+		set LE t132(rsi)
+		cmp t132(rsi) 1
+		CJump EQ main_16_if_true
+		t147(rsi) = mov i(rdi)
+		t147(rsi) = t147(rsi) SHL 3
+		t148(rbx) = mov Address (a(@a) + 0)
+		t148(rbx) = t148(rbx) ADD t147(rsi)
+		t149(rsi) = mov j(r12)
+		t149(rsi) = t149(rsi) SHL 3
+		t150(r8) = mov Address (a(@a) + 0)
+		t150(r8) = t150(r8) ADD t149(rsi)
+		t152(rsi) = mov Address (t148(rbx) + 0)
+		cmp t152(rsi) Address (t150(r8) + 0)
+		CJump GR main_19_if_true
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_13_logical_true
+		t136(rsi) = mov i(rdi)
+		t136(rsi) = t136(rsi) SHL 1
+		INC t137(rsi)
+		t138(rsi) = t138(rsi) SHL 3
+		t139(r8) = mov Address (a(@a) + 0)
+		t139(r8) = t139(r8) ADD t138(rsi)
+		t140(rsi) = mov i(rdi)
+		t140(rsi) = t140(rsi) SHL 1
+		t141(rsi) = t141(rsi) SHL 3
+		t142(rbx) = mov Address (a(@a) + 0)
+		t142(rbx) = t142(rbx) ADD t141(rsi)
+		t144(rsi) = mov Address (t139(r8) + 0)
+		cmp t144(rsi) Address (t142(rbx) + 0)
+		set LE t132(rsi)
+		cmp t132(rsi) 1
+		CJump EQ main_16_if_true
+		t147(rsi) = mov i(rdi)
+		t147(rsi) = t147(rsi) SHL 3
+		t148(rbx) = mov Address (a(@a) + 0)
+		t148(rbx) = t148(rbx) ADD t147(rsi)
+		t149(rsi) = mov j(r12)
+		t149(rsi) = t149(rsi) SHL 3
+		t150(r8) = mov Address (a(@a) + 0)
+		t150(r8) = t150(r8) ADD t149(rsi)
+		t152(rsi) = mov Address (t148(rbx) + 0)
+		cmp t152(rsi) Address (t150(r8) + 0)
+		CJump GR main_19_if_true
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_14_logical_false
+		t132(rsi) = mov 0
+		cmp t132(rsi) 1
+		CJump EQ main_16_if_true
+		t147(rsi) = mov i(rdi)
+		t147(rsi) = t147(rsi) SHL 3
+		t148(rbx) = mov Address (a(@a) + 0)
+		t148(rbx) = t148(rbx) ADD t147(rsi)
+		t149(rsi) = mov j(r12)
+		t149(rsi) = t149(rsi) SHL 3
+		t150(r8) = mov Address (a(@a) + 0)
+		t150(r8) = t150(r8) ADD t149(rsi)
+		t152(rsi) = mov Address (t148(rbx) + 0)
+		cmp t152(rsi) Address (t150(r8) + 0)
+		CJump GR main_19_if_true
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_15_logical_exit
+		cmp t132(rsi) 1
+		CJump EQ main_16_if_true
+		t147(rsi) = mov i(rdi)
+		t147(rsi) = t147(rsi) SHL 3
+		t148(rbx) = mov Address (a(@a) + 0)
+		t148(rbx) = t148(rbx) ADD t147(rsi)
+		t149(rsi) = mov j(r12)
+		t149(rsi) = t149(rsi) SHL 3
+		t150(r8) = mov Address (a(@a) + 0)
+		t150(r8) = t150(r8) ADD t149(rsi)
+		t152(rsi) = mov Address (t148(rbx) + 0)
+		cmp t152(rsi) Address (t150(r8) + 0)
+		CJump GR main_19_if_true
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_16_if_true
+		t145(rsi) = mov i(rdi)
+		t145(rsi) = t145(rsi) SHL 1
+		INC t146(rsi)
+		j(r12) = mov t146(rsi)
+		t147(rsi) = mov i(rdi)
+		t147(rsi) = t147(rsi) SHL 3
+		t148(rbx) = mov Address (a(@a) + 0)
+		t148(rbx) = t148(rbx) ADD t147(rsi)
+		t149(rsi) = mov j(r12)
+		t149(rsi) = t149(rsi) SHL 3
+		t150(r8) = mov Address (a(@a) + 0)
+		t150(r8) = t150(r8) ADD t149(rsi)
+		t152(rsi) = mov Address (t148(rbx) + 0)
+		cmp t152(rsi) Address (t150(r8) + 0)
+		CJump GR main_19_if_true
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_18_if_exit
+		t147(rsi) = mov i(rdi)
+		t147(rsi) = t147(rsi) SHL 3
+		t148(rbx) = mov Address (a(@a) + 0)
+		t148(rbx) = t148(rbx) ADD t147(rsi)
+		t149(rsi) = mov j(r12)
+		t149(rsi) = t149(rsi) SHL 3
+		t150(r8) = mov Address (a(@a) + 0)
+		t150(r8) = t150(r8) ADD t149(rsi)
+		t152(rsi) = mov Address (t148(rbx) + 0)
+		cmp t152(rsi) Address (t150(r8) + 0)
+		CJump GR main_19_if_true
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_19_if_true
+		t154(rsi) = mov j(r12)
+		call exchange return value = null
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_21_if_exit
+		DEC i(rdi)
+		cmp i(rdi) 0
+		CJump GREQ main_12_loop_body
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_24_inline_enter
+		k(r12) = mov 0
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_25_loop_condition
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_26_loop_body
+		t157(rsi) = mov 0
+		t157(rsi) = t157(rsi) SHL 3
+		t158(rbx) = mov Address (a(@a) + 0)
+		t158(rbx) = t158(rbx) ADD t157(rsi)
+		t(r8) = mov Address (t158(rbx) + 0)
+		t159(rsi) = mov 0
+		t159(rsi) = t159(rsi) SHL 3
+		t160(rdi) = mov Address (a(@a) + 0)
+		t160(rdi) = t160(rdi) ADD t159(rsi)
+		t161(rsi) = mov Address (n(@n) + 0)
+		t161(rsi) = t161(rsi) SUB k(r12)
+		DEC t162(rsi)
+		t163(rbx) = mov t162(rsi)
+		t163(rbx) = t163(rbx) SHL 3
+		t164(rsi) = mov Address (a(@a) + 0)
+		t164(rsi) = t164(rsi) ADD t163(rbx)
+		Address (t160(rdi) + 0) = mov Address (t164(rsi) + 0)
+		t166(rsi) = mov Address (n(@n) + 0)
+		t166(rsi) = t166(rsi) SUB k(r12)
+		DEC t167(rsi)
+		t168(rbx) = mov t167(rsi)
+		t168(rbx) = t168(rbx) SHL 3
+		t169(rsi) = mov Address (a(@a) + 0)
+		t169(rsi) = t169(rsi) ADD t168(rbx)
+		Address (t169(rsi) + 0) = mov t(r8)
+		t170(rsi) = mov Address (n(@n) + 0)
+		t170(rsi) = t170(rsi) SUB k(r12)
+		DEC t171(rsi)
+		t173(rdi) = mov t171(rsi)
+		call adjustHeap return value = t172(rax)
+		INC k(r12)
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_27_loop_increment
+		INC k(r12)
+		cmp k(r12) Address (n(@n) + 0)
+		CJump LE main_26_loop_body
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_29_inline_exit
+		i(rbx) = mov 0
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_5_loop_condition
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_6_loop_body
+		t23(rsi) = mov i(rbx)
+		t23(rsi) = t23(rsi) SHL 3
+		t24(rdi) = mov Address (a(@a) + 0)
+		t24(rdi) = t24(rdi) ADD t23(rsi)
+		t26(rdi) = mov Address (t24(rdi) + 0)
+		call toString return value = t25(rax)
+		t29(rdi) = mov t25(rax)
+		t30(rsi) = mov __const_string_0
+		call __string_connection return value = t28(rax)
+		t32(rdi) = mov t28(rax)
+		call print return value = null
+		INC i(rbx)
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_7_loop_increment
+		INC i(rbx)
+		t20(rdi) = mov Address (a(@a) + 0)
+		call __array_size return value = t19(rax)
+		t21(rsi) = mov t19(rax)
+		cmp i(rbx) t21(rsi)
+		CJump LE main_6_loop_body
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+		jump main_9_block_exit
+	main_8_loop_exit
+		t34(rdi) = mov __const_string_1
+		call print return value = null
+		ret 0
+	main_9_block_exit
+}
+exchange x(r9) y(r8) {
+	exchange_0_block_enter
+		x(r9) = mov t55(rdi)
+		y(r8) = mov t56(rsi)
+		t57(rdi) = mov x(r9)
+		t57(rdi) = t57(rdi) SHL 3
+		t58(rsi) = mov Address (a(@a) + 0)
+		t58(rsi) = t58(rsi) ADD t57(rdi)
+		t(rdi) = mov Address (t58(rsi) + 0)
+		t59(rsi) = mov x(r9)
+		t59(rsi) = t59(rsi) SHL 3
+		t60(r9) = mov Address (a(@a) + 0)
+		t60(r9) = t60(r9) ADD t59(rsi)
+		t61(r10) = mov y(r8)
+		t61(r10) = t61(r10) SHL 3
+		t62(rsi) = mov Address (a(@a) + 0)
+		t62(rsi) = t62(rsi) ADD t61(r10)
+		Address (t60(r9) + 0) = mov Address (t62(rsi) + 0)
+		t64(r8) = t64(r8) SHL 3
+		t65(rsi) = mov Address (a(@a) + 0)
+		t65(rsi) = t65(rsi) ADD t64(r8)
+		Address (t65(rsi) + 0) = mov t(rdi)
+	exchange_1_block_exit
+}
+adjustHeap n(r11) {
+	adjustHeap_0_block_enter
+		n(r11) = mov t66(rdi)
+		i(r8) = mov 0
+		t67(rsi) = mov i(r8)
+		t67(rsi) = t67(rsi) SHL 1
+		cmp t67(rsi) n(r11)
+		CJump LE adjustHeap_2_loop_body
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_1_loop_condition
+		t67(rsi) = mov i(r8)
+		t67(rsi) = t67(rsi) SHL 1
+		cmp t67(rsi) n(r11)
+		CJump LE adjustHeap_2_loop_body
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_2_loop_body
+		t69(rsi) = mov i(r8)
+		t69(rsi) = t69(rsi) SHL 1
+		j(r10) = mov t69(rsi)
+		t71(rsi) = mov i(r8)
+		t71(rsi) = t71(rsi) SHL 1
+		INC t72(rsi)
+		cmp t72(rsi) n(r11)
+		set LE t73(rsi)
+		cmp t73(rsi) 1
+		CJump NEQ adjustHeap_4_logical_false
+		t74(rsi) = mov i(r8)
+		t74(rsi) = t74(rsi) SHL 1
+		INC t75(rsi)
+		t76(rsi) = t76(rsi) SHL 3
+		t77(r9) = mov Address (a(@a) + 0)
+		t77(r9) = t77(r9) ADD t76(rsi)
+		t78(rsi) = mov i(r8)
+		t78(rsi) = t78(rsi) SHL 1
+		t79(rdi) = mov t78(rsi)
+		t79(rdi) = t79(rdi) SHL 3
+		t80(rsi) = mov Address (a(@a) + 0)
+		t80(rsi) = t80(rsi) ADD t79(rdi)
+		t82(rdi) = mov Address (t77(r9) + 0)
+		cmp t82(rdi) Address (t80(rsi) + 0)
+		set LE t70(rsi)
+		cmp t70(rsi) 1
+		CJump EQ adjustHeap_6_if_true
+		t85(rsi) = mov i(r8)
+		t85(rsi) = t85(rsi) SHL 3
+		t86(rdi) = mov Address (a(@a) + 0)
+		t86(rdi) = t86(rdi) ADD t85(rsi)
+		t87(r9) = mov j(r10)
+		t87(r9) = t87(r9) SHL 3
+		t88(rsi) = mov Address (a(@a) + 0)
+		t88(rsi) = t88(rsi) ADD t87(r9)
+		t90(rdi) = mov Address (t86(rdi) + 0)
+		cmp t90(rdi) Address (t88(rsi) + 0)
+		CJump GR adjustHeap_9_if_true
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_3_logical_true
+		t74(rsi) = mov i(r8)
+		t74(rsi) = t74(rsi) SHL 1
+		INC t75(rsi)
+		t76(rsi) = t76(rsi) SHL 3
+		t77(r9) = mov Address (a(@a) + 0)
+		t77(r9) = t77(r9) ADD t76(rsi)
+		t78(rsi) = mov i(r8)
+		t78(rsi) = t78(rsi) SHL 1
+		t79(rdi) = mov t78(rsi)
+		t79(rdi) = t79(rdi) SHL 3
+		t80(rsi) = mov Address (a(@a) + 0)
+		t80(rsi) = t80(rsi) ADD t79(rdi)
+		t82(rdi) = mov Address (t77(r9) + 0)
+		cmp t82(rdi) Address (t80(rsi) + 0)
+		set LE t70(rsi)
+		cmp t70(rsi) 1
+		CJump EQ adjustHeap_6_if_true
+		t85(rsi) = mov i(r8)
+		t85(rsi) = t85(rsi) SHL 3
+		t86(rdi) = mov Address (a(@a) + 0)
+		t86(rdi) = t86(rdi) ADD t85(rsi)
+		t87(r9) = mov j(r10)
+		t87(r9) = t87(r9) SHL 3
+		t88(rsi) = mov Address (a(@a) + 0)
+		t88(rsi) = t88(rsi) ADD t87(r9)
+		t90(rdi) = mov Address (t86(rdi) + 0)
+		cmp t90(rdi) Address (t88(rsi) + 0)
+		CJump GR adjustHeap_9_if_true
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_4_logical_false
+		t70(rsi) = mov 0
+		cmp t70(rsi) 1
+		CJump EQ adjustHeap_6_if_true
+		t85(rsi) = mov i(r8)
+		t85(rsi) = t85(rsi) SHL 3
+		t86(rdi) = mov Address (a(@a) + 0)
+		t86(rdi) = t86(rdi) ADD t85(rsi)
+		t87(r9) = mov j(r10)
+		t87(r9) = t87(r9) SHL 3
+		t88(rsi) = mov Address (a(@a) + 0)
+		t88(rsi) = t88(rsi) ADD t87(r9)
+		t90(rdi) = mov Address (t86(rdi) + 0)
+		cmp t90(rdi) Address (t88(rsi) + 0)
+		CJump GR adjustHeap_9_if_true
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_5_logical_exit
+		cmp t70(rsi) 1
+		CJump EQ adjustHeap_6_if_true
+		t85(rsi) = mov i(r8)
+		t85(rsi) = t85(rsi) SHL 3
+		t86(rdi) = mov Address (a(@a) + 0)
+		t86(rdi) = t86(rdi) ADD t85(rsi)
+		t87(r9) = mov j(r10)
+		t87(r9) = t87(r9) SHL 3
+		t88(rsi) = mov Address (a(@a) + 0)
+		t88(rsi) = t88(rsi) ADD t87(r9)
+		t90(rdi) = mov Address (t86(rdi) + 0)
+		cmp t90(rdi) Address (t88(rsi) + 0)
+		CJump GR adjustHeap_9_if_true
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_6_if_true
+		t83(rsi) = mov i(r8)
+		t83(rsi) = t83(rsi) SHL 1
+		INC t84(rsi)
+		j(r10) = mov t84(rsi)
+		t85(rsi) = mov i(r8)
+		t85(rsi) = t85(rsi) SHL 3
+		t86(rdi) = mov Address (a(@a) + 0)
+		t86(rdi) = t86(rdi) ADD t85(rsi)
+		t87(r9) = mov j(r10)
+		t87(r9) = t87(r9) SHL 3
+		t88(rsi) = mov Address (a(@a) + 0)
+		t88(rsi) = t88(rsi) ADD t87(r9)
+		t90(rdi) = mov Address (t86(rdi) + 0)
+		cmp t90(rdi) Address (t88(rsi) + 0)
+		CJump GR adjustHeap_9_if_true
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_8_if_exit
+		t85(rsi) = mov i(r8)
+		t85(rsi) = t85(rsi) SHL 3
+		t86(rdi) = mov Address (a(@a) + 0)
+		t86(rdi) = t86(rdi) ADD t85(rsi)
+		t87(r9) = mov j(r10)
+		t87(r9) = t87(r9) SHL 3
+		t88(rsi) = mov Address (a(@a) + 0)
+		t88(rsi) = t88(rsi) ADD t87(r9)
+		t90(rdi) = mov Address (t86(rdi) + 0)
+		cmp t90(rdi) Address (t88(rsi) + 0)
+		CJump GR adjustHeap_9_if_true
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_9_if_true
+		t91(rsi) = mov i(r8)
+		t91(rsi) = t91(rsi) SHL 3
+		t92(rdi) = mov Address (a(@a) + 0)
+		t92(rdi) = t92(rdi) ADD t91(rsi)
+		t(rsi) = mov Address (t92(rdi) + 0)
+		t93(rdi) = mov i(r8)
+		t93(rdi) = t93(rdi) SHL 3
+		t94(r9) = mov Address (a(@a) + 0)
+		t94(r9) = t94(r9) ADD t93(rdi)
+		t95(r8) = mov j(r10)
+		t95(r8) = t95(r8) SHL 3
+		t96(rdi) = mov Address (a(@a) + 0)
+		t96(rdi) = t96(rdi) ADD t95(r8)
+		Address (t94(r9) + 0) = mov Address (t96(rdi) + 0)
+		t98(rdi) = mov j(r10)
+		t98(rdi) = t98(rdi) SHL 3
+		t99(r8) = mov Address (a(@a) + 0)
+		t99(r8) = t99(r8) ADD t98(rdi)
+		Address (t99(r8) + 0) = mov t(rsi)
+		i(r8) = mov j(r10)
+		t67(rsi) = mov i(r8)
+		t67(rsi) = t67(rsi) SHL 1
+		cmp t67(rsi) n(r11)
+		CJump LE adjustHeap_2_loop_body
+		ret 0
+		jump adjustHeap_13_block_exit
+	adjustHeap_12_loop_exit
+		ret 0
+	adjustHeap_13_block_exit
+}
+heapSort {
+	heapSort_0_block_enter
+		k(r10) = mov 0
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_1_loop_condition
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_2_loop_body
+		t36(rsi) = mov 0
+		t36(rsi) = t36(rsi) SHL 3
+		t37(rdi) = mov Address (a(@a) + 0)
+		t37(rdi) = t37(rdi) ADD t36(rsi)
+		t(r8) = mov Address (t37(rdi) + 0)
+		t38(rsi) = mov 0
+		t38(rsi) = t38(rsi) SHL 3
+		t39(r9) = mov Address (a(@a) + 0)
+		t39(r9) = t39(r9) ADD t38(rsi)
+		t40(rsi) = mov Address (n(@n) + 0)
+		t40(rsi) = t40(rsi) SUB k(r10)
+		DEC t41(rsi)
+		t42(rdi) = mov t41(rsi)
+		t42(rdi) = t42(rdi) SHL 3
+		t43(rsi) = mov Address (a(@a) + 0)
+		t43(rsi) = t43(rsi) ADD t42(rdi)
+		Address (t39(r9) + 0) = mov Address (t43(rsi) + 0)
+		t45(rsi) = mov Address (n(@n) + 0)
+		t45(rsi) = t45(rsi) SUB k(r10)
+		DEC t46(rsi)
+		t47(rsi) = t47(rsi) SHL 3
+		t48(rdi) = mov Address (a(@a) + 0)
+		t48(rdi) = t48(rdi) ADD t47(rsi)
+		Address (t48(rdi) + 0) = mov t(r8)
+		t49(rsi) = mov Address (n(@n) + 0)
+		t49(rsi) = t49(rsi) SUB k(r10)
+		DEC t50(rsi)
+		n(rbx) = mov t50(rsi)
+		i(rdi) = mov 0
+		t176(rsi) = mov i(rdi)
+		t176(rsi) = t176(rsi) SHL 1
+		cmp t176(rsi) n(rbx)
+		CJump LE heapSort_8_loop_body
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_6_inline_enter
+		i(rdi) = mov 0
+		t176(rsi) = mov i(rdi)
+		t176(rsi) = t176(rsi) SHL 1
+		cmp t176(rsi) n(rbx)
+		CJump LE heapSort_8_loop_body
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_7_loop_condition
+		t176(rsi) = mov i(rdi)
+		t176(rsi) = t176(rsi) SHL 1
+		cmp t176(rsi) n(rbx)
+		CJump LE heapSort_8_loop_body
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_8_loop_body
+		t178(rsi) = mov i(rdi)
+		t178(rsi) = t178(rsi) SHL 1
+		j(r9) = mov t178(rsi)
+		t180(rsi) = mov i(rdi)
+		t180(rsi) = t180(rsi) SHL 1
+		INC t181(rsi)
+		cmp t181(rsi) n(rbx)
+		set LE t182(rsi)
+		cmp t182(rsi) 1
+		CJump NEQ heapSort_10_logical_false
+		t183(rsi) = mov i(rdi)
+		t183(rsi) = t183(rsi) SHL 1
+		INC t184(rsi)
+		t185(rsi) = t185(rsi) SHL 3
+		t186(r8) = mov Address (a(@a) + 0)
+		t186(r8) = t186(r8) ADD t185(rsi)
+		t187(rsi) = mov i(rdi)
+		t187(rsi) = t187(rsi) SHL 1
+		t188(r11) = mov t187(rsi)
+		t188(r11) = t188(r11) SHL 3
+		t189(rsi) = mov Address (a(@a) + 0)
+		t189(rsi) = t189(rsi) ADD t188(r11)
+		t191(r8) = mov Address (t186(r8) + 0)
+		cmp t191(r8) Address (t189(rsi) + 0)
+		set LE t179(rsi)
+		cmp t179(rsi) 1
+		CJump EQ heapSort_12_if_true
+		t194(rsi) = mov i(rdi)
+		t194(rsi) = t194(rsi) SHL 3
+		t195(r11) = mov Address (a(@a) + 0)
+		t195(r11) = t195(r11) ADD t194(rsi)
+		t196(r8) = mov j(r9)
+		t196(r8) = t196(r8) SHL 3
+		t197(rsi) = mov Address (a(@a) + 0)
+		t197(rsi) = t197(rsi) ADD t196(r8)
+		t199(r8) = mov Address (t195(r11) + 0)
+		cmp t199(r8) Address (t197(rsi) + 0)
+		CJump GR heapSort_15_if_true
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_9_logical_true
+		t183(rsi) = mov i(rdi)
+		t183(rsi) = t183(rsi) SHL 1
+		INC t184(rsi)
+		t185(rsi) = t185(rsi) SHL 3
+		t186(r8) = mov Address (a(@a) + 0)
+		t186(r8) = t186(r8) ADD t185(rsi)
+		t187(rsi) = mov i(rdi)
+		t187(rsi) = t187(rsi) SHL 1
+		t188(r11) = mov t187(rsi)
+		t188(r11) = t188(r11) SHL 3
+		t189(rsi) = mov Address (a(@a) + 0)
+		t189(rsi) = t189(rsi) ADD t188(r11)
+		t191(r8) = mov Address (t186(r8) + 0)
+		cmp t191(r8) Address (t189(rsi) + 0)
+		set LE t179(rsi)
+		cmp t179(rsi) 1
+		CJump EQ heapSort_12_if_true
+		t194(rsi) = mov i(rdi)
+		t194(rsi) = t194(rsi) SHL 3
+		t195(r11) = mov Address (a(@a) + 0)
+		t195(r11) = t195(r11) ADD t194(rsi)
+		t196(r8) = mov j(r9)
+		t196(r8) = t196(r8) SHL 3
+		t197(rsi) = mov Address (a(@a) + 0)
+		t197(rsi) = t197(rsi) ADD t196(r8)
+		t199(r8) = mov Address (t195(r11) + 0)
+		cmp t199(r8) Address (t197(rsi) + 0)
+		CJump GR heapSort_15_if_true
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_10_logical_false
+		t179(rsi) = mov 0
+		cmp t179(rsi) 1
+		CJump EQ heapSort_12_if_true
+		t194(rsi) = mov i(rdi)
+		t194(rsi) = t194(rsi) SHL 3
+		t195(r11) = mov Address (a(@a) + 0)
+		t195(r11) = t195(r11) ADD t194(rsi)
+		t196(r8) = mov j(r9)
+		t196(r8) = t196(r8) SHL 3
+		t197(rsi) = mov Address (a(@a) + 0)
+		t197(rsi) = t197(rsi) ADD t196(r8)
+		t199(r8) = mov Address (t195(r11) + 0)
+		cmp t199(r8) Address (t197(rsi) + 0)
+		CJump GR heapSort_15_if_true
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_11_logical_exit
+		cmp t179(rsi) 1
+		CJump EQ heapSort_12_if_true
+		t194(rsi) = mov i(rdi)
+		t194(rsi) = t194(rsi) SHL 3
+		t195(r11) = mov Address (a(@a) + 0)
+		t195(r11) = t195(r11) ADD t194(rsi)
+		t196(r8) = mov j(r9)
+		t196(r8) = t196(r8) SHL 3
+		t197(rsi) = mov Address (a(@a) + 0)
+		t197(rsi) = t197(rsi) ADD t196(r8)
+		t199(r8) = mov Address (t195(r11) + 0)
+		cmp t199(r8) Address (t197(rsi) + 0)
+		CJump GR heapSort_15_if_true
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_12_if_true
+		t192(rsi) = mov i(rdi)
+		t192(rsi) = t192(rsi) SHL 1
+		INC t193(rsi)
+		j(r9) = mov t193(rsi)
+		t194(rsi) = mov i(rdi)
+		t194(rsi) = t194(rsi) SHL 3
+		t195(r11) = mov Address (a(@a) + 0)
+		t195(r11) = t195(r11) ADD t194(rsi)
+		t196(r8) = mov j(r9)
+		t196(r8) = t196(r8) SHL 3
+		t197(rsi) = mov Address (a(@a) + 0)
+		t197(rsi) = t197(rsi) ADD t196(r8)
+		t199(r8) = mov Address (t195(r11) + 0)
+		cmp t199(r8) Address (t197(rsi) + 0)
+		CJump GR heapSort_15_if_true
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_14_if_exit
+		t194(rsi) = mov i(rdi)
+		t194(rsi) = t194(rsi) SHL 3
+		t195(r11) = mov Address (a(@a) + 0)
+		t195(r11) = t195(r11) ADD t194(rsi)
+		t196(r8) = mov j(r9)
+		t196(r8) = t196(r8) SHL 3
+		t197(rsi) = mov Address (a(@a) + 0)
+		t197(rsi) = t197(rsi) ADD t196(r8)
+		t199(r8) = mov Address (t195(r11) + 0)
+		cmp t199(r8) Address (t197(rsi) + 0)
+		CJump GR heapSort_15_if_true
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_15_if_true
+		t200(r8) = mov i(rdi)
+		t200(r8) = t200(r8) SHL 3
+		t201(rsi) = mov Address (a(@a) + 0)
+		t201(rsi) = t201(rsi) ADD t200(r8)
+		t(rsi) = mov Address (t201(rsi) + 0)
+		t202(r8) = mov i(rdi)
+		t202(r8) = t202(r8) SHL 3
+		t203(rdi) = mov Address (a(@a) + 0)
+		t203(rdi) = t203(rdi) ADD t202(r8)
+		t204(r11) = mov j(r9)
+		t204(r11) = t204(r11) SHL 3
+		t205(r8) = mov Address (a(@a) + 0)
+		t205(r8) = t205(r8) ADD t204(r11)
+		Address (t203(rdi) + 0) = mov Address (t205(r8) + 0)
+		t207(rdi) = mov j(r9)
+		t207(rdi) = t207(rdi) SHL 3
+		t208(r8) = mov Address (a(@a) + 0)
+		t208(r8) = t208(r8) ADD t207(rdi)
+		Address (t208(r8) + 0) = mov t(rsi)
+		i(rdi) = mov j(r9)
+		t176(rsi) = mov i(rdi)
+		t176(rsi) = t176(rsi) SHL 1
+		cmp t176(rsi) n(rbx)
+		CJump LE heapSort_8_loop_body
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_3_loop_increment
+		INC k(r10)
+		cmp k(r10) Address (n(@n) + 0)
+		CJump LE heapSort_2_loop_body
+		ret 0
+		jump heapSort_5_block_exit
+	heapSort_4_loop_exit
+		ret 0
+	heapSort_5_block_exit
+}
+makeHeap {
+	makeHeap_0_block_enter
+		t100(rsi) = mov Address (n(@n) + 0)
+		DEC t100(rsi)
+		t101(rsi) = t101(rsi) DIV 2
+		i(r9) = mov t101(rsi)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_1_loop_condition
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_2_loop_body
+		t103(rsi) = mov i(r9)
+		t103(rsi) = t103(rsi) SHL 1
+		j(r8) = mov t103(rsi)
+		t105(rsi) = mov i(r9)
+		t105(rsi) = t105(rsi) SHL 1
+		INC t106(rsi)
+		cmp t106(rsi) Address (n(@n) + 0)
+		set LE t107(rsi)
+		cmp t107(rsi) 1
+		CJump NEQ makeHeap_4_logical_false
+		t108(rsi) = mov i(r9)
+		t108(rsi) = t108(rsi) SHL 1
+		INC t109(rsi)
+		t110(rsi) = t110(rsi) SHL 3
+		t111(r10) = mov Address (a(@a) + 0)
+		t111(r10) = t111(r10) ADD t110(rsi)
+		t112(rsi) = mov i(r9)
+		t112(rsi) = t112(rsi) SHL 1
+		t113(rsi) = t113(rsi) SHL 3
+		t114(rdi) = mov Address (a(@a) + 0)
+		t114(rdi) = t114(rdi) ADD t113(rsi)
+		t116(rsi) = mov Address (t111(r10) + 0)
+		cmp t116(rsi) Address (t114(rdi) + 0)
+		set LE t104(rsi)
+		cmp t104(rsi) 1
+		CJump EQ makeHeap_6_if_true
+		t119(rdi) = mov i(r9)
+		t119(rdi) = t119(rdi) SHL 3
+		t120(rsi) = mov Address (a(@a) + 0)
+		t120(rsi) = t120(rsi) ADD t119(rdi)
+		t121(r10) = mov j(r8)
+		t121(r10) = t121(r10) SHL 3
+		t122(rdi) = mov Address (a(@a) + 0)
+		t122(rdi) = t122(rdi) ADD t121(r10)
+		t124(rsi) = mov Address (t120(rsi) + 0)
+		cmp t124(rsi) Address (t122(rdi) + 0)
+		CJump GR makeHeap_14_inline_enter
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_3_logical_true
+		t108(rsi) = mov i(r9)
+		t108(rsi) = t108(rsi) SHL 1
+		INC t109(rsi)
+		t110(rsi) = t110(rsi) SHL 3
+		t111(r10) = mov Address (a(@a) + 0)
+		t111(r10) = t111(r10) ADD t110(rsi)
+		t112(rsi) = mov i(r9)
+		t112(rsi) = t112(rsi) SHL 1
+		t113(rsi) = t113(rsi) SHL 3
+		t114(rdi) = mov Address (a(@a) + 0)
+		t114(rdi) = t114(rdi) ADD t113(rsi)
+		t116(rsi) = mov Address (t111(r10) + 0)
+		cmp t116(rsi) Address (t114(rdi) + 0)
+		set LE t104(rsi)
+		cmp t104(rsi) 1
+		CJump EQ makeHeap_6_if_true
+		t119(rdi) = mov i(r9)
+		t119(rdi) = t119(rdi) SHL 3
+		t120(rsi) = mov Address (a(@a) + 0)
+		t120(rsi) = t120(rsi) ADD t119(rdi)
+		t121(r10) = mov j(r8)
+		t121(r10) = t121(r10) SHL 3
+		t122(rdi) = mov Address (a(@a) + 0)
+		t122(rdi) = t122(rdi) ADD t121(r10)
+		t124(rsi) = mov Address (t120(rsi) + 0)
+		cmp t124(rsi) Address (t122(rdi) + 0)
+		CJump GR makeHeap_14_inline_enter
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_4_logical_false
+		t104(rsi) = mov 0
+		cmp t104(rsi) 1
+		CJump EQ makeHeap_6_if_true
+		t119(rdi) = mov i(r9)
+		t119(rdi) = t119(rdi) SHL 3
+		t120(rsi) = mov Address (a(@a) + 0)
+		t120(rsi) = t120(rsi) ADD t119(rdi)
+		t121(r10) = mov j(r8)
+		t121(r10) = t121(r10) SHL 3
+		t122(rdi) = mov Address (a(@a) + 0)
+		t122(rdi) = t122(rdi) ADD t121(r10)
+		t124(rsi) = mov Address (t120(rsi) + 0)
+		cmp t124(rsi) Address (t122(rdi) + 0)
+		CJump GR makeHeap_14_inline_enter
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_5_logical_exit
+		cmp t104(rsi) 1
+		CJump EQ makeHeap_6_if_true
+		t119(rdi) = mov i(r9)
+		t119(rdi) = t119(rdi) SHL 3
+		t120(rsi) = mov Address (a(@a) + 0)
+		t120(rsi) = t120(rsi) ADD t119(rdi)
+		t121(r10) = mov j(r8)
+		t121(r10) = t121(r10) SHL 3
+		t122(rdi) = mov Address (a(@a) + 0)
+		t122(rdi) = t122(rdi) ADD t121(r10)
+		t124(rsi) = mov Address (t120(rsi) + 0)
+		cmp t124(rsi) Address (t122(rdi) + 0)
+		CJump GR makeHeap_14_inline_enter
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_6_if_true
+		t117(rsi) = mov i(r9)
+		t117(rsi) = t117(rsi) SHL 1
+		INC t118(rsi)
+		j(r8) = mov t118(rsi)
+		t119(rdi) = mov i(r9)
+		t119(rdi) = t119(rdi) SHL 3
+		t120(rsi) = mov Address (a(@a) + 0)
+		t120(rsi) = t120(rsi) ADD t119(rdi)
+		t121(r10) = mov j(r8)
+		t121(r10) = t121(r10) SHL 3
+		t122(rdi) = mov Address (a(@a) + 0)
+		t122(rdi) = t122(rdi) ADD t121(r10)
+		t124(rsi) = mov Address (t120(rsi) + 0)
+		cmp t124(rsi) Address (t122(rdi) + 0)
+		CJump GR makeHeap_14_inline_enter
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_8_if_exit
+		t119(rdi) = mov i(r9)
+		t119(rdi) = t119(rdi) SHL 3
+		t120(rsi) = mov Address (a(@a) + 0)
+		t120(rsi) = t120(rsi) ADD t119(rdi)
+		t121(r10) = mov j(r8)
+		t121(r10) = t121(r10) SHL 3
+		t122(rdi) = mov Address (a(@a) + 0)
+		t122(rdi) = t122(rdi) ADD t121(r10)
+		t124(rsi) = mov Address (t120(rsi) + 0)
+		cmp t124(rsi) Address (t122(rdi) + 0)
+		CJump GR makeHeap_14_inline_enter
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_14_inline_enter
+		t209(rdi) = mov x(r9)
+		t209(rdi) = t209(rdi) SHL 3
+		t210(rsi) = mov Address (a(@a) + 0)
+		t210(rsi) = t210(rsi) ADD t209(rdi)
+		t(rdi) = mov Address (t210(rsi) + 0)
+		t211(rsi) = mov x(r9)
+		t211(rsi) = t211(rsi) SHL 3
+		t212(r11) = mov Address (a(@a) + 0)
+		t212(r11) = t212(r11) ADD t211(rsi)
+		t213(rsi) = mov y(r8)
+		t213(rsi) = t213(rsi) SHL 3
+		t214(r10) = mov Address (a(@a) + 0)
+		t214(r10) = t214(r10) ADD t213(rsi)
+		Address (t212(r11) + 0) = mov Address (t214(r10) + 0)
+		t216(r8) = t216(r8) SHL 3
+		t217(rsi) = mov Address (a(@a) + 0)
+		t217(rsi) = t217(rsi) ADD t216(r8)
+		Address (t217(rsi) + 0) = mov t(rdi)
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_11_if_exit
+		DEC i(r9)
+		cmp i(r9) 0
+		CJump GREQ makeHeap_2_loop_body
+		ret 0
+		jump makeHeap_13_block_exit
+	makeHeap_12_loop_exit
+		ret 0
+	makeHeap_13_block_exit
 }
