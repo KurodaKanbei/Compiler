@@ -1,4 +1,4 @@
-p n(null) {
+p n(rsi) {
 	p_0_block_enter
 		ret t15(rdi)
 	p_1_block_exit

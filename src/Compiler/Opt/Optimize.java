@@ -27,7 +27,6 @@ public class Optimize {
         Destructor.uselessFunctionArrange();
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
             NaiveInliner.inline(functionIR);
-            BinaryInstructionRazor.uselessReturnInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             DeadLoopRazor.deadForStatementBlocksRemove(functionIR);
             LoopConditionManager.loopConditionImprove(functionIR);
@@ -42,6 +41,9 @@ public class Optimize {
             BlocksTyrant.emptyBlockRemove(functionIR);
             SuperBlockBuilder.buildSuperBlock(functionIR);
             SuperBlockBuilder.uselessJumpRemove(functionIR);
+        }
+        for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
+            BinaryInstructionRazor.uselessReturnInstructionRemove(functionIR);
         }
     }
 }
