@@ -38,5 +38,8 @@ public class Optimize {
             SuperBlockBuilder.buildSuperBlock(functionIR);
             SuperBlockBuilder.uselessJumpRemove(functionIR);
         }
+        for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
+            BinaryInstructionRazor.uselessReturnInstructionRemove(functionIR);
+        }
     }
 }
