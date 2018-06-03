@@ -3,138 +3,34 @@ __global_init {
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
-foo d(null) x(null) y(null) {
-	foo_0_block_enter
-		d(null) = mov t0(rdi)
-		x(null) = mov t1(rsi)
-		y(null) = mov t2(rdx)
-		t3(null) = mov d(null)
-		t3(null) = t3(null) MUL 1000
-		t4(null) = mov x(null)
-		t4(null) = t4(null) MUL 10
-		t5(null) = mov t3(null)
-		t5(null) = t5(null) ADD t4(null)
-		t6(null) = mov t5(null)
-		t6(null) = t6(null) ADD y(null)
-		t8(rdi) = mov t6(null)
-		call toString return value = t7(rax)
-		t9(null) = mov t7(rax)
-		t10(rdi) = mov t9(null)
-		call println return value = null
-		cmp d(null) 1
-		set EQ t11(null)
-		cmp t11(null) 1
-		CJump EQ foo_1_if_true
-		jump foo_2_if_false
-	foo_1_if_true
-		jump foo_4_block_exit
-	foo_2_if_false
-		jump foo_3_if_exit
-	foo_3_if_exit
-		t(null) = mov x(null)
-		x(null) = mov y(null)
-		y(null) = mov t(null)
-		t12(rdi) = mov 1
-		t13(rsi) = mov x(null)
-		t14(rdx) = mov y(null)
-		call foo return value = null
-		t15(null) = mov d(null)
-		t15(null) = t15(null) MUL 1000
-		t16(null) = mov x(null)
-		t16(null) = t16(null) MUL 10
-		t17(null) = mov t15(null)
-		t17(null) = t17(null) ADD t16(null)
-		t18(null) = mov t17(null)
-		t18(null) = t18(null) ADD y(null)
-		t20(rdi) = mov t18(null)
-		call toString return value = t19(rax)
-		t21(null) = mov t19(rax)
-		t22(rdi) = mov t21(null)
-		call println return value = null
-		jump foo_4_block_exit
-	foo_4_block_exit
+min a(null) b(null) {
+	min_0_block_enter
+		a(null) = mov t4(rdi)
+		b(null) = mov t5(rsi)
+		cmp a(null) b(null)
+		set LEEQ t6(null)
+		cmp t6(null) 1
+		CJump EQ min_1_if_true
+		jump min_2_if_false
+	min_1_if_true
+		ret a(null)
+		jump min_4_block_exit
+	min_2_if_false
+		jump min_3_if_exit
+	min_3_if_exit
+		ret b(null)
+		jump min_4_block_exit
+	min_4_block_exit
 }
 main {
 	main_0_block_enter
-		a(null) = mov 3100
-		b(null) = mov 0
-		c(null) = mov 1
-		b(null) = mov 0
-		jump main_1_loop_condition
-	main_1_loop_condition
-		cmp b(null) 100000000
-		set LE t23(null)
-		cmp t23(null) 1
-		CJump EQ main_2_loop_body
-		jump main_4_loop_exit
-	main_2_loop_body
-		t24(null) = mov c(null)
-		t24(null) = t24(null) SHL 1
-		t25(null) = mov t24(null)
-		t25(null) = t25(null) SUB c(null)
-		c(null) = mov t25(null)
-		jump main_3_loop_increment
-	main_3_loop_increment
-		INC b(null)
-		jump main_1_loop_condition
-	main_4_loop_exit
-		t27(rdi) = mov a(null)
-		call toString return value = t26(rax)
-		t28(null) = mov t26(rax)
-		t29(rdi) = mov t28(null)
-		call println return value = null
-		call cost_a_lot_of_time return value = null
-		t30(rdi) = mov 7
-		t31(rsi) = mov 5
-		t32(rdx) = mov 3
-		call foo return value = null
-		t34(null) = mov 10
-		INC t34(null)
-		t34(null) = t34(null) SHL 3
-		malloc t33(null) t34(null)
-		Address (t33(null) + 0) = mov 10
-		t33(null) = t33(null) ADD 8
-		bb(null) = mov t33(null)
-		t36(null) = mov 2
-		INC t36(null)
-		t36(null) = t36(null) SHL 3
-		malloc t35(null) t36(null)
-		Address (t35(null) + 0) = mov 2
-		t35(null) = t35(null) ADD 8
-		cc(null) = mov t35(null)
-		ret 0
-		jump main_5_block_exit
-	main_5_block_exit
-}
-cost_a_lot_of_time {
-	cost_a_lot_of_time_0_block_enter
-		a(null) = mov 3100
-		b(null) = mov 0
-		c(null) = mov 1
-		b(null) = mov 0
-		jump cost_a_lot_of_time_1_loop_condition
-	cost_a_lot_of_time_1_loop_condition
-		cmp b(null) 100000000
-		set LE t37(null)
-		cmp t37(null) 1
-		CJump EQ cost_a_lot_of_time_2_loop_body
-		jump cost_a_lot_of_time_4_loop_exit
-	cost_a_lot_of_time_2_loop_body
-		t38(null) = mov c(null)
-		t38(null) = t38(null) SHL 1
-		t39(null) = mov t38(null)
-		t39(null) = t39(null) SUB c(null)
-		c(null) = mov t39(null)
-		jump cost_a_lot_of_time_3_loop_increment
-	cost_a_lot_of_time_3_loop_increment
-		INC b(null)
-		jump cost_a_lot_of_time_1_loop_condition
-	cost_a_lot_of_time_4_loop_exit
-		t41(rdi) = mov a(null)
-		call toString return value = t40(rax)
-		t42(null) = mov t40(rax)
-		t43(rdi) = mov t42(null)
-		call println return value = null
-		jump cost_a_lot_of_time_5_block_exit
-	cost_a_lot_of_time_5_block_exit
+		x(null) = mov 10
+		y(null) = mov 20
+		t1(rdi) = mov x(null)
+		t2(rsi) = mov y(null)
+		call min return value = t0(rax)
+		t3(null) = mov t0(rax)
+		ret t3(null)
+		jump main_1_block_exit
+	main_1_block_exit
 }

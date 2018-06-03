@@ -35,11 +35,13 @@ public class Optimize {
             RedundantBlockDictator.redundantBlockRemove(functionIR);
             StupidMoveKiller.uselessMoveRemove(functionIR);
             BlocksTyrant.emptyBlockRemove(functionIR);
-            SuperBlockBuilder.buildSuperBlock(functionIR);
-            SuperBlockBuilder.uselessJumpRemove(functionIR);
         }
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
             BinaryInstructionRazor.uselessReturnInstructionRemove(functionIR);
+        }
+        for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
+            SuperBlockBuilder.buildSuperBlock(functionIR);
+            SuperBlockBuilder.uselessJumpRemove(functionIR);
         }
     }
 }
