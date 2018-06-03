@@ -9,6 +9,7 @@ import Compiler.CFG.Operand.Operand;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class NaiveInliner {
     public static void inline(FunctionIR functionIR) {
@@ -19,7 +20,8 @@ public class NaiveInliner {
                 Instruction instruction = block.getInstructionList().get(j);
                 if (instruction instanceof FunctionCallInstruction) {
                     FunctionType functionType = ((FunctionCallInstruction) instruction).getFunctionType();
-                    if (functionType.isBuiltin() || functionType == functionIR.getFunctionType() || !functionType.isIntact()) {
+                    if (functionType.isBuiltin() || functionType == functionIR.getFunctionType() ||
+                            !functionType.isIntact()) {
                         continue;
                     }
                     block.getInstructionList().remove(j);

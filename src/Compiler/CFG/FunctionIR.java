@@ -26,6 +26,7 @@ public class FunctionIR {
     private Map<VirtualRegister, String> registerStringMap;
     private Map<VirtualRegister, Integer> registerIntegerMap;
 
+    private boolean beInlined;
     public static final List<String> callerSavedRegisterList = new ArrayList<String>() {{
         add("rsi"); add("rdi"); add("r8"); add("r9"); add("r10"); add("r11");
     }};
@@ -167,10 +168,19 @@ public class FunctionIR {
         this.registerManager = new RegisterManager();
         this.registerIntegerMap = new HashMap<>();
         this.registerStringMap = new HashMap<>();
+        this.beInlined = this.beMemorized = false;
         for (Symbol symbol : functionType.getParameterList()) {
             parameterList.add((VirtualRegister) symbol.getOperand());
         }
         construct();
+    }
+
+    public boolean isBeInlined() {
+        return beInlined;
+    }
+
+    public void setBeInlined(boolean beInlined) {
+        this.beInlined = beInlined;
     }
 
     public String getAssembly() {
@@ -269,6 +279,7 @@ public class FunctionIR {
     }
 
     public boolean isLeaf() {
+        if (functionType.getOriginName().equals("main")) return false;
         for (Block block : blockList) {
             for (Instruction instruction : block.getInstructionList()) {
                 if (instruction instanceof FunctionCallInstruction) {

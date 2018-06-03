@@ -1,8 +1,11 @@
 package Compiler.Opt;
 
+import Compiler.CFG.Block;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.BinaryInstruction;
 import Compiler.CFG.Instruction.MoveInstruction;
+import Compiler.CFG.Instruction.ReturnInstruction;
+import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 
 import java.util.ArrayList;
@@ -57,6 +60,7 @@ public class BinaryInstructionRazor {
                             continue;
                         }
                     }
+
                     if (block.getInstructionList().get(i) instanceof MoveInstruction
                             && block.getInstructionList().get(i + 1) instanceof MoveInstruction) {
                         MoveInstruction moveInstruction1 = (MoveInstruction) block.getInstructionList().get(i);
@@ -69,5 +73,24 @@ public class BinaryInstructionRazor {
                 }
             }
         );
+    }
+
+    public static void uselessReturnInstructionRemove(FunctionIR functionIR) {
+        for (Block block : functionIR.getBlockList()) {
+            for (int i = 0; i < block.getInstructionList().size(); i++) {
+                if (block.getInstructionList().get(i) instanceof MoveInstruction) {
+                    if (block.getInstructionList().get(i + 1) instanceof ReturnInstruction) {
+                        MoveInstruction moveInstruction = (MoveInstruction) block.getInstructionList().get(i);
+                        ReturnInstruction returnInstruction = (ReturnInstruction) block.getInstructionList().get(i + 1);
+                        if (moveInstruction.getTarget() instanceof  VirtualRegister
+                                && moveInstruction.getTarget() == returnInstruction.getReturnValue()) {
+                            Operand source = moveInstruction.getSource();
+                            block.getInstructionList().remove(i--);
+                            returnInstruction.setReturnValue(source);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
