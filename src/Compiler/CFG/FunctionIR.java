@@ -279,7 +279,7 @@ public class FunctionIR {
     }
 
     public boolean isLeaf() {
-        if (functionType.getOriginName().equals("main")) return false;
+        //if (functionType.getOriginName().equals("main")) return false;
         for (Block block : blockList) {
             for (Instruction instruction : block.getInstructionList()) {
                 if (instruction instanceof FunctionCallInstruction) {
