@@ -6,13 +6,13 @@ import Compiler.CFG.ProgramIR;
 public class Optimize {
 
     public static void optimize() {
-        Destructor.uselessFunctionArrange();
+        //Destructor.uselessFunctionArrange();
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
-            UnnecessarySetMurder.unnecessarySetRemove(functionIR);
-            NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             DeadLoopRazor.deadForStatementBlocksRemove(functionIR);
             LoopConditionManager.loopConditionImprove(functionIR);
+            UnnecessarySetMurder.unnecessarySetRemove(functionIR);
+            NaiveInliner.inline(functionIR);
             LivenessAnalyst.analysis(functionIR);
             UselessCodeSniper.uselessCodeCatch(functionIR);
             LivenessAnalyst.analysis(functionIR);

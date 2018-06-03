@@ -77,7 +77,7 @@ public class BinaryInstructionRazor {
 
     public static void uselessReturnInstructionRemove(FunctionIR functionIR) {
         for (Block block : functionIR.getBlockList()) {
-            for (int i = 0; i < block.getInstructionList().size(); i++) {
+            for (int i = 0; i + 1 < block.getInstructionList().size(); i++) {
                 if (block.getInstructionList().get(i) instanceof MoveInstruction) {
                     if (block.getInstructionList().get(i + 1) instanceof ReturnInstruction) {
                         MoveInstruction moveInstruction = (MoveInstruction) block.getInstructionList().get(i);
