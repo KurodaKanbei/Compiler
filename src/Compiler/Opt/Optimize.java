@@ -6,6 +6,10 @@ import Compiler.CFG.ProgramIR;
 public class Optimize {
 
     public static void optimize() {
+        for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
+            InvariantConditionResort.invariantCodeResort(functionIR);
+        }
+        //ProgramIR.print();
         //Destructor.uselessFunctionArrange();
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
             LivenessAnalyst.analysis(functionIR);

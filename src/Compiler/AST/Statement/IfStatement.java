@@ -60,9 +60,9 @@ public class IfStatement extends Statement{
 
     @Override
     public void generateInstruction(List<Instruction> instructionList) {
-        trueLabel = new LabelInstruction("if_true");
-        falseLabel = new LabelInstruction("if_false");
-        exitLabel = new LabelInstruction("if_exit");
+        trueLabel = new LabelInstruction("if_true", this);
+        falseLabel = new LabelInstruction("if_false", this);
+        exitLabel = new LabelInstruction("if_exit", this);
 
         condition.generateInstruction(instructionList);
         instructionList.add(new CompareInstruction(condition.getOperand(), new ImmediateOperand(1)));
