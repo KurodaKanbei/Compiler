@@ -1,5 +1,7 @@
+global add
 global __global_init
 global main
+global dp
 global print_Int
 global println_Int
 global print
@@ -21,6 +23,23 @@ global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .text
+add:
+    push                  rbp
+     mov                  rbp,                  rsp
+add_0_block_enter:
+     mov                   r8,                  rdi
+     mov                  rdi,                  rsi
+     mov                  rsi,                   r8
+     add                  rsi,                  rdi
+     mov                  rax,                  rsi
+     mov                  rcx,                  233
+     cdq
+    idiv                  ecx
+     mov                  rsi,                  rdx
+     mov                  rax,                  rsi
+add_1_block_exit:
+     pop                  rbp
+     ret
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
@@ -31,120 +50,193 @@ main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
-    push                  r12
     push                  rbx
 main_0_block_enter:
-     mov                  r12,                    0
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
+     sub                  rsp,                    8
+    call               getInt
+     add                  rsp,                    8
+     mov                  rbx,                  rax
+     mov                  rsi,                    1
+     cmp                  rsi,                  rbx
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
 main_1_loop_condition:
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
+     cmp                  rsi,                  rbx
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
 main_2_loop_body:
-     mov                   r8,                    0
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_3_loop_condition:
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_4_loop_body:
-     mov                  rsi,                    0
-     cmp                  rsi,                    3
-      jl     main_6_loop_body
-     add                   r8,                    1
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_5_loop_condition:
-     cmp                  rsi,                    3
-      jl     main_6_loop_body
-     add                   r8,                    1
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_6_loop_body:
-     cmp                  r12,                   r8
-      jl       main_7_if_true
-     add                  rsi,                    1
-     cmp                  rsi,                    3
-      jl     main_6_loop_body
-     add                   r8,                    1
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_7_if_true:
-     mov                  rbx,                  r12
-     add                  rbx,                   r8
-     mov                  rdi,                  rbx
+     mov                  rdi,                  rsi
     push                  rsi
-    push                   r8
-    call             toString
-     pop                   r8
+    call                   dp
      pop                  rsi
      mov                  rdi,                  rax
     push                  rsi
-    push                   r8
+    call             toString
+     pop                  rsi
+     mov                  rdi,                  rax
+    push                  rsi
     call              println
-     pop                   r8
      pop                  rsi
      add                  rsi,                    1
-     cmp                  rsi,                    3
-      jl     main_6_loop_body
-     add                   r8,                    1
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_10_loop_increment:
+     cmp                  rsi,                  rbx
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
+main_3_loop_increment:
      add                  rsi,                    1
-     cmp                  rsi,                    3
-      jl     main_6_loop_body
-     add                   r8,                    1
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_12_loop_increment:
-     add                   r8,                    1
-     cmp                   r8,                    3
-      jl     main_4_loop_body
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-     jmp   main_16_block_exit
-main_14_loop_increment:
-     add                  r12,                    1
-     cmp                  r12,                    3
-      jl     main_2_loop_body
-main_16_block_exit:
+     cmp                  rsi,                  rbx
+     jle     main_2_loop_body
+     mov                  rax,                    0
+     jmp    main_5_block_exit
+main_4_loop_exit:
+     mov                  rax,                    0
+main_5_block_exit:
      pop                  rbx
+     pop                  rbp
+     ret
+dp:
+    push                  rbp
+     mov                  rbp,                  rsp
+     sub                  rsp,                   32
+    push                  r12
+    push                  r13
+    push                  rbx
+dp_0_block_enter:
+     mov                  r12,                  rdi
+     sal                  r12,                    3
+     mov                  rbx,              @dp_int
+     add                  rbx,                  r12
+     sar                  r12,                    3
+     cmp                  rdi,                    0
+     jge      dp_1_dp_success
+     cmp                  rdi,                    1
+     jle         dp_5_if_true
+     mov                  r13,                    0
+     mov                   r8,                    2
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_1_dp_success:
+     cmp                  rdi,                  200
+      jl       dp_2_dp_escape
+     cmp                  rdi,                    1
+     jle         dp_5_if_true
+     mov                  r13,                    0
+     mov                   r8,                    2
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_2_dp_escape:
+     cmp      qword [rbx + 0],                    0
+      je        dp_4_dp_start
+     mov                  rax,      qword [rbx + 0]
+     jmp     dp_19_block_exit
+dp_3_dp_return:
+     mov                  rax,      qword [rbx + 0]
+     jmp     dp_19_block_exit
+dp_4_dp_start:
+     cmp                  rdi,                    1
+     jle         dp_5_if_true
+     mov                  r13,                    0
+     mov                   r8,                    2
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_5_if_true:
+     mov                  rax,                   36
+     jmp     dp_19_block_exit
+dp_7_if_exit:
+     mov                  r13,                    0
+     mov                   r8,                    2
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_8_loop_condition:
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_9_loop_body:
+     mov                  rsi,                  rdi
+     xor                  rsi,                   r8
+     cmp                  rsi,                  rdi
+      jl        dp_10_if_true
+     add                   r8,                    1
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_10_if_true:
+     mov                  rsi,                  rdi
+     xor                  rsi,                   r8
+     mov                  rdi,                  rsi
+    push                   r8
+    call                   dp
+     pop                   r8
+     mov                  rsi,                  rax
+     mov                  rdi,                  r13
+    push                   r8
+    call                  add
+     pop                   r8
+     mov                  r13,                  rax
+     add                   r8,                    1
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_13_loop_increment:
+     add                   r8,                    1
+     cmp                   r8,                  rdi
+     jle       dp_9_loop_body
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_14_loop_exit:
+     mov                  rax,                  r13
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_15_dp_save:
+     cmp                  r12,                    0
+     jge    dp_16_dp_positive
+     jmp     dp_19_block_exit
+dp_16_dp_positive:
+     cmp                  r12,                  200
+      jl      dp_17_dp_update
+     jmp     dp_19_block_exit
+dp_17_dp_update:
+     mov      qword [rbx + 0],                  rax
+dp_19_block_exit:
+     pop                  rbx
+     pop                  r13
      pop                  r12
+     add                  rsp,                   32
      pop                  rbp
      ret
 SECTION .data
+@dp_int:
+	dq          36,          36,          36,          72,          36,          72,          19,          55,          36,          72,          19,          55,         167,         203,         179,         215,          36,          72,          19,          55,         167,         203,         179,         215,          64,         100,         103,         139,         186,         222,           3,          39,          36,          72,          19,          55,         167,         203,         179,         215,          64,         100,         103,         139,         186,         222,           3,          39,         145,         181,         113,         149,         216,          19,          93,         129,          39,          75,          28,          64,         194,         230,          27,          63,          36,          72,          19,          55,         167,         203,         179,         215,          64,         100,         103,         139,         186,         222,           3,          39,         145,         181,         113,         149,         216,          19,          93,         129,          39,          75,          28,          64,         194,         230,          27,          63,         180,         216,         218,          21,          65,         101,         106,         142,          78,         114,         145,         181,          79,         115,         148,         184,         114,         150,          20,          56,         170,         206,         188,         224,          91,         127,         184,         220,         196,         232,          33,          69,          36,          72,          19,          55,         167,         203,         179,         215,          64,         100,         103,         139,         186,         222,           3,          39,         145,         181,         113,         149,         216,          19,          93,         129,          39,          75,          28,          64,         194,         230,          27,          63,         180,         216,         218,          21,          65,         101,         106,         142,          78,         114,         145,         181,          79,         115,         148,         184,         114,         150,          20,          56,         170,         206,         188,         224,          91,         127,         184,         220,         196,         232,          33,          69,          72,         108,         127,         163,          25,          61,         219,          22,    0
 SECTION .bss
 SECTION .data
 __println_int_format:

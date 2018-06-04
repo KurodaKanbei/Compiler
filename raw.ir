@@ -1,3 +1,15 @@
+add x(null) y(null) {
+	add_0_block_enter
+		x(null) = mov t0(rdi)
+		y(null) = mov t1(rsi)
+		t2(null) = mov x(null)
+		t2(null) = t2(null) ADD y(null)
+		t3(null) = mov t2(null)
+		t3(null) = t3(null) MOD 233
+		ret t3(null)
+		jump add_1_block_exit
+	add_1_block_exit
+}
 __global_init {
 	__global_init_0_block_enter
 		jump __global_init_1_block_exit
@@ -5,68 +17,122 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		i(null) = mov 0
+		call getInt return value = t4(rax)
+		t5(null) = mov t4(rax)
+		n(null) = mov t5(null)
+		i(null) = mov 1
 		jump main_1_loop_condition
 	main_1_loop_condition
-		cmp i(null) 3
-		set LE t0(null)
-		cmp t0(null) 1
+		cmp i(null) n(null)
+		set LEEQ t6(null)
+		cmp t6(null) 1
 		CJump EQ main_2_loop_body
-		jump main_15_loop_exit
+		jump main_4_loop_exit
 	main_2_loop_body
-		j(null) = mov 0
-		jump main_3_loop_condition
-	main_3_loop_condition
-		cmp j(null) 3
-		set LE t1(null)
-		cmp t1(null) 1
-		CJump EQ main_4_loop_body
-		jump main_13_loop_exit
-	main_4_loop_body
-		k(null) = mov 0
-		jump main_5_loop_condition
-	main_5_loop_condition
-		cmp k(null) 3
-		set LE t2(null)
-		cmp t2(null) 1
-		CJump EQ main_6_loop_body
-		jump main_11_loop_exit
-	main_6_loop_body
-		cmp i(null) j(null)
-		set LE t3(null)
-		cmp t3(null) 1
-		CJump EQ main_7_if_true
-		jump main_8_if_false
-	main_7_if_true
-		t4(null) = mov i(null)
-		t4(null) = t4(null) ADD j(null)
-		t6(rdi) = mov t4(null)
-		call toString return value = t5(rax)
-		t7(null) = mov t5(rax)
-		t8(rdi) = mov t7(null)
+		t8(rdi) = mov i(null)
+		call dp return value = t7(rax)
+		t9(null) = mov t7(rax)
+		t11(rdi) = mov t9(null)
+		call toString return value = t10(rax)
+		t12(null) = mov t10(rax)
+		t13(rdi) = mov t12(null)
 		call println return value = null
-		jump main_9_if_exit
-	main_8_if_false
-		jump main_9_if_exit
-	main_9_if_exit
-		jump main_10_loop_increment
-	main_10_loop_increment
-		t9(null) = mov k(null)
-		INC k(null)
-		jump main_5_loop_condition
-	main_11_loop_exit
-		jump main_12_loop_increment
-	main_12_loop_increment
-		t10(null) = mov j(null)
-		INC j(null)
-		jump main_3_loop_condition
-	main_13_loop_exit
-		jump main_14_loop_increment
-	main_14_loop_increment
-		t11(null) = mov i(null)
+		jump main_3_loop_increment
+	main_3_loop_increment
+		t14(null) = mov i(null)
 		INC i(null)
 		jump main_1_loop_condition
-	main_15_loop_exit
-		jump main_16_block_exit
-	main_16_block_exit
+	main_4_loop_exit
+		ret 0
+		jump main_5_block_exit
+	main_5_block_exit
+}
+dp x(rdi) {
+	dp_0_block_enter
+		t30(null) = mov x(rdi)
+		t30(null) = t30(null) SHL 3
+		t31(null) = mov t29(@dp_int)
+		t31(null) = t31(null) ADD t30(null)
+		t30(null) = t30(null) SHR 3
+		cmp x(rdi) 0
+		CJump GREQ dp_1_dp_success
+		jump dp_4_dp_start
+	dp_1_dp_success
+		cmp x(rdi) 200
+		CJump LE dp_2_dp_escape
+		jump dp_4_dp_start
+	dp_2_dp_escape
+		cmp Address (t31(null) + 0) 0
+		CJump EQ dp_4_dp_start
+		jump dp_3_dp_return
+	dp_3_dp_return
+		ret Address (t31(null) + 0)
+		jump dp_19_block_exit
+	dp_4_dp_start
+		x(rdi) = mov t15(rdi)
+		cmp x(rdi) 1
+		set LEEQ t16(null)
+		cmp t16(null) 1
+		CJump EQ dp_5_if_true
+		jump dp_6_if_false
+	dp_5_if_true
+		tmp(null) = mov 36
+		ret tmp(null)
+		jump dp_19_block_exit
+	dp_6_if_false
+		jump dp_7_if_exit
+	dp_7_if_exit
+		sum(null) = mov 0
+		i(null) = mov 2
+		jump dp_8_loop_condition
+	dp_8_loop_condition
+		cmp i(null) x(rdi)
+		set LEEQ t17(null)
+		cmp t17(null) 1
+		CJump EQ dp_9_loop_body
+		jump dp_14_loop_exit
+	dp_9_loop_body
+		t18(null) = mov x(rdi)
+		t18(null) = t18(null) XOR i(null)
+		cmp t18(null) x(rdi)
+		set LE t19(null)
+		cmp t19(null) 1
+		CJump EQ dp_10_if_true
+		jump dp_11_if_false
+	dp_10_if_true
+		t20(null) = mov x(rdi)
+		t20(null) = t20(null) XOR i(null)
+		t22(rdi) = mov t20(null)
+		call dp return value = t21(rax)
+		t23(null) = mov t21(rax)
+		t25(rdi) = mov sum(null)
+		t26(rsi) = mov t23(null)
+		call add return value = t24(rax)
+		t27(null) = mov t24(rax)
+		sum(null) = mov t27(null)
+		jump dp_12_if_exit
+	dp_11_if_false
+		jump dp_12_if_exit
+	dp_12_if_exit
+		jump dp_13_loop_increment
+	dp_13_loop_increment
+		t28(null) = mov i(null)
+		INC i(null)
+		jump dp_8_loop_condition
+	dp_14_loop_exit
+		ret sum(null)
+		jump dp_15_dp_save
+	dp_15_dp_save
+		cmp t30(null) 0
+		CJump GREQ dp_16_dp_positive
+		jump dp_18_dp_fail
+	dp_16_dp_positive
+		cmp t30(null) 200
+		CJump LE dp_17_dp_update
+		jump dp_18_dp_fail
+	dp_17_dp_update
+		Address (t31(null) + 0) = mov t32(rax)
+	dp_18_dp_fail
+		jump dp_19_block_exit
+	dp_19_block_exit
 }

@@ -316,7 +316,7 @@ public class FunctionIR {
                 FunctionType functionType = ((FunctionCallInstruction) instruction).getFunctionType();
                 if (functionType == this.functionType || functionType.isBuiltin()) continue;
                 if (functionType.getOriginName() == null) continue;
-                if (functionType != this.functionType) return false;
+                //if (functionType != this.functionType) return false;
                 //if (!functionType.getFunctionIR().isLeaf()) return false;
             }
         }
