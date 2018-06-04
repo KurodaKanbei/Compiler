@@ -5,7 +5,7 @@ import Compiler.AST.Type.ClassType;
 import Compiler.AST.Type.IntType;
 import Compiler.AST.Type.Type;
 import Compiler.CFG.Instruction.*;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
@@ -105,12 +105,12 @@ public class NewExpression extends Expression {
         instructionList.add(new UnaryInstruction(UnaryInstruction.UnaryOp.INC, mallocSize));
         instructionList.add(new BinaryInstruction(BinaryInstruction.BinaryOp.SHL, mallocSize, new ImmediateOperand(3)));
         instructionList.add(new MallocInstruction(base, mallocSize));
-        if (operand instanceof AddressOperand) {
+        if (operand instanceof ImmediateAddressOperand) {
             VirtualRegister t = RegisterManager.getTemporaryRegister();
             instructionList.add(new MoveInstruction(t, operand));
-            instructionList.add(new MoveInstruction(new AddressOperand(base, new ImmediateOperand(0)), t));
+            instructionList.add(new MoveInstruction(new ImmediateAddressOperand(base, new ImmediateOperand(0)), t));
         } else {
-            instructionList.add(new MoveInstruction(new AddressOperand(base, new ImmediateOperand(0)), operand));
+            instructionList.add(new MoveInstruction(new ImmediateAddressOperand(base, new ImmediateOperand(0)), operand));
         }
         instructionList.add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, base, new ImmediateOperand(8)));
         Type newType = ((ArrayType) type).reduceDimension();
@@ -133,9 +133,9 @@ public class NewExpression extends Expression {
 
             instructionList.add(bodyLabel);
             VirtualRegister t = RegisterManager.getTemporaryRegister();
-            instructionList.add(new MoveInstruction(t, new AddressOperand(pos, new ImmediateOperand(0))));
+            instructionList.add(new MoveInstruction(t, new ImmediateAddressOperand(pos, new ImmediateOperand(0))));
             malloc(t, newType, operandList, instructionList, cur);
-            instructionList.add(new MoveInstruction(new AddressOperand(pos, new ImmediateOperand(0)), t));
+            instructionList.add(new MoveInstruction(new ImmediateAddressOperand(pos, new ImmediateOperand(0)), t));
             instructionList.add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, pos, new ImmediateOperand(8)));
             instructionList.add(new JumpInstruction(conditionLabel));
 

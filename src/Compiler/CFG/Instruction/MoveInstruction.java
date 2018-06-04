@@ -1,10 +1,10 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.MemoryLabel;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
-import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalImmediateAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
@@ -14,7 +14,7 @@ public class MoveInstruction extends Instruction {
     private Operand target, source;
 
     public MoveInstruction(Operand target, Operand source) {
-        if (target instanceof AddressOperand && source instanceof AddressOperand) {
+        if (target instanceof ImmediateAddressOperand && source instanceof ImmediateAddressOperand) {
             throw new InternalError("Move Instruction can't handle two address");
         }
         this.target = target;
@@ -28,24 +28,24 @@ public class MoveInstruction extends Instruction {
         if (target instanceof VirtualRegister) {
             killSet.add((VirtualRegister) target);
         }
-        if (target instanceof AddressOperand) {
-            useSet.add(((AddressOperand) target).getBase());
+        if (target instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) target).getBase());
         }
         if (source instanceof VirtualRegister) {
             useSet.add((VirtualRegister) source);
         }
-        if (source instanceof AddressOperand) {
-            useSet.add(((AddressOperand) source).getBase());
+        if (source instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) source).getBase());
         }
     }
 
     @Override
     public boolean hasGlobalImpact() {
-        if (target instanceof AddressOperand || target instanceof MemoryLabel
+        if (target instanceof ImmediateAddressOperand || target instanceof MemoryLabel
                 || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {
             return true;
         }
-        if (source instanceof AddressOperand || source instanceof MemoryLabel
+        if (source instanceof ImmediateAddressOperand || source instanceof MemoryLabel
                 || source instanceof VirtualRegister && ((VirtualRegister) source).isGlobal()) {
             return true;
         }
@@ -89,7 +89,7 @@ public class MoveInstruction extends Instruction {
         String targetName, sourceName;
         targetName = physicalTarget.toString();
         sourceName = physicalSource.toString();
-        if (physicalTarget instanceof PhysicalAddressOperand && physicalSource instanceof PhysicalAddressOperand) {
+        if (physicalTarget instanceof PhysicalImmediateAddressOperand && physicalSource instanceof PhysicalImmediateAddressOperand) {
             str.append(Translator.getInstruction("mov", "rax", sourceName));
             str.append(Translator.getInstruction("mov", targetName, "rax"));
         } else {

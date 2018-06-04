@@ -1,7 +1,7 @@
 package Compiler.CFG.Operand;
 
 import Compiler.CFG.ProgramIR;
-import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalImmediateAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalRegister;
 import Compiler.Trans.Translator;
@@ -91,7 +91,7 @@ public class VirtualRegister extends Operand {
         if (getRegister() != null) {
             return new PhysicalRegister(getRegister());
         } else {
-            return new PhysicalAddressOperand("rbp", -getOffset() * 8);
+            return new PhysicalImmediateAddressOperand("rbp", -getOffset() * 8);
         }
     }
 }

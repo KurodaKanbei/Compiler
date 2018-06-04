@@ -6,7 +6,7 @@ import Compiler.AST.Type.ClassType;
 import Compiler.AST.Type.Type;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.MoveInstruction;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.RegisterManager;
@@ -96,7 +96,7 @@ public class VariableDeclarationStatement extends Statement {
             Operand source, target;
             source = expression.getOperand();
             target = symbol.getOperand();
-            if (target instanceof AddressOperand && source instanceof AddressOperand) {
+            if (target instanceof ImmediateAddressOperand && source instanceof ImmediateAddressOperand) {
                 VirtualRegister t = RegisterManager.getTemporaryRegister();
                 instructionList.add(new MoveInstruction(t, source));
                 instructionList.add(new MoveInstruction(target, t));

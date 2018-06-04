@@ -1,10 +1,9 @@
 package Compiler.CFG.Instruction;
 
 import Compiler.CFG.FunctionIR;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
-import Compiler.CFG.ProgramIR;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
@@ -22,8 +21,8 @@ public class MallocInstruction extends Instruction {
         if (mallocSize instanceof  VirtualRegister) {
             useSet.add((VirtualRegister) mallocSize);
         }
-        if (mallocSize instanceof AddressOperand) {
-            useSet.add((((AddressOperand) mallocSize).getBase()));
+        if (mallocSize instanceof ImmediateAddressOperand) {
+            useSet.add((((ImmediateAddressOperand) mallocSize).getBase()));
         }
     }
 

@@ -2,7 +2,7 @@ package Compiler.AST.Expression;
 
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.MoveInstruction;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.RegisterManager;
 import Compiler.Utility.Error.CompilationError;
@@ -48,7 +48,7 @@ public class AssignmentExpression extends Expression {
         leftExpression.generateInstruction(instructionList);
         rightExpression.generateInstruction(instructionList);
         operand = leftExpression.getOperand();
-        if (leftExpression.getOperand() instanceof AddressOperand && rightExpression.getOperand() instanceof AddressOperand) {
+        if (leftExpression.getOperand() instanceof ImmediateAddressOperand && rightExpression.getOperand() instanceof ImmediateAddressOperand) {
             VirtualRegister t = RegisterManager.getTemporaryRegister();
             instructionList.add(new MoveInstruction(t, rightExpression.getOperand()));
             instructionList.add(new MoveInstruction(leftExpression.getOperand(), t));

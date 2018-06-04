@@ -1,7 +1,7 @@
 package Compiler.CFG.Instruction;
 
 import Compiler.CFG.Operand.*;
-import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalImmediateAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalRegister;
@@ -67,10 +67,10 @@ public class BinaryInstruction extends Instruction {
         if (target instanceof ImmediateOperand) {
             throw new InternalError("The target operand in binary is not expected to be immediate");
         }
-        if (target instanceof AddressOperand && source instanceof AddressOperand) {
+        if (target instanceof ImmediateAddressOperand && source instanceof ImmediateAddressOperand) {
             throw new InternalError("Binary Instruction can't handle two memory address");
         }
-        if (target instanceof AddressOperand) {
+        if (target instanceof ImmediateAddressOperand) {
             if (binaryOp == BinaryOp.DIV || binaryOp == BinaryOp.MOD || binaryOp == BinaryOp.SHL || binaryOp == BinaryOp.SHR) {
                 throw new InternalError("Target of div, mod, shl, shr can't be memory address");
             }
@@ -85,24 +85,24 @@ public class BinaryInstruction extends Instruction {
             killSet.add((VirtualRegister) target);
             useSet.add((VirtualRegister) target);
         }
-        if (target instanceof AddressOperand) {
-            useSet.add(((AddressOperand) target).getBase());
+        if (target instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) target).getBase());
         }
         if (source instanceof VirtualRegister) {
             useSet.add((VirtualRegister) source);
         }
-        if (source instanceof AddressOperand) {
-            useSet.add(((AddressOperand) source).getBase());
+        if (source instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) source).getBase());
         }
     }
 
     @Override
     public boolean hasGlobalImpact() {
-        if (target instanceof AddressOperand || target instanceof MemoryLabel
+        if (target instanceof ImmediateAddressOperand || target instanceof MemoryLabel
                 || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {
             return true;
         }
-        if (source instanceof AddressOperand || source instanceof MemoryLabel
+        if (source instanceof ImmediateAddressOperand || source instanceof MemoryLabel
                 || source instanceof VirtualRegister && ((VirtualRegister) source).isGlobal()) {
             return true;
         }
@@ -183,7 +183,7 @@ public class BinaryInstruction extends Instruction {
             }
             return str.toString();
         }
-        if (physicalSource instanceof PhysicalAddressOperand && physicalTarget instanceof PhysicalAddressOperand) {
+        if (physicalSource instanceof PhysicalImmediateAddressOperand && physicalTarget instanceof PhysicalImmediateAddressOperand) {
             str.append(Translator.getInstruction("mov", "rax", targetName));
             str.append(Translator.getInstruction(operator.toLowerCase(), "rax", sourceName));
             str.append(Translator.getInstruction("mov", targetName, "rax"));

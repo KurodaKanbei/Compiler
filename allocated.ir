@@ -1,26 +1,36 @@
-p n(null) {
-	p_0_block_enter
-		n(rsi) = mov t4(rdi)
-		ret t7(rsi)
-		jump p_1_block_exit
-	p_3_inline_exit
-		ret t7(rsi)
-	p_1_block_exit
-}
 __global_init {
 	__global_init_1_block_exit
 }
-f n(rsi) {
-	f_0_block_enter
-		ret t0(rdi)
-	f_1_block_exit
-}
 main {
 	main_0_block_enter
-		n(rsi) = mov 10
-		ret t3(rsi)
-		jump main_1_block_exit
-	main_3_inline_exit
-		ret t3(rsi)
-	main_1_block_exit
+		t1(rsi) = mov 10
+		INC t1(rsi)
+		t1(rsi) = t1(rsi) SHL 3
+		malloc t0(rsi) t1(rsi)
+		Address (t0(rsi) + 0) = mov 10
+		t0(rsi) = t0(rsi) ADD 8
+		a(rdi) = mov t0(rsi)
+		i(rsi) = mov 0
+		cmp i(rsi) 10
+		CJump LE main_2_loop_body
+		jump main_5_block_exit
+	main_1_loop_condition
+		cmp i(rsi) 10
+		CJump LE main_2_loop_body
+		jump main_5_block_exit
+	main_2_loop_body
+		t3(r9) = mov i(rsi)
+		t3(r9) = t3(r9) SHL 3
+		t4(r8) = mov a(rdi)
+		t4(r8) = t4(r8) ADD t3(r9)
+		Address (t4(r8) + 0) = mov i(rsi)
+		INC i(rsi)
+		cmp i(rsi) 10
+		CJump LE main_2_loop_body
+		jump main_5_block_exit
+	main_3_loop_increment
+		INC i(rsi)
+		cmp i(rsi) 10
+		CJump LE main_2_loop_body
+	main_5_block_exit
 }

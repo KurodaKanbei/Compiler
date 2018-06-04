@@ -13,7 +13,7 @@ import Compiler.CFG.Instruction.CSetInstruction;
 import Compiler.CFG.Instruction.CompareInstruction;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.MoveInstruction;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
@@ -96,7 +96,7 @@ public class BinaryNotEqualExpression extends Expression {
             operand = new ImmediateOperand(((ImmediateOperand) leftOperand).getValue() != ((ImmediateOperand) rightOperand).getValue() ? 1 : 0);
             return;
         }
-        if (leftOperand instanceof AddressOperand && rightOperand instanceof AddressOperand) {
+        if (leftOperand instanceof ImmediateAddressOperand && rightOperand instanceof ImmediateAddressOperand) {
             VirtualRegister t = RegisterManager.getTemporaryRegister();
             instructionList.add(new MoveInstruction(t, leftOperand));
             instructionList.add(new CompareInstruction(t, rightOperand));

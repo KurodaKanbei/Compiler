@@ -1,6 +1,6 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
@@ -21,8 +21,8 @@ public class ReturnInstruction extends Instruction {
         if (returnValue instanceof VirtualRegister) {
             useSet.add((VirtualRegister) returnValue);
         }
-        if (returnValue instanceof AddressOperand) {
-            useSet.add(((AddressOperand) returnValue).getBase());
+        if (returnValue instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) returnValue).getBase());
         }
     }
 

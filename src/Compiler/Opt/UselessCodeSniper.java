@@ -3,7 +3,7 @@ package Compiler.Opt;
 import Compiler.CFG.Block;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.*;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
 
@@ -86,7 +86,7 @@ public class UselessCodeSniper {
     }
 
     private static boolean isCritical(Operand operand) {
-        return operand instanceof AddressOperand || operand instanceof VirtualRegister && ((VirtualRegister) operand).getSystemRegister() != null;
+        return operand instanceof ImmediateAddressOperand || operand instanceof VirtualRegister && ((VirtualRegister) operand).getSystemRegister() != null;
     }
 
     private static void issue(Instruction instruction) {

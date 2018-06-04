@@ -1,9 +1,9 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
-import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalImmediateAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
@@ -22,20 +22,20 @@ public class CompareInstruction extends Instruction {
     public CompareInstruction(Operand leftOperand, Operand rightOperand) {
         this.leftOperand = leftOperand;
         this.rightOperand = rightOperand;
-        if (leftOperand instanceof AddressOperand && rightOperand instanceof AddressOperand) {
+        if (leftOperand instanceof ImmediateAddressOperand && rightOperand instanceof ImmediateAddressOperand) {
             throw new InternalError("compare instruction can't handle tow memory address");
         }
         if (leftOperand instanceof VirtualRegister) {
             useSet.add((VirtualRegister) leftOperand);
         }
-        if (leftOperand instanceof AddressOperand) {
-            useSet.add(((AddressOperand) leftOperand).getBase());
+        if (leftOperand instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) leftOperand).getBase());
         }
         if (rightOperand instanceof VirtualRegister) {
             useSet.add((VirtualRegister) rightOperand);
         }
-        if (rightOperand instanceof AddressOperand) {
-            useSet.add(((AddressOperand) rightOperand).getBase());
+        if (rightOperand instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) rightOperand).getBase());
         }
     }
 
@@ -64,7 +64,7 @@ public class CompareInstruction extends Instruction {
         String leftName, rightName;
         leftName = physicalLeft.toString();
         rightName = physicalRight.toString();
-        if (physicalLeft instanceof PhysicalAddressOperand && physicalRight instanceof PhysicalAddressOperand || physicalLeft instanceof PhysicalImmediateOperand) {
+        if (physicalLeft instanceof PhysicalImmediateAddressOperand && physicalRight instanceof PhysicalImmediateAddressOperand || physicalLeft instanceof PhysicalImmediateOperand) {
             str.append(Translator.getInstruction("mov", "rax", leftName));
             str.append(Translator.getInstruction("cmp", "rax", rightName));
         } else {

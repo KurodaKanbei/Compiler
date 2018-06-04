@@ -5,7 +5,7 @@ import Compiler.AST.Statement.VariableDeclarationStatement;
 import Compiler.AST.Type.*;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.MoveInstruction;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.RegisterManager;
@@ -90,13 +90,13 @@ public class MemberExpression extends Expression{
         if (!(getType() instanceof FunctionType)) {
             expression.generateInstruction(instructionList);
             VariableDeclarationStatement variableDeclarationStatement = ((ClassType) expression.getType()).getMemberVariable(identifier);
-            if (expression.getOperand() instanceof AddressOperand) {
+            if (expression.getOperand() instanceof ImmediateAddressOperand) {
                 VirtualRegister base = RegisterManager.getTemporaryRegister();
                 instructionList.add(new MoveInstruction(base, expression.getOperand()));
-                operand = new AddressOperand(base, new ImmediateOperand(variableDeclarationStatement.getOffset()));
+                operand = new ImmediateAddressOperand(base, new ImmediateOperand(variableDeclarationStatement.getOffset()));
             } else {
                 VirtualRegister base = (VirtualRegister) expression.getOperand();
-                operand = new AddressOperand(base, new ImmediateOperand(variableDeclarationStatement.getOffset()));
+                operand = new ImmediateAddressOperand(base, new ImmediateOperand(variableDeclarationStatement.getOffset()));
             }
         }
     }

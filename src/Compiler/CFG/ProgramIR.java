@@ -6,7 +6,7 @@ import Compiler.AST.Statement.VariableDeclarationStatement;
 import Compiler.AST.Type.ClassType;
 import Compiler.AST.Type.FunctionType;
 import Compiler.AST.Type.VoidType;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 
@@ -63,7 +63,7 @@ public class ProgramIR {
             VirtualRegister t = new VirtualRegister(variableDeclarationStatement.getName());
             t.setSystemRegister("@" + variableDeclarationStatement.getName());
             t.setGlobal(true);
-            variableDeclarationStatement.getSymbol().setOperand(new AddressOperand(t, new ImmediateOperand(0)));
+            variableDeclarationStatement.getSymbol().setOperand(new ImmediateAddressOperand(t, new ImmediateOperand(0)));
         }
         for (FunctionType functionType : ProgramAST.globalFunctionTable.getFunctionMap().values()) {
             if (!functionType.isBuiltin()) {

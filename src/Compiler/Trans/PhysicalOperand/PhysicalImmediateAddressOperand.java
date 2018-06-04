@@ -1,10 +1,10 @@
 package Compiler.Trans.PhysicalOperand;
 
-public class PhysicalAddressOperand extends PhysicalOperand{
+public class PhysicalImmediateAddressOperand extends PhysicalOperand{
     private String base;
     private int offset;
 
-    public PhysicalAddressOperand(String base, int offset) {
+    public PhysicalImmediateAddressOperand(String base, int offset) {
         this.base = base;
         this.offset = offset;
     }

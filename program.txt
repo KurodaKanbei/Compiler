@@ -1,11 +1,5 @@
-int f(int n) {
-    return n;
-}
-
-int p(int n) {
-    return f(n);
-}
-
 int main() {
-    return p(10);
+    int i;
+    int []a = new int[10];
+    for (i = 0; i < 10; i++) a[i] = i;
 }

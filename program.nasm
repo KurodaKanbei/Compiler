@@ -1,6 +1,4 @@
-global p
 global __global_init
-global f
 global main
 global print_Int
 global println_Int
@@ -23,30 +21,10 @@ global __string_EQ
 global __string_NEQ
 extern printf, malloc, strcpy, scanf, strlen, sscanf, sprintf, memcpy, strcmp, puts
 SECTION .text
-p:
-    push                  rbp
-     mov                  rbp,                  rsp
-p_0_block_enter:
-     mov                  rsi,                  rdi
-     mov                  rax,                  rsi
-     jmp       p_1_block_exit
-p_3_inline_exit:
-     mov                  rax,                  rsi
-p_1_block_exit:
-     pop                  rbp
-     ret
 __global_init:
     push                  rbp
      mov                  rbp,                  rsp
 __global_init_1_block_exit:
-     pop                  rbp
-     ret
-f:
-    push                  rbp
-     mov                  rbp,                  rsp
-f_0_block_enter:
-     mov                  rax,                  rdi
-f_1_block_exit:
      pop                  rbp
      ret
 main:
@@ -55,11 +33,41 @@ main:
     call        __global_init
 main_0_block_enter:
      mov                  rsi,                   10
-     mov                  rax,                  rsi
-     jmp    main_1_block_exit
-main_3_inline_exit:
-     mov                  rax,                  rsi
-main_1_block_exit:
+     add                  rsi,                    1
+     sal                  rsi,                    3
+    push                  rsi
+     mov                  rdi,                  rsi
+     sub                  rsp,                    8
+    call               malloc
+     add                  rsp,                    8
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                   10
+     add                  rsi,                    8
+     mov                  rdi,                  rsi
+     mov                  rsi,                    0
+     cmp                  rsi,                   10
+      jl     main_2_loop_body
+     jmp    main_5_block_exit
+main_1_loop_condition:
+     cmp                  rsi,                   10
+      jl     main_2_loop_body
+     jmp    main_5_block_exit
+main_2_loop_body:
+     mov                   r9,                  rsi
+     sal                   r9,                    3
+     mov                   r8,                  rdi
+     add                   r8,                   r9
+     mov       qword [r8 + 0],                  rsi
+     add                  rsi,                    1
+     cmp                  rsi,                   10
+      jl     main_2_loop_body
+     jmp    main_5_block_exit
+main_3_loop_increment:
+     add                  rsi,                    1
+     cmp                  rsi,                   10
+      jl     main_2_loop_body
+main_5_block_exit:
      pop                  rbp
      ret
 SECTION .data

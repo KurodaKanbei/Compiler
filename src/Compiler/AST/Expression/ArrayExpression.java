@@ -6,7 +6,7 @@ import Compiler.AST.Type.Type;
 import Compiler.CFG.Instruction.BinaryInstruction;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.MoveInstruction;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.RegisterManager;
@@ -57,6 +57,6 @@ public class ArrayExpression extends Expression{
         VirtualRegister base = RegisterManager.getTemporaryRegister();
         instructionList.add(new MoveInstruction(base, arrayExpression.getOperand()));
         instructionList.add(new BinaryInstruction(BinaryInstruction.BinaryOp.ADD, base, offset));
-        operand = new AddressOperand(base, new ImmediateOperand(0));
+        operand = new ImmediateAddressOperand(base, new ImmediateOperand(0));
     }
 }

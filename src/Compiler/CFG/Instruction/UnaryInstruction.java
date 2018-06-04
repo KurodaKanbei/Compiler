@@ -29,14 +29,14 @@ public class UnaryInstruction extends Instruction {
             killSet.add((VirtualRegister) target);
             useSet.add((VirtualRegister) target);
         }
-        if (target instanceof AddressOperand) {
-            useSet.add(((AddressOperand) target).getBase());
+        if (target instanceof ImmediateAddressOperand) {
+            useSet.add(((ImmediateAddressOperand) target).getBase());
         }
     }
 
     @Override
     public boolean hasGlobalImpact() {
-        if (target instanceof AddressOperand || target instanceof MemoryLabel
+        if (target instanceof ImmediateAddressOperand || target instanceof MemoryLabel
                 || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {
             return true;
         }

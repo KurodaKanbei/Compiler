@@ -2,7 +2,7 @@ package Compiler.CFG.Instruction;
 
 import Compiler.AST.Type.FunctionType;
 import Compiler.CFG.FunctionIR;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.MemoryLabel;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
@@ -28,8 +28,8 @@ public class FunctionCallInstruction extends Instruction {
             if (operand instanceof VirtualRegister) {
                 useSet.add((VirtualRegister) operand);
             }
-            if (operand instanceof AddressOperand) {
-                useSet.add(((AddressOperand) operand).getBase());
+            if (operand instanceof ImmediateAddressOperand) {
+                useSet.add(((ImmediateAddressOperand) operand).getBase());
             }
         }
     }
@@ -53,7 +53,7 @@ public class FunctionCallInstruction extends Instruction {
     @Override
     public boolean hasGlobalImpact() {
         for (Operand operand : operandList) {
-            if (operand instanceof MemoryLabel || operand instanceof AddressOperand) return true;
+            if (operand instanceof MemoryLabel || operand instanceof ImmediateAddressOperand) return true;
             if (operand instanceof VirtualRegister && ((VirtualRegister) operand).isGlobal()) return true;
         }
         if (functionType.isBuiltin()) return true;

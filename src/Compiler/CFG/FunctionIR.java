@@ -4,7 +4,7 @@ import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.FunctionType;
 import Compiler.AST.Type.IntType;
 import Compiler.CFG.Instruction.*;
-import Compiler.CFG.Operand.AddressOperand;
+import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.Translator;
@@ -114,11 +114,11 @@ public class FunctionIR {
         checkInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.LE, escapeLabel));
         checkInstructionList.add(new JumpInstruction(startLabel));
         checkInstructionList.add(escapeLabel);
-        checkInstructionList.add(new CompareInstruction(new AddressOperand(pos), new ImmediateOperand(0)));
+        checkInstructionList.add(new CompareInstruction(new ImmediateAddressOperand(pos), new ImmediateOperand(0)));
         checkInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, startLabel));
         checkInstructionList.add(new JumpInstruction(returnLabel));
         checkInstructionList.add(returnLabel);
-        checkInstructionList.add(new ReturnInstruction(new AddressOperand(pos)));
+        checkInstructionList.add(new ReturnInstruction(new ImmediateAddressOperand(pos)));
         checkInstructionList.add(new JumpInstruction(exitBlock));
         checkInstructionList.add(startLabel);
         for (int i = 0; i < checkInstructionList.size(); i++) {
@@ -140,7 +140,7 @@ public class FunctionIR {
         returnInstructionList.add(updateLabel);
         VirtualRegister t = RegisterManager.getTemporaryRegister();
         t.setSystemRegister("rax");
-        returnInstructionList.add(new MoveInstruction(new AddressOperand(pos), t));
+        returnInstructionList.add(new MoveInstruction(new ImmediateAddressOperand(pos), t));
         returnInstructionList.add(failLabel);
         returnInstructionList.add(new JumpInstruction(exitBlock));
         int m = instructionList.size() - 2;
@@ -372,7 +372,7 @@ public class FunctionIR {
             returnLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_escape_" + i));
         }
         checkLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_check_" + memorySize));
-        checkInstructionList.add(new MoveInstruction(new AddressOperand(backupVirtualRegister), virtualRegister));
+        checkInstructionList.add(new MoveInstruction(new ImmediateAddressOperand(backupVirtualRegister), virtualRegister));
         checkInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(0)));
         for (int i = 0; i < memorySize; i++) {
             checkInstructionList.add(checkLabelInstructionList.get(i));
@@ -380,11 +380,11 @@ public class FunctionIR {
             checkInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, successLabelInstructionList.get(i)));
             checkInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(i + 1)));
             checkInstructionList.add(successLabelInstructionList.get(i));
-            checkInstructionList.add(new CompareInstruction(new AddressOperand(reservedBooleanList.get(i)), new ImmediateOperand(1)));
+            checkInstructionList.add(new CompareInstruction(new ImmediateAddressOperand(reservedBooleanList.get(i)), new ImmediateOperand(1)));
             checkInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, returnLabelInstructionList.get(i)));
             checkInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(i + 1)));
             checkInstructionList.add(returnLabelInstructionList.get(i));
-            checkInstructionList.add(new ReturnInstruction(new AddressOperand(reservedIntegerList.get(i))));
+            checkInstructionList.add(new ReturnInstruction(new ImmediateAddressOperand(reservedIntegerList.get(i))));
             checkInstructionList.add(new JumpInstruction(exitBlock));
         }
         checkInstructionList.add(checkLabelInstructionList.get(memorySize));
@@ -401,14 +401,14 @@ public class FunctionIR {
         checkLabelInstructionList.add(new LabelInstruction(functionType.getIRName() + "_return_check" + memorySize));
         for (int i = 0; i < memorySize; i++) {
             returnInstructionList.add(checkLabelInstructionList.get(i));
-            returnInstructionList.add(new CompareInstruction(new AddressOperand(backupVirtualRegister), new ImmediateOperand(i)));
+            returnInstructionList.add(new CompareInstruction(new ImmediateAddressOperand(backupVirtualRegister), new ImmediateOperand(i)));
             returnInstructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, successLabelInstructionList.get(i)));
             returnInstructionList.add(new JumpInstruction(checkLabelInstructionList.get(i + 1)));
             returnInstructionList.add(successLabelInstructionList.get(i));
-            returnInstructionList.add(new MoveInstruction(new AddressOperand(reservedBooleanList.get(i)), new ImmediateOperand(1)));
+            returnInstructionList.add(new MoveInstruction(new ImmediateAddressOperand(reservedBooleanList.get(i)), new ImmediateOperand(1)));
             VirtualRegister t = RegisterManager.getTemporaryRegister();
             t.setSystemRegister("rax");
-            returnInstructionList.add(new MoveInstruction(new AddressOperand(reservedIntegerList.get(i)), t));
+            returnInstructionList.add(new MoveInstruction(new ImmediateAddressOperand(reservedIntegerList.get(i)), t));
             returnInstructionList.add(new JumpInstruction(exitBlock));
         }
         returnInstructionList.add(checkLabelInstructionList.get(memorySize));
