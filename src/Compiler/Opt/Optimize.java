@@ -35,6 +35,8 @@ public class Optimize {
             //FoolishConditionMonitor.stupidConditionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             NaiveRegisterAllocator.naiveAllocate(LivenessAnalyst.getEdge(), LivenessAnalyst.getCount(), functionIR);
+            LivenessAnalyst.analysis(functionIR);
+            MemoryAddressRazor.uselessMemoryAccessRemove(functionIR);
             RedundantBlockDictator.redundantBlockRemove(functionIR);
             StupidMoveKiller.uselessMoveRemove(functionIR);
             BlocksTyrant.emptyBlockRemove(functionIR);

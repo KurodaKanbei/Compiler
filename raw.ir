@@ -32,6 +32,30 @@ main {
 		INC i(null)
 		jump main_1_loop_condition
 	main_4_loop_exit
-		jump main_5_block_exit
-	main_5_block_exit
+		i(null) = mov 0
+		jump main_5_loop_condition
+	main_5_loop_condition
+		cmp i(null) 10
+		set LE t6(null)
+		cmp t6(null) 1
+		CJump EQ main_6_loop_body
+		jump main_8_loop_exit
+	main_6_loop_body
+		t7(null) = mov i(null)
+		t7(null) = t7(null) SHL 3
+		t8(null) = mov a(null)
+		t8(null) = t8(null) ADD t7(null)
+		t10(rdi) = mov Address (t8(null) + 0)
+		call toString return value = t9(rax)
+		t11(null) = mov t9(rax)
+		t12(rdi) = mov t11(null)
+		call println return value = null
+		jump main_7_loop_increment
+	main_7_loop_increment
+		t13(null) = mov i(null)
+		INC i(null)
+		jump main_5_loop_condition
+	main_8_loop_exit
+		jump main_9_block_exit
+	main_9_block_exit
 }

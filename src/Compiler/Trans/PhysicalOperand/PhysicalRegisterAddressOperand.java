@@ -10,6 +10,6 @@ public class PhysicalRegisterAddressOperand extends PhysicalAddressOperand{
 
     @Override
     public String toString() {
-        return String.format("qword [%s %s]", base, offset);
+        return String.format("qword [%s + %s]", base, offset);
     }
 }

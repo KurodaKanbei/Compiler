@@ -2,4 +2,5 @@ int main() {
     int i;
     int []a = new int[10];
     for (i = 0; i < 10; i++) a[i] = i;
+    for (i = 0; i < 10; i++) println(toString(a[i]));
 }

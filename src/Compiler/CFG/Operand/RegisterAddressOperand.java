@@ -7,6 +7,11 @@ import Compiler.Trans.Translator;
 public class RegisterAddressOperand extends Operand {
     VirtualRegister base, offset;
 
+    public RegisterAddressOperand(VirtualRegister base, VirtualRegister offset) {
+        this.base = base;
+        this.offset = offset;
+    }
+
     @Override
     public void init() {
         Translator.getCurrentFunctionIR().initialize(base);
