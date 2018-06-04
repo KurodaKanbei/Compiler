@@ -27,10 +27,8 @@ add:
     push                  rbp
      mov                  rbp,                  rsp
 add_0_block_enter:
-     mov                   r8,                  rdi
-     mov                  rdi,                  rsi
-     mov                  rsi,                   r8
-     add                  rsi,                  rdi
+     add                  rdi,                  rsi
+     mov                  rsi,                  rdi
      mov                  rax,                  rsi
      mov                  rcx,                  233
      cdq
@@ -55,19 +53,19 @@ main_0_block_enter:
      sub                  rsp,                    8
     call               getInt
      add                  rsp,                    8
-     mov                  rbx,                  rax
-     mov                  rsi,                    1
-     cmp                  rsi,                  rbx
+     mov                  rsi,                  rax
+     mov                  rbx,                    1
+     cmp                  rbx,                  rsi
      jle     main_2_loop_body
      mov                  rax,                    0
      jmp    main_5_block_exit
 main_1_loop_condition:
-     cmp                  rsi,                  rbx
+     cmp                  rbx,                  rsi
      jle     main_2_loop_body
      mov                  rax,                    0
      jmp    main_5_block_exit
 main_2_loop_body:
-     mov                  rdi,                  rsi
+     mov                  rdi,                  rbx
     push                  rsi
     call                   dp
      pop                  rsi
@@ -79,14 +77,14 @@ main_2_loop_body:
     push                  rsi
     call              println
      pop                  rsi
-     add                  rsi,                    1
-     cmp                  rsi,                  rbx
+     add                  rbx,                    1
+     cmp                  rbx,                  rsi
      jle     main_2_loop_body
      mov                  rax,                    0
      jmp    main_5_block_exit
 main_3_loop_increment:
-     add                  rsi,                    1
-     cmp                  rsi,                  rbx
+     add                  rbx,                    1
+     cmp                  rbx,                  rsi
      jle     main_2_loop_body
      mov                  rax,                    0
      jmp    main_5_block_exit
@@ -104,21 +102,21 @@ dp:
     push                  r13
     push                  rbx
 dp_0_block_enter:
-     mov                  r12,                  rdi
-     sal                  r12,                    3
-     mov                  rbx,              @dp_int
-     add                  rbx,                  r12
-     sar                  r12,                    3
+     mov                  rbx,                  rdi
+     sal                  rbx,                    3
+     mov                  r13,              @dp_int
+     add                  r13,                  rbx
+     sar                  rbx,                    3
      cmp                  rdi,                    0
      jge      dp_1_dp_success
      cmp                  rdi,                    1
      jle         dp_5_if_true
-     mov                  r13,                    0
-     mov                   r8,                    2
-     cmp                   r8,                  rdi
+     mov                   r8,                    0
+     mov                  r12,                    2
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_1_dp_success:
@@ -126,107 +124,111 @@ dp_1_dp_success:
       jl       dp_2_dp_escape
      cmp                  rdi,                    1
      jle         dp_5_if_true
-     mov                  r13,                    0
-     mov                   r8,                    2
-     cmp                   r8,                  rdi
+     mov                   r8,                    0
+     mov                  r12,                    2
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_2_dp_escape:
-     cmp      qword [rbx + 0],                    0
+     cmp      qword [r13 + 0],                    0
       je        dp_4_dp_start
-     mov                  rax,      qword [rbx + 0]
+     mov                  rax,      qword [r13 + 0]
      jmp     dp_19_block_exit
 dp_3_dp_return:
-     mov                  rax,      qword [rbx + 0]
+     mov                  rax,      qword [r13 + 0]
      jmp     dp_19_block_exit
 dp_4_dp_start:
      cmp                  rdi,                    1
      jle         dp_5_if_true
-     mov                  r13,                    0
-     mov                   r8,                    2
-     cmp                   r8,                  rdi
+     mov                   r8,                    0
+     mov                  r12,                    2
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_5_if_true:
      mov                  rax,                   36
      jmp     dp_19_block_exit
 dp_7_if_exit:
-     mov                  r13,                    0
-     mov                   r8,                    2
-     cmp                   r8,                  rdi
+     mov                   r8,                    0
+     mov                  r12,                    2
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_8_loop_condition:
-     cmp                   r8,                  rdi
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_9_loop_body:
      mov                  rsi,                  rdi
-     xor                  rsi,                   r8
+     xor                  rsi,                  r12
      cmp                  rsi,                  rdi
       jl        dp_10_if_true
-     add                   r8,                    1
-     cmp                   r8,                  rdi
+     add                  r12,                    1
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_10_if_true:
      mov                  rsi,                  rdi
-     xor                  rsi,                   r8
+     xor                  rsi,                  r12
      mov                  rdi,                  rsi
+    push                  rdi
     push                   r8
+     sub                  rsp,                    8
     call                   dp
+     add                  rsp,                    8
      pop                   r8
+     pop                  rdi
      mov                  rsi,                  rax
-     mov                  rdi,                  r13
-    push                   r8
+     mov                  rdi,                   r8
+    push                  rdi
     call                  add
-     pop                   r8
-     mov                  r13,                  rax
-     add                   r8,                    1
-     cmp                   r8,                  rdi
+     pop                  rdi
+     mov                   r8,                  rax
+     add                  r12,                    1
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_13_loop_increment:
-     add                   r8,                    1
-     cmp                   r8,                  rdi
+     add                  r12,                    1
+     cmp                  r12,                  rdi
      jle       dp_9_loop_body
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_14_loop_exit:
-     mov                  rax,                  r13
-     cmp                  r12,                    0
+     mov                  rax,                   r8
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_15_dp_save:
-     cmp                  r12,                    0
+     cmp                  rbx,                    0
      jge    dp_16_dp_positive
      jmp     dp_19_block_exit
 dp_16_dp_positive:
-     cmp                  r12,                  200
+     cmp                  rbx,                  200
       jl      dp_17_dp_update
      jmp     dp_19_block_exit
 dp_17_dp_update:
-     mov      qword [rbx + 0],                  rax
+     mov      qword [r13 + 0],                  rax
 dp_19_block_exit:
      pop                  rbx
      pop                  r13
