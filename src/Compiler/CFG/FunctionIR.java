@@ -27,6 +27,8 @@ public class FunctionIR {
     private Map<VirtualRegister, Integer> registerIntegerMap;
 
     private boolean beInlined;
+    private boolean beDeleted;
+
     public static final List<String> callerSavedRegisterList = new ArrayList<String>() {{
         add("rsi"); add("rdi"); add("r8"); add("r9"); add("r10"); add("r11");
     }};
@@ -168,7 +170,7 @@ public class FunctionIR {
         this.registerManager = new RegisterManager();
         this.registerIntegerMap = new HashMap<>();
         this.registerStringMap = new HashMap<>();
-        this.beInlined = this.beMemorized = false;
+        this.beInlined = this.beMemorized = this.beDeleted = false;
         for (Symbol symbol : functionType.getParameterList()) {
             parameterList.add((VirtualRegister) symbol.getOperand());
         }
@@ -276,6 +278,14 @@ public class FunctionIR {
 
     public void setRegisterIntegerMap(Map<VirtualRegister, Integer> registerIntegerMap) {
         this.registerIntegerMap = registerIntegerMap;
+    }
+
+    public boolean isBeDeleted() {
+        return beDeleted;
+    }
+
+    public void setBeDeleted(boolean beDeleted) {
+        this.beDeleted = beDeleted;
     }
 
     public boolean isLeaf() {

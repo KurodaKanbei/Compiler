@@ -38,6 +38,10 @@ public class FunctionCallInstruction extends Instruction {
         return functionType;
     }
 
+    public void setFunctionType(FunctionType functionType) {
+        this.functionType = functionType;
+    }
+
     public List<Operand> getOperandList() {
         return operandList;
     }

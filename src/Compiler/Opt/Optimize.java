@@ -9,7 +9,7 @@ public class Optimize {
         //for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
         //    InvariantConditionResort.invariantCodeResort(functionIR);
         //}
-        //Destructor.uselessFunctionArrange();
+        Destructor.uselessFunctionArrange();
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
             LivenessAnalyst.analysis(functionIR);
             DeadLoopRazor.deadForStatementBlocksRemove(functionIR);
