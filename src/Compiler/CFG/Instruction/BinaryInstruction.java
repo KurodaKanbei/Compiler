@@ -1,10 +1,7 @@
 package Compiler.CFG.Instruction;
 
 import Compiler.CFG.Operand.*;
-import Compiler.Trans.PhysicalOperand.PhysicalImmediateAddressOperand;
-import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
-import Compiler.Trans.PhysicalOperand.PhysicalOperand;
-import Compiler.Trans.PhysicalOperand.PhysicalRegister;
+import Compiler.Trans.PhysicalOperand.*;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Error.InternalError;
 
@@ -183,7 +180,7 @@ public class BinaryInstruction extends Instruction {
             }
             return str.toString();
         }
-        if (physicalSource instanceof PhysicalImmediateAddressOperand && physicalTarget instanceof PhysicalImmediateAddressOperand) {
+        if (physicalSource instanceof PhysicalAddressOperand && physicalTarget instanceof PhysicalAddressOperand) {
             str.append(Translator.getInstruction("mov", "rax", targetName));
             str.append(Translator.getInstruction(operator.toLowerCase(), "rax", sourceName));
             str.append(Translator.getInstruction("mov", targetName, "rax"));

@@ -3,7 +3,7 @@ package Compiler.CFG.Instruction;
 import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
-import Compiler.Trans.PhysicalOperand.PhysicalImmediateAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
@@ -64,7 +64,7 @@ public class CompareInstruction extends Instruction {
         String leftName, rightName;
         leftName = physicalLeft.toString();
         rightName = physicalRight.toString();
-        if (physicalLeft instanceof PhysicalImmediateAddressOperand && physicalRight instanceof PhysicalImmediateAddressOperand || physicalLeft instanceof PhysicalImmediateOperand) {
+        if (physicalLeft instanceof PhysicalAddressOperand && physicalRight instanceof PhysicalAddressOperand || physicalLeft instanceof PhysicalImmediateOperand) {
             str.append(Translator.getInstruction("mov", "rax", leftName));
             str.append(Translator.getInstruction("cmp", "rax", rightName));
         } else {

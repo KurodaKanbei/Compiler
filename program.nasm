@@ -44,28 +44,27 @@ main_0_block_enter:
      mov                  rsi,                  rax
      mov      qword [rsi + 0],                   10
      add                  rsi,                    8
-     mov                  rdi,                  rsi
-     mov                  rsi,                    0
-     cmp                  rsi,                   10
+     mov                   r8,                    0
+     cmp                   r8,                   10
       jl     main_2_loop_body
      jmp    main_5_block_exit
 main_1_loop_condition:
-     cmp                  rsi,                   10
+     cmp                   r8,                   10
       jl     main_2_loop_body
      jmp    main_5_block_exit
 main_2_loop_body:
-     mov                   r9,                  rsi
+     mov                   r9,                   r8
      sal                   r9,                    3
-     mov                   r8,                  rdi
-     add                   r8,                   r9
-     mov       qword [r8 + 0],                  rsi
-     add                  rsi,                    1
-     cmp                  rsi,                   10
+     mov                  rdi,                  rsi
+     add                  rdi,                   r9
+     mov      qword [rdi + 0],                   r8
+     add                   r8,                    1
+     cmp                   r8,                   10
       jl     main_2_loop_body
      jmp    main_5_block_exit
 main_3_loop_increment:
-     add                  rsi,                    1
-     cmp                  rsi,                   10
+     add                   r8,                    1
+     cmp                   r8,                   10
       jl     main_2_loop_body
 main_5_block_exit:
      pop                  rbp

@@ -9,28 +9,27 @@ main {
 		malloc t0(rsi) t1(rsi)
 		Address (t0(rsi) + 0) = mov 10
 		t0(rsi) = t0(rsi) ADD 8
-		a(rdi) = mov t0(rsi)
-		i(rsi) = mov 0
-		cmp i(rsi) 10
+		i(r8) = mov 0
+		cmp i(r8) 10
 		CJump LE main_2_loop_body
 		jump main_5_block_exit
 	main_1_loop_condition
-		cmp i(rsi) 10
+		cmp i(r8) 10
 		CJump LE main_2_loop_body
 		jump main_5_block_exit
 	main_2_loop_body
-		t3(r9) = mov i(rsi)
+		t3(r9) = mov i(r8)
 		t3(r9) = t3(r9) SHL 3
-		t4(r8) = mov a(rdi)
-		t4(r8) = t4(r8) ADD t3(r9)
-		Address (t4(r8) + 0) = mov i(rsi)
-		INC i(rsi)
-		cmp i(rsi) 10
+		t4(rdi) = mov a(rsi)
+		t4(rdi) = t4(rdi) ADD t3(r9)
+		Address (t4(rdi) + 0) = mov i(r8)
+		INC i(r8)
+		cmp i(r8) 10
 		CJump LE main_2_loop_body
 		jump main_5_block_exit
 	main_3_loop_increment
-		INC i(rsi)
-		cmp i(rsi) 10
+		INC i(r8)
+		cmp i(r8) 10
 		CJump LE main_2_loop_body
 	main_5_block_exit
 }

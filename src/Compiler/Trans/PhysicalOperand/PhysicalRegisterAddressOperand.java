@@ -1,6 +1,6 @@
 package Compiler.Trans.PhysicalOperand;
 
-public class PhysicalRegisterAddressOperand extends PhysicalOperand{
+public class PhysicalRegisterAddressOperand extends PhysicalAddressOperand{
     String base, offset;
 
     public PhysicalRegisterAddressOperand(String base, String offset) {

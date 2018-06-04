@@ -4,7 +4,7 @@ import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.MemoryLabel;
 import Compiler.CFG.Operand.Operand;
 import Compiler.CFG.Operand.VirtualRegister;
-import Compiler.Trans.PhysicalOperand.PhysicalImmediateAddressOperand;
+import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
@@ -89,7 +89,7 @@ public class MoveInstruction extends Instruction {
         String targetName, sourceName;
         targetName = physicalTarget.toString();
         sourceName = physicalSource.toString();
-        if (physicalTarget instanceof PhysicalImmediateAddressOperand && physicalSource instanceof PhysicalImmediateAddressOperand) {
+        if (physicalTarget instanceof PhysicalAddressOperand && physicalSource instanceof PhysicalAddressOperand) {
             str.append(Translator.getInstruction("mov", "rax", sourceName));
             str.append(Translator.getInstruction("mov", targetName, "rax"));
         } else {
