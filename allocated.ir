@@ -12,84 +12,85 @@ main {
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_2_loop_body
-		j(rsi) = mov 0
-		cmp j(rsi) 3
+		j(r8) = mov 0
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_3_loop_condition
-		cmp j(rsi) 3
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_4_loop_body
-		k(rbx) = mov 0
-		cmp k(rbx) 3
+		k(rsi) = mov 0
+		cmp k(rsi) 3
 		CJump LE main_6_loop_body
-		INC j(rsi)
-		cmp j(rsi) 3
+		INC j(r8)
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_5_loop_condition
-		cmp k(rbx) 3
+		cmp k(rsi) 3
 		CJump LE main_6_loop_body
-		INC j(rsi)
-		cmp j(rsi) 3
+		INC j(r8)
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_6_loop_body
-		cmp i(r12) j(rsi)
+		cmp i(r12) j(r8)
 		CJump LE main_7_if_true
-		INC k(rbx)
-		cmp k(rbx) 3
+		INC k(rsi)
+		cmp k(rsi) 3
 		CJump LE main_6_loop_body
-		INC j(rsi)
-		cmp j(rsi) 3
+		INC j(r8)
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_7_if_true
-		t4(rdi) = mov i(r12)
-		t4(rdi) = t4(rdi) ADD j(rsi)
+		t4(rbx) = mov i(r12)
+		t4(rbx) = t4(rbx) ADD j(r8)
+		t6(rdi) = mov t4(rbx)
 		call toString return value = t5(rax)
 		t8(rdi) = mov t5(rax)
 		call println return value = null
-		INC k(rbx)
-		cmp k(rbx) 3
+		INC k(rsi)
+		cmp k(rsi) 3
 		CJump LE main_6_loop_body
-		INC j(rsi)
-		cmp j(rsi) 3
+		INC j(r8)
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_10_loop_increment
-		INC k(rbx)
-		cmp k(rbx) 3
+		INC k(rsi)
+		cmp k(rsi) 3
 		CJump LE main_6_loop_body
-		INC j(rsi)
-		cmp j(rsi) 3
+		INC j(r8)
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3
 		CJump LE main_2_loop_body
 		jump main_16_block_exit
 	main_12_loop_increment
-		INC j(rsi)
-		cmp j(rsi) 3
+		INC j(r8)
+		cmp j(r8) 3
 		CJump LE main_4_loop_body
 		INC i(r12)
 		cmp i(r12) 3

@@ -43,92 +43,93 @@ main_1_loop_condition:
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_2_loop_body:
-     mov                  rsi,                    0
-     cmp                  rsi,                    3
+     mov                   r8,                    0
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_3_loop_condition:
-     cmp                  rsi,                    3
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_4_loop_body:
-     mov                  rbx,                    0
-     cmp                  rbx,                    3
-      jl     main_6_loop_body
-     add                  rsi,                    1
+     mov                  rsi,                    0
      cmp                  rsi,                    3
+      jl     main_6_loop_body
+     add                   r8,                    1
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_5_loop_condition:
-     cmp                  rbx,                    3
-      jl     main_6_loop_body
-     add                  rsi,                    1
      cmp                  rsi,                    3
+      jl     main_6_loop_body
+     add                   r8,                    1
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_6_loop_body:
-     cmp                  r12,                  rsi
+     cmp                  r12,                   r8
       jl       main_7_if_true
-     add                  rbx,                    1
-     cmp                  rbx,                    3
-      jl     main_6_loop_body
      add                  rsi,                    1
      cmp                  rsi,                    3
+      jl     main_6_loop_body
+     add                   r8,                    1
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_7_if_true:
-     mov                  rdi,                  r12
-     add                  rdi,                  rsi
+     mov                  rbx,                  r12
+     add                  rbx,                   r8
+     mov                  rdi,                  rbx
     push                  rsi
-     sub                  rsp,                    8
+    push                   r8
     call             toString
-     add                  rsp,                    8
+     pop                   r8
      pop                  rsi
      mov                  rdi,                  rax
     push                  rsi
-     sub                  rsp,                    8
+    push                   r8
     call              println
-     add                  rsp,                    8
+     pop                   r8
      pop                  rsi
-     add                  rbx,                    1
-     cmp                  rbx,                    3
-      jl     main_6_loop_body
      add                  rsi,                    1
      cmp                  rsi,                    3
+      jl     main_6_loop_body
+     add                   r8,                    1
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_10_loop_increment:
-     add                  rbx,                    1
-     cmp                  rbx,                    3
-      jl     main_6_loop_body
      add                  rsi,                    1
      cmp                  rsi,                    3
+      jl     main_6_loop_body
+     add                   r8,                    1
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
       jl     main_2_loop_body
      jmp   main_16_block_exit
 main_12_loop_increment:
-     add                  rsi,                    1
-     cmp                  rsi,                    3
+     add                   r8,                    1
+     cmp                   r8,                    3
       jl     main_4_loop_body
      add                  r12,                    1
      cmp                  r12,                    3
