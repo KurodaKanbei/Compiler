@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3acee6cb-57ba-4d8a-929b-bd6959d8dfa8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/OutputConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/OutputConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Utility/Pair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Utility/Triple.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/Utility/Utility.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CompilationError.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java">
+      <file leaf-file-name="program.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/program.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="610">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
             </state>
           </provider>
         </entry>
@@ -52,8 +47,8 @@
       <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/program.nasm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="99" column="28" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
+            <state relative-caret-position="458">
+              <caret line="97" column="28" selection-start-line="97" selection-start-column="28" selection-end-line="97" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -70,13 +65,13 @@
       <file leaf-file-name="allocated.ir" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/allocated.ir">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="59" column="49" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
+            <state relative-caret-position="419">
+              <caret line="60" column="46" selection-start-line="60" selection-start-column="46" selection-end-line="60" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutputConverter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OutputConverter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/OutputConverter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="179">
@@ -223,9 +218,9 @@
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/MemoryAddressRazor.java" />
-        <option value="$PROJECT_DIR$/program.txt" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/OutputConverter.java" />
+        <option value="$PROJECT_DIR$/program.txt" />
       </list>
     </option>
   </component>
@@ -492,6 +487,7 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49757674" weight="0.32827586" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.48707592" weight="0.32827586" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -516,7 +512,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4983845" weight="0.32827586" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.48707592" weight="0.32827586" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -865,13 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/program.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Utility/Error/CompilationError.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -893,13 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/allocated.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="59" column="49" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-260">
@@ -916,8 +897,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/program.nasm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="99" column="28" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
+        <state relative-caret-position="458">
+          <caret line="97" column="28" selection-start-line="97" selection-start-column="28" selection-end-line="97" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -945,6 +926,20 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allocated.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="60" column="46" selection-start-line="60" selection-start-column="46" selection-end-line="60" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/program.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
         </state>
       </provider>
     </entry>

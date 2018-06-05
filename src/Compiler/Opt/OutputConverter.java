@@ -28,6 +28,8 @@ public class OutputConverter {
                     Operand source = moveInstruction1.getSource();
                     Operand target = moveInstruction2.getTarget();
                     FunctionCallInstruction functionCallInstruction2 = (FunctionCallInstruction) block.getInstructionList().get(i + 3);
+                    if (functionCallInstruction1.getFunctionType().getOriginName() == null
+                            || functionCallInstruction1.getFunctionType().getOriginName() == null) continue;
                     if (functionCallInstruction1.getFunctionType().getOriginName().equals("toString")
                             && hasAssigned(source, "rax") && hasAssigned(target, "rdi")
                             && moveInstruction1.getTarget() == moveInstruction2.getSource()) {

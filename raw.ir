@@ -1,61 +1,370 @@
+point_cross this(null) other(null) {
+	point_cross_0_block_enter
+		this(null) = mov t201(rdi)
+		other(null) = mov t202(rsi)
+		malloc t203(null) 24
+		t204(rdi) = mov t203(null)
+		call point_null return value = null
+		retval(null) = mov t203(null)
+		t205(null) = mov Address (this(null) + 8)
+		t205(null) = t205(null) MUL Address (other(null) + 16)
+		t206(null) = mov Address (this(null) + 16)
+		t206(null) = t206(null) MUL Address (other(null) + 8)
+		t207(null) = mov t205(null)
+		t207(null) = t207(null) SUB t206(null)
+		t208(null) = mov Address (this(null) + 16)
+		t208(null) = t208(null) MUL Address (other(null) + 0)
+		t209(null) = mov Address (this(null) + 0)
+		t209(null) = t209(null) MUL Address (other(null) + 16)
+		t210(null) = mov t208(null)
+		t210(null) = t210(null) SUB t209(null)
+		t211(null) = mov Address (this(null) + 0)
+		t211(null) = t211(null) MUL Address (other(null) + 8)
+		t212(null) = mov Address (this(null) + 8)
+		t212(null) = t212(null) MUL Address (other(null) + 0)
+		t213(null) = mov t211(null)
+		t213(null) = t213(null) SUB t212(null)
+		t214(rdi) = mov retval(null)
+		t215(rsi) = mov t207(null)
+		t216(rdx) = mov t210(null)
+		t217(rcx) = mov t213(null)
+		call point_set return value = null
+		ret retval(null)
+		jump point_cross_1_block_exit
+	point_cross_1_block_exit
+}
+point_sqrDis this(null) other(null) {
+	point_sqrDis_0_block_enter
+		this(null) = mov t132(rdi)
+		other(null) = mov t133(rsi)
+		t134(null) = mov Address (this(null) + 0)
+		t134(null) = t134(null) SUB Address (other(null) + 0)
+		t135(null) = mov Address (this(null) + 0)
+		t135(null) = t135(null) SUB Address (other(null) + 0)
+		t136(null) = mov t134(null)
+		t136(null) = t136(null) MUL t135(null)
+		t137(null) = mov Address (this(null) + 8)
+		t137(null) = t137(null) SUB Address (other(null) + 8)
+		t138(null) = mov Address (this(null) + 8)
+		t138(null) = t138(null) SUB Address (other(null) + 8)
+		t139(null) = mov t137(null)
+		t139(null) = t139(null) MUL t138(null)
+		t140(null) = mov t136(null)
+		t140(null) = t140(null) ADD t139(null)
+		t141(null) = mov Address (this(null) + 16)
+		t141(null) = t141(null) SUB Address (other(null) + 16)
+		t142(null) = mov Address (this(null) + 16)
+		t142(null) = t142(null) SUB Address (other(null) + 16)
+		t143(null) = mov t141(null)
+		t143(null) = t143(null) MUL t142(null)
+		t144(null) = mov t140(null)
+		t144(null) = t144(null) ADD t143(null)
+		ret t144(null)
+		jump point_sqrDis_1_block_exit
+	point_sqrDis_1_block_exit
+}
 __global_init {
 	__global_init_0_block_enter
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
 }
+point_sub this(null) other(null) {
+	point_sub_0_block_enter
+		this(null) = mov t150(rdi)
+		other(null) = mov t151(rsi)
+		t152(null) = mov Address (this(null) + 0)
+		t152(null) = t152(null) SUB Address (other(null) + 0)
+		Address (this(null) + 0) = mov t152(null)
+		t153(null) = mov Address (this(null) + 8)
+		t153(null) = t153(null) SUB Address (other(null) + 8)
+		Address (this(null) + 8) = mov t153(null)
+		t154(null) = mov Address (this(null) + 16)
+		t154(null) = t154(null) SUB Address (other(null) + 16)
+		Address (this(null) + 16) = mov t154(null)
+		ret this(null)
+		jump point_sub_1_block_exit
+	point_sub_1_block_exit
+}
+point_printPoint this(null) {
+	point_printPoint_0_block_enter
+		this(null) = mov t155(rdi)
+		t157(rdi) = mov Address (this(null) + 0)
+		call toString return value = t156(rax)
+		t158(null) = mov t156(rax)
+		t160(rdi) = mov __const_string_0
+		t161(rsi) = mov t158(null)
+		call __string_connection return value = t159(rax)
+		t162(null) = mov t159(rax)
+		t164(rdi) = mov t162(null)
+		t165(rsi) = mov __const_string_1
+		call __string_connection return value = t163(rax)
+		t166(null) = mov t163(rax)
+		t168(rdi) = mov Address (this(null) + 8)
+		call toString return value = t167(rax)
+		t169(null) = mov t167(rax)
+		t171(rdi) = mov t166(null)
+		t172(rsi) = mov t169(null)
+		call __string_connection return value = t170(rax)
+		t173(null) = mov t170(rax)
+		t175(rdi) = mov t173(null)
+		t176(rsi) = mov __const_string_2
+		call __string_connection return value = t174(rax)
+		t177(null) = mov t174(rax)
+		t179(rdi) = mov Address (this(null) + 16)
+		call toString return value = t178(rax)
+		t180(null) = mov t178(rax)
+		t182(rdi) = mov t177(null)
+		t183(rsi) = mov t180(null)
+		call __string_connection return value = t181(rax)
+		t184(null) = mov t181(rax)
+		t186(rdi) = mov t184(null)
+		t187(rsi) = mov __const_string_3
+		call __string_connection return value = t185(rax)
+		t188(null) = mov t185(rax)
+		t189(rdi) = mov t188(null)
+		call println return value = null
+		jump point_printPoint_1_block_exit
+	point_printPoint_1_block_exit
+}
+point_set this(null) a_x(null) a_y(null) a_z(null) {
+	point_set_0_block_enter
+		this(null) = mov t190(rdi)
+		a_x(null) = mov t191(rsi)
+		a_y(null) = mov t192(rdx)
+		a_z(null) = mov t193(rcx)
+		Address (this(null) + 0) = mov a_x(null)
+		Address (this(null) + 8) = mov a_y(null)
+		Address (this(null) + 16) = mov a_z(null)
+		jump point_set_1_block_exit
+	point_set_1_block_exit
+}
+point_add this(null) other(null) {
+	point_add_0_block_enter
+		this(null) = mov t145(rdi)
+		other(null) = mov t146(rsi)
+		t147(null) = mov Address (this(null) + 0)
+		t147(null) = t147(null) ADD Address (other(null) + 0)
+		Address (this(null) + 0) = mov t147(null)
+		t148(null) = mov Address (this(null) + 8)
+		t148(null) = t148(null) ADD Address (other(null) + 8)
+		Address (this(null) + 8) = mov t148(null)
+		t149(null) = mov Address (this(null) + 16)
+		t149(null) = t149(null) ADD Address (other(null) + 16)
+		Address (this(null) + 16) = mov t149(null)
+		ret this(null)
+		jump point_add_1_block_exit
+	point_add_1_block_exit
+}
 main {
 	main_0_block_enter
-		t1(null) = mov 10
-		INC t1(null)
-		t1(null) = t1(null) SHL 3
-		malloc t0(null) t1(null)
-		Address (t0(null) + 0) = mov 10
-		t0(null) = t0(null) ADD 8
+		malloc t0(null) 24
+		t1(rdi) = mov t0(null)
+		call point_null return value = null
 		a(null) = mov t0(null)
-		i(null) = mov 0
-		jump main_1_loop_condition
-	main_1_loop_condition
-		cmp i(null) 10
-		set LE t2(null)
-		cmp t2(null) 1
-		CJump EQ main_2_loop_body
-		jump main_4_loop_exit
-	main_2_loop_body
-		t3(null) = mov i(null)
-		t3(null) = t3(null) SHL 3
-		t4(null) = mov a(null)
-		t4(null) = t4(null) ADD t3(null)
-		Address (t4(null) + 0) = mov i(null)
-		jump main_3_loop_increment
-	main_3_loop_increment
-		t5(null) = mov i(null)
-		INC i(null)
-		jump main_1_loop_condition
-	main_4_loop_exit
-		i(null) = mov 0
-		jump main_5_loop_condition
-	main_5_loop_condition
-		cmp i(null) 10
-		set LE t6(null)
-		cmp t6(null) 1
-		CJump EQ main_6_loop_body
-		jump main_8_loop_exit
-	main_6_loop_body
-		t7(null) = mov i(null)
-		t7(null) = t7(null) SHL 3
-		t8(null) = mov a(null)
-		t8(null) = t8(null) ADD t7(null)
-		t10(rdi) = mov Address (t8(null) + 0)
-		call toString return value = t9(rax)
-		t11(null) = mov t9(rax)
-		t12(rdi) = mov t11(null)
+		malloc t2(null) 24
+		t3(rdi) = mov t2(null)
+		call point_null return value = null
+		b(null) = mov t2(null)
+		malloc t4(null) 24
+		t5(rdi) = mov t4(null)
+		call point_null return value = null
+		c(null) = mov t4(null)
+		malloc t6(null) 24
+		t7(rdi) = mov t6(null)
+		call point_null return value = null
+		d(null) = mov t6(null)
+		t8(rdi) = mov a(null)
+		call point_printPoint return value = null
+		t9(null) = mov 463
+		NEG t9(null)
+		t10(rdi) = mov a(null)
+		t11(rsi) = mov 849
+		t12(rdx) = mov t9(null)
+		t13(rcx) = mov 480
+		call point_set return value = null
+		t14(null) = mov 208
+		NEG t14(null)
+		t15(null) = mov 150
+		NEG t15(null)
+		t16(rdi) = mov b(null)
+		t17(rsi) = mov t14(null)
+		t18(rdx) = mov 585
+		t19(rcx) = mov t15(null)
+		call point_set return value = null
+		t20(null) = mov 670
+		NEG t20(null)
+		t21(null) = mov 742
+		NEG t21(null)
+		t22(rdi) = mov c(null)
+		t23(rsi) = mov 360
+		t24(rdx) = mov t20(null)
+		t25(rcx) = mov t21(null)
+		call point_set return value = null
+		t26(null) = mov 29
+		NEG t26(null)
+		t27(null) = mov 591
+		NEG t27(null)
+		t28(null) = mov 960
+		NEG t28(null)
+		t29(rdi) = mov d(null)
+		t30(rsi) = mov t26(null)
+		t31(rdx) = mov t27(null)
+		t32(rcx) = mov t28(null)
+		call point_set return value = null
+		t34(rdi) = mov a(null)
+		t35(rsi) = mov b(null)
+		call point_add return value = t33(rax)
+		t36(null) = mov t33(rax)
+		t38(rdi) = mov b(null)
+		t39(rsi) = mov c(null)
+		call point_add return value = t37(rax)
+		t40(null) = mov t37(rax)
+		t42(rdi) = mov d(null)
+		t43(rsi) = mov c(null)
+		call point_add return value = t41(rax)
+		t44(null) = mov t41(rax)
+		t46(rdi) = mov c(null)
+		t47(rsi) = mov a(null)
+		call point_sub return value = t45(rax)
+		t48(null) = mov t45(rax)
+		t50(rdi) = mov b(null)
+		t51(rsi) = mov d(null)
+		call point_sub return value = t49(rax)
+		t52(null) = mov t49(rax)
+		t54(rdi) = mov d(null)
+		t55(rsi) = mov c(null)
+		call point_sub return value = t53(rax)
+		t56(null) = mov t53(rax)
+		t58(rdi) = mov c(null)
+		t59(rsi) = mov b(null)
+		call point_add return value = t57(rax)
+		t60(null) = mov t57(rax)
+		t62(rdi) = mov a(null)
+		t63(rsi) = mov b(null)
+		call point_add return value = t61(rax)
+		t64(null) = mov t61(rax)
+		t66(rdi) = mov b(null)
+		t67(rsi) = mov b(null)
+		call point_add return value = t65(rax)
+		t68(null) = mov t65(rax)
+		t70(rdi) = mov c(null)
+		t71(rsi) = mov c(null)
+		call point_add return value = t69(rax)
+		t72(null) = mov t69(rax)
+		t74(rdi) = mov a(null)
+		t75(rsi) = mov d(null)
+		call point_sub return value = t73(rax)
+		t76(null) = mov t73(rax)
+		t78(rdi) = mov a(null)
+		t79(rsi) = mov b(null)
+		call point_add return value = t77(rax)
+		t80(null) = mov t77(rax)
+		t82(rdi) = mov b(null)
+		t83(rsi) = mov c(null)
+		call point_sub return value = t81(rax)
+		t84(null) = mov t81(rax)
+		t86(rdi) = mov a(null)
+		call point_sqrLen return value = t85(rax)
+		t87(null) = mov t85(rax)
+		t89(rdi) = mov t87(null)
+		call toString return value = t88(rax)
+		t90(null) = mov t88(rax)
+		t91(rdi) = mov t90(null)
 		call println return value = null
-		jump main_7_loop_increment
-	main_7_loop_increment
-		t13(null) = mov i(null)
-		INC i(null)
-		jump main_5_loop_condition
-	main_8_loop_exit
-		jump main_9_block_exit
-	main_9_block_exit
+		t93(rdi) = mov b(null)
+		call point_sqrLen return value = t92(rax)
+		t94(null) = mov t92(rax)
+		t96(rdi) = mov t94(null)
+		call toString return value = t95(rax)
+		t97(null) = mov t95(rax)
+		t98(rdi) = mov t97(null)
+		call println return value = null
+		t100(rdi) = mov b(null)
+		t101(rsi) = mov c(null)
+		call point_sqrDis return value = t99(rax)
+		t102(null) = mov t99(rax)
+		t104(rdi) = mov t102(null)
+		call toString return value = t103(rax)
+		t105(null) = mov t103(rax)
+		t106(rdi) = mov t105(null)
+		call println return value = null
+		t108(rdi) = mov d(null)
+		t109(rsi) = mov a(null)
+		call point_sqrDis return value = t107(rax)
+		t110(null) = mov t107(rax)
+		t112(rdi) = mov t110(null)
+		call toString return value = t111(rax)
+		t113(null) = mov t111(rax)
+		t114(rdi) = mov t113(null)
+		call println return value = null
+		t116(rdi) = mov c(null)
+		t117(rsi) = mov a(null)
+		call point_dot return value = t115(rax)
+		t118(null) = mov t115(rax)
+		t120(rdi) = mov t118(null)
+		call toString return value = t119(rax)
+		t121(null) = mov t119(rax)
+		t122(rdi) = mov t121(null)
+		call println return value = null
+		t124(rdi) = mov b(null)
+		t125(rsi) = mov d(null)
+		call point_cross return value = t123(rax)
+		t126(null) = mov t123(rax)
+		t127(rdi) = mov t126(null)
+		call point_printPoint return value = null
+		t128(rdi) = mov a(null)
+		call point_printPoint return value = null
+		t129(rdi) = mov b(null)
+		call point_printPoint return value = null
+		t130(rdi) = mov c(null)
+		call point_printPoint return value = null
+		t131(rdi) = mov d(null)
+		call point_printPoint return value = null
+		ret 0
+		jump main_1_block_exit
+	main_1_block_exit
+}
+point_sqrLen this(null) {
+	point_sqrLen_0_block_enter
+		this(null) = mov t218(rdi)
+		t219(null) = mov Address (this(null) + 0)
+		t219(null) = t219(null) MUL Address (this(null) + 0)
+		t220(null) = mov Address (this(null) + 8)
+		t220(null) = t220(null) MUL Address (this(null) + 8)
+		t221(null) = mov t219(null)
+		t221(null) = t221(null) ADD t220(null)
+		t222(null) = mov Address (this(null) + 16)
+		t222(null) = t222(null) MUL Address (this(null) + 16)
+		t223(null) = mov t221(null)
+		t223(null) = t223(null) ADD t222(null)
+		ret t223(null)
+		jump point_sqrLen_1_block_exit
+	point_sqrLen_1_block_exit
+}
+point_null this(null) {
+	point_null_0_block_enter
+		this(null) = mov t224(rdi)
+		Address (this(null) + 0) = mov 0
+		Address (this(null) + 8) = mov 0
+		Address (this(null) + 16) = mov 0
+		jump point_null_1_block_exit
+	point_null_1_block_exit
+}
+point_dot this(null) other(null) {
+	point_dot_0_block_enter
+		this(null) = mov t194(rdi)
+		other(null) = mov t195(rsi)
+		t196(null) = mov Address (this(null) + 0)
+		t196(null) = t196(null) MUL Address (other(null) + 0)
+		t197(null) = mov Address (this(null) + 8)
+		t197(null) = t197(null) MUL Address (other(null) + 8)
+		t198(null) = mov t196(null)
+		t198(null) = t198(null) ADD t197(null)
+		t199(null) = mov Address (this(null) + 16)
+		t199(null) = t199(null) MUL Address (other(null) + 16)
+		t200(null) = mov t198(null)
+		t200(null) = t200(null) ADD t199(null)
+		ret t200(null)
+		jump point_dot_1_block_exit
+	point_dot_1_block_exit
 }
