@@ -35,6 +35,11 @@ public class ImmediateAddressOperand extends AddressOperand {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        if (base == older) base = newer;
+    }
+
+    @Override
     public void init() {
         Translator.getCurrentFunctionIR().initialize(base);
     }

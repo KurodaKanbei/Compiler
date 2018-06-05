@@ -17,7 +17,6 @@ public class UselessCodeSniper {
     private static Map<Instruction, Set<VirtualRegister>> criticalOperandIn, criticalOperandOut;
 
     public static void uselessCodeCatch(FunctionIR functionIR) {
-        //System.out.println(functionIR.getFunctionType().getIRName());
         if (functionIR.getBeMemorized()) return;
         usefulInstruction = new HashSet<>();
         criticalOperandIn = new HashMap<>();
