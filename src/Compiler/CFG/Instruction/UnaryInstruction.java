@@ -59,10 +59,10 @@ public class UnaryInstruction extends Instruction {
         String targetName = target.getPhysicalOperand(str).toString();
         switch (unaryOp) {
             case INC:
-                str.append(Translator.getInstruction("add", targetName, "1"));
+                str.append(Translator.getInstruction("inc", targetName));
                 return str.toString();
             case DEC:
-                str.append(Translator.getInstruction("sub", targetName, "1"));
+                str.append(Translator.getInstruction("dec", targetName));
                 return str.toString();
             case NEG:
                 str.append(Translator.getInstruction("neg", targetName));

@@ -3,25 +3,25 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		i(r9) = mov 0
-		cmp i(r9) 10
+		i(rdi) = mov 0
+		cmp i(rdi) 10
 		CJump LE main_2_loop_body
 		jump main_5_block_exit
 	main_1_loop_condition
-		cmp i(r9) 10
+		cmp i(rdi) 10
 		CJump LE main_2_loop_body
 		jump main_5_block_exit
 	main_2_loop_body
-		t1(rdi) = mov i(r9)
-		t1(rdi) = t1(rdi) SHL 3
-		Address (a(rsi) + t1(rdi)) = mov i(r9)
-		INC i(r9)
-		cmp i(r9) 10
+		t1(r9) = mov i(rdi)
+		t1(r9) = t1(r9) SHL 3
+		Address (a(rsi) + t1(r9)) = mov i(rdi)
+		INC i(rdi)
+		cmp i(rdi) 10
 		CJump LE main_2_loop_body
 		jump main_5_block_exit
 	main_3_loop_increment
-		INC i(r9)
-		cmp i(r9) 10
+		INC i(rdi)
+		cmp i(rdi) 10
 		CJump LE main_2_loop_body
 	main_5_block_exit
 }
