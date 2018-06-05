@@ -42,6 +42,12 @@ public class VirtualRegister extends Operand {
     }
 
     @Override
+    public Operand getReplaced(VirtualRegister older, VirtualRegister newer) {
+        if (this == older) return newer;
+        return this;
+    }
+
+    @Override
     public void init() {
         Translator.getCurrentFunctionIR().initialize(this);
     }

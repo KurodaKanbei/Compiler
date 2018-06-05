@@ -16,7 +16,11 @@ public class ImmediateOperand extends Operand {
 
     @Override
     public void init() {
+    }
 
+    @Override
+    public Operand getReplaced(VirtualRegister older, VirtualRegister newer) {
+        return this;
     }
 
     @Override

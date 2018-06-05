@@ -40,6 +40,12 @@ public class ImmediateAddressOperand extends AddressOperand {
     }
 
     @Override
+    public Operand getReplaced(VirtualRegister older, VirtualRegister newer) {
+        if (base == older) base = newer;
+        return this;
+    }
+
+    @Override
     public void init() {
         Translator.getCurrentFunctionIR().initialize(base);
     }

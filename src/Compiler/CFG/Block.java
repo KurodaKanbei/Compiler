@@ -82,6 +82,10 @@ public class Block {
         return hasJump;
     }
 
+    public void setInstructionList(List<Instruction> instructionList) {
+        this.instructionList = instructionList;
+    }
+
     public Block getTarget() {
         Instruction instruction = instructionList.get(instructionList.size() - 1);
         if (instruction instanceof JumpInstruction) {

@@ -22,6 +22,11 @@ public class MemoryLabel extends Operand {
     }
 
     @Override
+    public Operand getReplaced(VirtualRegister older, VirtualRegister newer) {
+        return this;
+    }
+
+    @Override
     public String toString() {
         return label;
     }

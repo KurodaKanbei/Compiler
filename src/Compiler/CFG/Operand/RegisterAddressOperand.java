@@ -19,6 +19,13 @@ public class RegisterAddressOperand extends AddressOperand {
     }
 
     @Override
+    public Operand getReplaced(VirtualRegister older, VirtualRegister newer) {
+        if (base == older) base = newer;
+        if (offset == older) offset = newer;
+        return this;
+    }
+
+    @Override
     public void init() {
         Translator.getCurrentFunctionIR().initialize(base);
         Translator.getCurrentFunctionIR().initialize(offset);

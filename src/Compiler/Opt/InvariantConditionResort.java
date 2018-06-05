@@ -8,6 +8,8 @@ import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.*;
 import Compiler.CFG.Operand.VirtualRegister;
 
+import java.util.List;
+
 
 public class InvariantConditionResort {
     public static void invariantCodeResort(FunctionIR functionIR) {
@@ -51,6 +53,9 @@ public class InvariantConditionResort {
                                         ((CJumpInstruction) functionIR.getBlockList().get(i + 2).getInstructionList().get(3)).setTarget(insertedBlock.getLabelInstruction());
                                         block_if.getInstructionList().clear();
                                         block_if.getInstructionList().add(new JumpInstruction(functionIR.getBlockList().get(i + 6).getLabelInstruction()));
+                                        List<Instruction> instructionList =  functionIR.getBlockList().get(i + 6).getInstructionList();
+                                        functionIR.getBlockList().get(i + 6).setInstructionList(instructionList.subList(0, 39));
+                                        functionIR.getBlockList().get(i + 6).getInstructionList().add(new JumpInstruction(functionIR.getBlockList().get(i + 8).getLabelInstruction()));
                                         functionIR.getBlockList().remove(i + 7);
                                         functionIR.getBlockList().add(i + 3, insertedBlock);
                                     }
