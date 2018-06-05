@@ -3,25 +3,301 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		i(rsi) = i(rsi) XOR i(rsi)
-		cmp i(rsi) 10
-		CJump LE main_2_loop_body
-		jump main_5_block_exit
-	main_1_loop_condition
-		cmp i(rsi) 10
-		CJump LE main_2_loop_body
-		jump main_5_block_exit
-	main_2_loop_body
-		t1(r9) = mov i(rsi)
-		t1(r9) = t1(r9) SHL 3
-		Address (a(rdi) + t1(r9)) = mov i(rsi)
-		INC i(rsi)
-		cmp i(rsi) 10
-		CJump LE main_2_loop_body
-		jump main_5_block_exit
-	main_3_loop_increment
-		INC i(rsi)
-		cmp i(rsi) 10
-		CJump LE main_2_loop_body
-	main_5_block_exit
+		n(r9) = mov 10
+		t1(rsi) = mov n(r9)
+		INC t1(rsi)
+		t1(rsi) = t1(rsi) SHL 3
+		malloc t0(rdi) t1(rsi)
+		Address (t0(rdi) + 0) = mov n(r9)
+		t0(rdi) = t0(rdi) ADD 8
+		t2(r12) = mov t0(rdi)
+		t3(rbx) = mov t0(rdi)
+		t1(rsi) = t1(rsi) SUB 8
+		t3(rbx) = t3(rbx) ADD t1(rsi)
+		cmp t2(r12) t3(rbx)
+		CJump LE main_2_malloc_body
+		g(r13) = mov t0(rdi)
+		i(r12) = i(r12) XOR i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_1_malloc_condition
+		cmp t2(r12) t3(rbx)
+		CJump LE main_2_malloc_body
+		g(r13) = mov t0(rdi)
+		i(r12) = i(r12) XOR i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_2_malloc_body
+		t5(rsi) = mov n(r9)
+		INC t5(rsi)
+		t5(rsi) = t5(rsi) SHL 3
+		malloc t4(rsi) t5(rsi)
+		Address (t4(rsi) + 0) = mov n(r9)
+		t4(rsi) = t4(rsi) ADD 8
+		Address (t2(r12) + 0) = mov t4(rsi)
+		t2(r12) = t2(r12) ADD 8
+		cmp t2(r12) t3(rbx)
+		CJump LE main_2_malloc_body
+		g(r13) = mov t0(rdi)
+		i(r12) = i(r12) XOR i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_3_malloc_exit
+		g(r13) = mov t0(rdi)
+		i(r12) = i(r12) XOR i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_4_loop_condition
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_5_loop_body
+		j(rbx) = j(rbx) XOR j(rbx)
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_6_loop_condition
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_20_resort_condition
+		cmp j(rbx) i(r12)
+		CJump GREQ main_7_loop_body
+		INC j(rbx)
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_7_loop_body
+		k(rsi) = k(rsi) XOR k(rsi)
+		cmp k(rsi) n(r9)
+		CJump LE main_10_if_true
+		INC j(rbx)
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_8_loop_condition
+		cmp k(rsi) n(r9)
+		CJump LE main_10_if_true
+		INC j(rbx)
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_10_if_true
+		t10(r8) = mov i(r12)
+		t10(r8) = t10(r8) SHL 3
+		t11(rdi) = mov g(r13)
+		t11(rdi) = t11(rdi) ADD t10(r8)
+		t12(r14) = mov j(rbx)
+		t12(r14) = t12(r14) SHL 3
+		t13(r8) = mov Address (t11(rdi) + 0)
+		t13(r8) = t13(r8) ADD t12(r14)
+		t14(rdi) = mov i(r12)
+		t14(rdi) = t14(rdi) ADD j(rbx)
+		t15(rdi) = t15(rdi) ADD k(rsi)
+		Address (t13(r8) + 0) = mov t15(rdi)
+		INC k(rsi)
+		cmp k(rsi) n(r9)
+		CJump LE main_10_if_true
+		INC j(rbx)
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_13_loop_increment
+		INC k(rsi)
+		cmp k(rsi) n(r9)
+		CJump LE main_10_if_true
+		INC j(rbx)
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_15_loop_increment
+		INC j(rbx)
+		cmp j(rbx) n(r9)
+		CJump LE main_20_resort_condition
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_17_loop_increment
+		INC i(r12)
+		cmp i(r12) n(r9)
+		CJump LE main_5_loop_body
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+		jump main_19_block_exit
+	main_18_loop_exit
+		t16(rsi) = t16(rsi) XOR t16(rsi)
+		t16(rsi) = t16(rsi) SHL 3
+		t17(rbx) = mov g(r13)
+		t17(rbx) = t17(rbx) ADD t16(rsi)
+		t18(rsi) = t18(rsi) XOR t18(rsi)
+		t18(rsi) = t18(rsi) SHL 3
+		t19(rbx) = mov Address (t17(rbx) + 0)
+		t19(rbx) = t19(rbx) ADD t18(rsi)
+		t21(rdi) = mov Address (t19(rbx) + 0)
+		call println_Int return value = t20(rax)
+	main_19_block_exit
 }

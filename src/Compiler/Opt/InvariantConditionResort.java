@@ -5,10 +5,7 @@ import Compiler.AST.Statement.IfStatement;
 import Compiler.AST.Statement.Statement;
 import Compiler.CFG.Block;
 import Compiler.CFG.FunctionIR;
-import Compiler.CFG.Instruction.CJumpInstruction;
-import Compiler.CFG.Instruction.CompareInstruction;
-import Compiler.CFG.Instruction.JumpInstruction;
-import Compiler.CFG.Instruction.LabelInstruction;
+import Compiler.CFG.Instruction.*;
 import Compiler.CFG.Operand.VirtualRegister;
 
 
@@ -52,6 +49,9 @@ public class InvariantConditionResort {
                                     ((JumpInstruction) insertedBlock.getInstructionList().get(4)).setTarget(functionIR.getBlockList().get(i + 11).getLabelInstruction());
                                     if (functionIR.getBlockList().get(i + 2).getInstructionList().get(3) instanceof CJumpInstruction) {
                                         ((CJumpInstruction) functionIR.getBlockList().get(i + 2).getInstructionList().get(3)).setTarget(insertedBlock.getLabelInstruction());
+                                        block_if.getInstructionList().clear();
+                                        block_if.getInstructionList().add(new JumpInstruction(functionIR.getBlockList().get(i + 6).getLabelInstruction()));
+                                        functionIR.getBlockList().remove(i + 7);
                                         functionIR.getBlockList().add(i + 3, insertedBlock);
                                     }
                                 }

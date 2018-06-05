@@ -31,28 +31,340 @@ main:
     push                  rbp
      mov                  rbp,                  rsp
     call        __global_init
+    push                  r12
+    push                  r14
+    push                  r13
+    push                  rbx
 main_0_block_enter:
+     mov                   r9,                   10
+     mov                  rsi,                   r9
+     inc                  rsi
+     sal                  rsi,                    3
+    push                  rsi
+    push                   r9
+    push                  rsi
+    push                  rsi
+    push                  rsi
+    push                  rdi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rdi
+     pop                  rsi
+     pop                  rsi
+     pop                  rsi
+     pop                   r9
+     pop                  rsi
+     mov                  rdi,                  rax
+     mov      qword [rdi + 0],                   r9
+     add                  rdi,                    8
+     mov                  r12,                  rdi
+     mov                  rbx,                  rdi
+     sub                  rsi,                    8
+     add                  rbx,                  rsi
+     cmp                  r12,                  rbx
+      jl   main_2_malloc_body
+     mov                  r13,                  rdi
+     xor                  r12,                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
      xor                  rsi,                  rsi
-     cmp                  rsi,                   10
-      jl     main_2_loop_body
-     jmp    main_5_block_exit
-main_1_loop_condition:
-     cmp                  rsi,                   10
-      jl     main_2_loop_body
-     jmp    main_5_block_exit
-main_2_loop_body:
-     mov                   r9,                  rsi
-     sal                   r9,                    3
-     mov     qword [rdi + r9],                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_1_malloc_condition:
+     cmp                  r12,                  rbx
+      jl   main_2_malloc_body
+     mov                  r13,                  rdi
+     xor                  r12,                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_2_malloc_body:
+     mov                  rsi,                   r9
      inc                  rsi
-     cmp                  rsi,                   10
-      jl     main_2_loop_body
-     jmp    main_5_block_exit
-main_3_loop_increment:
+     sal                  rsi,                    3
+    push                  rsi
+    push                   r9
+    push                  rsi
+    push                  rsi
+    push                  rsi
+    push                  rdi
+     mov                  rdi,                  rsi
+    call               malloc
+     pop                  rdi
+     pop                  rsi
+     pop                  rsi
+     pop                  rsi
+     pop                   r9
+     pop                  rsi
+     mov                  rsi,                  rax
+     mov      qword [rsi + 0],                   r9
+     add                  rsi,                    8
+     mov      qword [r12 + 0],                  rsi
+     add                  r12,                    8
+     cmp                  r12,                  rbx
+      jl   main_2_malloc_body
+     mov                  r13,                  rdi
+     xor                  r12,                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_3_malloc_exit:
+     mov                  r13,                  rdi
+     xor                  r12,                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_4_loop_condition:
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_5_loop_body:
+     xor                  rbx,                  rbx
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_6_loop_condition:
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_20_resort_condition:
+     cmp                  rbx,                  r12
+     jge     main_7_loop_body
+     inc                  rbx
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_7_loop_body:
+     xor                  rsi,                  rsi
+     cmp                  rsi,                   r9
+      jl      main_10_if_true
+     inc                  rbx
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_8_loop_condition:
+     cmp                  rsi,                   r9
+      jl      main_10_if_true
+     inc                  rbx
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_10_if_true:
+     mov                   r8,                  r12
+     sal                   r8,                    3
+     mov                  rdi,                  r13
+     add                  rdi,                   r8
+     mov                  r14,                  rbx
+     sal                  r14,                    3
+     mov                   r8,      qword [rdi + 0]
+     add                   r8,                  r14
+     mov                  rdi,                  r12
+     add                  rdi,                  rbx
+     add                  rdi,                  rsi
+     mov       qword [r8 + 0],                  rdi
      inc                  rsi
-     cmp                  rsi,                   10
-      jl     main_2_loop_body
-main_5_block_exit:
+     cmp                  rsi,                   r9
+      jl      main_10_if_true
+     inc                  rbx
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_13_loop_increment:
+     inc                  rsi
+     cmp                  rsi,                   r9
+      jl      main_10_if_true
+     inc                  rbx
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_15_loop_increment:
+     inc                  rbx
+     cmp                  rbx,                   r9
+      jl main_20_resort_condition
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_17_loop_increment:
+     inc                  r12
+     cmp                  r12,                   r9
+      jl     main_5_loop_body
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+     jmp   main_19_block_exit
+main_18_loop_exit:
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,                  r13
+     add                  rbx,                  rsi
+     xor                  rsi,                  rsi
+     sal                  rsi,                    3
+     mov                  rbx,      qword [rbx + 0]
+     add                  rbx,                  rsi
+     mov                  rdi,      qword [rbx + 0]
+    call          println_Int
+main_19_block_exit:
+     pop                  rbx
+     pop                  r13
+     pop                  r14
+     pop                  r12
      pop                  rbp
      ret
 SECTION .data

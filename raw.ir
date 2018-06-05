@@ -5,26 +5,113 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		i(null) = mov 0
-		jump main_1_loop_condition
-	main_1_loop_condition
-		cmp i(null) 10
-		set LE t0(null)
-		cmp t0(null) 1
-		CJump EQ main_2_loop_body
-		jump main_4_loop_exit
-	main_2_loop_body
-		t1(null) = mov i(null)
+		n(null) = mov 10
+		t1(null) = mov n(null)
+		INC t1(null)
 		t1(null) = t1(null) SHL 3
-		t2(null) = mov a(null)
-		t2(null) = t2(null) ADD t1(null)
-		Address (t2(null) + 0) = mov i(null)
-		jump main_3_loop_increment
-	main_3_loop_increment
-		t3(null) = mov i(null)
+		malloc t0(null) t1(null)
+		Address (t0(null) + 0) = mov n(null)
+		t0(null) = t0(null) ADD 8
+		t2(null) = mov t0(null)
+		t3(null) = mov t0(null)
+		t1(null) = t1(null) SUB 8
+		t3(null) = t3(null) ADD t1(null)
+		jump main_1_malloc_condition
+	main_1_malloc_condition
+		cmp t2(null) t3(null)
+		CJump LE main_2_malloc_body
+		jump main_3_malloc_exit
+	main_2_malloc_body
+		t4(null) = mov Address (t2(null) + 0)
+		t5(null) = mov n(null)
+		INC t5(null)
+		t5(null) = t5(null) SHL 3
+		malloc t4(null) t5(null)
+		Address (t4(null) + 0) = mov n(null)
+		t4(null) = t4(null) ADD 8
+		Address (t2(null) + 0) = mov t4(null)
+		t2(null) = t2(null) ADD 8
+		jump main_1_malloc_condition
+	main_3_malloc_exit
+		g(null) = mov t0(null)
+		i(null) = mov 0
+		jump main_4_loop_condition
+	main_4_loop_condition
+		cmp i(null) n(null)
+		set LE t6(null)
+		cmp t6(null) 1
+		CJump EQ main_5_loop_body
+		jump main_18_loop_exit
+	main_5_loop_body
+		j(null) = mov 0
+		jump main_6_loop_condition
+	main_6_loop_condition
+		cmp j(null) n(null)
+		set LE t7(null)
+		cmp t7(null) 1
+		CJump EQ main_7_loop_body
+		jump main_16_loop_exit
+	main_7_loop_body
+		k(null) = mov 0
+		jump main_8_loop_condition
+	main_8_loop_condition
+		cmp k(null) n(null)
+		set LE t8(null)
+		cmp t8(null) 1
+		CJump EQ main_9_loop_body
+		jump main_14_loop_exit
+	main_9_loop_body
+		cmp j(null) i(null)
+		set GREQ t9(null)
+		cmp t9(null) 1
+		CJump EQ main_10_if_true
+		jump main_11_if_false
+	main_10_if_true
+		t10(null) = mov i(null)
+		t10(null) = t10(null) SHL 3
+		t11(null) = mov g(null)
+		t11(null) = t11(null) ADD t10(null)
+		t12(null) = mov j(null)
+		t12(null) = t12(null) SHL 3
+		t13(null) = mov Address (t11(null) + 0)
+		t13(null) = t13(null) ADD t12(null)
+		t14(null) = mov i(null)
+		t14(null) = t14(null) ADD j(null)
+		t15(null) = mov t14(null)
+		t15(null) = t15(null) ADD k(null)
+		Address (t13(null) + 0) = mov t15(null)
+		jump main_12_if_exit
+	main_11_if_false
+		jump main_12_if_exit
+	main_12_if_exit
+		jump main_13_loop_increment
+	main_13_loop_increment
+		INC k(null)
+		jump main_8_loop_condition
+	main_14_loop_exit
+		jump main_15_loop_increment
+	main_15_loop_increment
+		INC j(null)
+		jump main_6_loop_condition
+	main_16_loop_exit
+		jump main_17_loop_increment
+	main_17_loop_increment
 		INC i(null)
-		jump main_1_loop_condition
-	main_4_loop_exit
-		jump main_5_block_exit
-	main_5_block_exit
+		jump main_4_loop_condition
+	main_18_loop_exit
+		t16(null) = mov 0
+		t16(null) = t16(null) SHL 3
+		t17(null) = mov g(null)
+		t17(null) = t17(null) ADD t16(null)
+		t18(null) = mov 0
+		t18(null) = t18(null) SHL 3
+		t19(null) = mov Address (t17(null) + 0)
+		t19(null) = t19(null) ADD t18(null)
+		t21(rdi) = mov Address (t19(null) + 0)
+		call toString return value = t20(rax)
+		t22(null) = mov t20(rax)
+		t23(rdi) = mov t22(null)
+		call println return value = null
+		jump main_19_block_exit
+	main_19_block_exit
 }
