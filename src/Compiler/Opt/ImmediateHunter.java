@@ -4,9 +4,11 @@ import Compiler.CFG.Block;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Instruction.BinaryInstruction;
 import Compiler.CFG.Instruction.Instruction;
+import Compiler.CFG.Instruction.MoveInstruction;
 import Compiler.CFG.Instruction.UnaryInstruction;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.Operand;
+import Compiler.CFG.Operand.VirtualRegister;
 
 public class ImmediateHunter {
 
@@ -14,15 +16,16 @@ public class ImmediateHunter {
         for (Block block : functionIR.getBlockList()) {
             for (int i = 0; i < block.getInstructionList().size(); i++) {
                 Instruction instruction = block.getInstructionList().get(i);
-                /*if (instruction instanceof MoveInstruction) {
+                if (instruction instanceof MoveInstruction) {
                     Operand target = ((MoveInstruction) instruction).getTarget();
                     Operand source = ((MoveInstruction) instruction).getSource();
                     if (target instanceof VirtualRegister && source instanceof ImmediateOperand
+                            && functionIR.getRegisterStringMap().containsKey(target) && !((VirtualRegister) target).isGlobal()
                             && ((ImmediateOperand) source).getValue() == 0) {
                         block.getInstructionList().remove(i);
                         block.getInstructionList().add(i, new BinaryInstruction(BinaryInstruction.BinaryOp.XOR, target, target));
                     }
-                }*/
+                }
                 if (instruction instanceof BinaryInstruction) {
                     Operand target = ((BinaryInstruction) instruction).getTarget();
                     Operand source = ((BinaryInstruction) instruction).getSource();

@@ -32,25 +32,25 @@ main:
      mov                  rbp,                  rsp
     call        __global_init
 main_0_block_enter:
-     mov                  rdi,                    0
-     cmp                  rdi,                   10
+     mov                  rsi,                    0
+     cmp                  rsi,                   10
       jl     main_2_loop_body
      jmp    main_5_block_exit
 main_1_loop_condition:
-     cmp                  rdi,                   10
+     cmp                  rsi,                   10
       jl     main_2_loop_body
      jmp    main_5_block_exit
 main_2_loop_body:
-     mov                   r9,                  rdi
+     mov                   r9,                  rsi
      sal                   r9,                    3
-     mov     qword [rsi + r9],                  rdi
-     inc                  rdi
-     cmp                  rdi,                   10
+     mov     qword [rdi + r9],                  rsi
+     inc                  rsi
+     cmp                  rsi,                   10
       jl     main_2_loop_body
      jmp    main_5_block_exit
 main_3_loop_increment:
-     inc                  rdi
-     cmp                  rdi,                   10
+     inc                  rsi
+     cmp                  rsi,                   10
       jl     main_2_loop_body
 main_5_block_exit:
      pop                  rbp
