@@ -12,6 +12,8 @@ public class Optimize {
         Destructor.uselessFunctionArrange();
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
             LivenessAnalyst.analysis(functionIR);
+            OutputConverter.convertOutput(functionIR);
+            LivenessAnalyst.analysis(functionIR);
             DeadLoopRazor.deadForStatementBlocksRemove(functionIR);
             LoopConditionManager.loopConditionImprove(functionIR);
             UnnecessarySetMurder.unnecessarySetRemove(functionIR);
@@ -22,8 +24,6 @@ public class Optimize {
             BinaryInstructionRazor.uselessMoveInstructionRemove(functionIR);
             LivenessAnalyst.analysis(functionIR);
             BinaryInstructionRazor.uselessBinaryInstructionRemove(functionIR);
-            LivenessAnalyst.analysis(functionIR);
-            OutputConverter.convertOutput(functionIR);
             LivenessAnalyst.analysis(functionIR);
             int round = 0;
             while (NaiveDeadCodeRazor.deadCodeEliminate(functionIR)) {

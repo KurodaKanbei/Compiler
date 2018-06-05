@@ -12,7 +12,7 @@ public class OutputConverter {
     private static boolean hasAssigned(Operand operand, String systemRegister) {
         if (!(operand instanceof VirtualRegister)) return false;
         VirtualRegister virtualRegister = (VirtualRegister) operand;
-        return virtualRegister.getSystemRegister().equals(systemRegister);
+        return virtualRegister.getSystemRegister() != null && virtualRegister.getSystemRegister().equals(systemRegister);
     }
 
     public static void convertOutput(FunctionIR functionIR) {
@@ -45,6 +45,7 @@ public class OutputConverter {
                         }
                     }
                 }
+                //if (block.getInstructionList().get(i) instanceof )
             }
         }
     }
