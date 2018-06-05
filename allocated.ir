@@ -3,7 +3,7 @@ __global_init {
 }
 main {
 	main_0_block_enter
-		i(rsi) = mov 0
+		i(rsi) = i(rsi) XOR i(rsi)
 		cmp i(rsi) 10
 		CJump LE main_2_loop_body
 		jump main_5_block_exit

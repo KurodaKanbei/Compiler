@@ -32,7 +32,7 @@ main:
      mov                  rbp,                  rsp
     call        __global_init
 main_0_block_enter:
-     mov                  rsi,                    0
+     xor                  rsi,                  rsi
      cmp                  rsi,                   10
       jl     main_2_loop_body
      jmp    main_5_block_exit
