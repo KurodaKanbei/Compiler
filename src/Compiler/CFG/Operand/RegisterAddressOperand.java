@@ -12,6 +12,22 @@ public class RegisterAddressOperand extends AddressOperand {
         this.offset = offset;
     }
 
+    public VirtualRegister getBase() {
+        return base;
+    }
+
+    public void setBase(VirtualRegister base) {
+        this.base = base;
+    }
+
+    public VirtualRegister getOffset() {
+        return offset;
+    }
+
+    public void setOffset(VirtualRegister offset) {
+        this.offset = offset;
+    }
+
     @Override
     public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
         if (base == older) base = newer;

@@ -13,10 +13,11 @@ public class ReturnInstruction extends Instruction {
 
     public ReturnInstruction(Operand returnValue) {
         this.returnValue = returnValue;
-        build();
+        buildSet();
     }
 
-    private void build() {
+    @Override
+    public void buildSet() {
         useSet = new HashSet<>();
         if (returnValue instanceof VirtualRegister) {
             useSet.add((VirtualRegister) returnValue);
@@ -32,7 +33,7 @@ public class ReturnInstruction extends Instruction {
 
     public void setReturnValue(Operand returnValue) {
         this.returnValue = returnValue;
-        build();
+        buildSet();
     }
 
     @Override

@@ -3,6 +3,8 @@ package Compiler.CFG.Instruction;
 import Compiler.CFG.Operand.*;
 import Compiler.Trans.Translator;
 
+import java.util.HashSet;
+
 public class UnaryInstruction extends Instruction {
     public enum UnaryOp {
         INC, DEC, REV, NEG
@@ -25,6 +27,13 @@ public class UnaryInstruction extends Instruction {
         }
         this.unaryOp = unaryOp;
         this.target = target;
+        buildSet();
+    }
+
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
         if (target instanceof VirtualRegister) {
             killSet.add((VirtualRegister) target);
             useSet.add((VirtualRegister) target);
@@ -32,15 +41,16 @@ public class UnaryInstruction extends Instruction {
         if (target instanceof ImmediateAddressOperand) {
             useSet.add(((ImmediateAddressOperand) target).getBase());
         }
+        if (target instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) target).getBase());
+            useSet.add(((RegisterAddressOperand) target).getOffset());
+        }
     }
 
     @Override
     public boolean hasGlobalImpact() {
-        if (target instanceof ImmediateAddressOperand || target instanceof MemoryLabel
-                || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {
-            return true;
-        }
-        return false;
+        return target instanceof ImmediateAddressOperand || target instanceof MemoryLabel
+                || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal();
     }
 
     @Override

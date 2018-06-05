@@ -1,9 +1,6 @@
 package Compiler.CFG.Instruction;
 
-import Compiler.CFG.Operand.ImmediateAddressOperand;
-import Compiler.CFG.Operand.MemoryLabel;
-import Compiler.CFG.Operand.Operand;
-import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.CFG.Operand.*;
 import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
@@ -19,10 +16,11 @@ public class MoveInstruction extends Instruction {
         }
         this.target = target;
         this.source = source;
-        build();
+        buildSet();
     }
 
-    private void build() {
+    @Override
+    public void buildSet() {
         killSet = new HashSet<>();
         useSet = new HashSet<>();
         if (target instanceof VirtualRegister) {
@@ -31,11 +29,19 @@ public class MoveInstruction extends Instruction {
         if (target instanceof ImmediateAddressOperand) {
             useSet.add(((ImmediateAddressOperand) target).getBase());
         }
+        if (target instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) target).getBase());
+            useSet.add(((RegisterAddressOperand) target).getOffset());
+        }
         if (source instanceof VirtualRegister) {
             useSet.add((VirtualRegister) source);
         }
         if (source instanceof ImmediateAddressOperand) {
             useSet.add(((ImmediateAddressOperand) source).getBase());
+        }
+        if (source instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) source).getBase());
+            useSet.add(((RegisterAddressOperand) source).getOffset());
         }
     }
 
@@ -58,7 +64,7 @@ public class MoveInstruction extends Instruction {
 
     public void setTarget(Operand target) {
         this.target = target;
-        build();
+        buildSet();
     }
 
     public Operand getSource() {

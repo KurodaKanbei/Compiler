@@ -49,6 +49,8 @@ public abstract class Instruction {
         }
     }
 
+    public abstract void buildSet();
+
     public abstract void init();
 
     public abstract String toString();

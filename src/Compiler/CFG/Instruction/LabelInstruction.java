@@ -43,6 +43,11 @@ public class LabelInstruction extends Instruction {
     }
 
     @Override
+    public void buildSet() {
+
+    }
+
+    @Override
     public boolean hasGlobalImpact() {
         return false;
     }

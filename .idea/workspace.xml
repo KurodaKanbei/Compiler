@@ -2,18 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3acee6cb-57ba-4d8a-929b-bd6959d8dfa8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/allocated.ir" beforeDir="false" afterPath="$PROJECT_DIR$/allocated.ir" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/program.nasm" beforeDir="false" afterPath="$PROJECT_DIR$/program.nasm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raw.ir" beforeDir="false" afterPath="$PROJECT_DIR$/raw.ir" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateAddressOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateAddressOperand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateOperand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/MemoryLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/MemoryLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MallocInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MallocInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/InvariantConditionResort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/InvariantConditionResort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,81 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="program.nasm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/program.nasm">
+      <file leaf-file-name="BinaryInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InvariantConditionResort.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/InvariantConditionResort.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="57" column="182" selection-start-line="57" selection-start-column="182" selection-end-line="57" selection-end-column="182" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImmediateAddressOperand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateAddressOperand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#725#726#0" expanded="true" />
-                <element signature="e#757#758#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImmediateOperand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateOperand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-              <folding>
-                <element signature="e#493#494#0" expanded="true" />
-                <element signature="e#520#521#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemoryLabel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/MemoryLabel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-              <folding>
-                <element signature="e#676#677#0" expanded="true" />
-                <element signature="e#703#704#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Block.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Block.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="84" column="71" selection-start-line="84" selection-start-column="71" selection-end-line="84" selection-end-column="71" />
-              <folding>
-                <element signature="e#2155#2156#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegisterAddressOperand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+            <state relative-caret-position="-654">
+              <caret line="52" column="15" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,29 +46,113 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VirtualRegister.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
+      <file leaf-file-name="MoveInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+            <state relative-caret-position="229">
+              <caret line="66" column="18" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Operand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java">
+      <file leaf-file-name="ReturnInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+            <state relative-caret-position="30">
+              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddressOperand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/AddressOperand.java">
+      <file leaf-file-name="UnaryInstruction.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="93" selection-start-line="3" selection-start-column="93" selection-end-line="3" selection-end-column="93" />
+            <state relative-caret-position="735">
+              <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CJumpInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+              <folding>
+                <element signature="e#941#942#0" expanded="true" />
+                <element signature="e#1035#1036#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CompareInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1795#1796#0" expanded="true" />
+                <element signature="e#1823#1824#0" expanded="true" />
+                <element signature="e#1972#1973#0" expanded="true" />
+                <element signature="e#2048#2049#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FunctionCallInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="56" column="74" selection-start-line="56" selection-start-column="74" selection-end-line="56" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1404#1405#0" expanded="true" />
+                <element signature="e#1452#1453#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JumpInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LabelInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#917#918#0" expanded="true" />
+                <element signature="e#945#946#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CSetInstruction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -195,27 +215,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/VirtualRegisterMerger.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/UnAssociatedCodeSniper.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/BlocksTyrant.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/RedundantBlockDictator.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Utility/Utility.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/UnassociatedCodeSniper.java" />
         <option value="$PROJECT_DIR$/program_backup.txt" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/UnnecessarySetMurder.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/BinaryExpression/BinaryLogicalAndExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/BinaryExpression/BinaryLogicalOrExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/CFGDestructor.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/NaiveInliner.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/BinaryInstructionRazor.java" />
         <option value="$PROJECT_DIR$/allocated_backup.ir" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Statement/IfStatement.java" />
         <option value="$PROJECT_DIR$/raw_backup.ir" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/FunctionIR.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/Destructor.java" />
         <option value="$PROJECT_DIR$/src/Compiler/AST/Expression/ArrayExpression.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/PhysicalOperand/PhysicalAddressRegisterOperand.java" />
@@ -224,28 +235,37 @@
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/PhysicalAddressOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/PhysicalOperand/PhysicalAddressOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/PhysicalOperand/PhysicalImmediateAddressOperand.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/PhysicalOperand/PhysicalRegisterAddressOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/OutputConverter.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/AddressOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/UselessCodeSniper.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/MemoryAddressRazor.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Trans/Translator.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Opt/Optimize.java" />
         <option value="$PROJECT_DIR$/src/Compiler/Main.java" />
         <option value="$PROJECT_DIR$/program.txt" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Block.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/Opt/InvariantConditionResort.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateAddressOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/ImmediateOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/MemoryLabel.java" />
-        <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java" />
         <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Opt/InvariantConditionResort.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MallocInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java" />
       </list>
     </option>
   </component>
@@ -304,59 +324,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Expression" type="462c0819:PsiDirectoryNode" />
-              <item name="BinaryExpression" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Expression" type="462c0819:PsiDirectoryNode" />
-              <item name="PrefixExpression" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Expression" type="462c0819:PsiDirectoryNode" />
-              <item name="SuffixExpression" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Expression" type="462c0819:PsiDirectoryNode" />
-              <item name="UnaryExpression" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
               <item name="Statement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Symbol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Compiler" type="462c0819:PsiDirectoryNode" />
-              <item name="AST" type="462c0819:PsiDirectoryNode" />
-              <item name="Type" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Compiler" type="b2602c69:ProjectViewProjectNode" />
@@ -526,7 +494,7 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50807756" side_tool="true" weight="0.35034484" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.32917705" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49192247" weight="0.4634483" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49192247" visible="true" weight="0.4634483" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49676898" weight="0.37655172" />
       <window_info id="Capture Tool" order="6" />
@@ -581,66 +549,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/PhysicalOperand/PhysicalMemoryLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-462">
-          <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1452#1453#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-27">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/MallocInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-499">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/PhysicalOperand/PhysicalImmediateAddressOperand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -768,26 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/MemoryAddressRazor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Trans/Translator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -802,26 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-558">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="64" column="69" selection-start-line="64" selection-start-column="69" selection-end-line="64" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/ImmediateHunter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-92">
@@ -832,33 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#1035#1036#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-327">
-          <caret line="129" column="59" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-690">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/Optimize.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -866,13 +711,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/raw.ir">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="219" column="8" selection-start-line="219" selection-start-column="8" selection-end-line="219" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -921,13 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/InvariantConditionResort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="57" column="182" selection-start-line="57" selection-start-column="182" selection-end-line="57" selection-end-column="182" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Block.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -935,20 +766,6 @@
           <folding>
             <element signature="e#2155#2156#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/AddressOperand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="93" selection-start-line="3" selection-start-column="93" selection-end-line="3" selection-end-column="93" />
         </state>
       </provider>
     </entry>
@@ -986,20 +803,196 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+        <state relative-caret-position="450">
+          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/raw.ir">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1691">
+          <caret line="256" column="8" selection-start-line="256" selection-start-column="8" selection-end-line="256" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/MemoryAddressRazor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/VirtualRegister.java">
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/SuperBlockBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        <state relative-caret-position="90">
+          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/Opt/InvariantConditionResort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="56" column="128" selection-start-line="56" selection-start-column="128" selection-end-line="56" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/Operand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/AddressOperand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="93" selection-start-line="3" selection-start-column="93" selection-end-line="3" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Operand/RegisterAddressOperand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#553#554#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#627#628#0" expanded="true" />
+            <element signature="e#656#657#0" expanded="true" />
+            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#745#746#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/Instruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/MallocInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1409#1410#0" expanded="true" />
+            <element signature="e#1551#1552#0" expanded="true" />
+            <element signature="e#1633#1634#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/LabelInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+            <element signature="e#945#946#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/JumpInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/FunctionCallInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="56" column="74" selection-start-line="56" selection-start-column="74" selection-end-line="56" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1404#1405#0" expanded="true" />
+            <element signature="e#1452#1453#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CSetInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CompareInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
+            <element signature="e#1823#1824#0" expanded="true" />
+            <element signature="e#1972#1973#0" expanded="true" />
+            <element signature="e#2048#2049#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/CJumpInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="e#941#942#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/BinaryInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-654">
+          <caret line="52" column="15" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/MoveInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="66" column="18" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/ReturnInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compiler/CFG/Instruction/UnaryInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

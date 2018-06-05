@@ -50,7 +50,7 @@ public class BinaryInstruction extends Instruction {
 
     public void setTarget(Operand target) {
         this.target = target;
-        build();
+        buildSet();
     }
 
     public void setSource(Operand source) {
@@ -72,10 +72,11 @@ public class BinaryInstruction extends Instruction {
                 throw new InternalError("Target of div, mod, shl, shr can't be memory address");
             }
         }
-        build();
+        buildSet();
     }
 
-    private void build() {
+    @Override
+    public void buildSet() {
         killSet = new HashSet<>();
         useSet = new HashSet<>();
         if (target instanceof VirtualRegister) {
@@ -85,11 +86,19 @@ public class BinaryInstruction extends Instruction {
         if (target instanceof ImmediateAddressOperand) {
             useSet.add(((ImmediateAddressOperand) target).getBase());
         }
+        if (target instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) target).getBase());
+            useSet.add(((RegisterAddressOperand) target).getOffset());
+        }
         if (source instanceof VirtualRegister) {
             useSet.add((VirtualRegister) source);
         }
         if (source instanceof ImmediateAddressOperand) {
             useSet.add(((ImmediateAddressOperand) source).getBase());
+        }
+        if (source instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) source).getBase());
+            useSet.add(((RegisterAddressOperand) source).getOffset());
         }
     }
 

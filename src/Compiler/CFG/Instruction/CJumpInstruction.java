@@ -39,6 +39,11 @@ public class CJumpInstruction extends Instruction {
     }
 
     @Override
+    public void buildSet() {
+
+    }
+
+    @Override
     public String toString() {
         return String.format("CJump %s %s", conditionOp, target.getBlock().toString());
     }

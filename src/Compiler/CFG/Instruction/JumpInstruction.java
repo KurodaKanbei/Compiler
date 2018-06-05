@@ -28,6 +28,11 @@ public class JumpInstruction extends Instruction {
     }
 
     @Override
+    public void buildSet() {
+
+    }
+
+    @Override
     public String toString() {
         return String.format("jump %s", target.getBlock().toString());
     }

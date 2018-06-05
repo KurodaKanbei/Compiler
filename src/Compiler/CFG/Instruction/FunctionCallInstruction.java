@@ -2,14 +2,12 @@ package Compiler.CFG.Instruction;
 
 import Compiler.AST.Type.FunctionType;
 import Compiler.CFG.FunctionIR;
-import Compiler.CFG.Operand.ImmediateAddressOperand;
-import Compiler.CFG.Operand.MemoryLabel;
-import Compiler.CFG.Operand.Operand;
-import Compiler.CFG.Operand.VirtualRegister;
+import Compiler.CFG.Operand.*;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class FunctionCallInstruction extends Instruction {
@@ -21,17 +19,7 @@ public class FunctionCallInstruction extends Instruction {
         this.functionType = functionType;
         this.returnValue = returnValue;
         this.operandList = operandList;
-        if (returnValue != null) {
-            killSet.add(returnValue);
-        }
-        for (Operand operand : operandList) {
-            if (operand instanceof VirtualRegister) {
-                useSet.add((VirtualRegister) operand);
-            }
-            if (operand instanceof ImmediateAddressOperand) {
-                useSet.add(((ImmediateAddressOperand) operand).getBase());
-            }
-        }
+        buildSet();
     }
 
     public FunctionType getFunctionType() {
@@ -48,6 +36,27 @@ public class FunctionCallInstruction extends Instruction {
 
     public void convertFunctionType(FunctionType functionType) {
         this.functionType = functionType;
+    }
+
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
+        if (returnValue != null) {
+            killSet.add(returnValue);
+        }
+        for (Operand operand : operandList) {
+            if (operand instanceof VirtualRegister) {
+                useSet.add((VirtualRegister) operand);
+            }
+            if (operand instanceof ImmediateAddressOperand) {
+                useSet.add(((ImmediateAddressOperand) operand).getBase());
+            }
+            if (operand instanceof RegisterAddressOperand) {
+                useSet.add(((RegisterAddressOperand) operand).getBase());
+                useSet.add(((RegisterAddressOperand) operand).getOffset());
+            }
+        }
     }
 
     @Override

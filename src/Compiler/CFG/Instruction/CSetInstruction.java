@@ -38,7 +38,7 @@ public class CSetInstruction extends Instruction {
             throw new InternalError("target of compare set instruction is expected to be virtual register");
         }
         this.target = (VirtualRegister) target;
-        killSet.add(this.target);
+        buildSet();
     }
 
     public ProgramIR.ConditionOp getConditionOp() {
@@ -56,7 +56,13 @@ public class CSetInstruction extends Instruction {
     public void setTarget(VirtualRegister target) {
         killSet = new HashSet<>();
         this.target = target;
-        killSet.add(this.target);
+        killSet.add(target);
+    }
+
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        killSet.add(target);
     }
 
     @Override

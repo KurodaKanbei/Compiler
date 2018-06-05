@@ -2,11 +2,14 @@ package Compiler.CFG.Instruction;
 
 import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
+import Compiler.CFG.Operand.RegisterAddressOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.PhysicalOperand.PhysicalAddressOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalImmediateOperand;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
+
+import java.util.HashSet;
 
 public class CompareInstruction extends Instruction {
     private Operand leftOperand, rightOperand;
@@ -25,17 +28,32 @@ public class CompareInstruction extends Instruction {
         if (leftOperand instanceof ImmediateAddressOperand && rightOperand instanceof ImmediateAddressOperand) {
             throw new InternalError("compare instruction can't handle tow memory address");
         }
+        buildSet();
+    }
+
+    @Override
+    public void buildSet() {
+        useSet = new HashSet<>();
+        killSet = new HashSet<>();
         if (leftOperand instanceof VirtualRegister) {
             useSet.add((VirtualRegister) leftOperand);
         }
         if (leftOperand instanceof ImmediateAddressOperand) {
             useSet.add(((ImmediateAddressOperand) leftOperand).getBase());
         }
+        if (leftOperand instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) leftOperand).getBase());
+            useSet.add(((RegisterAddressOperand) leftOperand).getOffset());
+        }
         if (rightOperand instanceof VirtualRegister) {
             useSet.add((VirtualRegister) rightOperand);
         }
         if (rightOperand instanceof ImmediateAddressOperand) {
             useSet.add(((ImmediateAddressOperand) rightOperand).getBase());
+        }
+        if (rightOperand instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) rightOperand).getBase());
+            useSet.add(((RegisterAddressOperand) rightOperand).getOffset());
         }
     }
 

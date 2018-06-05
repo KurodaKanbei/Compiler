@@ -3,11 +3,13 @@ package Compiler.CFG.Instruction;
 import Compiler.CFG.FunctionIR;
 import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.Operand;
+import Compiler.CFG.Operand.RegisterAddressOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.Trans.PhysicalOperand.PhysicalOperand;
 import Compiler.Trans.Translator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class MallocInstruction extends Instruction {
@@ -17,14 +19,9 @@ public class MallocInstruction extends Instruction {
     public MallocInstruction(VirtualRegister target, Operand mallocSize) {
         this.target = target;
         this.mallocSize = mallocSize;
-        killSet.add(target);
-        if (mallocSize instanceof  VirtualRegister) {
-            useSet.add((VirtualRegister) mallocSize);
-        }
-        if (mallocSize instanceof ImmediateAddressOperand) {
-            useSet.add((((ImmediateAddressOperand) mallocSize).getBase()));
-        }
+        buildSet();
     }
+
 
     public VirtualRegister getTarget() {
         return target;
@@ -34,6 +31,22 @@ public class MallocInstruction extends Instruction {
         return mallocSize;
     }
 
+    @Override
+    public void buildSet() {
+        killSet = new HashSet<>();
+        useSet = new HashSet<>();
+        killSet.add(target);
+        if (mallocSize instanceof  VirtualRegister) {
+            useSet.add((VirtualRegister) mallocSize);
+        }
+        if (mallocSize instanceof ImmediateAddressOperand) {
+            useSet.add((((ImmediateAddressOperand) mallocSize).getBase()));
+        }
+        if (mallocSize instanceof RegisterAddressOperand) {
+            useSet.add(((RegisterAddressOperand) mallocSize).getBase());
+            useSet.add(((RegisterAddressOperand) mallocSize).getOffset());
+        }
+    }
 
     @Override
     public boolean hasGlobalImpact() {
