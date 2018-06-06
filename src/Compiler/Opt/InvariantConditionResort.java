@@ -47,8 +47,8 @@ public class InvariantConditionResort {
                                 insertedBlock.getInstructionList().addAll(block_if.getInstructionList());
                                 if (insertedBlock.getInstructionList().get(3) instanceof CJumpInstruction
                                         && insertedBlock.getInstructionList().get(4) instanceof JumpInstruction) {
-                                    ((CJumpInstruction) insertedBlock.getInstructionList().get(3)).setTarget(functionIR.getBlockList().get(i + 3).getLabelInstruction());
-                                    ((JumpInstruction) insertedBlock.getInstructionList().get(4)).setTarget(functionIR.getBlockList().get(i + 11).getLabelInstruction());
+                                    ((CJumpInstruction) insertedBlock.getInstructionList().get(3)).setTarget(functionIR.getBlockList().get(i + 11).getLabelInstruction());
+                                    ((JumpInstruction) insertedBlock.getInstructionList().get(4)).setTarget(functionIR.getBlockList().get(i + 3).getLabelInstruction());
                                     if (functionIR.getBlockList().get(i + 2).getInstructionList().get(3) instanceof CJumpInstruction) {
                                         ((CJumpInstruction) functionIR.getBlockList().get(i + 2).getInstructionList().get(3)).setTarget(insertedBlock.getLabelInstruction());
                                         block_if.getInstructionList().clear();
@@ -58,6 +58,7 @@ public class InvariantConditionResort {
                                         functionIR.getBlockList().get(i + 6).getInstructionList().add(new JumpInstruction(functionIR.getBlockList().get(i + 8).getLabelInstruction()));
                                         functionIR.getBlockList().remove(i + 7);
                                         functionIR.getBlockList().add(i + 3, insertedBlock);
+                                        //System.out.println(functionIR.toString(0));
                                     }
                                 }
                             }

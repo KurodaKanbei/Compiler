@@ -176,8 +176,8 @@ main {
 		cmp j(null) i(null)
 		set GREQ t30(null)
 		cmp t30(null) 1
-		CJump EQ main_24_if_true
-		jump main_25_if_false
+		CJump NEQ main_25_if_false
+		jump main_24_if_true
 	main_24_if_true
 		t31(null) = mov i(null)
 		t31(null) = t31(null) SHL 3
