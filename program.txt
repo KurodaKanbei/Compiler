@@ -1,6 +1,7 @@
 int[][] sat;
 int[] assignment;
 int[] cond_ass;
+int[] my = new int[10];
 int k;
 int n;
 int m;

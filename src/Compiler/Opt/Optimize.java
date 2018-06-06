@@ -10,6 +10,7 @@ public class Optimize {
             InvariantConditionResort.invariantCodeResort(functionIR);
         }
         Destructor.uselessFunctionArrange();
+        MemoryUsageAvenger.unusedMemoryRemove();
         for (FunctionIR functionIR : ProgramIR.getFunctionMap().values()) {
             LivenessAnalyst.analysis(functionIR);
             OutputConverter.convertOutput(functionIR);

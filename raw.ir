@@ -86,6 +86,13 @@ dfs dep(null) {
 }
 __global_init {
 	__global_init_0_block_enter
+		t158(null) = mov 10
+		INC t158(null)
+		t158(null) = t158(null) SHL 3
+		malloc t157(null) t158(null)
+		Address (t157(null) + 0) = mov 10
+		t157(null) = t157(null) ADD 8
+		Address (my(@my) + 0) = mov t157(null)
 		Address (myHash(@myHash) + 0) = mov 0
 		jump __global_init_1_block_exit
 	__global_init_1_block_exit
