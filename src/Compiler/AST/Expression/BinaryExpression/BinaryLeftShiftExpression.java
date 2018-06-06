@@ -33,6 +33,21 @@ public class BinaryLeftShiftExpression extends Expression {
         return new BinaryLeftShiftExpression(leftExpression, rightExpression);
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryLeftShiftExpression)) return false;
+        return leftExpression.equals(((BinaryLeftShiftExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryLeftShiftExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Left Shift Expression";

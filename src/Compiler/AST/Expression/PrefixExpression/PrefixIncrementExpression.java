@@ -27,6 +27,16 @@ public class PrefixIncrementExpression extends Expression {
         return new PrefixIncrementExpression(expression);
     }
 
+    public Expression getExpression() {
+        return expression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof PrefixIncrementExpression)) return false;
+        return expression.equals(((PrefixIncrementExpression) rhs).getExpression());
+    }
+
     @Override
     public String toString() {
         return "Prefix Increment Expression";

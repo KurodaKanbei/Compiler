@@ -65,6 +65,21 @@ public class BinaryLessEqualExpression extends Expression {
         throw new CompilationError("Binary less equal expression needs int or string type");
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryLessEqualExpression)) return false;
+        return leftExpression.equals(((BinaryLessEqualExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryLessEqualExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Less Equal Expression";

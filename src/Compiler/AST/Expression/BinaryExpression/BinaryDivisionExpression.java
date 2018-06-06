@@ -41,6 +41,21 @@ public class BinaryDivisionExpression extends Expression {
         return new BinaryDivisionExpression(leftExpression, rightExpression);
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryDivisionExpression)) return false;
+        return leftExpression.equals(((BinaryDivisionExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryDivisionExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Division Expression";

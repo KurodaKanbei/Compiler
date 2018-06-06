@@ -34,6 +34,21 @@ public class BinaryModuloExpression extends Expression {
         return new BinaryModuloExpression(leftExpression, rightExpression);
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryModuloExpression)) return false;
+        return leftExpression.equals(((BinaryModuloExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryModuloExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Modulo Expression";

@@ -39,6 +39,12 @@ public class IdentifierExpression extends Expression {
     }
 
     @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof IdentifierExpression)) return false;
+        return symbol.equals(((IdentifierExpression) rhs).getSymbol());
+    }
+
+    @Override
     public String toString() {
         return "Identifier " + symbol.getName();
     }

@@ -1,5 +1,6 @@
 package Compiler.AST.Constant;
 
+import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.BoolType;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Operand.ImmediateOperand;
@@ -17,6 +18,12 @@ public class BoolConstant extends Constant {
 
     public boolean getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BoolConstant)) return false;
+        return value == ((BoolConstant) rhs).getValue();
     }
 
     @Override

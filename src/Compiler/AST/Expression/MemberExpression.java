@@ -9,6 +9,7 @@ import Compiler.CFG.Operand.ImmediateAddressOperand;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.RegisterManager;
+import Compiler.Opt.MemoryAddressRazor;
 import Compiler.Utility.Error.CompilationError;
 import Compiler.Utility.Utility;
 
@@ -71,6 +72,13 @@ public class MemberExpression extends Expression{
 
     public String getIdentifier() {
         return identifier;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof MemberExpression)) return false;
+        return expression.equals(((MemberExpression) rhs).getExpression())
+                && identifier.equals(((MemberExpression) rhs).getIdentifier());
     }
 
     @Override

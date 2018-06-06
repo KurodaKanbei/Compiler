@@ -26,6 +26,16 @@ public class UnaryReverseExpression extends Expression {
         return new UnaryReverseExpression(expression);
     }
 
+    public Expression getExpression() {
+        return expression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof UnaryReverseExpression)) return false;
+        return expression.equals(((UnaryReverseExpression) rhs).getExpression());
+    }
+
     @Override
     public String toString() {
         return "Unary Reverse Expression";

@@ -65,6 +65,21 @@ public class BinaryGreaterExpression extends Expression {
         throw new CompilationError("Binary greater expression needs int or string type");
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryGreaterExpression)) return false;
+        return leftExpression.equals(((BinaryGreaterExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryGreaterExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Greater Expression";

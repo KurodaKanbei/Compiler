@@ -23,6 +23,7 @@ public class BinaryMultiplyExpression extends Expression {
             this.put((int) 1L << i, i);
         }
     }};
+
     private BinaryMultiplyExpression(Expression leftExpression, Expression rightExpressoin) {
         super(IntType.getInstance(), false);
         this.leftExpression = leftExpression;
@@ -40,6 +41,21 @@ public class BinaryMultiplyExpression extends Expression {
             return new IntConstant(leftValue * rightValue);
         }
         return new BinaryMultiplyExpression(leftExpression, rightExpression);
+    }
+
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryMultiplyExpression)) return false;
+        return leftExpression.equals(((BinaryMultiplyExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryMultiplyExpression) rhs).getRightExpression());
     }
 
     @Override

@@ -22,8 +22,8 @@ public class BinaryMinusExpression extends Expression {
     }
 
     public static Expression getExpression(Expression leftExpression, Expression rightExpression) {
-        if (leftExpression.getType() instanceof IntType == false ||
-                rightExpression.getType() instanceof IntType == false) {
+        if (!(leftExpression.getType() instanceof IntType) ||
+                !(rightExpression.getType() instanceof IntType)) {
             throw new CompilationError("Binary minus expression needs int type");
         }
         if ((leftExpression instanceof IntConstant) && (rightExpression instanceof IntConstant)) {
@@ -32,6 +32,21 @@ public class BinaryMinusExpression extends Expression {
             return new IntConstant(leftValue - rightValue);
         }
         return new BinaryMinusExpression(leftExpression, rightExpression);
+    }
+
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryMinusExpression)) return false;
+        return  leftExpression.equals(((BinaryMinusExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryMinusExpression) rhs).getRightExpression());
     }
 
     @Override

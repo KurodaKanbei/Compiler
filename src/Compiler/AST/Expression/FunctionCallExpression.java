@@ -66,6 +66,11 @@ public class FunctionCallExpression extends Expression {
     }
 
     @Override
+    public boolean equals(Expression rhs) {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "Function Call Expression";
     }

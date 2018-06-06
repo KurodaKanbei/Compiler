@@ -105,4 +105,15 @@ public class VariableDeclarationStatement extends Statement {
             }
         }
     }
+
+    public void generateInstructionWithReplaced(List<Instruction> instructionList, Operand source) {
+        Operand target = symbol.getOperand();
+        if (target instanceof ImmediateAddressOperand && source instanceof ImmediateAddressOperand) {
+            VirtualRegister t = RegisterManager.getTemporaryRegister();
+            instructionList.add(new MoveInstruction(t, source));
+            instructionList.add(new MoveInstruction(target, t));
+        } else {
+            instructionList.add(new MoveInstruction(target, source));
+        }
+    }
 }

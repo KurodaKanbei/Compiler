@@ -68,6 +68,21 @@ public class BinaryNotEqualExpression extends Expression {
         return new BinaryNotEqualExpression(leftExpression, rightExpression);
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryNotEqualExpression)) return false;
+        return leftExpression.equals(((BinaryNotEqualExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryNotEqualExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Not Equal Expression";

@@ -1,5 +1,6 @@
 package Compiler.AST.Constant;
 
+import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.NullType;
 import Compiler.AST.Type.Type;
 import Compiler.CFG.Instruction.Instruction;
@@ -12,6 +13,11 @@ public class NullConstant extends Constant {
 
     public NullConstant() {
         super(NullType.getInstance());
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        return rhs instanceof NullConstant;
     }
 
     @Override

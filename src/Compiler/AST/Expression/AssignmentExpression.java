@@ -19,6 +19,14 @@ public class AssignmentExpression extends Expression {
         this.rightExpression = rightExpression;
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
     public static Expression getExpression(Expression leftExpression, Expression rightExpression) {
         if (!leftExpression.isLeftValue()) {
             throw new CompilationError("The left expression in assignment expression is expected to be left-value");
@@ -29,6 +37,13 @@ public class AssignmentExpression extends Expression {
             throw new CompilationError("Assignment expression is expected to contain two compatible expression");
         }
         return new AssignmentExpression(leftExpression, rightExpression);
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof AssignmentExpression)) return false;
+        return leftExpression.equals(((AssignmentExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((AssignmentExpression) rhs).getRightExpression());
     }
 
     @Override

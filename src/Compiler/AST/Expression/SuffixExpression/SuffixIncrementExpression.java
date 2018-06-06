@@ -29,6 +29,16 @@ public class SuffixIncrementExpression extends Expression{
         return new SuffixIncrementExpression(expression);
     }
 
+    public Expression getExpression() {
+        return expression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof SuffixIncrementExpression)) return false;
+        return expression.equals(((SuffixIncrementExpression) rhs).getExpression());
+    }
+
     @Override
     public String toString() {
         return "Suffix Increment Expression";

@@ -1,7 +1,6 @@
 package Compiler.AST.Expression.UnaryExpression;
 
 import Compiler.AST.Expression.Expression;
-import Compiler.AST.Type.BoolType;
 import Compiler.AST.Type.IntType;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Instruction.MoveInstruction;
@@ -25,6 +24,16 @@ public class UnaryMinusExpression extends Expression {
             throw new CompilationError("Unary minus expression is expected to be int type");
         }
         return new UnaryMinusExpression(expression);
+    }
+
+    public Expression getExpression() {
+        return expression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof UnaryMinusExpression)) return false;
+        return expression.equals(((UnaryMinusExpression) rhs).getExpression());
     }
 
     @Override

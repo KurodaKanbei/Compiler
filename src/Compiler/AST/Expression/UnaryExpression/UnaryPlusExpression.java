@@ -24,6 +24,16 @@ public class UnaryPlusExpression extends Expression {
         return new UnaryPlusExpression(expression);
     }
 
+    public Expression getExpression() {
+        return expression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof UnaryPlusExpression)) return false;
+        return expression.equals(((UnaryPlusExpression) rhs).getExpression());
+    }
+
     @Override
     public String toString() {
         return "Unary Plus Expression";

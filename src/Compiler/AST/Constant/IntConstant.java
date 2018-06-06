@@ -1,5 +1,6 @@
 package Compiler.AST.Constant;
 
+import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.IntType;
 import Compiler.AST.Type.Type;
 import Compiler.CFG.Instruction.Instruction;
@@ -18,6 +19,12 @@ public class IntConstant extends Constant {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof IntConstant)) return false;
+        return value == ((IntConstant) rhs).getValue();
     }
 
     @Override

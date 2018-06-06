@@ -1,14 +1,12 @@
 package Compiler.AST.Constant;
 
+import Compiler.AST.Expression.Expression;
 import Compiler.AST.Type.StringType;
-import Compiler.AST.Type.Type;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Operand.MemoryLabel;
 import Compiler.Utility.Utility;
 
 import java.util.List;
-
-import static Compiler.CFG.Operand.MemoryLabel.getMemoryLabel;
 
 public class StringConstant extends Constant {
     private String value;
@@ -20,6 +18,12 @@ public class StringConstant extends Constant {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof StringConstant)) return false;
+        return value.equals(((StringConstant) rhs).getValue());
     }
 
     @Override

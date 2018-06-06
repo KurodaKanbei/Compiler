@@ -27,6 +27,16 @@ public class UnaryNotExpression extends Expression {
         return new UnaryNotExpression(expression);
     }
 
+    public Expression getExpression() {
+        return expression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof UnaryNotExpression)) return false;
+        return expression.equals(((UnaryNotExpression) rhs).getExpression());
+    }
+
     @Override
     public String toString() {
         return "Unary Not Expression";

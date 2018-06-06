@@ -35,6 +35,21 @@ public class ArrayExpression extends Expression{
         return new ArrayExpression(arrayType.reduceDimension(), arrayExpression, subscriptExpression);
     }
 
+    private Expression getArrayExpression() {
+        return arrayExpression;
+    }
+
+    private Expression getSubscriptExpression() {
+        return subscriptExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof ArrayExpression)) return false;
+        return arrayExpression.equals(((ArrayExpression) rhs).getArrayExpression())
+                && subscriptExpression.equals(((ArrayExpression) rhs).getSubscriptExpression());
+    }
+
     @Override
     public String toString() {
         return "Array Expression";

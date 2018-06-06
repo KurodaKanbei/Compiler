@@ -22,7 +22,7 @@ public class BinaryBitOrExpression extends Expression {
     }
 
     public static Expression getExpression(Expression leftExpression, Expression rightExpression) {
-        if (leftExpression.getType() instanceof IntType == false || rightExpression.getType() instanceof IntType == false) {
+        if (!(leftExpression.getType() instanceof IntType) || !(rightExpression.getType() instanceof IntType)) {
             throw new CompilationError("Binary bit or is expected to be int type");
         }
         if (leftExpression instanceof IntConstant && rightExpression instanceof IntConstant) {
@@ -31,6 +31,21 @@ public class BinaryBitOrExpression extends Expression {
             return new IntConstant(leftValue | rightValue);
         }
         return new BinaryBitOrExpression(leftExpression, rightExpression);
+    }
+
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryBitOrExpression)) return false;
+        return leftExpression.equals(((BinaryBitOrExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryBitOrExpression) rhs).getRightExpression());
     }
 
     @Override

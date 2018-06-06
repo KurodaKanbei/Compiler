@@ -34,6 +34,21 @@ public class BinaryLogicalAndExpression extends Expression {
         return new BinaryLogicalAndExpression(leftExpression, rightExpression);
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryLogicalAndExpression)) return false;
+        return leftExpression.equals(((BinaryLogicalAndExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryLogicalAndExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Logical And Expression";

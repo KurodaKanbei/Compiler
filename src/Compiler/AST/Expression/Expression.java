@@ -16,6 +16,8 @@ public abstract class Expression {
         this.isLeftValue = isLeftValue;
     }
 
+    public abstract boolean equals(Expression rhs);
+
     public Type getType() {
         return type;
     }

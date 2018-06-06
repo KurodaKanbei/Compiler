@@ -57,6 +57,21 @@ public class BinaryPlusExpression extends Expression {
         throw new CompilationError("Binary plus expression needs int or string type");
     }
 
+    public Expression getLeftExpression() {
+        return leftExpression;
+    }
+
+    public Expression getRightExpression() {
+        return rightExpression;
+    }
+
+    @Override
+    public boolean equals(Expression rhs) {
+        if (!(rhs instanceof BinaryPlusExpression)) return false;
+        return leftExpression.equals(((BinaryPlusExpression) rhs).getLeftExpression())
+                && rightExpression.equals(((BinaryPlusExpression) rhs).getRightExpression());
+    }
+
     @Override
     public String toString() {
         return "Binary Plus Expression";
