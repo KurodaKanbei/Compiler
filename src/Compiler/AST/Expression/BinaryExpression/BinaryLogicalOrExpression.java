@@ -61,8 +61,8 @@ public class BinaryLogicalOrExpression extends Expression {
             leftExpression.generateInstruction(instructionList);
         }
         instructionList.add(new CompareInstruction(leftExpression.getOperand(), new ImmediateOperand(1)));
-        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, trueLabel));
-        instructionList.add(new JumpInstruction(falseLabel));
+        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.NEQ, falseLabel));
+        instructionList.add(new JumpInstruction(trueLabel));
 
         instructionList.add(trueLabel);
         instructionList.add(new MoveInstruction(operand, new ImmediateOperand(1)));
@@ -92,8 +92,8 @@ public class BinaryLogicalOrExpression extends Expression {
             leftExpression.generateInstruction(instructionList);
         }
         instructionList.add(new CompareInstruction(leftExpression.getOperand(), new ImmediateOperand(1)));
-        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, realTrueExit));
-        instructionList.add(new JumpInstruction(falseLabel));
+        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.NEQ, falseLabel));
+        instructionList.add(new JumpInstruction(realTrueExit));
 
         instructionList.add(trueLabel);
         instructionList.add(new MoveInstruction(operand, new ImmediateOperand(1)));
