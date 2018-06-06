@@ -58,6 +58,13 @@ public class CompareInstruction extends Instruction {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        leftOperand = leftOperand.getReplaced(older, newer);
+        rightOperand = rightOperand.getReplaced(older, newer);
+        buildSet();
+    }
+
+    @Override
     public boolean hasGlobalImpact() {
         return false;
     }

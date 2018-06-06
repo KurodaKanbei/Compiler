@@ -1,10 +1,10 @@
-package Compiler.FrontEnd.Listener;
+package Compiler.Front.Listener;
 
 import Compiler.AST.ProgramAST;
 import Compiler.AST.Statement.VariableDeclarationStatement;
 import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.*;
-import Compiler.FrontEnd.Parser.MxstarParser;
+import Compiler.Front.Parser.MxstarParser;
 import Compiler.Utility.Error.CompilationError;
 import org.antlr.v4.runtime.tree.ParseTree;
 

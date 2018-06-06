@@ -1,6 +1,6 @@
-package Compiler.FrontEnd.Listener;
+package Compiler.Front.Listener;
 
-import Compiler.FrontEnd.Parser.MxstarBaseListener;
+import Compiler.Front.Parser.MxstarBaseListener;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;

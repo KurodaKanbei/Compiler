@@ -1,6 +1,6 @@
 package Compiler.Utility.Error;
 
-import Compiler.FrontEnd.Listener.BaseListener;
+import Compiler.Front.Listener.BaseListener;
 
 public class CompilationError extends Error {
     public CompilationError(String errorMessage) {

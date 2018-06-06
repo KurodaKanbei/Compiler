@@ -1,7 +1,6 @@
 package Compiler.AST.Constant;
 
 import Compiler.AST.Type.BoolType;
-import Compiler.AST.Type.Type;
 import Compiler.CFG.Instruction.Instruction;
 import Compiler.CFG.Operand.ImmediateOperand;
 import Compiler.Utility.Utility;

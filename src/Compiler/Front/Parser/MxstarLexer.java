@@ -1,13 +1,10 @@
-// Generated from /Users/resolution/Documents/GitHub/Compiler/src/Compiler/FrontEnd/Parser/Mxstar.g4 by ANTLR 4.7
-package Compiler.FrontEnd.Parser;
+// Generated from /Users/resolution/Documents/GitHub/Compiler/src/Compiler/Front/Parser/Mxstar.g4 by ANTLR 4.7
+package Compiler.Front.Parser;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class MxstarLexer extends Lexer {

@@ -42,6 +42,12 @@ public class ReturnInstruction extends Instruction {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        returnValue = returnValue.getReplaced(older, newer);
+        buildSet();
+    }
+
+    @Override
     public void init() {
         returnValue.init();
     }

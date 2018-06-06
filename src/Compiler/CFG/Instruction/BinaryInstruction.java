@@ -103,6 +103,13 @@ public class BinaryInstruction extends Instruction {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = target.getReplaced(older, newer);
+        source = source.getReplaced(older, newer);
+        buildSet();
+    }
+
+    @Override
     public boolean hasGlobalImpact() {
         if (target instanceof ImmediateAddressOperand || target instanceof MemoryLabel
                 || target instanceof VirtualRegister && ((VirtualRegister) target).isGlobal()) {

@@ -1,8 +1,8 @@
-package Compiler.FrontEnd.Listener;
+package Compiler.Front.Listener;
 
 import Compiler.AST.ProgramAST;
 import Compiler.AST.Type.ClassType;
-import Compiler.FrontEnd.Parser.MxstarParser;
+import Compiler.Front.Parser.MxstarParser;
 
 public class ClassDeclarationListener extends BaseListener{
     @Override

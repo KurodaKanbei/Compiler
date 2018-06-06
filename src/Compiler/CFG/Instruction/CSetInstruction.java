@@ -71,6 +71,12 @@ public class CSetInstruction extends Instruction {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = (VirtualRegister) target.getReplaced(older, newer);
+        buildSet();
+    }
+
+    @Override
     public void init() {
         target.init();
     }

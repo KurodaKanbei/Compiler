@@ -70,6 +70,16 @@ public class FunctionCallInstruction extends Instruction {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        returnValue = (VirtualRegister) returnValue.getReplaced(older, newer);
+        for (int i = 0; i < operandList.size(); i++) {
+            Operand operand = operandList.remove(i);
+            operandList.add(i, operand.getReplaced(older, newer));
+        }
+        buildSet();
+    }
+
+    @Override
     public void init() {
         operandList.forEach(Operand::init);
     }

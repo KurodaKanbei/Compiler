@@ -62,4 +62,6 @@ public abstract class Instruction {
     public abstract String getAssembly();
 
     public abstract boolean hasGlobalImpact();
+
+    public abstract void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer);
 }

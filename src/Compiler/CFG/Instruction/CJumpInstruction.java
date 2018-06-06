@@ -1,5 +1,6 @@
 package Compiler.CFG.Instruction;
 
+import Compiler.CFG.Operand.VirtualRegister;
 import Compiler.CFG.ProgramIR;
 import Compiler.Trans.Translator;
 
@@ -31,6 +32,11 @@ public class CJumpInstruction extends Instruction {
     @Override
     public boolean hasGlobalImpact() {
         return false;
+    }
+
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+
     }
 
     @Override

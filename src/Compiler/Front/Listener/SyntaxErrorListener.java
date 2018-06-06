@@ -1,4 +1,4 @@
-package Compiler.FrontEnd.Listener;
+package Compiler.Front.Listener;
 
 import Compiler.Utility.Error.CompilationError;
 import org.antlr.v4.runtime.BaseErrorListener;

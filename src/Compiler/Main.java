@@ -2,12 +2,12 @@ package Compiler;
 
 import Compiler.AST.ProgramAST;
 import Compiler.CFG.ProgramIR;
-import Compiler.FrontEnd.Listener.ASTListener;
-import Compiler.FrontEnd.Listener.ClassDeclarationListener;
-import Compiler.FrontEnd.Listener.DeclarationListener;
-import Compiler.FrontEnd.Listener.SyntaxErrorListener;
-import Compiler.FrontEnd.Parser.MxstarLexer;
-import Compiler.FrontEnd.Parser.MxstarParser;
+import Compiler.Front.Listener.ASTListener;
+import Compiler.Front.Listener.ClassDeclarationListener;
+import Compiler.Front.Listener.DeclarationListener;
+import Compiler.Front.Listener.SyntaxErrorListener;
+import Compiler.Front.Parser.MxstarLexer;
+import Compiler.Front.Parser.MxstarParser;
 import Compiler.Opt.Optimize;
 import Compiler.Trans.Translator;
 import Compiler.Utility.Error.CompilationError;

@@ -1,4 +1,4 @@
-package Compiler.FrontEnd.Listener;
+package Compiler.Front.Listener;
 
 import Compiler.AST.Constant.BoolConstant;
 import Compiler.AST.Constant.IntConstant;
@@ -22,7 +22,7 @@ import Compiler.AST.Symbol.Symbol;
 import Compiler.AST.Type.ClassType;
 import Compiler.AST.Type.FunctionType;
 import Compiler.AST.Type.Type;
-import Compiler.FrontEnd.Parser.MxstarParser;
+import Compiler.Front.Parser.MxstarParser;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;

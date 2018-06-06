@@ -58,6 +58,13 @@ public class MoveInstruction extends Instruction {
         return false;
     }
 
+    @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = target.getReplaced(older, newer);
+        source = source.getReplaced(older, newer);
+        buildSet();
+    }
+
     public Operand getTarget() {
         return target;
     }

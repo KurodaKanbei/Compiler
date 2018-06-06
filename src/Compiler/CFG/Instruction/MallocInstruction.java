@@ -54,6 +54,13 @@ public class MallocInstruction extends Instruction {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = (VirtualRegister) target.getReplaced(older, newer);
+        mallocSize = mallocSize.getReplaced(older, newer);
+        buildSet();
+    }
+
+    @Override
     public void init() {
         target.init();
         mallocSize.init();

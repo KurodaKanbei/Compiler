@@ -54,6 +54,12 @@ public class UnaryInstruction extends Instruction {
     }
 
     @Override
+    public void replaceVirtualRegister(VirtualRegister older, VirtualRegister newer) {
+        target = target.getReplaced(older, newer);
+        buildSet();
+    }
+
+    @Override
     public void init() {
         target.init();
     }
