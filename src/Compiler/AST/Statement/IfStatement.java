@@ -66,8 +66,8 @@ public class IfStatement extends Statement{
 
         condition.generateInstruction(instructionList);
         instructionList.add(new CompareInstruction(condition.getOperand(), new ImmediateOperand(1)));
-        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.NEQ, falseLabel));
-        instructionList.add(new JumpInstruction(trueLabel));
+        instructionList.add(new CJumpInstruction(ProgramIR.ConditionOp.EQ, trueLabel));
+        instructionList.add(new JumpInstruction(falseLabel));
 
         instructionList.add(trueLabel);
         trueStatement.generateInstruction(instructionList);

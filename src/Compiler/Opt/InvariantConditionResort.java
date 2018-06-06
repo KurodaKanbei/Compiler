@@ -47,8 +47,8 @@ public class InvariantConditionResort {
                                 insertedBlock.getInstructionList().addAll(block_if.getInstructionList());
                                 if (insertedBlock.getInstructionList().get(3) instanceof CJumpInstruction
                                         && insertedBlock.getInstructionList().get(4) instanceof JumpInstruction) {
-                                    ((CJumpInstruction) insertedBlock.getInstructionList().get(3)).setTarget(functionIR.getBlockList().get(i + 11).getLabelInstruction());
-                                    ((JumpInstruction) insertedBlock.getInstructionList().get(4)).setTarget(functionIR.getBlockList().get(i + 3).getLabelInstruction());
+                                    ((CJumpInstruction) insertedBlock.getInstructionList().get(3)).setTarget(functionIR.getBlockList().get(i + 3).getLabelInstruction());
+                                    ((JumpInstruction) insertedBlock.getInstructionList().get(4)).setTarget(functionIR.getBlockList().get(i + 11).getLabelInstruction());
                                     if (functionIR.getBlockList().get(i + 2).getInstructionList().get(3) instanceof CJumpInstruction) {
                                         ((CJumpInstruction) functionIR.getBlockList().get(i + 2).getInstructionList().get(3)).setTarget(insertedBlock.getLabelInstruction());
                                         block_if.getInstructionList().clear();
