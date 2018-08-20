@@ -23,9 +23,9 @@ public class BinaryDivisionExpression extends Expression {
             this.put((int) 1L << i, i);
         }
     }};
-    private BinaryDivisionExpression(Expression leftexpression, Expression rightExpression) {
+    private BinaryDivisionExpression(Expression leftExpression, Expression rightExpression) {
         super(IntType.getInstance(), false);
-        this.leftExpression = leftexpression;
+        this.leftExpression = leftExpression;
         this.rightExpression = rightExpression;
     }
 

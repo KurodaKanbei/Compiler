@@ -35,7 +35,7 @@ public class BinaryEqualExpression extends Expression {
     }
 
     public static Expression getExpression(Expression leftExpression, Expression rightExpression) {
-        if (leftExpression.getType().compatibleWith(rightExpression.getType()) == false) {
+        if (!leftExpression.getType().compatibleWith(rightExpression.getType())) {
             throw new CompilationError("Binary equal expression is expected to have two compatible expression");
         }
         if ((leftExpression instanceof IntConstant) && (rightExpression instanceof IntConstant)) {

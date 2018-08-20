@@ -22,7 +22,7 @@ public class BinaryLeftShiftExpression extends Expression {
     }
 
     public static Expression getExpression(Expression leftExpression, Expression rightExpression) {
-        if (leftExpression.getType() instanceof IntType == false || rightExpression.getType() instanceof IntType == false) {
+        if (!(leftExpression.getType() instanceof IntType) || !(rightExpression.getType() instanceof IntType)) {
             throw new CompilationError("Binary left shift expression needs int type");
         }
         if ((leftExpression instanceof IntConstant) && (rightExpression instanceof IntConstant)) {
